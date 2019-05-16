@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 
 class AddDeputy extends React.Component {
   constructor(props) {
@@ -6,7 +7,7 @@ class AddDeputy extends React.Component {
     this.state = {
       name: "",
       participationRate: "",
-      picture: ""
+      selectedFile: {}
     };
     // this.handleChange = this.handleChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -33,8 +34,8 @@ class AddDeputy extends React.Component {
   onSubmit(event) {
     event.preventDefault();
     // console.info("onSubmit Clicked!!!!!");
-    const { name, participationRate, picture } = this.state;
-    const newDeputy = { name, participationRate, picture };
+    const { name, participationRate, selectedFile } = this.state;
+    const newDeputy = { name, participationRate, selectedFile };
     // console.info("onSubmit newDeputy", newDeputy);
     const url = "http://localhost:4000/api/deputies/add";
     fetch(url, {
@@ -51,10 +52,36 @@ class AddDeputy extends React.Component {
       .catch(err => console.info("onSubmit error", err));
   }
 
+  fileSelectedHandler = event => {
+    console.log(event.target.files[0]);
+    this.setState({
+      selectedFile: event.target.files[0]
+    });
+  };
+
+  fileUploadHandler = () => {
+    const fd = new FormData();
+    fd.append("image", this.state.selectedFile, this.state.selectedFile.name);
+    axios
+      .post("http://localhost:4000/api/deputies/add", fd, {
+        onUploadProgress: ProgressEvent => {
+          console.log(
+            "Upload Progress : " +
+              Math.round((ProgressEvent.loaded / ProgressEvent.total) * 100) +
+              "%"
+          );
+        }
+      })
+      .then(res => {
+        console.log(res);
+      });
+  };
+
   render() {
-    const { name, participationRate } = this.state;
+    const { name, participationRate, selectedFile } = this.state;
     console.info("@AddDeputy state name: ", name);
     console.info("@AddDeputy state participationRate: ", participationRate);
+    console.info("@AddDeputy state selectedFile: ", selectedFile);
     return (
       <div className="container">
         <form className="pt-5 offset-lg-3 col-lg-6 col-12">
@@ -89,7 +116,6 @@ class AddDeputy extends React.Component {
           </div>
           <div className="form-group">
             <label htmlFor="picture">télécharger une photo</label>
-            <input type="file" className="form-control-file" id="picture" />
           </div>
           <button
             type="button"
@@ -99,6 +125,16 @@ class AddDeputy extends React.Component {
             Valider
           </button>
         </form>
+        <div>
+          <input
+            type="file"
+            className="form-control-file"
+            id="selectedFile"
+            onChange={this.fileSelectedHandler}
+          />
+
+          <button onClick={this.fileUploadHandler}>Upload Image</button>
+        </div>
       </div>
     );
   }
