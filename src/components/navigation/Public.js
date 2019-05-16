@@ -24,7 +24,7 @@ class Navigation extends React.Component {
     return (
       <NavContainer>
         <Link className="link title" to="/">
-          Bloom
+          BLOOM
         </Link>
         <Link className="link navlink" to="/deputes">
           Députés

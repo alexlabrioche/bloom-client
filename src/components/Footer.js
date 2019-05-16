@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Global from "../../Global";
+import Global from "../Global";
 
 const Container = styled.footer`
   position: absolute;
