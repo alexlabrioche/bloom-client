@@ -8,11 +8,25 @@ class AddDeputy extends React.Component {
     this.state = {
       name: "",
       participationRate: "",
-      selectedFile: {}
+      selectedFile: {},
+      groups: []
     };
     this.handleChange = this.handleChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
+  componentDidMount() {
+    this.getGroups();
+  }
+  getGroups() {
+    const url = "http://localhost:4000/api/groups/";
+    axios.get(url).then(groups => {
+      console.info("@addDeputy getGroups groups", groups);
+      return this.setState({
+        groups: groups.data
+      });
+    });
+  }
+
   handleChange({ name, value }) {
     console.info(value);
     this.setState({
@@ -55,10 +69,17 @@ class AddDeputy extends React.Component {
   }
 
   render() {
-    const { name, participationRate, selectedFile } = this.state;
+    const {
+      name,
+      participationRate,
+      selectedFile,
+      groups,
+      fileSelectedHandler
+    } = this.state;
     console.info("@AddDeputy state name: ", name);
-    console.info("@AddDeputy state participationRate: ", participationRate);
+    console.info("@AddDeputy state participationRate: ", groups);
     console.info("@AddDeputy state selectedFile: ", selectedFile);
+    console.info("@AddDeputy state fileSelectedHandler: ", fileSelectedHandler);
     return (
       <div>
         <BackButton />
@@ -93,10 +114,27 @@ class AddDeputy extends React.Component {
                 // onChange={e => this.handleChangeRate(e)}
               />
             </div>
+
             <div className="form-group">
               <label htmlFor="picture">télécharger une photo</label>
-              <input type="file" className="form-control-file" id="picture" />
+              <input
+                type="file"
+                className="form-control-file"
+                id="picture"
+                onChange={event => this.fileSelectedHandler(event)}
+              />
             </div>
+            <div className="form-group">
+              <label forhtml="group">Groupe :</label>
+              <select className="form-control" id="group">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+
             <button
               type="button"
               className="btn btn-primary"
@@ -104,6 +142,30 @@ class AddDeputy extends React.Component {
             >
               Valider
             </button>
+            {/* <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="inlineRadioOptions"
+                id="inlineRadio1"
+                value="option1"
+              />
+              <label class="form-check-label" for="inlineRadio1">
+                Protège
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="inlineRadioOptions"
+                id="inlineRadio2"
+                value="option2"
+              />
+              <label class="form-check-label" for="inlineRadio2">
+                Détruit
+              </label>
+            </div> */}
           </form>
         </div>
       </div>
