@@ -9,7 +9,7 @@ class AddDeputy extends React.Component {
       participationRate: "",
       selectedFile: {}
     };
-    // this.handleChange = this.handleChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
   handleChange({ name, value }) {
@@ -32,50 +32,26 @@ class AddDeputy extends React.Component {
   }
 
   onSubmit(event) {
+    // console.info("onSubmit Clicked!");
     event.preventDefault();
-    // console.info("onSubmit Clicked!!!!!");
     const { name, participationRate, selectedFile } = this.state;
-    const newDeputy = { name, participationRate, selectedFile };
-    // console.info("onSubmit newDeputy", newDeputy);
     const url = "http://localhost:4000/api/deputies/add";
-    fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(newDeputy)
-    })
-      .then(res => res.json())
-      .then(deputy =>
-        console.info("@AddDeputy onSubmit deputy added to Db", deputy)
-      )
-      .catch(err => console.info("onSubmit error", err));
+    const deputy = new FormData();
+    deputy.append("image", selectedFile, selectedFile.name);
+    deputy.append("name", name);
+    deputy.append("participationRate", participationRate);
+    axios.post(url, deputy).then(res => {
+      console.log("onSubmit upload OK res:", res);
+    });
   }
 
-  fileSelectedHandler = event => {
-    console.log(event.target.files[0]);
+  fileSelectedHandler(evt) {
+    const selectedFile = evt.target.files[0];
+    console.log("fileSelectedHandler selectedFile", selectedFile);
     this.setState({
-      selectedFile: event.target.files[0]
+      selectedFile
     });
-  };
-
-  fileUploadHandler = () => {
-    const fd = new FormData();
-    fd.append("image", this.state.selectedFile, this.state.selectedFile.name);
-    axios
-      .post("http://localhost:4000/api/deputies/add", fd, {
-        onUploadProgress: ProgressEvent => {
-          console.log(
-            "Upload Progress : " +
-              Math.round((ProgressEvent.loaded / ProgressEvent.total) * 100) +
-              "%"
-          );
-        }
-      })
-      .then(res => {
-        console.log(res);
-      });
-  };
+  }
 
   render() {
     const { name, participationRate, selectedFile } = this.state;
@@ -95,7 +71,6 @@ class AddDeputy extends React.Component {
               onChange={event =>
                 this.handleChange({ name: "name", value: event.target.value })
               }
-              // onChange={event => this.handleChangeName(event)}
             />
           </div>
           <div className="form-group">
@@ -111,12 +86,17 @@ class AddDeputy extends React.Component {
                   value: event.target.value
                 })
               }
-              // onChange={e => this.handleChangeRate(e)}
             />
           </div>
           <div className="form-group">
             <label htmlFor="picture">télécharger une photo</label>
           </div>
+          <input
+            type="file"
+            className="form-control-file"
+            id="selectedFile"
+            onChange={event => this.fileSelectedHandler(event)}
+          />
           <button
             type="button"
             className="btn btn-primary"
@@ -125,16 +105,6 @@ class AddDeputy extends React.Component {
             Valider
           </button>
         </form>
-        <div>
-          <input
-            type="file"
-            className="form-control-file"
-            id="selectedFile"
-            onChange={this.fileSelectedHandler}
-          />
-
-          <button onClick={this.fileUploadHandler}>Upload Image</button>
-        </div>
       </div>
     );
   }
