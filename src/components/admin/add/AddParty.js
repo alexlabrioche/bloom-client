@@ -1,8 +1,28 @@
 import React from "react";
+// import axios from "axios";
 import BackButton from "../../core/admin/BackButton";
 
 class AddParty extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "",
+      description: "",
+      picture: ""
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+  handleChange({ name, value }) {
+    // console.info(value);
+    this.setState({
+      [name]: value
+    });
+  }
   render() {
+    const { name, description, picture } = this.state;
+    console.log("AddParty state name: ", name);
+    console.log("AddParty state description: ", description);
+    console.log("AddPartystate picture: ", picture);
     return (
       <div>
         <BackButton />
@@ -15,6 +35,9 @@ class AddParty extends React.Component {
                 className="form-control"
                 id="name"
                 placeholder=" "
+                onChange={event =>
+                  this.handleChange({ name: "name", value: event.target.value })
+                }
               />
             </div>
             <div className="form-group">
@@ -24,11 +47,27 @@ class AddParty extends React.Component {
                 className="form-control"
                 id="Description"
                 placeholder=""
+                onChange={event =>
+                  this.handleChange({
+                    name: "description",
+                    value: event.target.value
+                  })
+                }
               />
             </div>
             <div className="form-group">
               <label htmlFor="picture">télécharger une photo</label>
-              <input type="file" className="form-control-file" id="picture" />
+              <input
+                type="file"
+                className="form-control-file"
+                id="picture"
+                onChange={event =>
+                  this.handleChange({
+                    name: "picture",
+                    value: event.target.value
+                  })
+                }
+              />
             </div>
             <button type="button" className="btn btn-primary">
               Valider
