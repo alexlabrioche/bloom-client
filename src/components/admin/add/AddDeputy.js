@@ -1,48 +1,55 @@
 import React from "react";
 import axios from "axios";
 import BackButton from "../../core/admin/BackButton";
+import FieldSelector from "../../core/admin/FieldSelector";
+import PictureUploader from "../../core/admin/PictureUploader";
+import Button from "../../core/admin/Button";
+import Input from "../../core/admin/Input";
 
 class AddDeputy extends React.Component {
   constructor(props) {
     super(props);
+    const year = new Date().getFullYear();
+    const month = 1;
+    this.years = Array.from(new Array(25), (val, index) => index - 10 + year);
+    this.months = Array.from(new Array(12), (val, index) => index + month);
     this.state = {
       name: "",
       participationRate: "",
       selectedFile: {},
-      groups: []
+      allGroups: [],
+      allParties: []
     };
     this.handleChange = this.handleChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.handleUpload = this.handleUpload.bind(this);
   }
   componentDidMount() {
     this.getGroups();
+    this.getParties();
   }
   getGroups() {
     const url = "http://localhost:4000/api/groups/";
     axios.get(url).then(groups => {
       console.info("@addDeputy getGroups groups", groups);
       return this.setState({
-        groups: groups.data
+        allGroups: groups.data
+      });
+    });
+  }
+  getParties() {
+    const url = "http://localhost:4000/api/parties/";
+    axios.get(url).then(parties => {
+      console.info("@addDeputy getParties parties", parties);
+      return this.setState({
+        allParties: parties.data
       });
     });
   }
 
   handleChange({ name, value }) {
-    console.info(value);
     this.setState({
       [name]: value
-    });
-  }
-  handleChangeName(evt) {
-    console.info("handleChangeName", evt.target.value);
-    this.setState({
-      name: evt.target.value
-    });
-  }
-  handleChangeRate(evt) {
-    console.info("handleChangeRate", evt.target.value);
-    this.setState({
-      participationRate: evt.target.value
     });
   }
 
@@ -60,112 +67,122 @@ class AddDeputy extends React.Component {
     });
   }
 
-  fileSelectedHandler(evt) {
+  handleUpload(evt) {
     const selectedFile = evt.target.files[0];
-    console.log("fileSelectedHandler selectedFile", selectedFile);
+    console.log("handleUpload selectedFile", selectedFile);
     this.setState({
       selectedFile
     });
+  }
+
+  renderDates() {
+    console.info("renderMonth");
+    return (
+      <div className="my-2 row">
+        <div className="col-3">
+          <select
+            className="form-control"
+            id="group"
+            onChange={e =>
+              this.handleChange({ name: "party", value: e.target.value })
+            }
+          >
+            {this.months.map((month, index) => {
+              return (
+                <option key={`month${index}`} value={month}>
+                  {month}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+        <div className="col-3">
+          <select
+            className="form-control"
+            id="year"
+            onChange={e =>
+              this.handleChange({ name: "party", value: e.target.value })
+            }
+          >
+            {this.years.map((year, index) => {
+              return (
+                <option key={`year${index}`} value={year}>
+                  {year}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+      </div>
+    );
   }
 
   render() {
     const {
       name,
       participationRate,
+      allParties,
+      allGroups,
       selectedFile,
       groups,
-      fileSelectedHandler
+      group,
+      party
     } = this.state;
     console.info("@AddDeputy state name: ", name);
-    console.info("@AddDeputy state participationRate: ", groups);
+    console.info("@AddDeputy state participationRate: ", participationRate);
     console.info("@AddDeputy state selectedFile: ", selectedFile);
-    console.info("@AddDeputy state fileSelectedHandler: ", fileSelectedHandler);
+    console.info("@AddDeputy state group: ", group);
+    console.info("@AddDeputy state party: ", party);
     return (
       <div>
         <BackButton />
         <div className="container">
           <form className="pt-5 offset-lg-3 col-lg-6 col-12">
-            <div className="form-group">
-              <label htmlFor="name">Nom/Prénom</label>
-              <input
-                type="text"
-                className="form-control"
-                id="name"
-                placeholder="bertrand Dupont"
-                onChange={event =>
-                  this.handleChange({ name: "name", value: event.target.value })
-                }
-                // onChange={event => this.handleChangeName(event)}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="participationRate">Taux de participation</label>
-              <input
-                type="number"
-                className="form-control"
-                id="participationRate"
-                placeholder="20"
-                onChange={event =>
-                  this.handleChange({
-                    name: "participationRate",
-                    value: event.target.value
-                  })
-                }
-                // onChange={e => this.handleChangeRate(e)}
-              />
-            </div>
+            <Input
+              label="Nom complet :"
+              name="name"
+              type="text"
+              placeholder="nom du député"
+              handleChange={this.handleChange}
+            />
 
-            <div className="form-group">
-              <label htmlFor="picture">télécharger une photo</label>
-              <input
-                type="file"
-                className="form-control-file"
-                id="picture"
-                onChange={event => this.fileSelectedHandler(event)}
-              />
-            </div>
-            <div className="form-group">
-              <label forhtml="group">Groupe :</label>
-              <select className="form-control" id="group">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-            </div>
+            <Input
+              label="Taux de participation :"
+              name="participationRate"
+              type="number"
+              placeholder="10"
+              handleChange={this.handleChange}
+            />
 
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={evt => this.onSubmit(evt)}
-            >
-              Valider
-            </button>
-            {/* <div class="form-check form-check-inline">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="inlineRadioOptions"
-                id="inlineRadio1"
-                value="option1"
-              />
-              <label class="form-check-label" for="inlineRadio1">
-                Protège
-              </label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="inlineRadioOptions"
-                id="inlineRadio2"
-                value="option2"
-              />
-              <label class="form-check-label" for="inlineRadio2">
-                Détruit
-              </label>
-            </div> */}
+            <PictureUploader
+              label="Photo de profil"
+              handleUpload={this.handleUpload}
+            />
+
+            <FieldSelector
+              label="Groupe zer :"
+              data={allGroups}
+              name="group"
+              handleChange={this.handleChange}
+            />
+
+            <FieldSelector
+              label="Parti banks zer :"
+              data={allParties}
+              name="party"
+              handleChange={this.handleChange}
+            />
+
+            <div>Prise de poste :</div>
+            {this.renderDates()}
+            <div>Fin de mandat :</div>
+            {this.renderDates()}
+
+            <Button
+              label="Enregistrer le député"
+              onSubmit={this.onSubmit}
+              className="my-5 btn btn-primary"
+            />
           </form>
         </div>
       </div>
