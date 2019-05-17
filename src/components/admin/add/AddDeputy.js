@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import BackButton from "../../core/admin/BackButton";
 
 class AddDeputy extends React.Component {

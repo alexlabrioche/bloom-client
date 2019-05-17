@@ -26,7 +26,13 @@ class Deputies extends React.Component {
     return (
       <div>
         {deputies.map(deputy => {
-          return <div>{deputy.name}</div>;
+          console.info(deputy.picture);
+          return (
+            <div>
+              <div>{deputy.name}</div>
+              <img src={deputy.picture} />
+            </div>
+          );
         })}
       </div>
     );
