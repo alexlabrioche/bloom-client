@@ -23,10 +23,10 @@ import Create from "./components/admin/Create";
 
 import AddDeputy from "./components/admin/add/AddDeputy";
 import AddLaw from "./components/admin/add/AddLaw";
-import AddCategory from "./components/admin/add/AddLawCategory";
 import AddParty from "./components/admin/add/AddParty";
 import AddGroup from "./components/admin/add/AddGroup";
 import AddVote from "./components/admin/add/AddVote";
+import AddLawCategory from "./components/admin/add/AddLawCategory";
 
 import DeputiesList from "./components/admin/lists/DeputiesList";
 import PartiesList from "./components/admin/lists/PartiesList";
@@ -69,10 +69,15 @@ class App extends React.Component {
           <Route exact path="/admin/create" component={Create} />
           <Route exact path="/admin/create/deputy" component={AddDeputy} />
           <Route exact path="/admin/create/law" component={AddLaw} />
-          <Route exact path="/admin/create/category" component={AddCategory} />
           <Route exact path="/admin/create/party" component={AddParty} />
           <Route exact path="/admin/create/group" component={AddGroup} />
+          <Route
+            exact
+            path="/admin/create/law-category"
+            component={AddLawCategory}
+          />
           <Route exact path="/admin/create/vote" component={AddVote} />
+
           <Footer />
         </AppContainer>
       </Router>
