@@ -2,7 +2,7 @@ import React from "react";
 
 class Button extends React.Component {
   render() {
-    const { onSubmit, label, className } = this.props;
+    const { label, className, onSubmit } = this.props;
     return (
       <button
         type="button"

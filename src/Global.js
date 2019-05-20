@@ -6,7 +6,8 @@ const Global = {
     tertiary: "#B1BAC5",
     light: "#D9DCE1",
     dark: "#646566",
-    accent: "#E42058"
+    accent: "#E42058",
+    disabled: "#CCC"
   },
   font: {
     primary: "Ubuntu",

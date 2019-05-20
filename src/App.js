@@ -7,7 +7,7 @@ import Global from "./Global";
 // import Containers For react Router
 import Home from "./components/Home";
 import Navigation from "./components/navigation";
-import Footer from "./components/Footer";
+// import Footer from "./components/Footer";
 
 import Deputies from "./components/deputies/Deputies";
 import DeputyProfile from "./components/deputies/DeputyProfile";
@@ -20,6 +20,7 @@ import GroupDetails from "./components/groups/GroupDetails";
 
 import Admin from "./components/admin";
 import Create from "./components/admin/Create";
+import Delete from "./components/admin/Delete";
 
 import AddDeputy from "./components/admin/add/AddDeputy";
 import AddLaw from "./components/admin/add/AddLaw";
@@ -27,6 +28,13 @@ import AddParty from "./components/admin/add/AddParty";
 import AddGroup from "./components/admin/add/AddGroup";
 import AddVote from "./components/admin/add/AddVote";
 import AddLawCategory from "./components/admin/add/AddLawCategory";
+
+import EditDeputy from "./components/admin/edit/EditDeputy";
+import EditLaw from "./components/admin/edit/EditLaw";
+import EditParty from "./components/admin/edit/EditParty";
+import EditGroup from "./components/admin/edit/EditGroup";
+import EditVote from "./components/admin/edit/EditVote";
+import EditLawCategory from "./components/admin/edit/EditLawCategory";
 
 import DeputiesList from "./components/admin/lists/DeputiesList";
 import PartiesList from "./components/admin/lists/PartiesList";
@@ -37,7 +45,7 @@ import CategoriesList from "./components/admin/lists/CategoriesList";
 
 const AppContainer = styled.div`
   color: ${Global.color.body};
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   background: whitesmoke;
@@ -60,25 +68,46 @@ class App extends React.Component {
 
           {/********** ADMIN ROUTES **********/}
           <Route exact path="/admin" component={Admin} />
-          <Route exact path="/admin/deputies" component={DeputiesList} />
-          <Route exact path="/admin/parties" component={PartiesList} />
-          <Route exact path="/admin/groups" component={GroupsList} />
+          <Route exact path="/admin/deputes" component={DeputiesList} />
+          <Route exact path="/admin/partis" component={PartiesList} />
+          <Route exact path="/admin/groupes" component={GroupsList} />
           <Route exact path="/admin/votes" component={VotesList} />
-          <Route exact path="/admin/laws" component={LawsList} />
+          <Route exact path="/admin/lois" component={LawsList} />
           <Route exact path="/admin/categories" component={CategoriesList} />
-          <Route exact path="/admin/create" component={Create} />
-          <Route exact path="/admin/create/deputy" component={AddDeputy} />
-          <Route exact path="/admin/create/law" component={AddLaw} />
-          <Route exact path="/admin/create/party" component={AddParty} />
-          <Route exact path="/admin/create/group" component={AddGroup} />
+
+          <Route exact path="/admin/creer" component={Create} />
+          <Route exact path="/admin/ajouter/depute" component={AddDeputy} />
+          <Route exact path="/admin/ajouter/loi" component={AddLaw} />
+          <Route exact path="/admin/ajouter/parti" component={AddParty} />
+          <Route exact path="/admin/ajouter/groupe" component={AddGroup} />
           <Route
             exact
-            path="/admin/create/law-category"
+            path="/admin/ajouter/categorie"
             component={AddLawCategory}
           />
-          <Route exact path="/admin/create/vote" component={AddVote} />
+          <Route exact path="/admin/ajouter/vote" component={AddVote} />
 
-          <Footer />
+          <Route
+            exact
+            path="/admin/modifier/depute/:id"
+            component={EditDeputy}
+          />
+          <Route exact path="/admin/modifier/loi/:id" component={EditLaw} />
+          <Route exact path="/admin/modifier/parti/:id" component={EditParty} />
+          <Route
+            exact
+            path="/admin/modifier/groupe/:id"
+            component={EditGroup}
+          />
+          <Route
+            exact
+            path="/admin/modifier/categorie/:id"
+            component={EditLawCategory}
+          />
+          <Route exact path="/admin/modifier/vote/:id" component={EditVote} />
+          <Route exact path="/admin/supprimer/:type/:id" component={Delete} />
+
+          {/* <Footer /> */}
         </AppContainer>
       </Router>
     );
