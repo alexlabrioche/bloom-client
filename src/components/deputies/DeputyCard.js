@@ -10,9 +10,7 @@ const Container = styled.div`
   }
   img {
     object-fit: cover;
-  }
-  .image-container {
-    height: 300px;
+    height: 200px;
   }
   .btn-secondary {
     background-color: #4c6784;
@@ -34,27 +32,22 @@ class DeputyCard extends React.Component {
     console.log("picture", picture);
     return (
       <Container className="card col-12 col-md-6 col-lg-3 text-center my-2 mx-2">
-        <div className="image-container">
-          <img
-            src={`${Config.server}/${picture}`}
-            className="card-img-top"
-            alt={`${name}`}
-          />
-        </div>
+        <img src={`${Config.server}/${picture}`} alt={`${name}`} />
         <div className="card-body">
           <h5 className="card-title">{name}</h5>
-          <h6>Candidat 2019 - Liste : PS - Place Publique</h6>
-          <p className="card-text">
+          <h6 className="d-none d-md-block">
+            Candidat 2019 - Liste : PS - Place Publique
+          </h6>
+          <p className="card-text d-none d-md-block">
             Alliance Progressiste des Socialistes et Démocrates
           </p>
           <p className="stat-medium">11/20</p>
-          <a href="andrieu.html" className="btn btn-secondary">
+          <a
+            href="andrieu.html"
+            className="btn btn-secondary d-none d-md-block"
+          >
             ses votes
           </a>
-          <p className="invisible">
-            eric éric andrieu SD PS alliance progressiste des socialistes et
-            démocrates parti socialiste PS
-          </p>
         </div>
       </Container>
     );
