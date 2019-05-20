@@ -23,7 +23,7 @@ class GroupsList extends React.Component {
     return (
       <div>
         <div className="pt-5 container">
-          <List data={groups} type="groupe" />
+          <List data={groups} type="group" />
         </div>
       </div>
     );

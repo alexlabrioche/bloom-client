@@ -5,6 +5,7 @@ import LawsList from "./lists/LawsList";
 import GroupsList from "./lists/GroupsList";
 import PartiesList from "./lists/PartiesList";
 import styled from "styled-components";
+import VotesList from "./lists/VotesList";
 
 const Container = styled.div`
   .list-group {
@@ -50,7 +51,7 @@ class Create extends React.Component {
             }
             onClick={() => this.setActiveList("laws")}
           >
-            Lois
+            Amendements
           </li>
           <li
             className={
@@ -60,7 +61,7 @@ class Create extends React.Component {
             }
             onClick={() => this.setActiveList("categories")}
           >
-            Catégories de lois
+            Textes de lois
           </li>
           <li
             className={
@@ -82,12 +83,23 @@ class Create extends React.Component {
           >
             Groupes
           </li>
+          <li
+            className={
+              activeList === "votes"
+                ? "text-primary list-group-item"
+                : "list-group-item"
+            }
+            onClick={() => this.setActiveList("votes")}
+          >
+            Votes
+          </li>
         </ul>
         {activeList === "deputies" && <DeputiesList />}
         {activeList === "laws" && <LawsList />}
         {activeList === "categories" && <CategoriesList />}
         {activeList === "parties" && <PartiesList />}
         {activeList === "groups" && <GroupsList />}
+        {activeList === "votes" && <VotesList />}
       </Container>
     );
   }

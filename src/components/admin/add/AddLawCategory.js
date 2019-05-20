@@ -1,20 +1,46 @@
 import React from "react";
-import BackButton from "../../core/admin/BackButton";
+import { Form, Text, TextArea } from "informed";
+import styled from "styled-components";
+
+import Api from "../../../utils/Api";
+
+const Container = styled.div`
+  padding-top: 50px;
+  display: flex;
+  justify-content: center;
+`;
+
+const Label = styled.h6`
+  margin-top: 10px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+`;
 
 class AddLawCategory extends React.Component {
   constructor(props) {
     super(props);
+<<<<<<< HEAD
     this.state = {};
     this.handleChange = this.handleChange.bind(this);
+=======
+    this.state = {
+      categories: []
+    };
+>>>>>>> bed4d4fd0990669e6ea3cf3e92c22477bfef48ca
   }
-  handleChange({ name, value }) {
-    console.info(value);
-    this.setState({
-      [name]: value
-    });
+
+  onSubmit(formState) {
+    console.info("formState", formState);
+
+    const newCategory = new FormData();
+    newCategory.append("data", JSON.stringify(formState));
+
+    Api.addCategory(newCategory);
   }
   render() {
     return (
+<<<<<<< HEAD
       <div>
         <BackButton />
         <div className="pt-5 offset-lg-4 col-lg-4 col-12 container">
@@ -112,6 +138,23 @@ class AddLawCategory extends React.Component {
           </div>
         </div>
       </div>
+=======
+      <Container className="container">
+        <Form onSubmit={formState => this.onSubmit(formState)}>
+          <Label>
+            Nom :
+            <Text field="name" type="text" />
+          </Label>
+          <Label>
+            Description :
+            <TextArea field="description" />
+          </Label>
+          <button type="submit" className="btn btn-outline-secondary">
+            Ajouter
+          </button>
+        </Form>
+      </Container>
+>>>>>>> bed4d4fd0990669e6ea3cf3e92c22477bfef48ca
     );
   }
 }

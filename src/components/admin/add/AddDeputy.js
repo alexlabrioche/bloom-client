@@ -2,16 +2,7 @@ import React from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-import {
-  Form,
-  Text,
-  Option,
-  Select,
-  TextArea,
-  RadioGroup,
-  Radio,
-  asField
-} from "informed";
+import { Form, Text, Option, Select, asField } from "informed";
 import styled from "styled-components";
 
 import Api from "../../../utils/Api";
@@ -66,6 +57,8 @@ class AddDeputy extends React.Component {
   }
 
   onSubmit(formState) {
+    console.info("formState", formState);
+
     const { image } = this.state;
 
     const newDeputy = new FormData();
@@ -82,19 +75,6 @@ class AddDeputy extends React.Component {
       <Container className="container">
         <Form onSubmit={formState => this.onSubmit(formState)}>
           <Label>
-            Example file input
-            <input
-              type="file"
-              onChange={event =>
-                this.handleChange({
-                  name: "image",
-                  value: event.target.files[0]
-                })
-              }
-            />
-          </Label>
-
-          <Label>
             Nom complet:
             <Text field="name" type="text" />
           </Label>
@@ -102,24 +82,6 @@ class AddDeputy extends React.Component {
           <Label>
             Taux de participation:
             <Text field="participationRate" type="number" />
-          </Label>
-
-          <Label>
-            Prise de poste :
-            <DateInput
-              field="mandateFrom"
-              showMonthYearPicker
-              dateFormat="MM/yyyy"
-            />
-          </Label>
-
-          <Label>
-            Fin du mandat :
-            <DateInput
-              field="mandateTo"
-              showMonthYearPicker
-              dateFormat="MM/yyyy"
-            />
           </Label>
 
           <Label>
@@ -151,18 +113,35 @@ class AddDeputy extends React.Component {
           </Label>
 
           <Label>
-            Résumé :
-            <TextArea field="resume" />
+            Prise de poste :
+            <DateInput
+              field="mandateFrom"
+              showMonthYearPicker
+              dateFormat="MM/yyyy"
+            />
           </Label>
 
-          <RadioGroup field="protect">
-            <Label>
-              Protège <Radio value="true" />
-            </Label>
-            <Label>
-              Détruit <Radio value="false" />
-            </Label>
-          </RadioGroup>
+          <Label>
+            Fin du mandat :
+            <DateInput
+              field="mandateTo"
+              showMonthYearPicker
+              dateFormat="MM/yyyy"
+            />
+          </Label>
+
+          <Label>
+            Photo :
+            <input
+              type="file"
+              onChange={event =>
+                this.handleChange({
+                  name: "image",
+                  value: event.target.files[0]
+                })
+              }
+            />
+          </Label>
 
           <button type="submit" className="btn btn-outline-secondary">
             Ajouter

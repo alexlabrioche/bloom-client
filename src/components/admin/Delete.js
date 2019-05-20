@@ -13,20 +13,23 @@ class Delete extends React.Component {
     const id = this.props.match.params.id;
     const type = this.props.match.params.type;
     let itemTodelete = "";
-    if (type === "depute") {
+    if (type === "deputy") {
       itemTodelete = await Api.deleteDeputy(id);
     }
-    if (type === "groupe") {
+    if (type === "group") {
       itemTodelete = await Api.deleteGroup(id);
     }
-    if (type === "parti") {
+    if (type === "party") {
       itemTodelete = await Api.deleteParty(id);
     }
-    if (type === "categorie") {
-      itemTodelete = await Api.deleteCategorie(id);
+    if (type === "category") {
+      itemTodelete = await Api.deleteCategory(id);
     }
-    if (type === "loi") {
+    if (type === "law") {
       itemTodelete = await Api.deleteLaw(id);
+    }
+    if (type === "vote") {
+      itemTodelete = await Api.deleteVote(id);
     }
     const message = itemTodelete.message;
     console.info(itemTodelete);

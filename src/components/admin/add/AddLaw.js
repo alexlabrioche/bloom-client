@@ -1,156 +1,139 @@
 import React from "react";
-import BackButton from "../../core/admin/BackButton";
+import DatePicker from "react-datepicker";
+import {
+  Form,
+  Text,
+  TextArea,
+  RadioGroup,
+  Radio,
+  asField,
+  Select,
+  Option
+} from "informed";
+import styled from "styled-components";
+
+import "react-datepicker/dist/react-datepicker.css";
+
+import Api from "../../../utils/Api";
+// import BackButton from "../../core/admin/BackButton";
+const DateInput = asField(
+  ({ fieldState: { value }, fieldApi: { setTouched, setValue }, ...props }) => (
+    <DatePicker
+      onFocus={() => setTouched(true)}
+      onChange={date => setValue(date)}
+      selected={value}
+      {...props}
+    />
+  )
+);
+
+const Container = styled.div`
+  padding-top: 50px;
+  display: flex;
+  justify-content: center;
+`;
+
+const Label = styled.h6`
+  margin-top: 10px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+`;
 
 class AddLaw extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: "",
-      subTitle: "",
-      protect: Boolean,
-      commencment: Date,
-      resume: "",
-      fullText: "",
-      link: ""
+      categories: []
     };
     this.handleChange = this.handleChange.bind(this);
   }
+  async componentDidMount() {
+    const categories = await Api.getCategories();
+    this.setState({
+      categories
+    });
+  }
+
   handleChange({ name, value }) {
-/*     console.info(value);
- */    this.setState({
-    [name]: value
-  });
+    this.setState({
+      [name]: value
+    });
+  }
+
+  onSubmit(formState) {
+    console.info("formState", formState);
+
+    const newLaw = new FormData();
+    newLaw.append("data", JSON.stringify(formState));
+
+    Api.addLaw(newLaw);
   }
   render() {
-    const { title, subTitle, protect, commencement, resume, fullText, link } = this.state;
-    console.log('title', title);
-    /* console.log('subTitle', subTitle);
-    console.log('protect', protect);
-    console.log('commencement', commencement);
-    console.log('resume', resume);
-    console.log('fullText', fullText);
-    console.log('link', link); */
+    const { categories } = this.state;
     return (
-      <div>
-        <BackButton />
-        <div className="pt-5 offset-lg-4 col-lg-4 col-12 container">
-          <div>
-            <form className="formSize">
-              <div className="form-group mt-3">
-                <div className="input-group mb-2 mr-sm-2">
-                  <div className="input-group-prepend">
-                    <div className="input-group-text" />
-                  </div>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="inlineFormInputGroupUsername2"
-                    placeholder="Protège ou détruit"
-                    onChange={event =>
-                      this.handleChange({ name: "protect", value: event.target.value })
-                    }
-                  />
-                </div>
-                <div className="input-group mb-2 mr-sm-2">
-                  <div className="input-group-prepend">
-                    <div className="input-group-text" />
-                  </div>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="inlineFormInputGroupUsername2"
-                    placeholder="Titre"
-                    onChange={event =>
-                      this.handleChange({ name: "title", value: event.target.value })
-                    }
-                  />
-                </div>
-                <div className="input-group mb-2 mr-sm-2">
-                  <div className="input-group-prepend">
-                    <div className="input-group-text" />
-                  </div>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="inlineFormInputGroupUsername2"
-                    placeholder="Sous-Titre"
-                    onChange={event =>
-                      this.handleChange({ name: "subTitle", value: event.target.value })
-                    }
-                  />
-                </div>
-                <div className="input-group mb-2 mr-sm-2">
-                  <div className="input-group-prepend">
-                    <div className="input-group-text" />
-                  </div>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="inlineFormInputGroupUsername2"
-                    placeholder="Lien externe"
-                    onChange={event =>
-                      this.handleChange({ name: "link", value: event.target.value })
-                    }
-                  />
-                </div>
-                <div className="input-group mb-2 mr-sm-2">
-                  <div className="input-group-prepend">
-                    <div className="input-group-text" />
-                  </div>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="inlineFormInputGroupUsername2"
-                    placeholder="Date d'entréé en vigueur"
-                    onChange={event =>
-                      this.handleChange({ name: "commencement", value: event.target.value })
-                    }
-                  />
-                </div>
-                <div className="input-group mb-2 mr-sm-2">
-                  <input
-                    type="text"
-                    className="form-control pb-4"
-                    id="inlineFormInputGroupUsername2"
-                    placeholder="Résumé"
-                    onChange={event =>
-                      this.handleChange({ name: "resume", value: event.target.value })
-                    }
-                  />
-                </div>
-                <div className="input-group mb-2 mr-sm-2">
-                  <label htmlFor="exampleFormControlTextarea1" />
-                  <textarea
-                    className="form-control"
-                    placeholder="Texte complet"
-                    id="inlineFormInputGroupUsername2"
-                    rows="3"
-                    onChange={event =>
-                      this.handleChange({ name: " fullText", value: event.target.value })
-                    }
-                  />
-                </div>
-                <div className="form-row mt-3">
-                  <div className="col-lg-4 col-12">
-                    <select class="form-control" >
-                      <option>Catégories</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <button type="submit" className="btn btn-primary mt-3">
-                Ajouter
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
+      <Container className="container">
+        <Form onSubmit={formState => this.onSubmit(formState)}>
+          <Label>
+            Titre :
+            <Text field="name" />
+          </Label>
+          <Label>
+            Amendement :
+            <Text field="subTitle" />
+          </Label>
+          <Label>
+            Lien externe sur la loi :
+            <Text field="link" />
+          </Label>
+
+          <Label>
+            Description :
+            <TextArea field="description" />
+          </Label>
+
+          <Label>
+            Texte complet :
+            <TextArea field="fullText" />
+          </Label>
+
+          <Label>
+            Date d'entrée en vigueur :
+            <DateInput
+              field="commencement"
+              showMonthYearPicker
+              dateFormat="MM/yyyy"
+            />
+          </Label>
+
+          <Label>
+            Catégorie :
+            <Select field="category">
+              <Option value="">...</Option>
+              {categories.map((category, index) => {
+                return (
+                  <Option value={category._id} key={index}>
+                    {category.name}
+                  </Option>
+                );
+              })}
+            </Select>
+          </Label>
+
+          <RadioGroup field="protect">
+            <Label>
+              Protège <Radio value="true" />
+            </Label>
+            <Label>
+              Détruit <Radio value="false" />
+            </Label>
+          </RadioGroup>
+          <button type="submit" className="btn btn-outline-secondary">
+            Ajouter
+          </button>
+        </Form>
+      </Container>
     );
   }
 }
-
 export default AddLaw;
