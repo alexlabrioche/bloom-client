@@ -1,49 +1,77 @@
 import React from "react";
-import BackButton from "../../core/admin/BackButton";
+import "react-datepicker/dist/react-datepicker.css";
+import { Form, Text, TextArea } from "informed";
+import styled from "styled-components";
+
+import Api from "../../../utils/Api";
+
+const Container = styled.div`
+  padding-top: 50px;
+  display: flex;
+  justify-content: center;
+`;
+
+const Label = styled.h6`
+  margin-top: 10px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+`;
 
 class AddGroup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      description: "",
-      picture: ""
+      image: {}
     };
   }
+  handleChange({ name, value }) {
+    this.setState({
+      [name]: value
+    });
+  }
+
+  onSubmit(formState) {
+    const { image } = this.state;
+
+    const newGroup = new FormData();
+    newGroup.append("image", image, image.name);
+    newGroup.append("data", JSON.stringify(formState));
+
+    Api.addGroup(newGroup);
+  }
+
   render() {
     return (
-      <div>
-        <BackButton />
-        <div className="pt-5 offset-lg-3 col-lg-6 col-12 container">
-          <form>
-            <div className="form-group">
-              <label htmlFor="name">Nom du groupe</label>
-              <input
-                type="text"
-                className="form-control"
-                id="name"
-                placeholder=""
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="Description">Description</label>
-              <input
-                type="text"
-                className="form-control"
-                id="Description"
-                placeholder=""
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="picture">télécharger une photo</label>
-              <input type="file" className="form-control-file" id="picture" />
-            </div>
-            <button type="button" className="btn btn-primary">
-              Valider
-            </button>
-          </form>
-        </div>
-      </div>
+      <Container>
+        <Form onSubmit={formState => this.onSubmit(formState)}>
+          <Label>
+            Photo :
+            <input
+              type="file"
+              onChange={event =>
+                this.handleChange({
+                  name: "image",
+                  value: event.target.files[0]
+                })
+              }
+            />
+          </Label>
+          <Label>
+            Nom du Groupe :
+            <Text field="name" type="text" />
+          </Label>
+
+          <Label>
+            Description :
+            <TextArea field="description" />
+          </Label>
+
+          <button type="submit" className="btn btn-outline-secondary">
+            Ajouter
+          </button>
+        </Form>
+      </Container>
     );
   }
 }
