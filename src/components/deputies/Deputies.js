@@ -1,4 +1,6 @@
 import React from "react";
+import Config from "../../Config";
+import DeputyCard from "../deputies/DeputyCard";
 
 class Deputies extends React.Component {
   constructor(props) {
@@ -9,7 +11,7 @@ class Deputies extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:4000/api/deputies/")
+    fetch(`${Config.server}api/deputies/`)
       .then(res => res.json())
       .then(data => {
         console.info(data.deputies);
@@ -22,17 +24,12 @@ class Deputies extends React.Component {
 
   render() {
     const { deputies } = this.state;
-    console.info("state", typeof deputies);
+    console.info("<< render Deputies deputies", deputies);
     return (
       <div>
-        {deputies.map(deputy => {
+        {deputies.map((deputy, index) => {
           console.info(deputy.picture);
-          return (
-            <div>
-              <div>{deputy.name}</div>
-              <img src={deputy.picture} />
-            </div>
-          );
+          return <DeputyCard key={index} {...deputy} />;
         })}
       </div>
     );

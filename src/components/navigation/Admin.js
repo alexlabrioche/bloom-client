@@ -12,15 +12,27 @@ const NavContainer = styled.nav`
   i {
     font-size: ${Global.font.size.body};
     padding-right: 5px;
+    align-self: center;
   }
-  .link {
+  .nav-item {
+    display: flex;
+  }
+  .nav-link {
     color: ${Global.color.body};
     text-decoration: none;
-    padding: 0 10px;
+  }
+  .bloom-link {
+    color: ${Global.color.body};
+    text-decoration: none;
+    padding-left: 200px;
     display: flex;
   }
   .title {
     font-size: ${Global.font.size.header};
+    color: ${Global.color.body};
+    text-decoration: none;
+    padding: 0 10px;
+    display: flex;
   }
 `;
 
@@ -28,14 +40,46 @@ class Navigation extends React.Component {
   render() {
     return (
       <NavContainer>
-        <Link className="link title" to="/admin">
+        <Link className="title" to="/admin">
           ADMIN
         </Link>
-        <Link className="link navlink" to="/admin/create">
-          <i className="material-icons">add_box</i>
-          <span>Créer</span>
-        </Link>
-        <Link className="link navlink" to="/">
+        <li className="nav-item dropdown">
+          <a
+            className="nav-link dropdown-toggle"
+            href="/"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <span>
+              <i className="far fa-address-card" />
+              Nouveau
+            </span>
+          </a>
+          <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+            <Link className="dropdown-item" to="/admin/ajouter/depute">
+              Député
+            </Link>
+            <Link className="dropdown-item" to="/admin/ajouter/loi">
+              loi
+            </Link>
+            <Link className="dropdown-item" to="/admin/ajouter/categorie">
+              catégorie de loi
+            </Link>
+            <Link className="dropdown-item" to="/admin/ajouter/parti">
+              parti politique
+            </Link>
+            <Link className="dropdown-item" to="/admin/ajouter/groupe">
+              groupe politique
+            </Link>
+            <Link className="dropdown-item" to="/admin/ajouter/vote">
+              vote
+            </Link>
+          </div>
+        </li>
+        <Link className="bloom-link navlink" to="/">
           BLOOM
         </Link>
       </NavContainer>

@@ -1,112 +1,222 @@
 import React from "react";
 import axios from "axios";
+import DatePicker from "react-datepicker";
+import {
+  Form,
+  Text,
+  Option,
+  Select,
+  TextArea,
+  RadioGroup,
+  Radio,
+  asField
+} from "informed";
+import styled from "styled-components";
+
+import "react-datepicker/dist/react-datepicker.css";
+
+import Api from "../../../utils/Api";
+import Config from "../../../Config";
+
 import BackButton from "../../core/admin/BackButton";
+import FieldSelector from "../../core/admin/FieldSelector";
+import PictureUploader from "../../core/admin/PictureUploader";
+
+const DateInput = asField(
+  ({ fieldState: { value }, fieldApi: { setTouched, setValue }, ...props }) => (
+    <DatePicker
+      onFocus={() => setTouched(true)}
+      onChange={date => setValue(date)}
+      selected={value}
+      {...props}
+    />
+  )
+);
+
+const Container = styled.div`
+  padding-top: 50px;
+  display: flex;
+  justify-content: center;
+`;
+
+const Label = styled.h6`
+  margin-top: 10px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+`;
 
 class AddDeputy extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      participationRate: "",
-      selectedFile: {}
+      groups: [],
+      parties: [],
+      image: {}
     };
-    this.handleChange = this.handleChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.handleUpload = this.handleUpload.bind(this);
+    // this.handleClick = this.handleClick.bind(this);
+    // this.setFormApi = this.setFormApi.bind(this);
   }
+  async componentDidMount() {
+    const groups = await Api.getGroups();
+    const parties = await Api.getParties();
+    this.setState({
+      groups,
+      parties
+    });
+  }
+
   handleChange({ name, value }) {
-    console.info(value);
     this.setState({
       [name]: value
     });
   }
-  handleChangeName(evt) {
-    console.info("handleChangeName", evt.target.value);
+
+  handleUpload(evt) {
+    const picture = evt.target.files[0];
     this.setState({
-      name: evt.target.value
-    });
-  }
-  handleChangeRate(evt) {
-    console.info("handleChangeRate", evt.target.value);
-    this.setState({
-      participationRate: evt.target.value
+      picture
     });
   }
 
-  onSubmit(event) {
-    // console.info("onSubmit Clicked!");
-    event.preventDefault();
-    const { name, participationRate, selectedFile } = this.state;
-    const url = "http://localhost:4000/api/deputies/add";
-    const deputy = new FormData();
-    deputy.append("image", selectedFile, selectedFile.name);
-    deputy.append("name", name);
-    deputy.append("participationRate", participationRate);
-    axios.post(url, deputy).then(res => {
+  // handleClick() {
+  //   const { image } = this.state;
+  //   const formValues = this.formApi.getState().values;
+  //   console.log("newDeputy", formValues);
+  //   console.log("image", image);
+  //   const newDeputy = {
+  //     data: formValues,
+  //     image: image
+  //   };
+  //   const url = `${Config.server}/api/deputies/add`;
+  //   axios.post(url, newDeputy).then(res => {
+  //     console.log("onSubmit upload OK res:", res);
+  //   });
+  // }
+
+  // setFormApi(formApi) {
+  //   this.formApi = formApi;
+  // }
+
+  onSubmit(formState) {
+    console.info("@onSubmit formState", formState);
+    const { image } = this.state;
+    const newDeputy = new FormData();
+    newDeputy.append("image", image, image.name);
+    newDeputy.append("data", JSON.stringify(formState));
+
+    const url = `${Config.server}/api/deputies/add`;
+    axios.post(url, newDeputy).then(res => {
       console.log("onSubmit upload OK res:", res);
     });
   }
-
-  fileSelectedHandler(evt) {
-    const selectedFile = evt.target.files[0];
-    console.log("fileSelectedHandler selectedFile", selectedFile);
-    this.setState({
-      selectedFile
-    });
-  }
-
   render() {
-    const { name, participationRate, selectedFile } = this.state;
-    console.info("@AddDeputy state name: ", name);
-    console.info("@AddDeputy state participationRate: ", participationRate);
-    console.info("@AddDeputy state selectedFile: ", selectedFile);
+    const { groups, parties, image } = this.state;
+    console.info(image);
     return (
-      <div>
-        <BackButton />
-        <div className="container">
-          <form className="pt-5 offset-lg-3 col-lg-6 col-12">
-            <div className="form-group">
-              <label htmlFor="name">Nom/Prénom</label>
-              <input
-                type="text"
-                className="form-control"
-                id="name"
-                placeholder="bertrand Dupont"
-                onChange={event =>
-                  this.handleChange({ name: "name", value: event.target.value })
-                }
-                // onChange={event => this.handleChangeName(event)}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="participationRate">Taux de participation</label>
-              <input
-                type="number"
-                className="form-control"
-                id="participationRate"
-                placeholder="20"
-                onChange={event =>
-                  this.handleChange({
-                    name: "participationRate",
-                    value: event.target.value
-                  })
-                }
-                // onChange={e => this.handleChangeRate(e)}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="picture">télécharger une photo</label>
-              <input type="file" className="form-control-file" id="picture" />
-            </div>
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={evt => this.onSubmit(evt)}
-            >
-              Valider
-            </button>
-          </form>
-        </div>
-      </div>
+      <Container className="container">
+        <Form
+          // getApi={this.setFormApi}
+          onSubmit={formState => this.onSubmit(formState)}
+        >
+          {/* <PictureUploader
+            label="Photo de profil :"
+            handleUpload={this.handleUpload}
+          /> */}
+          <Label>
+            Example file input
+            <input
+              type="file"
+              onChange={event =>
+                this.handleChange({
+                  name: "image",
+                  value: event.target.files[0]
+                })
+              }
+            />
+          </Label>
+
+          <Label>
+            Nom complet:
+            <Text field="name" type="text" />
+          </Label>
+
+          <Label>
+            Taux de participation:
+            <Text field="participationRate" type="number" />
+          </Label>
+
+          <Label>
+            Prise de poste :
+            <DateInput
+              field="mandateFrom"
+              showMonthYearPicker
+              dateFormat="MM/yyyy"
+            />
+          </Label>
+
+          <Label>
+            Fin du mandat :
+            <DateInput
+              field="mandateTo"
+              showMonthYearPicker
+              dateFormat="MM/yyyy"
+            />
+          </Label>
+
+          <Label>
+            Parti :
+            <Select field="party">
+              <Option value="">...</Option>
+              {parties.map((party, index) => {
+                return (
+                  <Option value={party._id} key={index}>
+                    {party.name}
+                  </Option>
+                );
+              })}
+            </Select>
+          </Label>
+
+          <Label>
+            Groupe :
+            <Select field="group">
+              <Option value="">...</Option>
+              {groups.map((group, index) => {
+                return (
+                  <Option value={group._id} key={index}>
+                    {group.name}
+                  </Option>
+                );
+              })}
+            </Select>
+          </Label>
+
+          <Label>
+            Résumé :
+            <TextArea field="resume" />
+          </Label>
+
+          <RadioGroup field="protect">
+            <Label>
+              Protège <Radio value="true" />
+            </Label>
+            <Label>
+              Détruit <Radio value="false" />
+            </Label>
+          </RadioGroup>
+
+          <button
+            type="submit"
+            className="btn btn-outline-secondary"
+            // onClick={this.handleClick}
+          >
+            Ajouter
+          </button>
+        </Form>
+      </Container>
     );
   }
 }
