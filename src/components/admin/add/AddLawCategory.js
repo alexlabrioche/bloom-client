@@ -1,7 +1,22 @@
 import React from "react";
 import BackButton from "../../core/admin/BackButton";
+
 class AddLawCategory extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+  handleChange({ name, value }) {
+    console.info(value);
+    this.setState({
+      [name]: value
+    });
+  }
   render() {
+    const { }
     console.log("admin/add/AddLawCategory");
     return (
       <div>
@@ -84,7 +99,7 @@ class AddLawCategory extends React.Component {
                 </div>
                 <div className="form-row mt-3">
                   <div className="col-lg-4 col-12">
-                    <select className="form-control">
+                    <select class="form-control" >
                       <option>Catégories</option>
                       <option>2</option>
                       <option>3</option>
