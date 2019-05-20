@@ -1,6 +1,35 @@
 import React from "react";
-// import axios from "axios";
-import BackButton from "../../core/admin/BackButton";
+import axios from "axios";
+import {
+  Form,
+  Text,
+  Option,
+  Select,
+  TextArea,
+  RadioGroup,
+  Radio,
+  asField
+} from "informed";
+import styled from "styled-components";
+
+import "react-datepicker/dist/react-datepicker.css";
+
+import Api from "../../../utils/Api";
+import Config from "../../../Config";
+// import BackButton from "../../core/admin/BackButton";
+
+const Container = styled.div`
+  padding-top: 50px;
+  display: flex;
+  justify-content: center;
+`;
+
+const Label = styled.h6`
+  margin-top: 10px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+`;
 
 class AddParty extends React.Component {
   constructor(props) {
@@ -24,57 +53,37 @@ class AddParty extends React.Component {
     console.log("AddParty state description: ", description);
     console.log("AddPartystate picture: ", picture);
     return (
-      <div>
-        <BackButton />
-        <div className="pt-5 offset-lg-3 col-lg-6 col-12 container">
-          <form>
-            <div className="form-group">
-              <label htmlFor="name">Nom du parti</label>
-              <input
-                type="text"
-                className="form-control"
-                id="name"
-                placeholder=" "
-                onChange={event =>
-                  this.handleChange({ name: "name", value: event.target.value })
-                }
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="Description">Description</label>
-              <input
-                type="text"
-                className="form-control"
-                id="Description"
-                placeholder=""
-                onChange={event =>
-                  this.handleChange({
-                    name: "description",
-                    value: event.target.value
-                  })
-                }
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="picture">télécharger une photo</label>
-              <input
-                type="file"
-                className="form-control-file"
-                id="picture"
-                onChange={event =>
-                  this.handleChange({
-                    name: "picture",
-                    value: event.target.value
-                  })
-                }
-              />
-            </div>
-            <button type="button" className="btn btn-primary">
-              Valider
-            </button>
-          </form>
-        </div>
-      </div>
+      <Container className="container">
+        <Form onSubmit={formState => this.onSubmit(formState)}>
+          <Label>
+            Nom du parti:
+            <Text field="name" type="text" />
+          </Label>
+          <Label>
+            Description :
+            <TextArea field="Description" />
+          </Label>
+          <Label>
+            Photo:
+            <input
+              type="file"
+              onChange={event =>
+                this.handleChange({
+                  name: "image",
+                  value: event.target.files[0]
+                })
+              }
+            />
+          </Label>
+          <button
+            type="submit"
+            className="btn btn-outline-secondary"
+            // onClick={this.handleClick}
+          >
+            Ajouter
+          </button>
+        </Form>
+      </Container>
     );
   }
 }

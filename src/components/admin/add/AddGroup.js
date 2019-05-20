@@ -1,6 +1,7 @@
 import React from "react";
 // import axios from "axios";
 import BackButton from "../../core/admin/BackButton";
+import Input from "../../core/admin/Input";
 
 class AddGroup extends React.Component {
   constructor(props) {
@@ -45,14 +46,15 @@ class AddGroup extends React.Component {
           <form>
             <div className="form-group">
               <label htmlFor="name">Nom du groupe</label>
-              <input
+              <Input
                 type="text"
                 className="form-control"
                 id="name"
                 placeholder=""
-                onChange={event =>
-                  this.handleChange({ name: "name", value: event.target.value })
-                }
+                handleChange={this.handleChange}
+                // onChange={event =>
+                //   this.handleChange({ name: "name", value: event.target.value })
+                // }
               />
             </div>
             <div className="form-group">
