@@ -1,54 +1,62 @@
 import React from "react";
-import {
-  Form,
-  Text,
-  Option,
-  Select,
-  TextArea,
-  RadioGroup,
-  Radio,
-  asField
-} from "informed";
-import BackButton from "../../core/admin/BackButton";
-import Input from "../../core/admin/Input";
+import styled from "styled-components";
+import { Form, Text, TextArea } from "informed";
+import Api from "../../../utils/Api";
 
+const Container = styled.div`
+  padding-top: 50px;
+  display: flex;
+  justify-content: center;
+`;
+
+const Label = styled.h6`
+  margin-top: 10px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+`;
 class AddGroup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      image: {}
+      image: null
     };
     this.handleChange = this.handleChange.bind(this);
-    // this.onSubmit = this.onSubmit.bind(this);
   }
   handleChange({ name, value }) {
-    // console.info(value);
     this.setState({
       [name]: value
     });
   }
-  // onSubmit(event) {
-  //   // console.info("onSubmit Clicked");
-  //   event.preventDefault();
-  //   const { name, description, picture } = this.state;
-  //   const url = "http://localhost:4000/api/groups";
-  //   const groups = new FormData();
-  //   groups.append("name", name);
-  //   groups.append("description", description);
-  //   groups.append("picture", picture);
-  //   axios.post(url, groups).then(res => {
-  //     console.log("onSubmit upload OK res:", res);
-  //   });
-  // }
+  onSubmit(formState) {
+    console.info("formState", formState);
+    const { image } = this.state;
+    const newGroup = new FormData();
+    if (image !== null) {
+      console.info("il y a une image");
+      newGroup.append("image", image, image.name);
+    }
+    console.info("pas d'image");
+
+    newGroup.append("data", JSON.stringify(formState));
+
+    // Api.addGroup(newGroup);
+  }
 
   render() {
-    // const { name, description, picture } = this.state;
-    // console.log("AddGroup state name: ", name);
-    // console.log("AddGroup state description: ", description);
-    // console.log("AddGroup state picture: ", picture);
     return (
       <Container>
         <Form onSubmit={formState => this.onSubmit(formState)}>
+          <Label>
+            Nom du Groupe :
+            <Text field="name" type="text" />
+          </Label>
+
+          <Label>
+            Description :
+            <TextArea field="description" />
+          </Label>
+
           <Label>
             Photo :
             <input
@@ -60,15 +68,6 @@ class AddGroup extends React.Component {
                 })
               }
             />
-          </Label>
-          <Label>
-            Nom du Groupe :
-            <Text field="name" type="text" />
-          </Label>
-
-          <Label>
-            Description :
-            <TextArea field="description" />
           </Label>
 
           <button type="submit" className="btn btn-outline-secondary">

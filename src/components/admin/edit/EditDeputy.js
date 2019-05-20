@@ -96,21 +96,8 @@ class EditDeputy extends React.Component {
   }
 
   render() {
-    const {
-      groups,
-      parties,
-      name,
-      participationRate
-      // selectedFile,
-      // group,
-      // party,
-      // mandateFrom,
-      // mandateTo
-    } = this.state;
-    // console.info("EditDeputy", deputy, parties, groups);
-    // if (!deputy) {
-    //   return <div>Loading...</div>;
-    // }
+    const { groups, parties, name, participationRate } = this.state;
+
     return (
       <div>
         <BackButton />

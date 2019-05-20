@@ -1,7 +1,6 @@
 import React from "react";
 
 import Api from "../../../utils/Api";
-
 import List from "../../core/admin/List";
 
 class DeputiesList extends React.Component {
@@ -18,12 +17,13 @@ class DeputiesList extends React.Component {
       deputies: deputies.deputies
     });
   }
+
   render() {
     const { deputies } = this.state;
     return (
       <div>
         <div className="pt-5 container">
-          <List data={deputies} type="depute" />
+          <List data={deputies} type="deputy" />
         </div>
       </div>
     );

@@ -89,6 +89,7 @@ class Api {
     return law;
   }
   addLaw(law) {
+    console.info("addLaw API", law);
     const url = `${Config.server}/api/laws/add`;
     axios.post(url, law).then(res => {
       console.log("onSubmit upload OK");

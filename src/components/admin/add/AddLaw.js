@@ -1,22 +1,20 @@
 import React from "react";
-import axios from "axios";
 import DatePicker from "react-datepicker";
 import {
   Form,
   Text,
-  Option,
-  Select,
   TextArea,
   RadioGroup,
   Radio,
-  asField
+  asField,
+  Select,
+  Option
 } from "informed";
 import styled from "styled-components";
 
 import "react-datepicker/dist/react-datepicker.css";
 
 import Api from "../../../utils/Api";
-import Config from "../../../Config";
 // import BackButton from "../../core/admin/BackButton";
 const DateInput = asField(
   ({ fieldState: { value }, fieldApi: { setTouched, setValue }, ...props }) => (
@@ -50,54 +48,78 @@ class AddLaw extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
   }
+  async componentDidMount() {
+    const categories = await Api.getCategories();
+    this.setState({
+      categories
+    });
+  }
+
   handleChange({ name, value }) {
-    // console.info(value);
     this.setState({
       [name]: value
     });
   }
+
+  onSubmit(formState) {
+    console.info("formState", formState);
+
+    const newLaw = new FormData();
+    newLaw.append("data", JSON.stringify(formState));
+
+    Api.addLaw(newLaw);
+  }
   render() {
-    // const { name, title, subtitle, description, picture } = this.state;
-    // console.log("AddParty state name: ", name);
+    const { categories } = this.state;
     return (
       <Container className="container">
         <Form onSubmit={formState => this.onSubmit(formState)}>
           <Label>
-            Title:
-            <Text field="title" type="text" />
+            Titre :
+            <Text field="name" />
           </Label>
           <Label>
-            Subtitle:
-            <TextArea field="Subtitle" />
+            Amendement :
+            <Text field="subTitle" />
           </Label>
+          <Label>
+            Lien externe sur la loi :
+            <Text field="link" />
+          </Label>
+
           <Label>
             Description :
-            <TextArea field="Description" />
+            <TextArea field="description" />
           </Label>
+
           <Label>
             Texte complet :
-            <TextArea field="Texte complet" />
+            <TextArea field="fullText" />
           </Label>
+
           <Label>
-            Date de prise de poste :
+            Date d'entrée en vigueur :
             <DateInput
-              field="mandateFrom"
+              field="commencement"
               showMonthYearPicker
               dateFormat="MM/yyyy"
             />
           </Label>
+
           <Label>
-            Photo:
-            <input
-              type="file"
-              onChange={event =>
-                this.handleChange({
-                  name: "image",
-                  value: event.target.files[0]
-                })
-              }
-            />
+            Catégorie :
+            <Select field="category">
+              <Option value="">...</Option>
+              {categories.map((category, index) => {
+                return (
+                  <Option value={category._id} key={index}>
+                    {category.name}
+                  </Option>
+                );
+              })}
+            </Select>
           </Label>
+
           <RadioGroup field="protect">
             <Label>
               Protège <Radio value="true" />
@@ -106,11 +128,7 @@ class AddLaw extends React.Component {
               Détruit <Radio value="false" />
             </Label>
           </RadioGroup>
-          <button
-            type="submit"
-            className="btn btn-outline-secondary"
-            // onClick={this.handleClick}
-          >
+          <button type="submit" className="btn btn-outline-secondary">
             Ajouter
           </button>
         </Form>

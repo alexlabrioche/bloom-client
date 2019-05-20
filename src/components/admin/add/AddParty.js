@@ -1,22 +1,10 @@
 import React from "react";
-import axios from "axios";
-import {
-  Form,
-  Text,
-  Option,
-  Select,
-  TextArea,
-  RadioGroup,
-  Radio,
-  asField
-} from "informed";
+import { Form, Text, TextArea } from "informed";
 import styled from "styled-components";
 
 import "react-datepicker/dist/react-datepicker.css";
 
 import Api from "../../../utils/Api";
-import Config from "../../../Config";
-// import BackButton from "../../core/admin/BackButton";
 
 const Container = styled.div`
   padding-top: 50px;
@@ -35,23 +23,29 @@ class AddParty extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      description: "",
-      picture: ""
+      image: {}
     };
     this.handleChange = this.handleChange.bind(this);
   }
   handleChange({ name, value }) {
-    // console.info(value);
     this.setState({
       [name]: value
     });
   }
+
+  onSubmit(formState) {
+    console.info("formState", formState);
+
+    const { image } = this.state;
+
+    const newParty = new FormData();
+    newParty.append("image", image, image.name);
+    newParty.append("data", JSON.stringify(formState));
+
+    Api.addParty(newParty);
+  }
+
   render() {
-    const { name, description, picture } = this.state;
-    console.log("AddParty state name: ", name);
-    console.log("AddParty state description: ", description);
-    console.log("AddPartystate picture: ", picture);
     return (
       <Container className="container">
         <Form onSubmit={formState => this.onSubmit(formState)}>
@@ -61,7 +55,7 @@ class AddParty extends React.Component {
           </Label>
           <Label>
             Description :
-            <TextArea field="Description" />
+            <TextArea field="description" />
           </Label>
           <Label>
             Photo:
