@@ -18,6 +18,12 @@ class Api {
     const deputies = await axios.delete(url).then(deputies => deputies.data);
     return deputies;
   }
+  addDeputy(deputy) {
+    const url = `${Config.server}/api/deputies/add`;
+    axios.post(url, deputy).then(res => {
+      console.log("onSubmit upload OK");
+    });
+  }
 
   // GROUPS
   async getGroup(id) {
@@ -36,6 +42,13 @@ class Api {
     return group;
   }
 
+  addGroup(group) {
+    const url = `${Config.server}/api/groups/add`;
+    axios.post(url, group).then(res => {
+      console.log("onSubmit upload OK");
+    });
+  }
+
   // PARTIES
   async getParty(id) {
     const url = `${Config.server}/api/parties/${id}`;
@@ -51,6 +64,12 @@ class Api {
     const url = `${Config.server}/api/parties/${id}`;
     const party = await axios.delete(url).then(party => party.data);
     return party;
+  }
+  addParty(party) {
+    const url = `${Config.server}/api/parties/add`;
+    axios.post(url, party).then(res => {
+      console.log("onSubmit upload OK");
+    });
   }
 
   // LAWS
@@ -69,6 +88,12 @@ class Api {
     const law = await axios.delete(url).then(law => law.data);
     return law;
   }
+  addLaw(law) {
+    const url = `${Config.server}/api/laws/add`;
+    axios.post(url, law).then(res => {
+      console.log("onSubmit upload OK");
+    });
+  }
 
   // CATEGORIES
   async getCategory(id) {
@@ -86,6 +111,12 @@ class Api {
     const category = await axios.delete(url).then(category => category.data);
     return category;
   }
+  addCategory(category) {
+    const url = `${Config.server}/api/laws-categories/add`;
+    axios.post(url, category).then(res => {
+      console.log("onSubmit upload OK");
+    });
+  }
 
   // VOTES
   async getVote(id) {
@@ -102,6 +133,12 @@ class Api {
     const url = `${Config.server}/api/votes/${id}`;
     const vote = await axios.delete(url).then(vote => vote.data);
     return vote;
+  }
+  addVote(vote) {
+    const url = `${Config.server}/api/votes/add`;
+    axios.post(url, vote).then(res => {
+      console.log("onSubmit upload OK");
+    });
   }
 }
 

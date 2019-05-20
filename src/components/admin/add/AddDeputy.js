@@ -1,6 +1,7 @@
 import React from "react";
-import axios from "axios";
 import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 import {
   Form,
   Text,
@@ -13,14 +14,7 @@ import {
 } from "informed";
 import styled from "styled-components";
 
-import "react-datepicker/dist/react-datepicker.css";
-
 import Api from "../../../utils/Api";
-import Config from "../../../Config";
-
-import BackButton from "../../core/admin/BackButton";
-import FieldSelector from "../../core/admin/FieldSelector";
-import PictureUploader from "../../core/admin/PictureUploader";
 
 const DateInput = asField(
   ({ fieldState: { value }, fieldApi: { setTouched, setValue }, ...props }) => (
@@ -55,9 +49,6 @@ class AddDeputy extends React.Component {
       image: {}
     };
     this.onSubmit = this.onSubmit.bind(this);
-    this.handleUpload = this.handleUpload.bind(this);
-    // this.handleClick = this.handleClick.bind(this);
-    // this.setFormApi = this.setFormApi.bind(this);
   }
   async componentDidMount() {
     const groups = await Api.getGroups();
@@ -74,57 +65,22 @@ class AddDeputy extends React.Component {
     });
   }
 
-  handleUpload(evt) {
-    const picture = evt.target.files[0];
-    this.setState({
-      picture
-    });
-  }
-
-  // handleClick() {
-  //   const { image } = this.state;
-  //   const formValues = this.formApi.getState().values;
-  //   console.log("newDeputy", formValues);
-  //   console.log("image", image);
-  //   const newDeputy = {
-  //     data: formValues,
-  //     image: image
-  //   };
-  //   const url = `${Config.server}/api/deputies/add`;
-  //   axios.post(url, newDeputy).then(res => {
-  //     console.log("onSubmit upload OK res:", res);
-  //   });
-  // }
-
-  // setFormApi(formApi) {
-  //   this.formApi = formApi;
-  // }
-
   onSubmit(formState) {
-    console.info("@onSubmit formState", formState);
     const { image } = this.state;
+
     const newDeputy = new FormData();
     newDeputy.append("image", image, image.name);
     newDeputy.append("data", JSON.stringify(formState));
 
-    const url = `${Config.server}/api/deputies/add`;
-    axios.post(url, newDeputy).then(res => {
-      console.log("onSubmit upload OK res:", res);
-    });
+    Api.addDeputy(newDeputy);
   }
+
   render() {
     const { groups, parties, image } = this.state;
     console.info(image);
     return (
       <Container className="container">
-        <Form
-          // getApi={this.setFormApi}
-          onSubmit={formState => this.onSubmit(formState)}
-        >
-          {/* <PictureUploader
-            label="Photo de profil :"
-            handleUpload={this.handleUpload}
-          /> */}
+        <Form onSubmit={formState => this.onSubmit(formState)}>
           <Label>
             Example file input
             <input
@@ -208,11 +164,7 @@ class AddDeputy extends React.Component {
             </Label>
           </RadioGroup>
 
-          <button
-            type="submit"
-            className="btn btn-outline-secondary"
-            // onClick={this.handleClick}
-          >
+          <button type="submit" className="btn btn-outline-secondary">
             Ajouter
           </button>
         </Form>

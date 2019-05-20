@@ -7,9 +7,7 @@ class AddGroup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      description: "",
-      picture: ""
+      image: {}
     };
     this.handleChange = this.handleChange.bind(this);
     // this.onSubmit = this.onSubmit.bind(this);
@@ -40,62 +38,35 @@ class AddGroup extends React.Component {
     // console.log("AddGroup state description: ", description);
     // console.log("AddGroup state picture: ", picture);
     return (
-      <div>
-        <BackButton />
-        <div className="pt-5 offset-lg-3 col-lg-6 col-12 container">
-          <form>
-            <div className="form-group">
-              <label htmlFor="name">Nom du groupe</label>
-              <Input
-                type="text"
-                className="form-control"
-                id="name"
-                placeholder=""
-                handleChange={this.handleChange}
-                // onChange={event =>
-                //   this.handleChange({ name: "name", value: event.target.value })
-                // }
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="Description">Description</label>
-              <input
-                type="text"
-                className="form-control"
-                id="Description"
-                placeholder=""
-                onChange={event =>
-                  this.handleChange({
-                    name: "description",
-                    value: event.target.value
-                  })
-                }
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="picture">télécharger une photo</label>
-              <input
-                type="file"
-                className="form-control-file"
-                id="picture"
-                onChange={event =>
-                  this.handleChange({
-                    name: "picture",
-                    value: event.target.value
-                  })
-                }
-              />
-            </div>
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={evt => this.onSubmit(evt)}
-            >
-              Valider
-            </button>
-          </form>
-        </div>
-      </div>
+      <Container>
+        <Form onSubmit={formState => this.onSubmit(formState)}>
+          <Label>
+            Photo :
+            <input
+              type="file"
+              onChange={event =>
+                this.handleChange({
+                  name: "image",
+                  value: event.target.files[0]
+                })
+              }
+            />
+          </Label>
+          <Label>
+            Nom du Groupe :
+            <Text field="name" type="text" />
+          </Label>
+
+          <Label>
+            Description :
+            <TextArea field="description" />
+          </Label>
+
+          <button type="submit" className="btn btn-outline-secondary">
+            Ajouter
+          </button>
+        </Form>
+      </Container>
     );
   }
 }
