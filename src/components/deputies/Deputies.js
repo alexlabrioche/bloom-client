@@ -11,7 +11,7 @@ class Deputies extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`${Config.server}api/deputies/`)
+    fetch(`${Config.server}/api/deputies/`)
       .then(res => res.json())
       .then(data => {
         console.info(data.deputies);
@@ -26,11 +26,13 @@ class Deputies extends React.Component {
     const { deputies } = this.state;
     console.info("<< render Deputies deputies", deputies);
     return (
-      <div>
-        {deputies.map((deputy, index) => {
-          console.info(deputy.picture);
-          return <DeputyCard key={index} {...deputy} />;
-        })}
+      <div className="container">
+        <div className="row">
+          {deputies.map((deputy, index) => {
+            console.info(deputy.picture);
+            return <DeputyCard key={index} {...deputy} />;
+          })}
+        </div>
       </div>
     );
   }
