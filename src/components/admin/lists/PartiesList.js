@@ -1,52 +1,29 @@
 import React from "react";
-import BackButton from "../../core/admin/BackButton";
+
+import Api from "../../../utils/Api";
+
+import List from "../../core/admin/List";
 
 class PartiesList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      parties: []
+    };
+  }
+
+  async componentDidMount() {
+    const parties = await Api.getParties();
+    this.setState({
+      parties
+    });
+  }
   render() {
+    const { parties } = this.state;
     return (
       <div>
-        <BackButton />
         <div className="pt-5 container">
-          <div className="col-12">
-            <table className="table">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Nom</th>
-                  <th scope="col">Députés</th>
-                  <th scope="col">Mettre à jour</th>
-                  <th scope="col">Supprimer</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Les verts</td>
-                  <td>député 1,député2</td>
-                  <td />
-                  <td />
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Les republicains</td>
-                  <td>député 1,député2</td>
-                  <td />
-                  <td />
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>République en marche</td>
-                  <td>député 1,député2</td>
-                  <td />
-                  <td />
-                </tr>
-              </tbody>
-            </table>
-            <button type="button" class="btn btn-outline-primary button center">
-              {" "}
-              + Ajouter un parti
-            </button>
-          </div>
+          <List data={parties} type="parti" />
         </div>
       </div>
     );

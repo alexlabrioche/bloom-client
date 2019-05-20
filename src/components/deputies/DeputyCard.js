@@ -7,7 +7,7 @@ class DeputyCard extends React.Component {
     this.state = {};
   }
   render() {
-    const { name, picture, participationRate } = this.props;
+    const { name, picture } = this.props;
     console.log("name", name);
     console.log("picture", picture);
     return (
@@ -20,7 +20,7 @@ class DeputyCard extends React.Component {
           <img
             src={`${Config.server}${picture}`}
             className="card-img-top"
-            alt={`photo de ${name}`}
+            alt={`${name}`}
           />
           <div className="card-body">
             <h5 className="card-title">{name}</h5>
