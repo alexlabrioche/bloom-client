@@ -95,7 +95,7 @@ class GroupDetails extends React.Component {
           </div>
         </div>
 
-        <div className="content container">
+        <div className="main-content container">
           <div className="row">
             {deputies.map((deputy, index) => {
               return mobileView

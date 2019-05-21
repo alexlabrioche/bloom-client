@@ -4,8 +4,7 @@ import styled from "styled-components";
 import Api from "../../utils/Api";
 import Config from "../../Config";
 
-// import DeputyCard from "../core/front/DeputyCard";
-// import MobileDeputyCard from "../core/front/MobileDeputyCard";
+import FlipCard from "../core/front/FlipCard";
 
 const Container = styled.div`
   margin-top: 5rem;
@@ -36,19 +35,27 @@ class DeputyProfile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      deputy: {}
-      // deputies: []
+      deputy: {},
+      votes: []
     };
   }
 
   async componentDidMount() {
+    window.addEventListener(
+      "handleScreenSize",
+      this.handleScreenSize.bind(this)
+    );
+    this.handleScreenSize();
     const id = this.props.match.params.name;
     const deputy = await Api.getDeputy(id);
-    this.setState({
-      deputy
+    const allVotes = await Api.getVotes();
+    const votes = allVotes.filter(vote => {
+      return vote.deputy._id === id && vote;
     });
-    window.addEventListener("resize", this.handleScreenSize.bind(this));
-    this.handleScreenSize();
+    this.setState({
+      deputy,
+      votes
+    });
   }
 
   handleScreenSize() {
@@ -59,23 +66,22 @@ class DeputyProfile extends React.Component {
         mobileView: screenSize
       });
   }
-  // renderDesktop(deputy, index) {
-  //   return (
-  //     <div className="my-3 col-md-6 col-lg-4" key={index}>
-  //       <DeputyCard {...deputy} />
-  //     </div>
-  //   );
-  // }
-  // renderMobile(deputy, index) {
-  //   return (
-  //     <div className="my-1 col-12" key={index}>
-  //       <MobileDeputyCard {...deputy} />
-  //     </div>
-  //   );
-  // }
+  renderDesktop(vote, index) {
+    return (
+      <div className="my-3 col-md-6 col-lg-4" key={index}>
+        <FlipCard {...vote} />
+      </div>
+    );
+  }
+  renderMobile(vote, index) {
+    return (
+      <div className="my-1 col-12" key={index}>
+        MOBILE FLIP CARD
+      </div>
+    );
+  }
   render() {
-    const { deputy, deputies, mobileView } = this.state;
-
+    const { deputy, votes, mobileView } = this.state;
     return (
       <Container className="container">
         <div className="header row">
@@ -86,9 +92,28 @@ class DeputyProfile extends React.Component {
               alt={deputy.slug}
             />
           </div>
-          <div className="header-text-container col-12 col-md-8 col-lg-9">
+          <div className="header-content col-12 col-md-8 col-lg-6">
             <h3 className="header-title">{deputy.name}</h3>
             <p className="header-description">{deputy.description}</p>
+          </div>
+          <div className="header-gauge offset-3 col-6 offset-md-0 col-md-4 col-lg-3">
+            <div>
+              GAUGE
+              <br />
+              GAUGE
+              <br />
+              GAUGE
+            </div>
+          </div>
+        </div>
+
+        <div className="main-content container">
+          <div className="row">
+            {votes.map((vote, index) => {
+              return mobileView
+                ? this.renderMobile(vote, index)
+                : this.renderDesktop(vote, index);
+            })}
           </div>
         </div>
       </Container>
