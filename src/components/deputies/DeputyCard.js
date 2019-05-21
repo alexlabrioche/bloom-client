@@ -30,9 +30,9 @@ class DeputyCard extends React.Component {
   }
   render() {
     const { name, picture, party, group, _id } = this.props;
-    console.log("name", name);
-    console.log("picture", picture);
-    console.log("_id", _id);
+    // console.log("name", name);
+    // console.log("picture", picture);
+    // console.log("_id", _id);
     return (
       <Container className="card col-12 col-md-6 col-lg-3 text-center my-2 mx-2">
         <img src={`${Config.server}/${picture}`} alt={`${name}`} />
@@ -41,7 +41,7 @@ class DeputyCard extends React.Component {
           <h6 className="d-none d-md-block">{party.name}</h6>
           <p className="card-text d-none d-md-block">{group.name}</p>
           <FinalNote _id={_id} />
-          <Link to="/deputes/:id">ses votes</Link>
+          {/* <Link to="/deputes/:id">ses votes</Link> */}
         </div>
       </Container>
     );
