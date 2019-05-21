@@ -18,11 +18,11 @@ class Groups extends React.Component {
   }
   async componentDidMount() {
     const groups = await Api.getGroups();
-    window.addEventListener("resize", this.handleScreenSize.bind(this));
-    this.handleScreenSize();
     this.setState({
       groups
     });
+    window.addEventListener("resize", this.handleScreenSize.bind(this));
+    this.handleScreenSize();
   }
   handleScreenSize() {
     const { mobileView } = this.state;
@@ -41,7 +41,7 @@ class Groups extends React.Component {
   }
   renderMobile(group, index) {
     return (
-      <div className="my-3 col-12" key={index}>
+      <div className="my-1 col-12" key={index}>
         <MobilePictureCard {...group} uri="groupes" />
       </div>
     );

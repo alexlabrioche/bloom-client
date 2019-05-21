@@ -32,7 +32,7 @@ function MobilePictureCard(props) {
   const { name, slug, picture, _id, uri } = props;
   return (
     <Container className="card">
-      <Link to={`/${uri}/${_id}`} className="link">
+      <Link to={`/deputes/${_id}`} className="link">
         <div className="row no-gutters">
           <div className="card-img-container col-4">
             <img

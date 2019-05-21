@@ -1,124 +1,71 @@
 import React from "react";
-import Api from "../../utils/Api";
+import styled from "styled-components";
+import Algo from "./Algo";
+import Gauge2 from "./Gauge2";
+
+const Container = styled.div`
+  font-weight: 700;
+  .note-good {
+    color: green;
+  }
+  .note-bad {
+    color: red;
+  }
+  .note-medium {
+    color: orange;
+  }
+`;
 
 class FinalNote extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      finalNote: 0,
+      isGood: false,
+      isBad: false,
+      isMedium: false
+    };
   }
 
   async componentDidMount() {
-    const categories = await Api.getCategories();
-    // console.log("categories", categories);
-    // const numberOfCategories = categories.length;
-    // console.log(numberOfCategories);
-
-    // const votes = await Api.getVotes();
-
-    // for (var i = 0; i < votes.length; i++) {
-    //   console.log(i);
-    //   let points = 0;
-    //   if (votes[i].decision === "for" && votes[i].law.protect === true) {
-    //     points = 3;
-    //     console.log("points", points);
-    //   }
-    //   if (
-    //     (votes[i].decision === "for" && votes[i].law.protect === false) ||
-    //     (votes[i].decision === "against" && votes[i].law.protect === true)
-    //   ) {
-    //     points = 0;
-    //     console.log("points", points);
-    //   }
-    //   if (votes[i].decision === "absence") {
-    //     points = 0.5;
-    //     console.log("points", points);
-    //   }
-    //   if (votes[i].decision === "abstention") {
-    //     points = 1;
-    //     console.log("points", points);
-    //   }
-    //   console.log("----");
-    // }
-
-    const votes = await Api.getVotes();
-    let points = 0;
-    // console.log("votes", votes);
-    for (var i = 0; i < votes.length; i++) {
-      if (votes[i].deputy._id === this.props._id) {
-        // console.log(i);
-        if (
-          (votes[i].decision === "for" && votes[i].law.protect === true) ||
-          (votes[i].decision === "against" && votes[i].law.protect === false)
-        ) {
-          points += 3;
-          // console.log("<< PROTEGE points", points);
-        }
-        if (
-          (votes[i].decision === "for" && votes[i].law.protect === false) ||
-          (votes[i].decision === "against" && votes[i].law.protect === true)
-        ) {
-          points += 0;
-          // console.log("<< DETRUIT points", points);
-        }
-        if (votes[i].decision === "absence") {
-          points += 0.5;
-          // console.log("<< ABCENCE points", points);
-        }
-        if (votes[i].decision === "abstention") {
-          points += 1;
-          // console.log("<< ABTENTION points", points);
-        }
-        // }
-      }
+    const finalNote = await Algo(this.props._id);
+    console.log("final note", finalNote);
+    this.setState({
+      finalNote
+    });
+    if (finalNote < 10) {
+      this.setState({
+        isBad: true
+      });
     }
-    console.log("---");
-    console.log(`deputy with id : ${this.props._id} has ${points} points`);
-
-    // Calculer le nombre d'amendements par Texte
-    const lawArr = [];
-    for (let i = 0; i < votes.length; i++) {
-      lawArr.push(votes[i].law._id);
+    if (finalNote >= 10 && finalNote <= 14) {
+      this.setState({
+        isMedium: true
+      });
     }
-    // console.log(lawArr);
-    let text = {};
-    lawArr.forEach(function(v, i) {
-      if (!text[v]) {
-        text[v] = [i];
-      } else {
-        text[v].push(i);
-      }
-    });
-    Object.keys(text).forEach(function(v) {
-      text[v] = { index: text[v], length: text[v].length };
-    });
-    // console.log("text", text);
-
-    // Calculer le nombre de vote par Député
-    const deputyVotes = [];
-    for (var j = 0; j < votes.length; j++) {
-      deputyVotes.push(votes[j].deputy._id);
+    if (finalNote > 14) {
+      this.setState({
+        isGood: true
+      });
     }
-    console.log(deputyVotes);
-    let numberOfVotes = {};
-    deputyVotes.forEach(function(v, j) {
-      if (!numberOfVotes[v]) {
-        numberOfVotes[v] = [j];
-      } else {
-        numberOfVotes[v].push(j);
-      }
-    });
-    Object.keys(numberOfVotes).forEach(function(v) {
-      numberOfVotes[v] = {
-        index: numberOfVotes[v],
-        length: numberOfVotes[v].length
-      };
-    });
-    console.log("numberOfVotes", numberOfVotes);
   }
 
   render() {
-    console.log("this.props._id", this.props._id);
-    return <div>ok</div>;
+    // Condition pour affichage en couleur en fonction de la note
+    const { finalNote } = this.state;
+    let noteClass = "";
+    if (this.state.isGood) noteClass = "note-good";
+    if (this.state.isBad) noteClass = "note-bad";
+    if (this.state.isMedium) noteClass = "note-medium";
+    console.log("<< this state", this.state);
+    console.log("<< noteClass", noteClass);
+
+    return (
+      <Container>
+        <p className={noteClass}>{finalNote}/20</p>
+        <Gauge2 value={this.state.finalNote} />
+      </Container>
+    );
   }
 }
 

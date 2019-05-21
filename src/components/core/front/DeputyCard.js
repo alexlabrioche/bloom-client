@@ -9,14 +9,11 @@ const Container = styled.div`
   &:hover {
     transform: scale(1.01);
     box-shadow: 2px 2px 4px 0px rgba(230, 230, 230, 1);
-    color: ${Global.color.accent};
   }
   .link {
     color: ${Global.color.body};
-    transition: 0.2s ease;
     &:hover {
       text-decoration: none;
-      color: ${Global.color.primary};
     }
   }
   .card-img-top {
@@ -27,11 +24,24 @@ const Container = styled.div`
     height: 8rem;
     overflow: auto;
   }
+  .card-title {
+    height: 3rem;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  .card-text {
+    color: ${Global.color.primary};
+    text-align: center;
+    font-size: 0.8rem;
+  }
+  .card-gauge {
+    text-align: center;
+  }
   .footer {
     text-align: right;
     background: white;
-    color: ${Global.color.disabled};
     padding: 0.6rem;
+    color: ${Global.color.disabled};
     transition: 0.2s ease;
     .footer-icon {
       margin-left: 0.5rem;
@@ -42,11 +52,15 @@ const Container = styled.div`
   }
 `;
 
-function PictureCard(props) {
-  const { name, description, slug, picture, _id, uri } = props;
+function DeputyCard(props) {
+  const { name, slug, picture, _id, party } = props;
+  let deputyParty = "Sans étiquette";
+  if (party !== undefined) {
+    deputyParty = party.name;
+  }
   return (
     <Container className="card">
-      <Link to={`/${uri}/${_id}`} className="link">
+      <Link to={`/deputes/${_id}`} className="link">
         <img
           className="card-img-top"
           src={`${Config.server}/${picture}`}
@@ -54,12 +68,15 @@ function PictureCard(props) {
         />
         <div className="card-body">
           <h6 className="card-title">{name}</h6>
-          <p className="card-text">{description}</p>
+          <p className="card-text">{deputyParty}</p>
+        </div>
+        <div className="card-gauge">
+          <div className="gauge">IMPORT GAUGE</div>
         </div>
         <div className="footer">
           <small>
             Plus d'infos
-            <i className="footer-icon far fa-address-card" />
+            <i className="footer-icon fas fa-user" />
           </small>
         </div>
       </Link>
@@ -67,4 +84,4 @@ function PictureCard(props) {
   );
 }
 
-export default PictureCard;
+export default DeputyCard;
