@@ -35,14 +35,14 @@ class Groups extends React.Component {
   renderDesktop(group, index) {
     return (
       <div className="my-3 col-md-4 col-lg-3" key={index}>
-        <PictureCard {...group} />
+        <PictureCard {...group} uri="groupes" />
       </div>
     );
   }
   renderMobile(group, index) {
     return (
       <div className="my-3 col-12" key={index}>
-        <MobilePictureCard {...group} />
+        <MobilePictureCard {...group} uri="groupes" />
       </div>
     );
   }

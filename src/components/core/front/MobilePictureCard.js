@@ -6,6 +6,7 @@ import Global from "../../../Global";
 
 const Container = styled.div`
   border: none;
+  height: 3rem;
   .link {
     color: ${Global.color.body};
     &:hover {
@@ -17,25 +18,33 @@ const Container = styled.div`
     text-align: center;
   }
   .card-img {
-    height: 5rem;
+    border-radius: 3px 0 0 3px;
+    overflow: hidden;
+  }
+  .card-img-container {
     object-fit: cover;
-    z-index: 1;
-    border-radius: 0 0 3px 3px;
+    overflow: hidden;
   }
 `;
 
 function MobilePictureCard(props) {
-  const { name, slug, picture, _id } = props;
+  const { name, slug, picture, _id, uri } = props;
   return (
     <Container className="card">
-      <Link to={`/groupes/${_id}`} className="link">
-        <div className="card">
-          <h6 className="card-title">{name}</h6>
-          <img
-            src={`${Config.server}/${picture}`}
-            className="card-img"
-            alt={slug}
-          />
+      <Link to={`/${uri}/${_id}`} className="link">
+        <div className="row no-gutters">
+          <div className="card-img-container col-4">
+            <img
+              src={`${Config.server}/${picture}`}
+              className="card-img"
+              alt={slug}
+            />
+          </div>
+          <div className="col-8">
+            <div className="card-body">
+              <h5 className="card-title">{name}</h5>
+            </div>
+          </div>
         </div>
       </Link>
     </Container>
