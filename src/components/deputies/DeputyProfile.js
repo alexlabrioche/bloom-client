@@ -2,7 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 import Api from "../../utils/Api";
+import Algo100 from "../../utils/Algo100";
 import Config from "../../Config";
+import Gauge from "../core/front/Gauge";
 
 // import DeputyCard from "../core/front/DeputyCard";
 // import MobileDeputyCard from "../core/front/MobileDeputyCard";
@@ -36,7 +38,9 @@ class DeputyProfile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      deputy: {}
+      isLoading: true,
+      deputy: {},
+      finalNote: 0
       // deputies: []
     };
   }
@@ -44,8 +48,11 @@ class DeputyProfile extends React.Component {
   async componentDidMount() {
     const id = this.props.match.params.name;
     const deputy = await Api.getDeputy(id);
+    const finalNote = await Algo100(id);
     this.setState({
-      deputy
+      isLoading: false,
+      deputy,
+      finalNote
     });
     window.addEventListener("resize", this.handleScreenSize.bind(this));
     this.handleScreenSize();
@@ -74,8 +81,15 @@ class DeputyProfile extends React.Component {
   //   );
   // }
   render() {
-    const { deputy, deputies, mobileView } = this.state;
+    const { deputy, finalNote, deputies, mobileView } = this.state;
+    // console.log("<<<<<<<<<<<<deputy", deputy);
+    // console.log("<<<<<<<<<<<<deputy._id", deputy._id);
+    if (this.state.isLoading === true) {
+      return <p>Chargement...</p>;
+    }
 
+    console.info("DeputyProfile Render finalNote", finalNote);
+    const id = this.props.match.params.name;
     return (
       <Container className="container">
         <div className="header row">
@@ -88,6 +102,7 @@ class DeputyProfile extends React.Component {
           </div>
           <div className="header-text-container col-12 col-md-8 col-lg-9">
             <h3 className="header-title">{deputy.name}</h3>
+            <Gauge finalNote={finalNote} />
             <p className="header-description">{deputy.description}</p>
           </div>
         </div>

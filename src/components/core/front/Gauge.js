@@ -1,26 +1,29 @@
 import React from "react";
-import Algo100 from "../../../utils/Algo100";
 import { color } from "d3-color";
 import { interpolateRgb } from "d3-interpolate";
 import LiquidFillGauge from "react-liquid-gauge";
 
 class Gauge extends React.Component {
   state = {
-    finalNote: 0
+    value: 0
   };
-  startColor = "#052F5F"; // cornflowerblue
-  endColor = "#06A77D"; // crimson
+  startColor = "#005377"; // cornflowerblue
+  endColor = "#6495ed"; // crimson
 
-  async componentDidMount() {
-    const finalNote = await Algo100(this.props._id);
-    console.log("final note", finalNote);
-    this.setState({
-      finalNote
+  componentDidMount() {
+    console.log("#cmpDM GAUGE this.props.finalNote", this.props.finalNote);
+    console.log("#cmpDM GAUGE this.props.finalNote", this.state.value);
+    setTimeout(() => {
+      this.setState({
+        value: parseInt(this.props.finalNote)
+      });
     });
   }
 
   render() {
-    const radius = 50;
+    console.log("#render GAUGE this.props.finalNote", this.props.finalNote);
+    console.log("#render GAUGE this.props.finalNote", this.state.value);
+    const radius = 100;
     const interpolate = interpolateRgb(this.startColor, this.endColor);
     const fillColor = interpolate(this.state.value / 100);
     const gradientStops = [
@@ -54,7 +57,7 @@ class Gauge extends React.Component {
           style={{ margin: "0 auto" }}
           width={radius * 2}
           height={radius * 2}
-          value={parseInt(this.state.finalNote)}
+          value={this.state.value}
           percent="%"
           textSize={1}
           textOffsetX={0}
@@ -81,8 +84,8 @@ class Gauge extends React.Component {
           }}
           riseAnimation
           waveAnimation
-          waveFrequency={2}
-          waveAmplitude={1}
+          waveFrequency={1}
+          waveAmplitude={3}
           gradient
           gradientStops={gradientStops}
           circleStyle={{
@@ -99,26 +102,16 @@ class Gauge extends React.Component {
             fill: color("#fff").toString(),
             fontFamily: "Arial"
           }}
-          // onClick={() => {
-          //   this.setState({ value: Math.random() * 100 });
-          // }}
+          onClick={() => {
+            this.setState({ value: Math.random() * 100 });
+          }}
         />
         <div
           style={{
             margin: "20px auto",
             width: 120
           }}
-        >
-          {/* <button
-            type="button"
-            className="btn btn-default btn-block"
-            onClick={() => {
-              this.setState({ value: Math.random() * 100 });
-            }}
-          >
-            Refresh
-          </button> */}
-        </div>
+        />
       </div>
     );
   }
