@@ -35,36 +35,6 @@ class Create extends React.Component {
         <ul className="list-group list-group-horizontal">
           <li
             className={
-              activeList === "deputies"
-                ? "text-primary list-group-item"
-                : "list-group-item"
-            }
-            onClick={() => this.setActiveList("deputies")}
-          >
-            Députés
-          </li>
-          <li
-            className={
-              activeList === "laws"
-                ? "text-primary list-group-item"
-                : "list-group-item"
-            }
-            onClick={() => this.setActiveList("laws")}
-          >
-            Amendements
-          </li>
-          <li
-            className={
-              activeList === "categories"
-                ? "text-primary list-group-item"
-                : "list-group-item"
-            }
-            onClick={() => this.setActiveList("categories")}
-          >
-            Textes de lois
-          </li>
-          <li
-            className={
               activeList === "parties"
                 ? "text-primary list-group-item"
                 : "list-group-item"
@@ -83,6 +53,38 @@ class Create extends React.Component {
           >
             Groupes
           </li>
+          <li
+            className={
+              activeList === "categories"
+                ? "text-primary list-group-item"
+                : "list-group-item"
+            }
+            onClick={() => this.setActiveList("categories")}
+          >
+            Textes de lois
+          </li>
+
+          <li
+            className={
+              activeList === "laws"
+                ? "text-primary list-group-item"
+                : "list-group-item"
+            }
+            onClick={() => this.setActiveList("laws")}
+          >
+            Amendements
+          </li>
+          <li
+            className={
+              activeList === "deputies"
+                ? "text-primary list-group-item"
+                : "list-group-item"
+            }
+            onClick={() => this.setActiveList("deputies")}
+          >
+            Députés
+          </li>
+
           <li
             className={
               activeList === "votes"

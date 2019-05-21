@@ -59,20 +59,20 @@ class Navigation extends React.Component {
             </span>
           </a>
           <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-            <Link className="dropdown-item" to="/admin/ajouter/depute">
-              Député
-            </Link>
-            <Link className="dropdown-item" to="/admin/ajouter/loi">
-              loi
-            </Link>
-            <Link className="dropdown-item" to="/admin/ajouter/categorie">
-              catégorie de loi
-            </Link>
             <Link className="dropdown-item" to="/admin/ajouter/parti">
-              parti politique
+              Parti politique
             </Link>
             <Link className="dropdown-item" to="/admin/ajouter/groupe">
-              groupe politique
+              Groupe politique
+            </Link>
+            <Link className="dropdown-item" to="/admin/ajouter/categorie">
+              Texte de loi
+            </Link>
+            <Link className="dropdown-item" to="/admin/ajouter/loi">
+              Amendement
+            </Link>
+            <Link className="dropdown-item" to="/admin/ajouter/depute">
+              Député
             </Link>
             <Link className="dropdown-item" to="/admin/ajouter/vote">
               vote

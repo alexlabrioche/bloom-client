@@ -32,15 +32,11 @@ class AddGroup extends React.Component {
     console.info("formState", formState);
     const { image } = this.state;
     const newGroup = new FormData();
-    if (image !== null) {
-      console.info("il y a une image");
-      newGroup.append("image", image, image.name);
-    }
-    console.info("pas d'image");
 
+    newGroup.append("image", image, image.name);
     newGroup.append("data", JSON.stringify(formState));
 
-    // Api.addGroup(newGroup);
+    Api.addGroup(newGroup);
   }
 
   render() {
