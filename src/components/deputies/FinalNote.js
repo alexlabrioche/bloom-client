@@ -1,7 +1,5 @@
 import React from "react";
-import Api from "../../utils/Api";
 import styled from "styled-components";
-import Gauge from "./Gauge";
 import Algo from "./Algo";
 import Gauge2 from "./Gauge2";
 
@@ -65,9 +63,7 @@ class FinalNote extends React.Component {
     return (
       <Container>
         <p className={noteClass}>{finalNote}/20</p>
-        {/* <Gauge value={this.state.finalNote} width={100} height={80} /> */}
         <Gauge2 value={this.state.finalNote} />
-        <div id="gauge" class="200x160px" />
       </Container>
     );
   }
