@@ -16,7 +16,7 @@ const Container = styled.div`
     }
   }
   .card-img-top {
-    height: 8rem;
+    height: 12rem;
     object-fit: cover;
   }
   .card-body {
@@ -39,10 +39,10 @@ const Container = styled.div`
 `;
 
 function PictureCard(props) {
-  const { name, description, slug, picture, _id } = props;
+  const { name, description, slug, picture, _id, uri } = props;
   return (
     <Container className="card">
-      <Link to={`/groupes/${_id}`} className="link">
+      <Link to={`/${uri}/${_id}`} className="link">
         <img
           className="card-img-top"
           src={`${Config.server}/${picture}`}
