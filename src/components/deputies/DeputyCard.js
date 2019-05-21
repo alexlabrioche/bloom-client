@@ -1,12 +1,14 @@
 import React from "react";
 import Config from "../../Config";
 import styled from "styled-components";
+import FinalNote from "./FinalNote";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   height: 450px;
   transition: transform 0.3s;
   :hover {
-    transform: scale(1.05);
+    transform: scale(1.04);
   }
   img {
     object-fit: cover;
@@ -27,27 +29,19 @@ class DeputyCard extends React.Component {
     this.state = {};
   }
   render() {
-    const { name, picture } = this.props;
+    const { name, picture, party, group, _id } = this.props;
     console.log("name", name);
     console.log("picture", picture);
+    console.log("_id", _id);
     return (
       <Container className="card col-12 col-md-6 col-lg-3 text-center my-2 mx-2">
         <img src={`${Config.server}/${picture}`} alt={`${name}`} />
         <div className="card-body">
           <h5 className="card-title">{name}</h5>
-          <h6 className="d-none d-md-block">
-            Candidat 2019 - Liste : PS - Place Publique
-          </h6>
-          <p className="card-text d-none d-md-block">
-            Alliance Progressiste des Socialistes et Démocrates
-          </p>
-          <p className="stat-medium">11/20</p>
-          <a
-            href="andrieu.html"
-            className="btn btn-secondary d-none d-md-block"
-          >
-            ses votes
-          </a>
+          <h6 className="d-none d-md-block">{party.name}</h6>
+          <p className="card-text d-none d-md-block">{group.name}</p>
+          <FinalNote _id={_id} />
+          <Link to="/deputes/:id">ses votes</Link>
         </div>
       </Container>
     );

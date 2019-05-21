@@ -14,7 +14,7 @@ class Deputies extends React.Component {
     fetch(`${Config.server}/api/deputies/`)
       .then(res => res.json())
       .then(data => {
-        console.info(data.deputies);
+        // console.info(data.deputies);
         // const deputy = data.name;
         this.setState({
           deputies: data.deputies
@@ -29,7 +29,7 @@ class Deputies extends React.Component {
       <div className="container">
         <div className="row">
           {deputies.map((deputy, index) => {
-            console.info(deputy.picture);
+            // console.info(deputy.picture);
             return <DeputyCard key={index} {...deputy} />;
           })}
         </div>
