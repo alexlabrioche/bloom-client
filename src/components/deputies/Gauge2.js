@@ -46,7 +46,7 @@ class Gauge2 extends React.Component {
           style={{ margin: "0 auto" }}
           width={radius * 2}
           height={radius * 2}
-          value={this.props.value}
+          value={parseInt(this.props.value)}
           percent="%"
           textSize={1}
           textOffsetX={0}
