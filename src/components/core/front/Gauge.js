@@ -1,6 +1,5 @@
 import React from "react";
-import Algo100 from "./Algo100";
-
+import Algo100 from "../../../utils/Algo100";
 import { color } from "d3-color";
 import { interpolateRgb } from "d3-interpolate";
 import LiquidFillGauge from "react-liquid-gauge";
@@ -9,8 +8,8 @@ class Gauge extends React.Component {
   state = {
     finalNote: 0
   };
-  startColor = "green"; // cornflowerblue
-  endColor = "#4381C1"; // crimson
+  startColor = "#052F5F"; // cornflowerblue
+  endColor = "#06A77D"; // crimson
 
   async componentDidMount() {
     const finalNote = await Algo100(this.props._id);

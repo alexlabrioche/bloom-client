@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Algo20 from "./Algo20";
+import Algo20 from "../../../utils/Algo20";
 
 const Container = styled.div`
   font-weight: 700;

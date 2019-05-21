@@ -1,4 +1,4 @@
-import Api from "../../utils/Api";
+import Api from "./Api";
 const gradeIsOn = 20;
 
 const Algo20 = async _id => {

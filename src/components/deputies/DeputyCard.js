@@ -1,8 +1,8 @@
 import React from "react";
 import Config from "../../Config";
 import styled from "styled-components";
-import Note from "./Note";
-import Gauge from "./Gauge";
+import Note from "../core/front/Note";
+import Gauge from "../core/front/Gauge";
 // import { Link } from "react-router-dom";
 
 const Container = styled.div`
