@@ -1,7 +1,15 @@
 import React from "react";
-import Config from "../../Config";
-import DeputyCard from "../deputies/DeputyCard";
+import styled from "styled-components";
 
+import Api from "../../utils/Api";
+
+import DeputyCard from "../core/front/DeputyCard";
+import MobileDeputyCard from "../core/front/MobileDeputyCard";
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
 class Deputies extends React.Component {
   constructor(props) {
     super(props);
@@ -9,31 +17,51 @@ class Deputies extends React.Component {
       deputies: []
     };
   }
+  async componentDidMount() {
+    const deputies = await Api.getDeputies();
+    this.setState({
+      deputies: deputies.deputies
+    });
+    window.addEventListener("resize", this.handleScreenSize.bind(this));
+    this.handleScreenSize();
+  }
 
-  componentDidMount() {
-    fetch(`${Config.server}/api/deputies/`)
-      .then(res => res.json())
-      .then(data => {
-        // console.info(data.deputies);
-        // const deputy = data.name;
-        this.setState({
-          deputies: data.deputies
-        });
+  handleScreenSize() {
+    const { mobileView } = this.state;
+    const screenSize = window.innerWidth <= 760;
+    mobileView !== screenSize &&
+      this.setState({
+        mobileView: screenSize
       });
+  }
+  renderDesktop(deputy, index) {
+    return (
+      <div className="my-3 col-md-6 col-lg-4" key={index}>
+        <DeputyCard {...deputy} />
+      </div>
+    );
+  }
+  renderMobile(deputy, index) {
+    return (
+      <div className="my-1 col-12" key={index}>
+        <MobileDeputyCard {...deputy} />
+      </div>
+    );
   }
 
   render() {
-    const { deputies } = this.state;
+    const { deputies, mobileView } = this.state;
     console.info("<< render Deputies deputies", deputies);
     return (
-      <div className="container">
+      <Container className="pt-5 container">
         <div className="row">
           {deputies.map((deputy, index) => {
-            // console.info(deputy.picture);
-            return <DeputyCard key={index} {...deputy} />;
+            return mobileView
+              ? this.renderMobile(deputy, index)
+              : this.renderDesktop(deputy, index);
           })}
         </div>
-      </div>
+      </Container>
     );
   }
 }

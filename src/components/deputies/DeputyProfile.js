@@ -6,8 +6,7 @@ import Algo100 from "../../utils/Algo100";
 import Config from "../../Config";
 import Gauge from "../core/front/Gauge";
 
-// import DeputyCard from "../core/front/DeputyCard";
-// import MobileDeputyCard from "../core/front/MobileDeputyCard";
+import FlipCard from "../core/front/FlipCard";
 
 const Container = styled.div`
   margin-top: 5rem;
@@ -46,6 +45,11 @@ class DeputyProfile extends React.Component {
   }
 
   async componentDidMount() {
+    window.addEventListener(
+      "handleScreenSize",
+      this.handleScreenSize.bind(this)
+    );
+    this.handleScreenSize();
     const id = this.props.match.params.name;
     const deputy = await Api.getDeputy(id);
     const finalNote = await Algo100(id);
@@ -54,8 +58,6 @@ class DeputyProfile extends React.Component {
       deputy,
       finalNote
     });
-    window.addEventListener("resize", this.handleScreenSize.bind(this));
-    this.handleScreenSize();
   }
 
   handleScreenSize() {
@@ -66,20 +68,20 @@ class DeputyProfile extends React.Component {
         mobileView: screenSize
       });
   }
-  // renderDesktop(deputy, index) {
-  //   return (
-  //     <div className="my-3 col-md-6 col-lg-4" key={index}>
-  //       <DeputyCard {...deputy} />
-  //     </div>
-  //   );
-  // }
-  // renderMobile(deputy, index) {
-  //   return (
-  //     <div className="my-1 col-12" key={index}>
-  //       <MobileDeputyCard {...deputy} />
-  //     </div>
-  //   );
-  // }
+  renderDesktop(vote, index) {
+    return (
+      <div className="my-3 col-md-6 col-lg-4" key={index}>
+        <FlipCard {...vote} />
+      </div>
+    );
+  }
+  renderMobile(vote, index) {
+    return (
+      <div className="my-1 col-12" key={index}>
+        MOBILE FLIP CARD
+      </div>
+    );
+  }
   render() {
     const { deputy, finalNote, deputies, mobileView } = this.state;
     // console.log("<<<<<<<<<<<<deputy", deputy);
@@ -100,10 +102,29 @@ class DeputyProfile extends React.Component {
               alt={deputy.slug}
             />
           </div>
-          <div className="header-text-container col-12 col-md-8 col-lg-9">
+          <div className="header-content col-12 col-md-8 col-lg-6">
             <h3 className="header-title">{deputy.name}</h3>
             <Gauge finalNote={finalNote} />
             <p className="header-description">{deputy.description}</p>
+          </div>
+          <div className="header-gauge offset-3 col-6 offset-md-0 col-md-4 col-lg-3">
+            <div>
+              GAUGE
+              <br />
+              GAUGE
+              <br />
+              GAUGE
+            </div>
+          </div>
+        </div>
+
+        <div className="main-content container">
+          <div className="row">
+            {votes.map((vote, index) => {
+              return mobileView
+                ? this.renderMobile(vote, index)
+                : this.renderDesktop(vote, index);
+            })}
           </div>
         </div>
       </Container>
