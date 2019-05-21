@@ -1,6 +1,7 @@
-import Api from "../../utils/Api";
+import Api from "./Api";
+const gradeIsOn = 100;
 
-const Algo = async _id => {
+const Algo100 = async _id => {
   const votes = await Api.getVotes();
   let points = 0;
   let numberOfVotes = 0;
@@ -37,8 +38,7 @@ const Algo = async _id => {
     }
   }
 
-  const gradeIsOn = 100;
-  const finalNote = ((points / (numberOfVotes * 3)) * gradeIsOn).toFixed(1);
+  const finalNote = ((points / (numberOfVotes * 3)) * gradeIsOn).toFixed(0);
   console.log("---");
   console.log(
     `deputy with id : ${_id} has ${points} points and has voted ${numberOfVotes} times. FinalNote is ${finalNote}`
@@ -46,4 +46,4 @@ const Algo = async _id => {
   return finalNote;
 };
 
-export default Algo;
+export default Algo100;

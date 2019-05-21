@@ -1,15 +1,23 @@
 import React from "react";
-
+import Algo100 from "../../../utils/Algo100";
 import { color } from "d3-color";
 import { interpolateRgb } from "d3-interpolate";
 import LiquidFillGauge from "react-liquid-gauge";
 
-class Gauge2 extends React.Component {
+class Gauge extends React.Component {
   state = {
-    value: 50
+    finalNote: 0
   };
-  startColor = "#272838"; // cornflowerblue
-  endColor = "#4381C1"; // crimson
+  startColor = "#052F5F"; // cornflowerblue
+  endColor = "#06A77D"; // crimson
+
+  async componentDidMount() {
+    const finalNote = await Algo100(this.props._id);
+    console.log("final note", finalNote);
+    this.setState({
+      finalNote
+    });
+  }
 
   render() {
     const radius = 50;
@@ -46,7 +54,7 @@ class Gauge2 extends React.Component {
           style={{ margin: "0 auto" }}
           width={radius * 2}
           height={radius * 2}
-          value={parseInt(this.props.value)}
+          value={parseInt(this.state.finalNote)}
           percent="%"
           textSize={1}
           textOffsetX={0}
@@ -116,4 +124,4 @@ class Gauge2 extends React.Component {
   }
 }
 
-export default Gauge2;
+export default Gauge;
