@@ -1,7 +1,8 @@
 import React from "react";
 import Config from "../../Config";
 import styled from "styled-components";
-import FinalNote from "./FinalNote";
+import Note from "./Note";
+import Gauge2 from "./Gauge2";
 // import { Link } from "react-router-dom";
 
 const Container = styled.div`
@@ -40,7 +41,8 @@ class DeputyCard extends React.Component {
           <h5 className="card-title">{name}</h5>
           <h6 className="d-none d-md-block">{party.name}</h6>
           <p className="card-text d-none d-md-block">{group.name}</p>
-          <FinalNote _id={_id} />
+          <Note _id={_id} />
+          <Gauge2 _id={_id} />
           {/* <Link to="/deputes/:id">ses votes</Link> */}
         </div>
       </Container>

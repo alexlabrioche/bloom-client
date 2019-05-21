@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Algo from "./Algo";
-import Gauge2 from "./Gauge2";
+import Algo20 from "./Algo20";
 
 const Container = styled.div`
   font-weight: 700;
@@ -16,7 +15,7 @@ const Container = styled.div`
   }
 `;
 
-class FinalNote extends React.Component {
+class Note extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,7 +27,7 @@ class FinalNote extends React.Component {
   }
 
   async componentDidMount() {
-    const finalNote = await Algo(this.props._id);
+    const finalNote = await Algo20(this.props._id);
     console.log("final note", finalNote);
     this.setState({
       finalNote
@@ -63,10 +62,9 @@ class FinalNote extends React.Component {
     return (
       <Container>
         <p className={noteClass}>{finalNote}/20</p>
-        <Gauge2 value={this.state.finalNote} />
       </Container>
     );
   }
 }
 
-export default FinalNote;
+export default Note;
