@@ -1,51 +1,89 @@
 import React from "react";
-import Config from "../../Config";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-import Note from "../core/front/Note";
-// import { Link } from "react-router-dom";
+import Config from "../../Config";
+import Global from "../../Global";
+
+// import
 
 const Container = styled.div`
-  height: 450px;
-  transition: transform 0.3s;
-  :hover {
-    transform: scale(1.04);
+  transition: 0.3s ease;
+  &:hover {
+    transform: scale(1.01);
+    box-shadow: 2px 2px 4px 0px rgba(230, 230, 230, 1);
   }
-  img {
+  .link {
+    color: ${Global.color.body};
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  .card-img-top {
+    height: 12rem;
     object-fit: cover;
-    height: 200px;
   }
-  .btn-secondary {
-    background-color: #4c6784;
+  .card-body {
+    height: 8rem;
+    overflow: auto;
   }
-  .btn-secondary:hover {
-    background-color: #e31c67;
-    border: 1px solid #e31c67;
+  .card-title {
+    height: 3rem;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  .card-text {
+    color: ${Global.color.primary};
+    text-align: center;
+    font-size: 0.8rem;
+  }
+  .card-gauge {
+    text-align: center;
+  }
+  .footer {
+    text-align: right;
+    background: white;
+    padding: 0.6rem;
+    color: ${Global.color.disabled};
+    transition: 0.2s ease;
+    .footer-icon {
+      margin-left: 0.5rem;
+    }
+    &:hover {
+      color: ${Global.color.accent};
+    }
   }
 `;
 
-class DeputyCard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
+function DeputyCard(props) {
+  const { name, slug, picture, _id, party } = props;
+  let deputyParty = "Sans étiquette";
+  if (party !== undefined) {
+    deputyParty = party.name;
   }
-  render() {
-    const { name, picture, party, group, _id } = this.props;
-    // console.log("name", name);
-    // console.log("picture", picture);
-    console.log("_id", _id);
-    return (
-      <Container className="card col-12 col-md-6 col-lg-3 text-center my-2 mx-2">
-        <img src={`${Config.server}/${picture}`} alt={`${name}`} />
+  return (
+    <Container className="card">
+      <Link to={`/deputes/${_id}`} className="link">
+        <img
+          className="card-img-top"
+          src={`${Config.server}/${picture}`}
+          alt={slug}
+        />
         <div className="card-body">
-          <h5 className="card-title">{name}</h5>
-          <h6 className="d-none d-md-block">{party.name}</h6>
-          <p className="card-text d-none d-md-block">{group.name}</p>
-          <Note _id={_id} />
-          {/* <Link to="/deputes/:id">ses votes</Link> */}
+          <h6 className="card-title">{name}</h6>
+          <p className="card-text">{deputyParty}</p>
         </div>
-      </Container>
-    );
-  }
+        <div className="card-gauge">
+          <div className="gauge">IMPORT GAUGE</div>
+        </div>
+        <div className="footer">
+          <small>
+            Plus d'infos
+            <i className="footer-icon fas fa-user" />
+          </small>
+        </div>
+      </Link>
+    </Container>
+  );
 }
 
 export default DeputyCard;

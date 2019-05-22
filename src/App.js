@@ -5,18 +5,14 @@ import styled from "styled-components";
 import Global from "./Global";
 
 // import Containers For react Router
-import Home from "./components/Home";
 import Navigation from "./components/navigation";
 // import Footer from "./components/Footer";
 
-import Deputies from "./components/deputies/Deputies";
+import DeputiesContainer from "./components/deputies/DeputiesContainer";
+
 import DeputyProfile from "./components/deputies/DeputyProfile";
-import Laws from "./components/laws/Laws";
-import LawDetails from "./components/laws/LawDetails";
-import Parties from "./components/parties/Parties";
-import PartyDetails from "./components/parties/PartyDetails";
-import Groups from "./components/groups/Groups";
-import GroupDetails from "./components/groups/GroupDetails";
+import PartyProfile from "./components/parties/PartyProfile";
+import GroupProfile from "./components/groups/GroupProfile";
 
 import Admin from "./components/admin";
 import Create from "./components/admin/Create";
@@ -56,15 +52,12 @@ class App extends React.Component {
       <Router>
         <AppContainer>
           <Navigation />
-          <Route exact path="/" component={Home} />
-          <Route exact path="/deputes" component={Deputies} />
+          <Route exact path="/" component={DeputiesContainer} />
           <Route exact path="/deputes/:name" component={DeputyProfile} />
-          <Route exact path="/lois" component={Laws} />
-          <Route exact path="/lois/:name" component={LawDetails} />
-          <Route exact path="/partis" component={Parties} />
-          <Route exact path="/partis/:name" component={PartyDetails} />
-          <Route exact path="/groupes" component={Groups} />
-          <Route exact path="/groupes/:name" component={GroupDetails} />
+          {/* <Route exact path="/partis" component={Parties} /> */}
+          <Route exact path="/partis/:name" component={PartyProfile} />
+          {/* <Route exact path="/groupes" component={GroupsContainer} /> */}
+          <Route exact path="/groupes/:name" component={GroupProfile} />
 
           {/********** ADMIN ROUTES **********/}
           <Route exact path="/admin" component={Admin} />

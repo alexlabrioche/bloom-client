@@ -1,31 +1,29 @@
 import React from "react";
 import styled from "styled-components";
-
 import Api from "../../utils/Api";
-
-import DeputyCard from "../core/front/DeputyCard";
-import MobileDeputyCard from "../core/front/MobileDeputyCard";
-
+import PictureCard from "../core/front/readyForV2_PictureCard";
+import MobilePictureCard from "../core/front/readyForV2_MobilePictureCard";
+// import GroupDetails from "./GroupDetails";
 const Container = styled.div`
   display: flex;
   flex-direction: row;
 `;
-class Deputies extends React.Component {
+class Groups extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      deputies: []
+      groups: [],
+      mobileView: ""
     };
   }
   async componentDidMount() {
-    const deputies = await Api.getDeputies();
+    const groups = await Api.getGroups();
     this.setState({
-      deputies: deputies.deputies
+      groups
     });
     window.addEventListener("resize", this.handleScreenSize.bind(this));
     this.handleScreenSize();
   }
-
   handleScreenSize() {
     const { mobileView } = this.state;
     const screenSize = window.innerWidth <= 760;
@@ -34,31 +32,31 @@ class Deputies extends React.Component {
         mobileView: screenSize
       });
   }
-  renderDesktop(deputy, index) {
+  renderDesktop(group, index) {
     return (
-      <div className="my-3 col-md-6 col-lg-4" key={index}>
-        <DeputyCard {...deputy} />
+      <div className="my-3 col-md-4 col-lg-3" key={index}>
+        <PictureCard {...group} uri="groupes" />
       </div>
     );
   }
-  renderMobile(deputy, index) {
+  renderMobile(group, index) {
     return (
       <div className="my-1 col-12" key={index}>
-        <MobileDeputyCard {...deputy} />
+        <MobilePictureCard {...group} uri="groupes" />
       </div>
     );
   }
 
   render() {
-    const { deputies, mobileView } = this.state;
-    console.info("<< render Deputies deputies", deputies);
+    const { groups, mobileView } = this.state;
+    console.info("mobileView", mobileView);
     return (
       <Container className="pt-5 container">
         <div className="row">
-          {deputies.map((deputy, index) => {
+          {groups.map((group, index) => {
             return mobileView
-              ? this.renderMobile(deputy, index)
-              : this.renderDesktop(deputy, index);
+              ? this.renderMobile(group, index)
+              : this.renderDesktop(group, index);
           })}
         </div>
       </Container>
@@ -66,4 +64,4 @@ class Deputies extends React.Component {
   }
 }
 
-export default Deputies;
+export default Groups;

@@ -1,7 +1,7 @@
 import React from "react";
 import Api from "../../utils/Api";
-import PictureCard from "../core/front/PictureCard";
-import MobilePictureCard from "../core/front/MobilePictureCard";
+import PictureCard from "../core/front/readyForV2_PictureCard";
+import MobilePictureCard from "../core/front/readyForV2_MobilePictureCard";
 import styled from "styled-components";
 // import PartyDetails from "../parties/PartyDetails";
 

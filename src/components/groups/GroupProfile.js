@@ -4,8 +4,8 @@ import styled from "styled-components";
 import Api from "../../utils/Api";
 import Config from "../../Config";
 
-import DeputyCard from "../core/front/DeputyCard";
-import MobileDeputyCard from "../core/front/MobileDeputyCard";
+import DeputyCard from "../deputies/DeputyCard";
+import MobileDeputyCard from "../deputies/MobileDeputyCard";
 
 const Container = styled.div`
   margin-top: 5rem;

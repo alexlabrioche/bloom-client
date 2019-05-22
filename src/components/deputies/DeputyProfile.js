@@ -6,7 +6,7 @@ import Algo100 from "../../utils/Algo100";
 import Config from "../../Config";
 import Gauge from "../core/front/Gauge";
 
-import FlipCard from "../core/front/FlipCard";
+import FlipCard from "./FlipCard";
 
 const Container = styled.div`
   margin-top: 5rem;

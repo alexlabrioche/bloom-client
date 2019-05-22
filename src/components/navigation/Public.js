@@ -26,9 +26,9 @@ class Navigation extends React.Component {
         <Link className="link title" to="/">
           BLOOM
         </Link>
-        <Link className="link navlink" to="/deputes">
+        {/* <Link className="link navlink" to="/deputes">
           Députés
-        </Link>
+        </Link> */}
         <Link className="link navlink" to="/groupes">
           Groupes
         </Link>

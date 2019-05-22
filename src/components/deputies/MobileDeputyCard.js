@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import Config from "../../../Config";
-import Global from "../../../Global";
+import Config from "../../Config";
+import Global from "../../Global";
 
 const Container = styled.div`
   border: none;
