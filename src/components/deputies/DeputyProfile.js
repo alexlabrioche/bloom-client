@@ -120,11 +120,11 @@ class DeputyProfile extends React.Component {
 
         <div className="main-content container">
           <div className="row">
-            {votes.map((vote, index) => {
+            {/* {votes.map((vote, index) => {
               return mobileView
                 ? this.renderMobile(vote, index)
                 : this.renderDesktop(vote, index);
-            })}
+            })} */}
           </div>
         </div>
       </Container>

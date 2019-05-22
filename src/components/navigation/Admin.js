@@ -66,7 +66,7 @@ class Navigation extends React.Component {
               Groupe politique
             </Link>
             <Link className="dropdown-item" to="/admin/ajouter/categorie">
-              Texte de loi
+              Texte
             </Link>
             <Link className="dropdown-item" to="/admin/ajouter/loi">
               Amendement
