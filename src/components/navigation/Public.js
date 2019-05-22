@@ -5,12 +5,12 @@ import Global from "../../Global";
 
 const NavContainer = styled.nav`
   height: ${Global.height.navigation};
-  background: ${Global.color.primary};
   width: 100%;
   display: flex;
   align-items: center;
+  border-top: 3px solid #5973e8;
   .link {
-    color: white;
+    color: ${Global.color.primary};
     text-decoration: none;
     padding: 0 10px;
   }

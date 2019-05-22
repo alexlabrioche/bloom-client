@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Config from "../../../Config";
 import Global from "../../../Global";
+import Note from "./Note";
 
 // import
 
@@ -52,9 +53,15 @@ const Container = styled.div`
       color: ${Global.color.accent};
     }
   }
+  .card-note-container {
+    font-weight: 600;
+    font-size: 35px;
+    text-align: center;
+  }
 `;
 
 function DeputyCard(props) {
+  console.log("<< deputyCard props", props);
   const { name, slug, picture, _id, party } = props;
   let deputyParty = "Sans étiquette";
   if (party !== undefined) {
@@ -72,8 +79,8 @@ function DeputyCard(props) {
           <h6 className="card-title">{name}</h6>
           <p className="card-text">{deputyParty}</p>
         </div>
-        <div className="card-gauge">
-          <div className="gauge">IMPORT GAUGE</div>
+        <div className="card-note-container">
+          <Note _id={_id} />
         </div>
         <div className="footer">
           <small>

@@ -61,7 +61,7 @@ class Create extends React.Component {
             }
             onClick={() => this.setActiveList("categories")}
           >
-            Textes de lois
+            Textes
           </li>
 
           <li

@@ -107,7 +107,7 @@ class AddLaw extends React.Component {
           </Label>
 
           <Label>
-            Catégorie :
+            Texte :
             <Select field="category">
               <Option value="">...</Option>
               {categories.map((category, index) => {

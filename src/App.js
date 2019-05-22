@@ -7,7 +7,7 @@ import Global from "./Global";
 // import Containers For react Router
 import Home from "./components/Home";
 import Navigation from "./components/navigation";
-// import Footer from "./components/Footer";
+import Footer from "./components/Footer";
 
 import Deputies from "./components/deputies/Deputies";
 import DeputyProfile from "./components/deputies/DeputyProfile";
@@ -107,7 +107,7 @@ class App extends React.Component {
           <Route exact path="/admin/modifier/vote/:id" component={EditVote} />
           <Route exact path="/admin/supprimer/:type/:id" component={Delete} />
 
-          {/* <Footer /> */}
+          <Footer />
         </AppContainer>
       </Router>
     );
