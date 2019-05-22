@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Algo20 from "../../../utils/Algo20";
 
 const Container = styled.div`
-  font-weight: 700;
   .note-good {
     color: green;
   }

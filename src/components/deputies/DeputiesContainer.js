@@ -5,10 +5,10 @@ import Api from "../../utils/Api";
 
 import DeputyCard from "./DeputyCard";
 import MobileDeputyCard from "./MobileDeputyCard";
-
+import Header from "../Header";
 const Container = styled.div`
-  display: flex;
-  flex-direction: row;
+  /* display: flex;
+  flex-direction: row; */
 `;
 class DeputiesContainer extends React.Component {
   constructor(props) {
@@ -54,6 +54,9 @@ class DeputiesContainer extends React.Component {
     console.info("<< render Deputies deputies", deputies);
     return (
       <Container className="pt-5 container">
+        <div className="row">
+          <Header />
+        </div>
         <div className="row">
           {deputies.map((deputy, index) => {
             return mobileView

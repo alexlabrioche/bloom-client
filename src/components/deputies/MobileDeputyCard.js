@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Config from "../../Config";
 import Global from "../../Global";
+import Note from "../core/front/Note";
 
 const Container = styled.div`
   border: none;
@@ -14,7 +15,7 @@ const Container = styled.div`
     }
   }
   .card-title {
-    padding: 0.5rem;
+    padding-top: 0.5rem;
     align-self: center;
   }
   .card-img {
@@ -26,10 +27,20 @@ const Container = styled.div`
   }
   .card-img-container {
   }
+  .card-text {
+    color: ${Global.color.primary};
+    /* text-align: center; */
+    font-size: 0.8rem;
+  }
+  .note-container {
+    align-self: center;
+    font-size: 20px;
+  }
 `;
 
 function MobilePictureCard(props) {
-  const { name, slug, picture, _id, uri } = props;
+  const { name, slug, picture, _id, party } = props;
+  console.log("@Mobile props", props);
   return (
     <Container className="card">
       <Link to={`/deputes/${_id}`} className="link">
@@ -41,10 +52,14 @@ function MobilePictureCard(props) {
               alt={slug}
             />
           </div>
-          <div className="col-8">
+          <div className="col-6">
             <div className="card-body">
               <h5 className="card-title">{name}</h5>
+              <p className="card-text">{party.name}</p>
             </div>
+          </div>
+          <div className="col-2 note-container">
+            <Note _id={_id} />
           </div>
         </div>
       </Link>
