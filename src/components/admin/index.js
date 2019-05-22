@@ -1,11 +1,22 @@
 import React from "react";
+import styled from "styled-components";
+
 import DeputiesList from "./lists/DeputiesList";
 import CategoriesList from "./lists/CategoriesList";
 import LawsList from "./lists/LawsList";
 import GroupsList from "./lists/GroupsList";
 import PartiesList from "./lists/PartiesList";
-import styled from "styled-components";
 import VotesList from "./lists/VotesList";
+
+import AddDeputy from "./add/AddDeputy";
+import AddGroup from "./add/AddGroup";
+import AddLaw from "./add/AddLaw";
+import AddLawCategory from "./add/AddLawCategory";
+import AddParty from "./add/AddParty";
+import AddVote from "./add/AddVote";
+
+import Selector from "./Selector";
+import ItemsSelector from "./ItemsSelector";
 
 const Container = styled.div`
   .list-group {
@@ -19,89 +30,71 @@ class Create extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeList: "deputies"
+      activeList: "deputies",
+      isActiveAdd: true,
+      isActiveEdit: false,
+      isActiveDelete: false
     };
+    this.setActiveSelector = this.setActiveSelector.bind(this);
+    this.setActiveList = this.setActiveList.bind(this);
   }
-
+  setActiveSelector(state) {
+    this.setState({
+      isActiveAdd: state.add,
+      isActiveEdit: state.edit,
+      isActiveDelete: state.delete
+    });
+  }
   setActiveList(activeList) {
     this.setState({
       activeList
     });
   }
-  render() {
+
+  renderAdd() {
     const { activeList } = this.state;
     return (
-      <Container className="py-5 container">
-        <ul className="list-group list-group-horizontal">
-          <li
-            className={
-              activeList === "parties"
-                ? "text-primary list-group-item"
-                : "list-group-item"
-            }
-            onClick={() => this.setActiveList("parties")}
-          >
-            Partis
-          </li>
-          <li
-            className={
-              activeList === "groups"
-                ? "text-primary list-group-item"
-                : "list-group-item"
-            }
-            onClick={() => this.setActiveList("groups")}
-          >
-            Groupes
-          </li>
-          <li
-            className={
-              activeList === "categories"
-                ? "text-primary list-group-item"
-                : "list-group-item"
-            }
-            onClick={() => this.setActiveList("categories")}
-          >
-            Textes
-          </li>
+      <div>
+        {activeList === "deputies" && <AddDeputy />}
+        {activeList === "laws" && <AddLaw />}
+        {activeList === "categories" && <AddLawCategory />}
+        {activeList === "parties" && <AddParty />}
+        {activeList === "groups" && <AddGroup />}
+        {activeList === "votes" && <AddVote />}
+      </div>
+    );
+  }
+  renderEdit() {
+    return (
+      <div className="pt-5 container display-3" style={{ textAlign: "center" }}>
+        Bientôt disponible
+      </div>
+    );
+  }
 
-          <li
-            className={
-              activeList === "laws"
-                ? "text-primary list-group-item"
-                : "list-group-item"
-            }
-            onClick={() => this.setActiveList("laws")}
-          >
-            Amendements
-          </li>
-          <li
-            className={
-              activeList === "deputies"
-                ? "text-primary list-group-item"
-                : "list-group-item"
-            }
-            onClick={() => this.setActiveList("deputies")}
-          >
-            Députés
-          </li>
-
-          <li
-            className={
-              activeList === "votes"
-                ? "text-primary list-group-item"
-                : "list-group-item"
-            }
-            onClick={() => this.setActiveList("votes")}
-          >
-            Votes
-          </li>
-        </ul>
+  renderDelete() {
+    const { activeList } = this.state;
+    return (
+      <div>
         {activeList === "deputies" && <DeputiesList />}
         {activeList === "laws" && <LawsList />}
         {activeList === "categories" && <CategoriesList />}
         {activeList === "parties" && <PartiesList />}
         {activeList === "groups" && <GroupsList />}
         {activeList === "votes" && <VotesList />}
+      </div>
+    );
+  }
+  render() {
+    const { isActiveAdd, isActiveEdit, isActiveDelete } = this.state;
+    return (
+      <Container className="container">
+        <Selector activeSelector={this.setActiveSelector} />
+        <ItemsSelector activeList={this.setActiveList} />
+
+        {isActiveAdd && this.renderAdd()}
+        {isActiveEdit && this.renderEdit()}
+        {isActiveDelete && this.renderDelete()}
       </Container>
     );
   }
