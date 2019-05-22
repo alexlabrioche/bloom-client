@@ -45,45 +45,23 @@ class DeputyProfile extends React.Component {
   }
 
   async componentDidMount() {
-    window.addEventListener(
-      "handleScreenSize",
-      this.handleScreenSize.bind(this)
-    );
-    this.handleScreenSize();
     const id = this.props.match.params.name;
     const deputy = await Api.getDeputy(id);
     const finalNote = await Algo100(id);
+    const allVotes = await Api.getVotes();
+    const votes = allVotes.filter(vote => {
+      return vote.deputy._id === id && vote;
+    });
     this.setState({
       isLoading: false,
       deputy,
-      finalNote
+      finalNote,
+      votes
     });
   }
 
-  handleScreenSize() {
-    const { mobileView } = this.state;
-    const screenSize = window.innerWidth <= 760;
-    mobileView !== screenSize &&
-      this.setState({
-        mobileView: screenSize
-      });
-  }
-  renderDesktop(vote, index) {
-    return (
-      <div className="my-3 col-md-6 col-lg-4" key={index}>
-        <FlipCard {...vote} />
-      </div>
-    );
-  }
-  renderMobile(vote, index) {
-    return (
-      <div className="my-1 col-12" key={index}>
-        MOBILE FLIP CARD
-      </div>
-    );
-  }
   render() {
-    const { deputy, finalNote, deputies, mobileView } = this.state;
+    const { deputy, finalNote, votes, mobileView } = this.state;
     // console.log("<<<<<<<<<<<<deputy", deputy);
     // console.log("<<<<<<<<<<<<deputy._id", deputy._id);
     if (this.state.isLoading === true) {
@@ -104,27 +82,23 @@ class DeputyProfile extends React.Component {
           </div>
           <div className="header-content col-12 col-md-8 col-lg-6">
             <h3 className="header-title">{deputy.name}</h3>
-            <Gauge finalNote={finalNote} />
+
             <p className="header-description">{deputy.description}</p>
           </div>
           <div className="header-gauge offset-3 col-6 offset-md-0 col-md-4 col-lg-3">
-            <div>
-              GAUGE
-              <br />
-              GAUGE
-              <br />
-              GAUGE
-            </div>
+            <Gauge finalNote={finalNote} />
           </div>
         </div>
 
         <div className="main-content container">
           <div className="row">
-            {/* {votes.map((vote, index) => {
-              return mobileView
-                ? this.renderMobile(vote, index)
-                : this.renderDesktop(vote, index);
-            })} */}
+            {votes.map((vote, index) => {
+              return (
+                <div className="col-md-6 col-lg-4" key={index}>
+                  <FlipCard {...vote} />
+                </div>
+              );
+            })}
           </div>
         </div>
       </Container>
