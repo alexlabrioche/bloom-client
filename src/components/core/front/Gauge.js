@@ -7,8 +7,8 @@ class Gauge extends React.Component {
   state = {
     value: 0
   };
-  startColor = "#005377"; // cornflowerblue
-  endColor = "#6495ed"; // crimson
+  startColor = "gainsboro"; // cornflowerblue
+  endColor = "aliceblue"; // crimson
 
   componentDidMount() {
     console.log("#cmpDM GAUGE this.props.finalNote", this.props.finalNote);
@@ -29,7 +29,7 @@ class Gauge extends React.Component {
     const gradientStops = [
       {
         key: "0%",
-        stopColor: color(fillColor)
+        stopColor: color("darkblue")
           .darker(0.5)
           .toString(),
         stopOpacity: 1,
@@ -37,13 +37,13 @@ class Gauge extends React.Component {
       },
       {
         key: "50%",
-        stopColor: fillColor,
-        stopOpacity: 0.75,
+        stopColor: color("dodgerblue"),
+        stopOpacity: 0.6,
         offset: "50%"
       },
       {
         key: "100%",
-        stopColor: color(fillColor)
+        stopColor: color("deepskyblue")
           .brighter(0.5)
           .toString(),
         stopOpacity: 0.5,
