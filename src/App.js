@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import styled from "styled-components";
+import ShareThis from "./components/core/front/ShareThis";
 
 import Global from "./Global";
 
@@ -52,6 +53,7 @@ class App extends React.Component {
       <Router>
         <AppContainer>
           <Navigation />
+          <ShareThis />
           <Route exact path="/" component={DeputiesContainer} />
           <Route exact path="/deputes/:name" component={DeputyProfile} />
           {/* <Route exact path="/partis" component={Parties} /> */}

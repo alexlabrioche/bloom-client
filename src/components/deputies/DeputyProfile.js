@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 import Api from "../../utils/Api";
 import Algo100 from "../../utils/Algo100";
@@ -24,13 +25,18 @@ const Container = styled.div`
     width: 100%;
   }
   .header-title {
-    font-size: 4rem;
+    font-size: 3rem;
     text-align: center;
   }
-  .header-description {
+  /* .header-description {
     margin-top: 2rem;
     height: 12rem;
     overflow: auto;
+  } */
+  .header-gauge-legend {
+    font-size: 14px;
+    text-align: center;
+    margin-top: -15px;
   }
 `;
 class DeputyProfile extends React.Component {
@@ -62,7 +68,7 @@ class DeputyProfile extends React.Component {
 
   render() {
     const { deputy, finalNote, votes, mobileView } = this.state;
-    // console.log("<<<<<<<<<<<<deputy", deputy);
+    console.log("<<<<<<<<<<<<deputy", deputy);
     // console.log("<<<<<<<<<<<<deputy._id", deputy._id);
     if (this.state.isLoading === true) {
       return <p>Chargement...</p>;
@@ -82,11 +88,22 @@ class DeputyProfile extends React.Component {
           </div>
           <div className="header-content col-12 col-md-8 col-lg-6">
             <h3 className="header-title">{deputy.name}</h3>
-
+            <p className="header-description">
+              Groupe au Parlement Européen : {deputy.group.name}
+            </p>
+            <p className="header-description">
+              Taux de présence aux séances de vote : {deputy.participationRate}%
+            </p>
+            <p className="header-description">
+              Parti National : {deputy.party.name}
+            </p>
             <p className="header-description">{deputy.description}</p>
           </div>
           <div className="header-gauge offset-3 col-6 offset-md-0 col-md-4 col-lg-3">
             <Gauge finalNote={finalNote} />
+            <p className="header-gauge-legend">
+              % de votes protcteur de l'océan
+            </p>
           </div>
         </div>
 
