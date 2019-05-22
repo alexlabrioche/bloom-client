@@ -32,7 +32,7 @@ const Container = styled.div`
     overflow: auto;
   }
 `;
-class GroupDetails extends React.Component {
+class PartyProfile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -52,6 +52,16 @@ class GroupDetails extends React.Component {
     });
     window.addEventListener("resize", this.handleScreenSize.bind(this));
     this.handleScreenSize();
+  }
+  async componentDidUpdate() {
+    const id = this.props.match.params.name;
+    const currentId = this.state.group._id;
+    if (id !== currentId) {
+      const group = await Api.getGroup(id);
+      this.setState({
+        group
+      });
+    }
   }
 
   handleScreenSize() {
@@ -109,4 +119,4 @@ class GroupDetails extends React.Component {
   }
 }
 
-export default GroupDetails;
+export default PartyProfile;

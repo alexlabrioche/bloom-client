@@ -18,7 +18,7 @@ const CardStyle = styled.div`
   .card-content {
     border-radius: 4px;
     height: 100%;
-    margin: 0.6rem;
+    margin: 0.4rem;
     display: flex;
     flex-direction: column;
     align-items: center;
