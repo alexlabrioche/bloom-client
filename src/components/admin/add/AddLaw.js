@@ -28,14 +28,13 @@ const DateInput = asField(
 );
 
 const Container = styled.div`
-  padding-top: 50px;
   display: flex;
   justify-content: center;
 `;
 
 const Label = styled.h6`
+  width: 30rem;
   margin-top: 10px;
-  width: 300px;
   display: flex;
   flex-direction: column;
 `;
@@ -76,25 +75,31 @@ class AddLaw extends React.Component {
         <Form onSubmit={formState => this.onSubmit(formState)}>
           <Label>
             Titre :
-            <Text field="name" />
+            <Text field="name" className="form-control form-control-sm" />
           </Label>
           <Label>
             Amendement :
-            <Text field="subTitle" />
+            <Text field="subTitle" className="form-control form-control-sm" />
           </Label>
           <Label>
             Lien externe sur la loi :
-            <Text field="link" />
+            <Text field="link" className="form-control form-control-sm" />
           </Label>
 
           <Label>
             Description :
-            <TextArea field="description" />
+            <TextArea
+              field="description"
+              className="form-control form-control-sm"
+            />
           </Label>
 
           <Label>
             Texte complet :
-            <TextArea field="fullText" />
+            <TextArea
+              field="fullText"
+              className="form-control form-control-sm"
+            />
           </Label>
 
           <Label>
@@ -103,12 +108,13 @@ class AddLaw extends React.Component {
               field="commencement"
               showMonthYearPicker
               dateFormat="MM/yyyy"
+              className="form-control form-control-sm"
             />
           </Label>
 
           <Label>
             Texte :
-            <Select field="category">
+            <Select field="category" className="form-control form-control-sm">
               <Option value="">...</Option>
               {categories.map((category, index) => {
                 return (
@@ -124,6 +130,7 @@ class AddLaw extends React.Component {
             <Label>
               Protège <Radio value="true" />
             </Label>
+
             <Label>
               Détruit <Radio value="false" />
             </Label>

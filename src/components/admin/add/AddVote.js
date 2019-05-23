@@ -6,14 +6,13 @@ import styled from "styled-components";
 import Api from "../../../utils/Api";
 
 const Container = styled.div`
-  padding-top: 50px;
   display: flex;
   justify-content: center;
 `;
 
 const Label = styled.h6`
+  width: 30rem;
   margin-top: 10px;
-  width: 300px;
   display: flex;
   flex-direction: column;
 `;
@@ -51,7 +50,7 @@ class AddVote extends React.Component {
         <Form onSubmit={formState => this.onSubmit(formState)}>
           <Label>
             Député :
-            <Select field="deputy">
+            <Select field="deputy" className="form-control form-control-sm">
               <Option value="" disabled>
                 Choisir un député
               </Option>
@@ -67,7 +66,7 @@ class AddVote extends React.Component {
 
           <Label>
             Loi :
-            <Select field="law">
+            <Select field="law" className="form-control form-control-sm">
               <Option value="" disabled>
                 Choisir une loi
               </Option>
@@ -82,7 +81,7 @@ class AddVote extends React.Component {
           </Label>
           <Label>
             Statut du vote :
-            <Select field="decision">
+            <Select field="decision" className="form-control form-control-sm">
               <Option value="" disabled>
                 Selectionnez une valeur
               </Option>

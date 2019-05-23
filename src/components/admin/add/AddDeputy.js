@@ -19,14 +19,13 @@ const DateInput = asField(
 );
 
 const Container = styled.div`
-  padding-top: 50px;
   display: flex;
   justify-content: center;
 `;
 
 const Label = styled.h6`
+  width: 30rem;
   margin-top: 10px;
-  width: 300px;
   display: flex;
   flex-direction: column;
 `;
@@ -76,17 +75,25 @@ class AddDeputy extends React.Component {
         <Form onSubmit={formState => this.onSubmit(formState)}>
           <Label>
             Nom complet:
-            <Text field="name" type="text" />
+            <Text
+              className="form-control form-control-sm"
+              field="name"
+              type="text"
+            />
           </Label>
 
           <Label>
             Taux de participation:
-            <Text field="participationRate" type="number" />
+            <Text
+              className="form-control form-control-sm"
+              field="participationRate"
+              type="number"
+            />
           </Label>
 
           <Label>
             Parti :
-            <Select field="party">
+            <Select className="form-control form-control-sm" field="party">
               <Option value="">...</Option>
               {parties.map((party, index) => {
                 return (
@@ -100,7 +107,7 @@ class AddDeputy extends React.Component {
 
           <Label>
             Groupe :
-            <Select field="group">
+            <Select className="form-control form-control-sm" field="group">
               <Option value="">...</Option>
               {groups.map((group, index) => {
                 return (
@@ -118,6 +125,7 @@ class AddDeputy extends React.Component {
               field="mandateFrom"
               showMonthYearPicker
               dateFormat="MM/yyyy"
+              className="form-control form-control-sm"
             />
           </Label>
 
@@ -127,6 +135,7 @@ class AddDeputy extends React.Component {
               field="mandateTo"
               showMonthYearPicker
               dateFormat="MM/yyyy"
+              className="form-control form-control-sm"
             />
           </Label>
 

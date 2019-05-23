@@ -16,7 +16,7 @@ import AddParty from "./add/AddParty";
 import AddVote from "./add/AddVote";
 
 import Selector from "./Selector";
-import ItemsSelector from "./ItemsSelector";
+import TabulationBar from "./TabulationBar";
 
 const Container = styled.div`
   .list-group {
@@ -30,13 +30,13 @@ class Create extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeList: "deputies",
+      activeTab: "deputies",
       isActiveAdd: true,
       isActiveEdit: false,
       isActiveDelete: false
     };
     this.setActiveSelector = this.setActiveSelector.bind(this);
-    this.setActiveList = this.setActiveList.bind(this);
+    this.setActiveTab = this.setActiveTab.bind(this);
   }
   setActiveSelector(state) {
     this.setState({
@@ -45,22 +45,22 @@ class Create extends React.Component {
       isActiveDelete: state.delete
     });
   }
-  setActiveList(activeList) {
+  setActiveTab(activeTab) {
     this.setState({
-      activeList
+      activeTab
     });
   }
 
   renderAdd() {
-    const { activeList } = this.state;
+    const { activeTab } = this.state;
     return (
       <div>
-        {activeList === "deputies" && <AddDeputy />}
-        {activeList === "laws" && <AddLaw />}
-        {activeList === "categories" && <AddLawCategory />}
-        {activeList === "parties" && <AddParty />}
-        {activeList === "groups" && <AddGroup />}
-        {activeList === "votes" && <AddVote />}
+        {activeTab === "deputies" && <AddDeputy />}
+        {activeTab === "laws" && <AddLaw />}
+        {activeTab === "categories" && <AddLawCategory />}
+        {activeTab === "parties" && <AddParty />}
+        {activeTab === "groups" && <AddGroup />}
+        {activeTab === "votes" && <AddVote />}
       </div>
     );
   }
@@ -73,15 +73,15 @@ class Create extends React.Component {
   }
 
   renderDelete() {
-    const { activeList } = this.state;
+    const { activeTab } = this.state;
     return (
       <div>
-        {activeList === "deputies" && <DeputiesList />}
-        {activeList === "laws" && <LawsList />}
-        {activeList === "categories" && <CategoriesList />}
-        {activeList === "parties" && <PartiesList />}
-        {activeList === "groups" && <GroupsList />}
-        {activeList === "votes" && <VotesList />}
+        {activeTab === "deputies" && <DeputiesList />}
+        {activeTab === "laws" && <LawsList />}
+        {activeTab === "categories" && <CategoriesList />}
+        {activeTab === "parties" && <PartiesList />}
+        {activeTab === "groups" && <GroupsList />}
+        {activeTab === "votes" && <VotesList />}
       </div>
     );
   }
@@ -90,7 +90,7 @@ class Create extends React.Component {
     return (
       <Container className="container">
         <Selector activeSelector={this.setActiveSelector} />
-        <ItemsSelector activeList={this.setActiveList} />
+        <TabulationBar activeTab={this.setActiveTab} />
 
         {isActiveAdd && this.renderAdd()}
         {isActiveEdit && this.renderEdit()}

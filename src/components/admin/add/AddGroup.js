@@ -4,14 +4,13 @@ import { Form, Text, TextArea } from "informed";
 import Api from "../../../utils/Api";
 
 const Container = styled.div`
-  padding-top: 50px;
   display: flex;
   justify-content: center;
 `;
 
 const Label = styled.h6`
   margin-top: 10px;
-  width: 300px;
+  width: 30rem;
   display: flex;
   flex-direction: column;
 `;
@@ -45,12 +44,19 @@ class AddGroup extends React.Component {
         <Form onSubmit={formState => this.onSubmit(formState)}>
           <Label>
             Nom du Groupe :
-            <Text field="name" type="text" />
+            <Text
+              field="name"
+              type="text"
+              className="form-control form-control-sm"
+            />
           </Label>
 
           <Label>
             Description :
-            <TextArea field="description" />
+            <TextArea
+              field="description"
+              className="form-control form-control-sm"
+            />
           </Label>
 
           <Label>
