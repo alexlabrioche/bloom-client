@@ -30,6 +30,7 @@ const DateInput = asField(
 const Container = styled.div`
   display: flex;
   justify-content: center;
+  margin-bottom: 30px;
 `;
 
 const Label = styled.h6`
@@ -87,11 +88,8 @@ class AddLaw extends React.Component {
           </Label>
 
           <Label>
-            Description :
-            <TextArea
-              field="description"
-              className="form-control form-control-sm"
-            />
+            Résumé :
+            <TextArea field="resume" className="form-control form-control-sm" />
           </Label>
 
           <Label>

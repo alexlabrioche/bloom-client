@@ -17,18 +17,20 @@ const Container = styled.div`
   border: 1px solid rgba(230, 230, 230, 1);
   .header {
     padding-top: 1rem;
-    overflow: auto;
     border-bottom: 1px solid rgba(230, 230, 230, 1);
     box-shadow: 0px 3px 5px 0px rgba(230, 227, 230, 1);
   }
   .header-img-container {
     border-radius: 4px;
-    height: 5rem;
-    width: 5rem;
+    height: 14rem;
+    width: 16rem;
+    background-color: lightblue;
+    overflow: auto;
   }
   .header-img {
-    height: auto;
     width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
   .header-title {
     font-size: 3rem;
@@ -90,12 +92,14 @@ class DeputyProfile extends React.Component {
     return (
       <Container className="container">
         <div className="header row">
-          <div className="header-img-container offset-3 col-6 offset-md-0 col-md-4 col-lg-3">
-            <img
-              className="header-img"
-              src={`${Config.server}/${deputy.picture}`}
-              alt={deputy.slug}
-            />
+          <div className="offset-3 col-6 offset-md-0 col-md-4 col-lg-3">
+            <div className="header-img-container ">
+              <img
+                className="header-img"
+                src={`${Config.server}/${deputy.picture}`}
+                alt={deputy.slug}
+              />
+            </div>
           </div>
           <div className="header-content col-12 col-md-8 col-lg-6">
             <h3 className="header-title">{deputy.name}</h3>

@@ -59,7 +59,7 @@ const Container = styled.div`
 
 function DeputyCard(props) {
   const { name, slug, picture, _id, party } = props;
-  // console.log("slug", slug);
+  // console.log("_id", _id);
   let deputyParty = "Sans étiquette";
   if (party !== undefined) {
     deputyParty = party.name;
