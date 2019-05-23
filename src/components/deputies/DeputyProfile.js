@@ -54,15 +54,6 @@ class DeputyProfile extends React.Component {
 
   async componentDidMount() {
     const slug = this.props.match.params.slug;
-    console.log("slug", slug);
-    const party = await Api.getPartyBySlug(slug);
-    this.setState({
-      party
-    });
-  }
-
-  async componentDidMount() {
-    const slug = this.props.match.params.slug;
     const deputy = await Api.getDeputyBySlug(slug);
     const allVotes = await Api.getVotes();
 
