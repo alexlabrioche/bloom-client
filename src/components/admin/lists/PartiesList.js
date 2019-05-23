@@ -23,7 +23,7 @@ class PartiesList extends React.Component {
     return (
       <div>
         <div className="pt-5 container">
-          <List data={parties} type="parti" />
+          <List data={parties} type="party" />
         </div>
       </div>
     );

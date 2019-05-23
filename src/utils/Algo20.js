@@ -2,11 +2,11 @@ import Api from "./Api";
 const gradeIsOn = 20;
 
 const Algo20 = async _id => {
-  console.log("Algo20 _id", _id);
+  // console.log("Algo20 _id", _id);
   const votes = await Api.getVotes();
   let points = 0;
   let numberOfVotes = 0;
-  console.log("votes", votes);
+  // console.log("votes", votes);
   for (var i = 0; i < votes.length; i++) {
     if (votes[i].deputy._id === _id) {
       // console.log(i);

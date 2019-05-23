@@ -20,6 +20,7 @@ class Delete extends React.Component {
       itemTodelete = await Api.deleteGroup(id);
     }
     if (type === "party") {
+      console.log("@Delete here, it's a partey");
       itemTodelete = await Api.deleteParty(id);
     }
     if (type === "category") {
