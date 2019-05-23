@@ -83,7 +83,7 @@ class AddLaw extends React.Component {
             <Text field="subTitle" className="form-control form-control-sm" />
           </Label>
           <Label>
-            Lien externe sur la loi :
+            Lien externe vers l'amendement :
             <Text field="link" className="form-control form-control-sm" />
           </Label>
 
