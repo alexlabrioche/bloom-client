@@ -1,57 +1,3 @@
-// import React from "react";
-// import styled from "styled-components";
-// import Api from "../../utils/Api";
-// import Config from "../../Config";
-
-// const Container = styled.div`
-//   .card-img {
-//     object-fit: cover;
-//     height: 12rem;
-//     border-radius: 3px 3px 0 0;
-//   }
-//   .card-body {
-//     height: 10rem;
-//     overflow: auto;
-//   }
-// `;
-// class PartyDetails extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       party: []
-//     };
-//   }
-//   async componentDidMount() {
-//     const id = this.props.match.params.name;
-//     console.log("party id", id);
-//     const party = await Api.getParty(id);
-//     console.log("party", party);
-//     this.setState({
-//       party
-//     });
-//   }
-//   render() {
-//     const { party } = this.state;
-//     console.log("party", this.state.party);
-//     return (
-//       <Container className="pt-5 container">
-//         <div className="card text-center">
-//           <img
-//             className="card-img"
-//             src={`${Config.server}/${party.picture}`}
-//             alt={party.slug}
-//           />
-//           <div className="card-body">
-//             <h3 className="card-title">{party.name}</h3>
-//             <p className="card-text">{party.description}</p>
-//           </div>
-//         </div>
-//       </Container>
-//     );
-//   }
-// }
-
-// export default PartyDetails;
 import React from "react";
 import styled from "styled-components";
 
@@ -90,30 +36,43 @@ class PartyProfile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isLoading: true,
       party: {},
       deputies: []
     };
   }
 
-  // Version Async Await + Api
   async componentDidMount() {
+    this.handleScreenSize();
     const slug = this.props.match.params.slug;
-    console.log("slug", slug);
     const party = await Api.getPartyBySlug(slug);
+    const deputies = await this.getDeputiesFromCurrentParty();
     this.setState({
-      party
+      isLoading: false,
+      party,
+      deputies
     });
   }
 
   async componentDidUpdate() {
-    const id = this.props.match.params.name;
-    const currentId = this.state.party._id;
-    if (id !== currentId) {
-      const party = await Api.getParty(id);
+    const slug = this.props.match.params.slug;
+    const currentSlug = this.state.party.slug;
+    const deputies = await this.getDeputiesFromCurrentParty();
+    if (slug !== currentSlug) {
+      const party = await Api.getPartyBySlug(slug);
       this.setState({
-        party
+        party,
+        deputies
       });
     }
+  }
+  async getDeputiesFromCurrentParty() {
+    const slug = this.props.match.params.slug;
+    const allDeputies = await Api.getDeputies();
+    const deputies = allDeputies.deputies.filter(deputy => {
+      return deputy.party.slug === slug && deputy;
+    });
+    return deputies;
   }
 
   handleScreenSize() {
@@ -140,10 +99,12 @@ class PartyProfile extends React.Component {
   }
 
   render() {
-    const { party, deputies, mobileView } = this.state;
+    const { party, deputies, mobileView, isLoading } = this.state;
     console.log("@ PartyProfile party: ", party);
-    if (party === {}) {
-      return <p>Chargement...</p>;
+    if (isLoading === true) {
+      return (
+        <p className="container pt-5 display-4 text-center">Chargement...</p>
+      );
     }
     return (
       <Container className="container">
