@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Config from "../../Config";
 import Global from "../../Global";
+import Note from "../core/front/Note";
 
 // import
 
@@ -36,8 +37,10 @@ const Container = styled.div`
     text-align: center;
     font-size: 0.8rem;
   }
-  .card-gauge {
+  .card-note {
     text-align: center;
+    font-size: 36px;
+    font-weight: 400;
   }
   .footer {
     text-align: right;
@@ -56,13 +59,14 @@ const Container = styled.div`
 
 function DeputyCard(props) {
   const { name, slug, picture, _id, party } = props;
+  // console.log("slug", slug);
   let deputyParty = "Sans étiquette";
   if (party !== undefined) {
     deputyParty = party.name;
   }
   return (
     <Container className="card">
-      <Link to={`/deputes/${_id}`} className="link">
+      <Link to={`/deputes/${slug}`} className="link">
         <img
           className="card-img-top"
           src={`${Config.server}/${picture}`}
@@ -72,8 +76,8 @@ function DeputyCard(props) {
           <h6 className="card-title">{name}</h6>
           <p className="card-text">{deputyParty}</p>
         </div>
-        <div className="card-gauge">
-          <div className="gauge">IMPORT GAUGE</div>
+        <div className="card-note">
+          <Note _id={_id} />
         </div>
         <div className="footer">
           <small>

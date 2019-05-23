@@ -23,6 +23,7 @@
     "react-liquid-gauge": "^1.2.4",
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.1",
+    "react-show-more": "^2.0.0",
     "react-spring": "^8.0.20",
     "react-svg-gauge": "^1.0.10",
     "semantic-ui-react": "^0.87.1",

@@ -95,18 +95,16 @@ class PartyProfile extends React.Component {
     };
   }
 
+  // Version Async Await + Api
   async componentDidMount() {
-    const id = this.props.match.params.name;
-    const party = await Api.getParty(id);
-    const allDeputies = await Api.getDeputies();
-    const deputies = allDeputies.deputies;
+    const slug = this.props.match.params.slug;
+    console.log("slug", slug);
+    const party = await Api.getPartyBySlug(slug);
     this.setState({
-      party,
-      deputies
+      party
     });
-    window.addEventListener("resize", this.handleScreenSize.bind(this));
-    this.handleScreenSize();
   }
+
   async componentDidUpdate() {
     const id = this.props.match.params.name;
     const currentId = this.state.party._id;
@@ -143,6 +141,10 @@ class PartyProfile extends React.Component {
 
   render() {
     const { party, deputies, mobileView } = this.state;
+    console.log("@ PartyProfile party: ", party);
+    if (party === {}) {
+      return <p>Chargement...</p>;
+    }
     return (
       <Container className="container">
         <div className="header row">

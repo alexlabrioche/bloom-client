@@ -127,7 +127,7 @@ function Card(props) {
     noteColor = "absence-color";
   }
   // console.info("    noteColor", noteColor);
-  console.info("FlipCard props", props);
+  // console.info("@FlipCard props", props);
   const [flipped, set] = useState(false);
   const { transform, opacity } = useSpring({
     opacity: flipped ? 1 : 0,

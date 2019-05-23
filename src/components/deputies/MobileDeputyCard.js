@@ -40,10 +40,10 @@ const Container = styled.div`
 
 function MobilePictureCard(props) {
   const { name, slug, picture, _id, party } = props;
-  console.log("@Mobile props", props);
+  // console.log("@Mobile props", props);
   return (
     <Container className="card">
-      <Link to={`/deputes/${_id}`} className="link">
+      <Link to={`/deputes/${slug}`} className="link">
         <div className="row no-gutters">
           <div className="card-img-container col-4">
             <img

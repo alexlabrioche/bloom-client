@@ -53,24 +53,38 @@ class DeputyProfile extends React.Component {
   }
 
   async componentDidMount() {
-    const id = this.props.match.params.name;
-    const deputy = await Api.getDeputy(id);
-    const finalNote = await Algo100(id);
+    const slug = this.props.match.params.slug;
+    console.log("slug", slug);
+    const party = await Api.getPartyBySlug(slug);
+    this.setState({
+      party
+    });
+  }
+
+  async componentDidMount() {
+    const slug = this.props.match.params.slug;
+    const deputy = await Api.getDeputyBySlug(slug);
     const allVotes = await Api.getVotes();
+
     const votes = allVotes.filter(vote => {
-      return vote.deputy._id === id && vote;
+      return vote.deputy.slug === slug && vote;
     });
     this.setState({
-      isLoading: false,
       deputy,
-      finalNote,
       votes
+    });
+    const id = this.state.deputy._id;
+    const finalNote = await Algo100(id);
+    console.log("<< finale Note", finalNote);
+    this.setState({
+      isLoading: false,
+      finalNote
     });
   }
 
   render() {
     const { deputy, finalNote, votes, mobileView } = this.state;
-    console.log("<<<<<<<<<<<<deputy", deputy);
+    // console.log("<<<deputy", deputy);
     // console.log("<<<<<<<<<<<<deputy._id", deputy._id);
     if (this.state.isLoading === true) {
       return <p>Chargement...</p>;
@@ -92,7 +106,7 @@ class DeputyProfile extends React.Component {
             <h3 className="header-title">{deputy.name}</h3>
             <p className="header-description">
               Groupe au Parlement Européen :{" "}
-              <Link to={`/partis/${deputy.party.slug}`}>
+              <Link to={`/groupes/${deputy.group.slug}`}>
                 {deputy.group.name}
               </Link>
             </p>
@@ -100,21 +114,17 @@ class DeputyProfile extends React.Component {
               Taux de présence aux séances de vote : {deputy.participationRate}%
             </p> */}
             <p className="header-description">
-<<<<<<< HEAD
               Parti National :{" "}
               <Link to={`/partis/${deputy.party.slug}`}>
                 {deputy.party.name}
               </Link>
-=======
-              {/* Parti National : {deputy.party.name} */}
->>>>>>> 714514d951e78f90d0439b3f137b46e5de73ebda
             </p>
             <p className="header-description">{deputy.description}</p>
           </div>
           <div className="header-gauge offset-3 col-6 offset-md-0 col-md-4 col-lg-3">
             <Gauge finalNote={finalNote} />
             <p className="header-gauge-legend">
-              % de votes protcteur de l'océan
+              % de votes protecteur de l'océan
             </p>
           </div>
         </div>

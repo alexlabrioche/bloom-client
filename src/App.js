@@ -55,11 +55,11 @@ class App extends React.Component {
           <Navigation />
           <ShareThis />
           <Route exact path="/" component={DeputiesContainer} />
-          <Route exact path="/deputes/:name" component={DeputyProfile} />
+          <Route exact path="/deputes/:slug" component={DeputyProfile} />
           {/* <Route exact path="/partis" component={Parties} /> */}
-          <Route exact path="/partis/:name" component={PartyProfile} />
+          <Route exact path="/partis/:slug" component={PartyProfile} />
           {/* <Route exact path="/groupes" component={GroupsContainer} /> */}
-          <Route exact path="/groupes/:name" component={GroupProfile} />
+          <Route exact path="/groupes/:slug" component={GroupProfile} />
 
           {/********** ADMIN ROUTES **********/}
           <Route exact path="/admin" component={Admin} />

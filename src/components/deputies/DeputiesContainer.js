@@ -51,7 +51,7 @@ class DeputiesContainer extends React.Component {
 
   render() {
     const { deputies, mobileView } = this.state;
-    console.info("<< render Deputies deputies", deputies);
+    // console.info("<< render Deputies deputies", deputies);
     return (
       <Container className="pt-5 container">
         <div className="row">

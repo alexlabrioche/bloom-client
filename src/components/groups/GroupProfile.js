@@ -42,8 +42,11 @@ class PartyProfile extends React.Component {
   }
 
   async componentDidMount() {
-    const id = this.props.match.params.name;
-    const group = await Api.getGroup(id);
+    // By slug
+    const slug = this.props.match.params.slug;
+    console.log("@ GROUP slug", slug);
+    const group = await Api.getGroupBySlug(slug);
+
     const allDeputies = await Api.getDeputies();
     const deputies = allDeputies.deputies;
     this.setState({

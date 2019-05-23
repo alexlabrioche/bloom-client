@@ -27,7 +27,7 @@ class Note extends React.Component {
 
   async componentDidMount() {
     const finalNote = await Algo20(this.props._id);
-    console.log("final note", finalNote);
+    // console.log("final note", finalNote);
     this.setState({
       finalNote
     });
@@ -55,8 +55,8 @@ class Note extends React.Component {
     if (this.state.isGood) noteClass = "note-good";
     if (this.state.isBad) noteClass = "note-bad";
     if (this.state.isMedium) noteClass = "note-medium";
-    console.log("<< this state", this.state);
-    console.log("<< noteClass", noteClass);
+    // console.log("<< this state", this.state);
+    // console.log("<< noteClass", noteClass);
 
     return (
       <Container>

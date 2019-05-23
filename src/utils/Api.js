@@ -8,6 +8,13 @@ class Api {
     const deputy = await axios.get(url).then(deputy => deputy.data);
     return deputy;
   }
+  async getDeputyBySlug(slug) {
+    console.log("@API slug DEPUTE:", slug);
+    const url = `http://localhost:4000/api/deputies/slug/${slug}`;
+    const depute = await axios.get(url).then(depute => depute.data);
+    // console.log("<<<  slug DEPUTE:", slug);
+    return depute;
+  }
   async getDeputies() {
     const url = `${Config.server}/api/deputies/`;
     const deputies = await axios.get(url).then(deputies => deputies.data);
@@ -31,6 +38,13 @@ class Api {
     const group = await axios.get(url).then(group => group.data);
     return group;
   }
+  async getGroupBySlug(slug) {
+    console.log("@API slug GROUP:", slug);
+    const url = `http://localhost:4000/api/groups/slug/${slug}`;
+    const group = await axios.get(url).then(group => group.data);
+    // console.log("<<<  slug DEPUTE:", slug);
+    return group;
+  }
   async getGroups() {
     const url = `${Config.server}/api/groups`;
     const groups = await axios.get(url).then(groups => groups.data);
@@ -52,6 +66,12 @@ class Api {
   // PARTIES
   async getParty(id) {
     const url = `${Config.server}/api/parties/${id}`;
+    const party = await axios.get(url).then(party => party.data);
+    return party;
+  }
+  async getPartyBySlug(slug) {
+    // console.log("@API slug:", slug);
+    const url = `http://localhost:4000/api/parties/slug/${slug}`;
     const party = await axios.get(url).then(party => party.data);
     return party;
   }
