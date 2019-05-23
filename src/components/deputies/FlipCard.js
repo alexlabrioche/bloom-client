@@ -3,12 +3,15 @@ import { useSpring, animated } from "react-spring";
 import styled from "styled-components";
 
 const CardStyle = styled.div`
-  height: 26rem;
+  height: 28rem;
+  padding: 1rem;
+  /* background: blue; */
 
   .card {
     border: 0px solid;
     position: absolute;
-    height: 25rem;
+    height: 26rem;
+    width: 85%;
     cursor: pointer;
     will-change: transform, opacity;
   }

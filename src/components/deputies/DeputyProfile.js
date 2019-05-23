@@ -18,6 +18,8 @@ const Container = styled.div`
   .header {
     padding-top: 1rem;
     overflow: auto;
+    border-bottom: 1px solid rgba(230, 230, 230, 1);
+    box-shadow: 0px 3px 5px 0px rgba(230, 227, 230, 1);
   }
   .header-img {
     border-radius: 4px;
@@ -98,10 +100,14 @@ class DeputyProfile extends React.Component {
               Taux de présence aux séances de vote : {deputy.participationRate}%
             </p> */}
             <p className="header-description">
+<<<<<<< HEAD
               Parti National :{" "}
               <Link to={`/partis/${deputy.party.slug}`}>
                 {deputy.party.name}
               </Link>
+=======
+              {/* Parti National : {deputy.party.name} */}
+>>>>>>> 714514d951e78f90d0439b3f137b46e5de73ebda
             </p>
             <p className="header-description">{deputy.description}</p>
           </div>
@@ -117,7 +123,7 @@ class DeputyProfile extends React.Component {
           <div className="row">
             {votes.map((vote, index) => {
               return (
-                <div className="col-md-6 col-lg-4" key={index}>
+                <div className="mt-3 col-md-6 col-lg-4" key={index}>
                   <FlipCard {...vote} />
                 </div>
               );
