@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSpring, animated } from "react-spring";
 import styled from "styled-components";
+import moment from "moment";
 
 const CardStyle = styled.div`
   height: 28rem;
@@ -33,6 +34,14 @@ const CardStyle = styled.div`
     }
     padding: 20px;
     color: #222;
+  }
+  .card-date {
+    margin-top: -15px;
+    font-weight: 400;
+    font-size: 22px;
+  }
+  .flip-cardback-link {
+    margin-top: -15px;
   }
   .protect-color {
     background-image: linear-gradient(
@@ -134,6 +143,10 @@ function Card(props) {
     transform: `perspective(600px) rotateX(${flipped ? 180 : 0}deg)`,
     config: { mass: 8, tension: 700, friction: 90 }
   });
+
+  const date = moment(props.law.commencement).format("YYYY-MM-DD");
+  console.log("date", date);
+
   return (
     <CardStyle onClick={() => set(state => !state)}>
       <animated.div
@@ -141,13 +154,10 @@ function Card(props) {
         style={{ opacity: opacity.interpolate(o => 1 - o), transform }}
       >
         <div className="card-content card-default-bg">
-          <h5>{props.law.slug}</h5>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur
-            voluptatem ex repellendus, culpa optio nisi expedita facere,
-            eligendi quo dicta dolores adipisci numquam accusamus a voluptas
-            voluptatum error? Laborum, quos.
-          </p>
+          <h5>{props.law.name}</h5>
+          <p>{props.law.resume}</p>
+          <p>Entrée en vigueur :</p>
+          <p className="card-date"> {date}</p>
         </div>
       </animated.div>
       <animated.div
@@ -158,13 +168,17 @@ function Card(props) {
         }}
       >
         <div className="card-content">
-          <h2>Back</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur
-            voluptatem ex repellendus, culpa optio nisi expedita facere,
-            eligendi quo dicta dolores adipisci numquam accusamus a voluptas
-            voluptatum error? Laborum, quos.
-          </p>
+          <h2>{props.law.subTitle}</h2>
+          <p>{props.law.fullText}</p>
+          <p>Plus d'infos : </p>
+          <a
+            className="flip-cardback-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            href={props.law.link}
+          >
+            cliquez ici
+          </a>
         </div>
       </animated.div>
     </CardStyle>

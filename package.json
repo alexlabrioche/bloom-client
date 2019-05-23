@@ -12,6 +12,7 @@
     "dropdown": "^0.2.0",
     "form-data": "^2.3.3",
     "informed": "^2.6.14",
+    "moment": "^2.24.0",
     "prop-types": "^15.7.2",
     "rc-dropdown": "^2.4.1",
     "react": "^16.8.6",
