@@ -21,8 +21,12 @@ const Container = styled.div`
     border-bottom: 1px solid rgba(230, 230, 230, 1);
     box-shadow: 0px 3px 5px 0px rgba(230, 227, 230, 1);
   }
-  .header-img {
+  .header-img-container {
     border-radius: 4px;
+    height: 5rem;
+    width: 5rem;
+  }
+  .header-img {
     height: auto;
     width: 100%;
   }
@@ -50,15 +54,6 @@ class DeputyProfile extends React.Component {
       finalNote: 0
       // deputies: []
     };
-  }
-
-  async componentDidMount() {
-    const slug = this.props.match.params.slug;
-    console.log("slug", slug);
-    const party = await Api.getPartyBySlug(slug);
-    this.setState({
-      party
-    });
   }
 
   async componentDidMount() {
