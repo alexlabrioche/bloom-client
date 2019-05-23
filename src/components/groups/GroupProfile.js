@@ -36,37 +36,44 @@ class PartyProfile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isLoading: true,
       group: {},
       deputies: []
     };
+    window.addEventListener("resize", this.handleScreenSize.bind(this));
   }
 
   async componentDidMount() {
-    // By slug
+    this.handleScreenSize();
     const slug = this.props.match.params.slug;
-    console.log("@ GROUP slug", slug);
     const group = await Api.getGroupBySlug(slug);
-
-    const allDeputies = await Api.getDeputies();
-    const deputies = allDeputies.deputies;
+    const deputies = await this.getDeputiesFromCurrentGroup();
     this.setState({
+      isLoading: false,
       group,
       deputies
     });
-    window.addEventListener("resize", this.handleScreenSize.bind(this));
-    this.handleScreenSize();
   }
   async componentDidUpdate() {
-    const id = this.props.match.params.name;
-    const currentId = this.state.group._id;
-    if (id !== currentId) {
-      const group = await Api.getGroup(id);
+    const slug = this.props.match.params.slug;
+    const currentSlug = this.state.group.slug;
+    const deputies = await this.getDeputiesFromCurrentGroup();
+    if (slug !== currentSlug) {
+      const group = await Api.getGroupBySlug(slug);
       this.setState({
-        group
+        group,
+        deputies
       });
     }
   }
-
+  async getDeputiesFromCurrentGroup() {
+    const slug = this.props.match.params.slug;
+    const allDeputies = await Api.getDeputies();
+    const deputies = allDeputies.deputies.filter(deputy => {
+      return deputy.group.slug === slug && deputy;
+    });
+    return deputies;
+  }
   handleScreenSize() {
     const { mobileView } = this.state;
     const screenSize = window.innerWidth <= 760;
@@ -91,7 +98,12 @@ class PartyProfile extends React.Component {
   }
 
   render() {
-    const { group, deputies, mobileView } = this.state;
+    const { group, deputies, mobileView, isLoading } = this.state;
+    if (isLoading === true) {
+      return (
+        <p className="container pt-5 display-4 text-center">Chargement...</p>
+      );
+    }
     return (
       <Container className="container">
         <div className="header row">

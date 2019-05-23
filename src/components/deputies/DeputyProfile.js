@@ -36,11 +36,6 @@ const Container = styled.div`
     font-size: 3rem;
     text-align: center;
   }
-  /* .header-description {
-    margin-top: 2rem;
-    height: 12rem;
-    overflow: auto;
-  } */
   .header-gauge-legend {
     font-size: 14px;
     text-align: center;
@@ -53,41 +48,43 @@ class DeputyProfile extends React.Component {
     this.state = {
       isLoading: true,
       deputy: {},
-      finalNote: 0
-      // deputies: []
+      finalNote: 0,
+      votes: []
     };
   }
 
   async componentDidMount() {
     const slug = this.props.match.params.slug;
     const deputy = await Api.getDeputyBySlug(slug);
-    const allVotes = await Api.getVotes();
-    const votes = allVotes.filter(vote => {
-      return vote.deputy.slug === slug && vote;
-    });
+    const votes = await this.getVotesFromCurrentDeputy();
     this.setState({
       deputy,
       votes
     });
     const id = this.state.deputy._id;
     const finalNote = await Algo100(id);
-    console.log("<< finale Note", finalNote);
     this.setState({
       isLoading: false,
       finalNote
     });
   }
 
-  render() {
-    const { deputy, finalNote, votes, mobileView } = this.state;
-    // console.log("<<<deputy", deputy);
-    // console.log("<<<<<<<<<<<<deputy._id", deputy._id);
-    if (this.state.isLoading === true) {
-      return <p>Chargement...</p>;
-    }
+  async getVotesFromCurrentDeputy() {
+    const slug = this.props.match.params.slug;
+    const allVotes = await Api.getVotes();
+    const votes = allVotes.filter(vote => {
+      return vote.deputy.slug === slug && vote;
+    });
+    return votes;
+  }
 
-    console.info("DeputyProfile Render finalNote", finalNote);
-    const id = this.props.match.params.name;
+  render() {
+    const { deputy, finalNote, votes, isLoading } = this.state;
+    if (isLoading === true) {
+      return (
+        <p className="container pt-5 display-4 text-center">Chargement...</p>
+      );
+    }
     return (
       <Container className="container">
         <div className="header row">

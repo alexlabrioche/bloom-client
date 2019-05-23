@@ -49,7 +49,6 @@ class Navigation extends React.Component {
         <Link className="link title" to="/">
           BLOOM
         </Link>
-        {/* <Dropdown options={parties} uriLink="/partis" /> */}
         <Dropdown list={parties} text="Partis" uriLink="/partis" />
         <Dropdown list={groups} text="Groupes" uriLink="/groupes" />
 

@@ -43,42 +43,6 @@ class Navigation extends React.Component {
         <Link className="title" to="/admin">
           ADMIN
         </Link>
-        <li className="nav-item dropdown">
-          <a
-            className="nav-link dropdown-toggle"
-            href="/"
-            id="navbarDropdown"
-            role="button"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            <span>
-              <i className="far fa-address-card" />
-              Nouveau
-            </span>
-          </a>
-          <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-            <Link className="dropdown-item" to="/admin/ajouter/parti">
-              Parti politique
-            </Link>
-            <Link className="dropdown-item" to="/admin/ajouter/groupe">
-              Groupe politique
-            </Link>
-            <Link className="dropdown-item" to="/admin/ajouter/categorie">
-              Texte
-            </Link>
-            <Link className="dropdown-item" to="/admin/ajouter/loi">
-              Amendement
-            </Link>
-            <Link className="dropdown-item" to="/admin/ajouter/depute">
-              Député
-            </Link>
-            <Link className="dropdown-item" to="/admin/ajouter/vote">
-              vote
-            </Link>
-          </div>
-        </li>
         <Link className="bloom-link navlink" to="/">
           BLOOM
         </Link>
