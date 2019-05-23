@@ -1,45 +1,89 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const Container = styled.div`
+  padding-top: 1rem;
   height: 6rem;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #555;
   .content-container {
-    margin: 0 3rem;
+    margin-right: 1.2rem;
+    margin-left: 1.2rem;
     display: flex;
     align-items: center;
     flex-direction: column;
-    transition: 0.1s ease-in;
+    transition: 0.2s ease-in;
     p {
       margin-top: 0.4rem;
     }
   }
   .fas {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
-  .add:hover {
-    color: cornflowerblue;
+  .add {
+    &:hover {
+      color: deepskyblue;
+    }
+    ${props =>
+      props.add &&
+      css`
+        color: dodgerblue;
+        transform: scale(1.3);
+      `}
   }
-  .edit:hover {
-    color: #ccc;
+  .edit {
+    &:hover {
+      color: limegreen;
+    }
+    ${props =>
+      props.edit &&
+      css`
+        color: mediumseagreen;
+        transform: scale(1.3);
+      `}
   }
-  .delete:hover {
-    color: indianred;
+  .delete {
+    &:hover {
+      color: red;
+    }
+    ${props =>
+      props.delete &&
+      css`
+        color: crimson;
+        transform: scale(1.3);
+      `}
   }
 `;
 
 class AddOrEdit extends React.Component {
-  render() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isActiveAdd: true,
+      isActiveEdit: false,
+      isActiveDelete: false
+    };
+  }
+  setActiveSelector(state) {
     const { activeSelector } = this.props;
+    activeSelector(state);
+    this.setState({
+      isActiveAdd: state.add,
+      isActiveEdit: state.edit,
+      isActiveDelete: state.delete
+    });
+  }
+
+  render() {
+    const { isActiveAdd, isActiveEdit, isActiveDelete } = this.state;
     return (
-      <Container>
+      <Container add={isActiveAdd} edit={isActiveEdit} delete={isActiveDelete}>
         <div
           className="add content-container"
           onClick={() =>
-            activeSelector({ add: true, edit: false, delete: false })
+            this.setActiveSelector({ add: true, edit: false, delete: false })
           }
         >
           <i class="fas fa-user-plus" />
@@ -48,7 +92,7 @@ class AddOrEdit extends React.Component {
         <div
           className="edit content-container"
           onClick={() =>
-            activeSelector({ add: false, edit: true, delete: false })
+            this.setActiveSelector({ add: false, edit: true, delete: false })
           }
         >
           <i class="fas fa-edit" />
@@ -57,7 +101,7 @@ class AddOrEdit extends React.Component {
         <div
           className="delete content-container"
           onClick={() =>
-            activeSelector({ add: false, edit: false, delete: true })
+            this.setActiveSelector({ add: false, edit: false, delete: true })
           }
         >
           <i class="fas fa-trash" />
