@@ -24,12 +24,12 @@ const Button = styled.div`
 
 class DropDownCore extends React.Component {
   render() {
-    const { text, list, uriLink } = this.props;
+    const { children, list, uriLink } = this.props;
     return (
       <Dropdown>
         <Button>
           <Dropdown.Toggle variant="link" id="dropdown-basic">
-            {text}
+            {children}
           </Dropdown.Toggle>
         </Button>
 

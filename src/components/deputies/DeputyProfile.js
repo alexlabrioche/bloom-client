@@ -57,16 +57,33 @@ class DeputyProfile extends React.Component {
     const slug = this.props.match.params.slug;
     const deputy = await Api.getDeputyBySlug(slug);
     const votes = await this.getVotesFromCurrentDeputy();
+    const id = deputy._id;
+    const finalNote = await Algo100(id);
+    console.info("cmpDM finalNote", finalNote);
     this.setState({
       deputy,
-      votes
-    });
-    const id = this.state.deputy._id;
-    const finalNote = await Algo100(id);
-    this.setState({
+      votes,
       isLoading: false,
       finalNote
     });
+  }
+
+  async componentDidUpdate() {
+    const slug = this.props.match.params.slug;
+    const currentSlug = this.state.deputy.slug;
+    const votes = await this.getVotesFromCurrentDeputy();
+    if (slug !== currentSlug) {
+      const deputy = await Api.getDeputyBySlug(slug);
+      const id = deputy._id;
+      const finalNote = await Algo100(id);
+      console.info("cmpDU finalNote", finalNote);
+      this.setState({
+        isLoading: false,
+        finalNote,
+        deputy,
+        votes
+      });
+    }
   }
 
   async getVotesFromCurrentDeputy() {

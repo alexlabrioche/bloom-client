@@ -29,31 +29,39 @@ class Navigation extends React.Component {
     super(props);
     this.state = {
       groups: [],
-      parties: []
+      parties: [],
+      deputies: []
     };
   }
   async componentDidMount() {
     const groups = await Api.getGroups();
     const parties = await Api.getParties();
+    const deputies = await Api.getDeputies();
     this.setState({
       groups,
-      parties
+      parties,
+      deputies: deputies.deputies
     });
   }
   render() {
-    const { parties, groups } = this.state;
-    // console.info("Navigation parties", parties);
-    // console.info("Navigation groups", groups);
+    const { parties, groups, deputies } = this.state;
     return (
       <NavContainer>
         <Link className="link title" to="/">
           BLOOM
         </Link>
-        <Dropdown list={parties} text="Partis" uriLink="/partis" />
-        <Dropdown list={groups} text="Groupes" uriLink="/groupes" />
+        <Dropdown list={deputies} uriLink="/deputes">
+          Nos députés
+        </Dropdown>
+        <Dropdown list={parties} uriLink="/partis">
+          Partis nationaux
+        </Dropdown>
+        <Dropdown list={groups} uriLink="/groupes">
+          Groupes Européens
+        </Dropdown>
 
         <Link
-          style={{ marginRight: "300px" }}
+          style={{ marginLeft: "300px" }}
           className="link navlink"
           to="/admin"
         >

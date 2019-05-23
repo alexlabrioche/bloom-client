@@ -13,16 +13,26 @@ class Gauge extends React.Component {
   componentDidMount() {
     console.log("#cmpDM GAUGE this.props.finalNote", this.props.finalNote);
     console.log("#cmpDM GAUGE this.props.finalNote", this.state.value);
-    setTimeout(() => {
-      this.setState({
-        value: parseInt(this.props.finalNote)
-      });
+    this.setState({
+      value: parseInt(this.props.finalNote)
     });
+  }
+
+  componentDidUpdate() {
+    const currentNote = this.state.value;
+    const newNote = this.props.finalNote;
+    console.log("GAUGE cmpDU currentNote", currentNote);
+    console.log("GAUGE cmpDU newNote", newNote);
+    if (newNote !== currentNote) {
+      this.setState({
+        value: newNote
+      });
+    }
   }
 
   render() {
     console.log("#render GAUGE this.props.finalNote", this.props.finalNote);
-    console.log("#render GAUGE this.props.finalNote", this.state.value);
+    console.log("#render GAUGE this.state.value", this.state.value);
     const radius = 100;
     const interpolate = interpolateRgb(this.startColor, this.endColor);
     const fillColor = interpolate(this.state.value / 100);
