@@ -91,13 +91,23 @@ class DeputyProfile extends React.Component {
           <div className="header-content col-12 col-md-8 col-lg-6">
             <h3 className="header-title">{deputy.name}</h3>
             <p className="header-description">
-              Groupe au Parlement Européen : {deputy.group.name}
+              Groupe au Parlement Européen :{" "}
+              <Link to={`/partis/${deputy.party.slug}`}>
+                {deputy.group.name}
+              </Link>
             </p>
-            <p className="header-description">
+            {/* <p className="header-description">
               Taux de présence aux séances de vote : {deputy.participationRate}%
-            </p>
+            </p> */}
             <p className="header-description">
+<<<<<<< HEAD
+              Parti National :{" "}
+              <Link to={`/partis/${deputy.party.slug}`}>
+                {deputy.party.name}
+              </Link>
+=======
               {/* Parti National : {deputy.party.name} */}
+>>>>>>> 714514d951e78f90d0439b3f137b46e5de73ebda
             </p>
             <p className="header-description">{deputy.description}</p>
           </div>
