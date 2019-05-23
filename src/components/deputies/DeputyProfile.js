@@ -62,7 +62,6 @@ class DeputyProfile extends React.Component {
     const slug = this.props.match.params.slug;
     const deputy = await Api.getDeputyBySlug(slug);
     const allVotes = await Api.getVotes();
-
     const votes = allVotes.filter(vote => {
       return vote.deputy.slug === slug && vote;
     });
