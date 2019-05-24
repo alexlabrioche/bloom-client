@@ -82,6 +82,7 @@ class Api {
   }
   async deleteParty(id) {
     const url = `${Config.server}/api/parties/${id}`;
+    console.log("@ API DELETE");
     const party = await axios.delete(url).then(party => party.data);
     return party;
   }

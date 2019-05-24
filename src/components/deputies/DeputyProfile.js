@@ -85,6 +85,12 @@ class DeputyProfile extends React.Component {
         <p className="container pt-5 display-4 text-center">Chargement...</p>
       );
     }
+    if (deputy.group === null) {
+      deputy.group = {};
+    }
+    if (deputy.party === null) {
+      deputy.party = {};
+    }
     return (
       <Container className="container">
         <DeputyHeader deputy={deputy} finalNote={finalNote} />

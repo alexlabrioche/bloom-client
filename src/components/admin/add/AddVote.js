@@ -65,10 +65,10 @@ class AddVote extends React.Component {
           </Label>
 
           <Label>
-            Loi :
+            Amendement :
             <Select field="law" className="form-control form-control-sm">
               <Option value="" disabled>
-                Choisir une loi
+                Choisir un amendement
               </Option>
               {laws.map((law, index) => {
                 return (
