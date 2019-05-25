@@ -122,10 +122,6 @@ class DeputyHeader extends React.Component {
                 </Link>
               </p>
               <p className="scrolled header-description">
-                Taux de présence aux séances de vote :{" "}
-                {deputy.participationRate}%
-              </p>
-              <p className="scrolled header-description">
                 Parti National :{" "}
                 <Link to={`/partis/${deputy.party.slug}`}>
                   {deputy.party.name}
