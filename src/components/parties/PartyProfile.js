@@ -28,7 +28,7 @@ const Container = styled.div`
   }
   .header-description {
     margin-top: 2rem;
-    height: 12rem;
+    height: 8rem;
     overflow: auto;
   }
 `;

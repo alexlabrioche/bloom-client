@@ -6,7 +6,7 @@ import Algo100 from "../../utils/Algo100";
 
 import DeputyHeader from "./DeputyHeader";
 import FlipCard from "./FlipCard";
-import NotationDetail from "./DeputyNotationDetail";
+// import NotationDetail from "./DeputyNotationDetail";
 
 const Container = styled.div`
   margin-top: 5rem;
@@ -19,14 +19,23 @@ const Container = styled.div`
   }
   .legend {
     margin-top: 20px;
-    margin-left: 20px;
+    margin-bottom: -15px;
   }
   .legend-title {
-    margin-right: 30px;
+    margin-left: 20px;
   }
   .legend-content {
     margin-top: 4px;
-    margin-right: 15px;
+    /* margin-right: 15px; */
+  }
+  .protect {
+    color: #42ad2e;
+  }
+  .absence {
+    color: grey;
+  }
+  .destruct {
+    color: #fe4f4a;
   }
 `;
 class DeputyProfile extends React.Component {
@@ -105,11 +114,17 @@ class DeputyProfile extends React.Component {
     return (
       <Container className="container">
         <DeputyHeader deputy={deputy} finalNote={finalNote} />
-        <div className="legend d-flex col-12 align-center">
-          <h4 className="legend-title">Légende :</h4>
-          <p className="legend-content">Carte Verte = Vote protecteur</p>
-          <p className="legend-content">Carte Grise = Abscence ou abstention</p>
-          <p className="legend-content">Carte Rouge = Vote destructeur</p>
+        <div className="legend d-flex row">
+          <h4 className="legend-title col-2">Légende :</h4>
+          <p className="legend-content protect col-3">
+            Carte Verte = Vote protecteur
+          </p>
+          <p className="legend-content absence col-3">
+            Carte Grise = Absence/Abstention
+          </p>
+          <p className="legend-content destruct col-3">
+            Carte Rouge = Vote destructeur
+          </p>
         </div>
         <div className="main-content container">
           {/* <NotationDetail /> */}

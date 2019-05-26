@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import EditButton from "./EditButton";
+// import EditButton from "./EditButton";
 import DeleteButton from "./DeleteButton";
 
 const Container = styled.table`

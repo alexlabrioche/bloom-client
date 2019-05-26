@@ -12,10 +12,10 @@ const Container = styled.div`
     font-weight: 700;
     color: royalblue;
   }
-  &:hover {
+  /* &:hover {
     color: royalblue;
     font-weight: 700;
-  }
+  } */
   .greet-text {
     padding-top: 15px;
     height: 40px;
@@ -64,7 +64,21 @@ class Greet extends React.Component {
           <i class="far fa-grin-wink" />
         </div>
         <p className="greet-text">
-          <span> Féliciter </span> sur Twitter
+          <span> Féliciter </span> sur Twitter :{" "}
+          <a
+            href="https://twitter.com/share?url=https://europeennes.bloomassociation.org&screen_name=KarimaDelli&text=Bravo%20pour%20votre%20travail%20acharné%20pour%20protéger%20l&#39;océan!"
+            class="twitter-mention-button"
+            data-show-count="false"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            @KarimaDelli
+          </a>
+          <script
+            async
+            src="https://platform.twitter.com/widgets.js"
+            charset="utf-8"
+          />
         </p>
       </Container>
     );
