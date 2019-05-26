@@ -40,6 +40,9 @@ const CardStyle = styled.div`
     font-weight: 400;
     font-size: 22px;
   }
+  .card-back-full-text {
+    overflow: auto;
+  }
   .flip-cardback-link {
     margin-top: -15px;
   }
@@ -169,7 +172,7 @@ function Card(props) {
       >
         <div className="card-content">
           <h2>{props.law.subTitle}</h2>
-          <p>{props.law.fullText}</p>
+          <p className="card-back-full-text">{props.law.fullText}</p>
           <p>Plus d'infos : </p>
           <a
             className="flip-cardback-link"
