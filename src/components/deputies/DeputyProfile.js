@@ -6,6 +6,7 @@ import Algo100 from "../../utils/Algo100";
 
 import DeputyHeader from "./DeputyHeader";
 import FlipCard from "./FlipCard";
+import NotationDetail from "./DeputyNotationDetail";
 
 const Container = styled.div`
   margin-top: 5rem;
@@ -96,6 +97,7 @@ class DeputyProfile extends React.Component {
         <DeputyHeader deputy={deputy} finalNote={finalNote} />
 
         <div className="main-content container">
+          {/* <NotationDetail /> */}
           <div className="row">
             {votes.map((vote, index) => {
               return (
