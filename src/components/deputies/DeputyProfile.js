@@ -14,8 +14,18 @@ const Container = styled.div`
   border-radius: 4px;
   border: 1px solid rgba(230, 230, 230, 1);
   .main-content {
-    padding-top: 5rem;
     padding-bottom: 15rem;
+  }
+  .legend {
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+  .legend-title {
+    margin-right: 30px;
+  }
+  .legend-content {
+    margin-top: 4px;
+    margin-right: 15px;
   }
 `;
 class DeputyProfile extends React.Component {
@@ -94,7 +104,12 @@ class DeputyProfile extends React.Component {
     return (
       <Container className="container">
         <DeputyHeader deputy={deputy} finalNote={finalNote} />
-
+        <div className="legend d-flex col-12 align-center">
+          <h4 className="legend-title">Légende :</h4>
+          <p className="legend-content">Carte Verte = Vote protecteur</p>
+          <p className="legend-content">Carte Grise = Abscence ou abstention</p>
+          <p className="legend-content">Carte Rouge = Vote destructeur</p>
+        </div>
         <div className="main-content container">
           <div className="row">
             {votes.map((vote, index) => {
