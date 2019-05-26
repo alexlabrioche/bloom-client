@@ -2,7 +2,10 @@ import React from "react";
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
+import Greet from "../core/front/Greet";
+import Shout from "../core/front/Shout";
 import Gauge from "../core/front/Gauge";
+
 import Config from "../../Config";
 import Global from "../../Global";
 
@@ -97,6 +100,15 @@ class DeputyHeader extends React.Component {
         });
     }
   }
+
+  greetOrShoutDeputy(note) {
+    if (note >= 50) {
+      return <Greet note={note} />;
+    } else {
+      return <Shout note={note} />;
+    }
+  }
+
   render() {
     const { deputy, finalNote } = this.props;
     const { isScrolled } = this.state;
@@ -130,6 +142,9 @@ class DeputyHeader extends React.Component {
               <p className="scrolled header-description">
                 {deputy.description}
               </p>
+              <div className="scrolled">
+                {this.greetOrShoutDeputy(finalNote)}
+              </div>
             </div>
           </div>
           <div className="offset-3 offset-lg-0 col-3">
