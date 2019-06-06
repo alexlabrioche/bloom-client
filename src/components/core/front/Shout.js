@@ -4,7 +4,6 @@ import styled from "styled-components";
 const Container = styled.div`
   display: flex;
   align-items: flex-start;
-  justify-content: center;
   transition: 0.2s ease;
   font-weight: 300;
   cursor: pointer;
@@ -12,10 +11,10 @@ const Container = styled.div`
     font-weight: 700;
     color: tomato;
   }
-  &:hover {
+  /* &:hover {
     color: tomato;
     font-weight: 700;
-  }
+  } */
   .shout-text {
     padding-top: 15px;
     height: 40px;
@@ -58,13 +57,28 @@ const Container = styled.div`
 
 class Shout extends React.Component {
   render() {
+    const { twitter } = this.props;
     return (
       <Container>
         <div className="shout-icon">
-          <i class="far fa-sad-tear" />
+          <i class="fas fa-bullhorn" />
         </div>
         <p className="shout-text">
-          <span> Interpeller </span> sur Twitter
+          <span> Interpeller </span> sur Twitter :{" "}
+          <a
+            href={`https://twitter.com/share?url=https://europeennes.bloomassociation.org&screen_name=${twitter}&text=Réveillez-vous!%20Vos%20votes%20détruisent%20la%20biodiversité%20de%20l'océan!`}
+            class="twitter-mention-button"
+            data-show-count="false"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            @{twitter}
+          </a>
+          <script
+            async
+            src="https://platform.twitter.com/widgets.js"
+            charset="utf-8"
+          />
         </p>
       </Container>
     );

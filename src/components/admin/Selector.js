@@ -1,4 +1,5 @@
 import React from "react";
+import Logout from "../../components/admin/auth/Logout";
 import styled, { css } from "styled-components";
 
 const Container = styled.div`
@@ -86,7 +87,7 @@ class AddOrEdit extends React.Component {
             this.setActiveSelector({ add: true, edit: false, delete: false })
           }
         >
-          <i class="fas fa-user-plus" />
+          <i className="fas fa-user-plus" />
           <p>Ajouter</p>
         </div>
         <div
@@ -95,7 +96,7 @@ class AddOrEdit extends React.Component {
             this.setActiveSelector({ add: false, edit: true, delete: false })
           }
         >
-          <i class="fas fa-edit" />
+          <i className="fas fa-edit" />
           <p>modifier</p>
         </div>
         <div
@@ -104,8 +105,11 @@ class AddOrEdit extends React.Component {
             this.setActiveSelector({ add: false, edit: false, delete: true })
           }
         >
-          <i class="fas fa-trash" />
+          <i className="fas fa-trash" />
           <p>supprimer</p>
+        </div>
+        <div className="logout-button">
+          <Logout />
         </div>
       </Container>
     );

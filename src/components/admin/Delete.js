@@ -30,6 +30,7 @@ class Delete extends React.Component {
       itemTodelete = await Api.deleteLaw(id);
     }
     if (type === "vote") {
+      console.log("<ICI @vote");
       itemTodelete = await Api.deleteVote(id);
     }
     const message = itemTodelete.message;

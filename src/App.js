@@ -40,6 +40,8 @@ import VotesList from "./components/admin/lists/VotesList";
 import LawsList from "./components/admin/lists/LawsList";
 import CategoriesList from "./components/admin/lists/CategoriesList";
 
+import Login from "./components/admin/auth/Login";
+
 const AppContainer = styled.div`
   color: ${Global.color.body};
   min-height: 100vh;
@@ -62,8 +64,11 @@ class App extends React.Component {
           <Route exact path="/groupes/:slug" component={GroupProfile} />
 
           {/********** ADMIN ROUTES **********/}
-          <Route exact path="/admin" component={Admin} />
-          <Route exact path="/admin/deputes" component={DeputiesList} />
+          <Route exact path="/admin" component={Login} />
+
+          {/* J'ai envie d'enlever toutes ces routes mais j'attends ta confirmation pour le faire */}
+
+          {/* <Route exact path="/admin/deputes" component={DeputiesList} />
           <Route exact path="/admin/partis" component={PartiesList} />
           <Route exact path="/admin/groupes" component={GroupsList} />
           <Route exact path="/admin/votes" component={VotesList} />
@@ -100,7 +105,7 @@ class App extends React.Component {
             component={EditLawCategory}
           />
           <Route exact path="/admin/modifier/vote/:id" component={EditVote} />
-          <Route exact path="/admin/supprimer/:type/:id" component={Delete} />
+          <Route exact path="/admin/supprimer/:type/:id" component={Delete} /> */}
 
           <Footer />
         </AppContainer>

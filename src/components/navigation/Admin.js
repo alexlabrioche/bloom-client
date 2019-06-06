@@ -37,6 +37,12 @@ const NavContainer = styled.nav`
 `;
 
 class Navigation extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isAuthenticated: false
+    };
+  }
   render() {
     return (
       <NavContainer>

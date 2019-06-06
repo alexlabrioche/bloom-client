@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import Global from "../../../Global";
 
 const Container = styled.div`
   display: flex;
   align-items: flex-start;
-  justify-content: center;
   transition: 0.2s ease;
   font-weight: 300;
   cursor: pointer;
@@ -27,6 +27,10 @@ const Container = styled.div`
     height: 40px;
     margin-right: 5px;
     animation: far 2.8s linear 0s infinite;
+  }
+  a {
+    color: ${Global.color.body};
+    font-weight: 400;
   }
   @keyframes far {
     0% {
@@ -58,28 +62,29 @@ const Container = styled.div`
 
 class Greet extends React.Component {
   render() {
+    const { twitter } = this.props;
+    console.log("@ GREET twitter", twitter);
     return (
       <Container>
         <div className="greet-icon">
-          <i class="far fa-grin-wink" />
+          <i class="fas fa-bullhorn" />
         </div>
-        <p className="greet-text">
-          <span> Féliciter </span> sur Twitter :{" "}
-          <a
-            href="https://twitter.com/share?url=https://europeennes.bloomassociation.org&screen_name=KarimaDelli&text=Bravo%20pour%20votre%20travail%20acharné%20pour%20protéger%20l&#39;océan!"
-            class="twitter-mention-button"
-            data-show-count="false"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            @KarimaDelli
-          </a>
-          <script
-            async
-            src="https://platform.twitter.com/widgets.js"
-            charset="utf-8"
-          />
-        </p>
+        <a
+          href={`https://twitter.com/share?url=https://europeennes.bloomassociation.org&screen_name=${twitter}&text=Bravo%20pour%20votre%20travail%20acharné%20pour%20protéger%20l'océan!`}
+          class="twitter-mention-button"
+          data-show-count="false"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <p className="greet-text">
+            <span> Féliciter </span> sur Twitter : @{twitter}
+          </p>
+        </a>
+        <script
+          async
+          src="https://platform.twitter.com/widgets.js"
+          charset="utf-8"
+        />
       </Container>
     );
   }

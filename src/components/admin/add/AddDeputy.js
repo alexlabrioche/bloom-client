@@ -83,11 +83,11 @@ class AddDeputy extends React.Component {
           </Label>
 
           <Label>
-            Taux de participation:
+            Twitter :
             <Text
               className="form-control form-control-sm"
-              field="participationRate"
-              type="number"
+              field="twitter"
+              type="text"
             />
           </Label>
 

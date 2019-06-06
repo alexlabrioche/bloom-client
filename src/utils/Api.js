@@ -162,6 +162,17 @@ class Api {
       console.log("onSubmit upload OK");
     });
   }
+
+  // LOGIN
+  connect(admin) {
+    console.log("<<login @API admin", admin);
+    const url = `${Config.server}/api/admin/login`;
+    axios.post(url, admin).then(admin =>
+      // Pour sauvegarder cette liste dans la totalité de l'application (App), on le stocke dans le local storage
+      localStorage.setItem("admin", JSON.stringify(admin.data))
+    );
+    console.log("@API saved in localstorage ");
+  }
 }
 
 export default new Api();

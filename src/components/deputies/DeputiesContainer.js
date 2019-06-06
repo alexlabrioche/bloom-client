@@ -19,6 +19,7 @@ class DeputiesContainer extends React.Component {
   }
   async componentDidMount() {
     const deputies = await Api.getDeputies();
+    // console.log("<<@deputiesContainer cDM", deputies.deputies);
     this.setState({
       deputies: deputies.deputies
     });

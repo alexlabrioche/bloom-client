@@ -48,7 +48,7 @@ const Container = styled.div`
     object-fit: cover;
   }
   .header-title {
-    font-size: 3rem;
+    font-size: 2.6rem;
     font-weight: 300;
     text-align: center;
     color: ${Global.color.accent};
@@ -101,17 +101,18 @@ class DeputyHeader extends React.Component {
     }
   }
 
-  greetOrShoutDeputy(note) {
+  greetOrShoutDeputy(note, twitter) {
     if (note >= 50) {
-      return <Greet note={note} />;
+      return <Greet note={note} twitter={twitter} />;
     } else {
-      return <Shout note={note} />;
+      return <Shout note={note} twitter={twitter} />;
     }
   }
 
   render() {
     const { deputy, finalNote } = this.props;
     const { isScrolled } = this.state;
+    console.log("@DEPUTY HEADER deputy.twitter", deputy.twitter);
     return (
       <Container isScrolled={isScrolled}>
         <div className="header row">
@@ -143,7 +144,7 @@ class DeputyHeader extends React.Component {
                 {deputy.description}
               </p>
               <div className="scrolled">
-                {this.greetOrShoutDeputy(finalNote)}
+                {this.greetOrShoutDeputy(finalNote, deputy.twitter)}
               </div>
             </div>
           </div>
