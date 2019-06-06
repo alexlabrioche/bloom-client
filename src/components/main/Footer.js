@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Global from "../Global";
-import bloomGif from "../img/Animation_ok_Bloom.gif";
+import Global from "../../Global";
+import bloomGif from "../../img/Animation_ok_Bloom.gif";
 import { withRouter } from "react-router-dom";
 
 const Container = styled.footer`

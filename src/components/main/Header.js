@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Global from "../Global";
+import Global from "../../Global";
 import ShowMore from "react-show-more";
 
 const Container = styled.div`

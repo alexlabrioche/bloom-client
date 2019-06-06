@@ -5,7 +5,7 @@ import Api from "../../utils/Api";
 
 import DeputyCard from "./DeputyCard";
 import MobileDeputyCard from "./MobileDeputyCard";
-import Header from "../Header";
+import Header from "../main/Header";
 const Container = styled.div`
   /* display: flex;
   flex-direction: row; */

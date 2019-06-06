@@ -7,7 +7,7 @@ import Global from "./Global";
 
 // import Containers For react Router
 import Navigation from "./components/navigation";
-import Footer from "./components/Footer";
+import Footer from "./components/main/Footer";
 
 import DeputiesContainer from "./components/deputies/DeputiesContainer";
 
