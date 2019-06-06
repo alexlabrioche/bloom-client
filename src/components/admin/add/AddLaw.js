@@ -44,7 +44,8 @@ class AddLaw extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      categories: []
+      categories: [],
+      chars_left: 140
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -69,8 +70,16 @@ class AddLaw extends React.Component {
 
     Api.addLaw(newLaw);
   }
+
+  handleWordCount = event => {
+    const charCount = event.target.value.length;
+    const charLeft = 140 - charCount;
+    this.setState({ chars_left: charLeft });
+  };
+
   render() {
-    const { categories } = this.state;
+    const { categories, chars_left } = this.state;
+    // console.log("chars_left", chars_left);
     return (
       <Container className="container">
         <Form onSubmit={formState => this.onSubmit(formState)}>
@@ -88,8 +97,13 @@ class AddLaw extends React.Component {
           </Label>
 
           <Label>
-            Résumé (1 phrase) :
-            <TextArea field="resume" className="form-control form-control-sm" />
+            Résumé court (Il reste {chars_left} caractères)
+            <TextArea
+              field="resume"
+              className="form-control form-control-sm"
+              maxLength="140"
+              onChange={this.handleWordCount}
+            />
           </Label>
 
           <Label>
