@@ -173,6 +173,13 @@ class Api {
     );
     console.log("@API saved in localstorage ");
   }
+
+  // INTRO
+  async getIntro() {
+    const url = `${Config.server}/api/intro/`;
+    const intro = await axios.get(url).then(intro => intro.data);
+    return intro;
+  }
 }
 
 export default new Api();

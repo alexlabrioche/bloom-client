@@ -67,8 +67,8 @@ class App extends React.Component {
           <Route exact path="/admin" component={Login} />
 
           {/* J'ai envie d'enlever toutes ces routes mais j'attends ta confirmation pour le faire */}
-
-          {/* <Route exact path="/admin/deputes" component={DeputiesList} />
+          {/* 
+          <Route exact path="/admin/deputes" component={DeputiesList} />
           <Route exact path="/admin/partis" component={PartiesList} />
           <Route exact path="/admin/groupes" component={GroupsList} />
           <Route exact path="/admin/votes" component={VotesList} />
@@ -104,8 +104,8 @@ class App extends React.Component {
             path="/admin/modifier/categorie/:id"
             component={EditLawCategory}
           />
-          <Route exact path="/admin/modifier/vote/:id" component={EditVote} />
-          <Route exact path="/admin/supprimer/:type/:id" component={Delete} /> */}
+          <Route exact path="/admin/modifier/vote/:id" component={EditVote} /> */}
+          <Route exact path="/admin/supprimer/:type/:id" component={Delete} />
 
           <Footer />
         </AppContainer>

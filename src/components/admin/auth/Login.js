@@ -82,6 +82,7 @@ class Login extends React.Component {
                 <Text
                   field="password"
                   className="form-control form-control-sm"
+                  type="password"
                 />
               </Label>
 
