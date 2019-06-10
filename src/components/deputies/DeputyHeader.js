@@ -10,36 +10,17 @@ import Config from "../../Config";
 import Global from "../../Global";
 
 const Container = styled.div`
-  ${props => props.isScrolled && css``}
   .header {
     background: white;
     padding: 1rem;
     border-bottom: 1px solid rgba(230, 230, 230, 1);
     z-index: 10;
-    ${props =>
-      props.isScrolled &&
-      css`
-        padding-left: 3rem;
-        height: 5rem;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        box-shadow: 0px 3px 5px 0px rgba(230, 227, 230, 1);
-      `}
   }
   .header-img-container {
     height: 14rem;
     width: 16rem;
     padding: 1rem;
     overflow: auto;
-    ${props =>
-      props.isScrolled &&
-      css`
-        height: 3rem;
-        width: 6rem;
-        padding: 0;
-      `}
   }
   .header-img {
     border-radius: 2px;
@@ -53,54 +34,15 @@ const Container = styled.div`
     text-align: center;
     color: ${Global.color.accent};
     transition: 0.3s ease;
-    ${props =>
-      props.isScrolled &&
-      css`
-        font-size: 2rem;
-        margin-left: -40rem;
-      `}
   }
   .header-gauge-legend {
     font-size: 14px;
     text-align: center;
     margin-top: -20px;
   }
-  .scrolled {
-    ${props =>
-      props.isScrolled &&
-      css`
-        display: none;
-      `}
-  }
 `;
 
 class DeputyHeader extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isScrolled: false
-    };
-    this.handleScroll = this.handleScroll.bind(this);
-  }
-  componentDidMount() {
-    window.addEventListener("scroll", this.handleScroll);
-  }
-  handleScroll(event) {
-    const { isScrolled } = this.state;
-    if (window.scrollY > 120) {
-      !isScrolled &&
-        this.setState({
-          isScrolled: true
-        });
-    }
-    if (window.scrollY < 120) {
-      isScrolled &&
-        this.setState({
-          isScrolled: false
-        });
-    }
-  }
-
   greetOrShoutDeputy(note, twitter) {
     if (note >= 50) {
       return <Greet note={note} twitter={twitter} />;
@@ -111,10 +53,9 @@ class DeputyHeader extends React.Component {
 
   render() {
     const { deputy, finalNote } = this.props;
-    const { isScrolled } = this.state;
     console.log("@DEPUTY HEADER deputy.twitter", deputy.twitter);
     return (
-      <Container isScrolled={isScrolled}>
+      <Container>
         <div className="header row">
           <div className="offset-2 col-4 offset-lg-0 col-lg-3">
             <div className="header-img-container ">

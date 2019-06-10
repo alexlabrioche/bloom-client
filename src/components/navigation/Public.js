@@ -8,12 +8,16 @@ import Dropdown from "../core/front/Dropdown.js";
 
 const NavContainer = styled.nav`
   height: ${Global.height.navigation};
+  position: fixed;
+  margin-bottom: 2rem;
+  background: white;
+  z-index: 1000;
   width: 100%;
   display: flex;
   align-items: center;
   border-top: 3px solid #5973e8;
   background: white;
-  box-shadow: 3px 3px 5px 0px rgba(230, 227, 230, 1);
+  box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.1);
   .link {
     color: ${Global.color.primary};
     text-decoration: none;
