@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Form, Text } from "informed";
 import Api from "../../../utils/Api";
-import Admin from "../../admin";
+import Admin from "../tabs";
 
 const Container = styled.div`
   margin-top: 50px;

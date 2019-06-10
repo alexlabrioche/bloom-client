@@ -1,5 +1,5 @@
 import React from "react";
-import Logout from "../../components/admin/auth/Logout";
+import Logout from "../auth/Logout";
 import styled, { css } from "styled-components";
 
 const Container = styled.div`

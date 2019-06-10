@@ -8,6 +8,7 @@ const Container = styled.div`
   .header-title {
     text-align: center;
     margin-bottom: 40px;
+    margin-top: 40px;
     font-weight: 300;
     color: ${Global.color.accent};
   }
@@ -26,12 +27,12 @@ class Header extends React.Component {
 
   async componentDidMount() {
     const intro = await Api.getIntro();
-    console.log("intro", intro);
+    console.log("intro", intro[0]);
     this.setState({
-      title: intro.title,
-      paragraph1: intro.paragraph1,
-      paragraph2: intro.paragraph2,
-      paragraph3: intro.paragraph3
+      title: intro[0].title,
+      paragraph1: intro[0].paragraph1,
+      paragraph2: intro[0].paragraph2,
+      paragraph3: intro[0].paragraph3
     });
   }
 

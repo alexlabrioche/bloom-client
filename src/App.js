@@ -15,9 +15,9 @@ import DeputyProfile from "./components/deputies/DeputyProfile";
 import PartyProfile from "./components/parties/PartyProfile";
 import GroupProfile from "./components/groups/GroupProfile";
 
-import Admin from "./components/admin";
-import Create from "./components/admin/Create";
-import Delete from "./components/admin/Delete";
+import Admin from "./components/admin/tabs";
+import Create from "./components/admin/tabs/Create";
+import Delete from "./components/admin/tabs/Delete";
 
 import AddDeputy from "./components/admin/add/AddDeputy";
 import AddLaw from "./components/admin/add/AddLaw";

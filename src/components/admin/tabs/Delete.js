@@ -1,5 +1,5 @@
 import React from "react";
-import Api from "../../utils/Api";
+import Api from "../../../utils/Api";
 
 class Delete extends React.Component {
   constructor(props) {
