@@ -7,6 +7,7 @@ import { withRouter } from "react-router-dom";
 const Container = styled.footer`
   /* position: fixed; */
   background-color: white;
+  margin-top: 5rem;
   left: 0;
   bottom: 0;
   right: 0;
@@ -45,7 +46,7 @@ class Footer extends React.Component {
       return null;
     }
     return (
-      <Container>
+      <Container className="container-fluid">
         <div class="row">
           <div class="col-12 text-center">
             <a
@@ -58,9 +59,9 @@ class Footer extends React.Component {
           </div>
           <div class="col-12 text-center mentions-legales">
             <a href="https://www.bloomassociation.org/mentions-legales/">
-              Mentions Légales |{" "}
-            </a>
-            <a href="https://www.bloomassociation.org/contact/">Contact</a>
+              Mentions Légales
+            </a>{" "}
+            | <a href="https://www.bloomassociation.org/contact/">Contact</a>
           </div>
         </div>
         <div class="row">
