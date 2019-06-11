@@ -165,7 +165,7 @@ class Api {
 
   // LOGIN
   connect(admin) {
-    console.log("<<login @API admin", admin);
+    // console.log("<<login @API admin", admin);
     const url = `${Config.server}/api/admin/login`;
     axios.post(url, admin).then(admin =>
       // Pour sauvegarder cette liste dans la totalité de l'application (App), on le stocke dans le local storage
