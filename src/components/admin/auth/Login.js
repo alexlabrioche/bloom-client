@@ -43,12 +43,14 @@ class Login extends React.Component {
     // console.log("<< @getfromlocalstorage ");
     let admin = localStorage.getItem("admin");
     admin = JSON.parse(admin);
-    // console.log(">> getFromlocalStorage admin :", admin);
+    console.log(">> getFromlocalStorage admin :", admin);
     if (admin === null || admin.error === "Username ou password incorrect") {
       console.log("<< PAS CONNECTE");
     } else if (
-      admin.token === "OEQRxZlBnEZ4Cihl" &&
-      admin._id === "5cff915b97f774001714cb0a"
+      (admin.token === "OEQRxZlBnEZ4Cihl" &&
+        admin._id === "5cff915b97f774001714cb0a") ||
+      (admin.token === "yA2vJCRKfQElQKzm" &&
+        admin._id === "5cf71675b79ca60a8eb0f804")
     ) {
       this.setState({
         isAuthenticated: true
