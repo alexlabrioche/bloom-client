@@ -9,6 +9,10 @@ class Api {
     return deputy;
   }
   async getDeputyBySlug(slug) {
+<<<<<<< HEAD
+=======
+    console.log("@API slug DEPUTE:", slug);
+>>>>>>> dcdc6dae760460119fa7dc2fdb95296b0a75e05c
     const url = `${Config.server}/api/deputies/slug/${slug}`;
     const depute = await axios.get(url).then(depute => depute.data);
     return depute;
@@ -163,13 +167,20 @@ class Api {
 
   // LOGIN
   connect(admin) {
-    console.log("<<login @API admin", admin);
+    // console.log("<<login @API admin", admin);
     const url = `${Config.server}/api/admin/login`;
     axios.post(url, admin).then(admin =>
       // Pour sauvegarder cette liste dans la totalité de l'application (App), on le stocke dans le local storage
       localStorage.setItem("admin", JSON.stringify(admin.data))
     );
     console.log("@API saved in localstorage ");
+  }
+
+  // INTRO
+  async getIntro() {
+    const url = `${Config.server}/api/intro/`;
+    const intro = await axios.get(url).then(intro => intro.data);
+    return intro;
   }
 }
 

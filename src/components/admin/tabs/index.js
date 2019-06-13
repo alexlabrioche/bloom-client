@@ -1,19 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 
-import DeputiesList from "./lists/DeputiesList";
-import CategoriesList from "./lists/CategoriesList";
-import LawsList from "./lists/LawsList";
-import GroupsList from "./lists/GroupsList";
-import PartiesList from "./lists/PartiesList";
-import VotesList from "./lists/VotesList";
+import DeputiesList from "../lists/DeputiesList";
+import CategoriesList from "../lists/CategoriesList";
+import LawsList from "../lists/LawsList";
+import GroupsList from "../lists/GroupsList";
+import PartiesList from "../lists/PartiesList";
+import VotesList from "../lists/VotesList";
 
-import AddDeputy from "./add/AddDeputy";
-import AddGroup from "./add/AddGroup";
-import AddLaw from "./add/AddLaw";
-import AddLawCategory from "./add/AddLawCategory";
-import AddParty from "./add/AddParty";
-import AddVote from "./add/AddVote";
+import AddDeputy from "../add/AddDeputy";
+import AddGroup from "../add/AddGroup";
+import AddLaw from "../add/AddLaw";
+import AddLawCategory from "../add/AddLawCategory";
+import AddParty from "../add/AddParty";
+import AddVote from "../add/AddVote";
 
 import Selector from "./Selector";
 import TabulationBar from "./TabulationBar";

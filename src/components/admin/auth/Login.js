@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Form, Text } from "informed";
 import Api from "../../../utils/Api";
-import Admin from "../../admin";
+import Admin from "../tabs";
 
 const Container = styled.div`
   margin-top: 50px;
@@ -40,17 +40,22 @@ class Login extends React.Component {
   }
 
   getFromLocalStorage() {
-    console.log("<< @getfromlocalstorage ");
+    // console.log("<< @getfromlocalstorage ");
     let admin = localStorage.getItem("admin");
     admin = JSON.parse(admin);
     console.log(">> getFromlocalStorage admin :", admin);
     if (admin === null || admin.error === "Username ou password incorrect") {
       console.log("<< PAS CONNECTE");
-    } else if (admin.token === "yA2vJCRKfQElQKzm") {
+    } else if (
+      (admin.token === "OEQRxZlBnEZ4Cihl" &&
+        admin._id === "5cff915b97f774001714cb0a") ||
+      (admin.token === "yA2vJCRKfQElQKzm" &&
+        admin._id === "5cf71675b79ca60a8eb0f804")
+    ) {
       this.setState({
         isAuthenticated: true
       });
-    } else console.log("Something wrong with @Login getfromLocalStorage");
+    } else console.log("Something wrong with @Login");
   }
 
   componentDidMount() {
@@ -82,6 +87,7 @@ class Login extends React.Component {
                 <Text
                   field="password"
                   className="form-control form-control-sm"
+                  type="password"
                 />
               </Label>
 
