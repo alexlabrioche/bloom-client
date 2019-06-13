@@ -7,13 +7,8 @@ import Api from "../../utils/Api";
 const Container = styled.div`
   .header-title {
     text-align: center;
-<<<<<<< HEAD
     margin-bottom: 5rem;
     margin-top: 5rem;
-=======
-    margin-bottom: 40px;
-    margin-top: 40px;
->>>>>>> dcdc6dae760460119fa7dc2fdb95296b0a75e05c
     font-weight: 300;
     color: ${Global.color.accent};
   }

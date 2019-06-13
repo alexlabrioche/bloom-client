@@ -9,10 +9,6 @@ class Api {
     return deputy;
   }
   async getDeputyBySlug(slug) {
-<<<<<<< HEAD
-=======
-    console.log("@API slug DEPUTE:", slug);
->>>>>>> dcdc6dae760460119fa7dc2fdb95296b0a75e05c
     const url = `${Config.server}/api/deputies/slug/${slug}`;
     const depute = await axios.get(url).then(depute => depute.data);
     return depute;

@@ -11,14 +11,13 @@ import Footer from "./components/main/Footer";
 
 import DeputiesContainer from "./components/deputies/DeputiesContainer";
 
-<<<<<<< HEAD
 import DeputyContainer from "./components/deputies/DeputyContainer";
 import PartyContainer from "./components/parties/PartyContainer";
 import GroupContainer from "./components/groups/GroupContainer";
 
 // import Admin from "./components/admin";
 // import Create from "./components/admin/Create";
-// import Delete from "./components/admin/Delete";
+import Delete from "./components/admin/tabs/Delete";
 
 // import AddDeputy from "./components/admin/add/AddDeputy";
 // import AddLaw from "./components/admin/add/AddLaw";
@@ -40,36 +39,6 @@ import GroupContainer from "./components/groups/GroupContainer";
 // import VotesList from "./components/admin/lists/VotesList";
 // import LawsList from "./components/admin/lists/LawsList";
 // import CategoriesList from "./components/admin/lists/CategoriesList";
-=======
-import DeputyProfile from "./components/deputies/DeputyProfile";
-import PartyProfile from "./components/parties/PartyProfile";
-import GroupProfile from "./components/groups/GroupProfile";
-
-import Admin from "./components/admin/tabs";
-import Create from "./components/admin/tabs/Create";
-import Delete from "./components/admin/tabs/Delete";
-
-import AddDeputy from "./components/admin/add/AddDeputy";
-import AddLaw from "./components/admin/add/AddLaw";
-import AddParty from "./components/admin/add/AddParty";
-import AddGroup from "./components/admin/add/AddGroup";
-import AddVote from "./components/admin/add/AddVote";
-import AddLawCategory from "./components/admin/add/AddLawCategory";
-
-import EditDeputy from "./components/admin/edit/EditDeputy";
-import EditLaw from "./components/admin/edit/EditLaw";
-import EditParty from "./components/admin/edit/EditParty";
-import EditGroup from "./components/admin/edit/EditGroup";
-import EditVote from "./components/admin/edit/EditVote";
-import EditLawCategory from "./components/admin/edit/EditLawCategory";
-
-import DeputiesList from "./components/admin/lists/DeputiesList";
-import PartiesList from "./components/admin/lists/PartiesList";
-import GroupsList from "./components/admin/lists/GroupsList";
-import VotesList from "./components/admin/lists/VotesList";
-import LawsList from "./components/admin/lists/LawsList";
-import CategoriesList from "./components/admin/lists/CategoriesList";
->>>>>>> dcdc6dae760460119fa7dc2fdb95296b0a75e05c
 
 import Login from "./components/admin/auth/Login";
 
