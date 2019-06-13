@@ -3,12 +3,13 @@ import { color } from "d3-color";
 import { interpolateRgb } from "d3-interpolate";
 import LiquidFillGauge from "react-liquid-gauge";
 
+import Global from "../../../Global";
 class Gauge extends React.Component {
   state = {
     value: 0
   };
-  startColor = "gainsboro"; // cornflowerblue
-  endColor = "aliceblue"; // crimson
+  startColor = Global.color.light;
+  endColor = Global.color.light;
 
   componentDidMount() {
     console.log("#cmpDM GAUGE this.props.finalNote", this.props.finalNote);
@@ -39,8 +40,8 @@ class Gauge extends React.Component {
     const gradientStops = [
       {
         key: "0%",
-        stopColor: color("darkblue")
-          .darker(0.5)
+        stopColor: color("dodgerblue")
+          .darker(0.9)
           .toString(),
         stopOpacity: 1,
         offset: "0%"
@@ -106,14 +107,11 @@ class Gauge extends React.Component {
           }}
           textStyle={{
             fill: color("#444").toString(),
-            fontFamily: "Arial"
+            fontFamily: Global.font.primary
           }}
           waveTextStyle={{
             fill: color("#fff").toString(),
-            fontFamily: "Arial"
-          }}
-          onClick={() => {
-            this.setState({ value: Math.random() * 100 });
+            fontFamily: Global.font.primary
           }}
         />
         <div

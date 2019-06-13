@@ -12,10 +12,6 @@ const Container = styled.div`
     font-weight: 700;
     color: royalblue;
   }
-  /* &:hover {
-    color: royalblue;
-    font-weight: 700;
-  } */
   .greet-text {
     padding-top: 15px;
     height: 40px;
@@ -67,11 +63,11 @@ class Greet extends React.Component {
     return (
       <Container>
         <div className="greet-icon">
-          <i class="fas fa-bullhorn" />
+          <i className="fas fa-bullhorn" />
         </div>
         <a
           href={`https://twitter.com/share?url=https://europeennes.bloomassociation.org&screen_name=${twitter}&text=Bravo%20pour%20votre%20travail%20acharné%20pour%20protéger%20l'océan!`}
-          class="twitter-mention-button"
+          className="twitter-mention-button"
           data-show-count="false"
           target="_blank"
           rel="noopener noreferrer"
@@ -83,7 +79,7 @@ class Greet extends React.Component {
         <script
           async
           src="https://platform.twitter.com/widgets.js"
-          charset="utf-8"
+          charSet="utf-8"
         />
       </Container>
     );

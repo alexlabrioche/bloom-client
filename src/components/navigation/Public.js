@@ -1,30 +1,38 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
-import styled from "styled-components";
+
+import styled, { css } from "styled-components";
 import Global from "../../Global";
 import Api from "../../utils/Api";
 
-import Dropdown from "../core/front/Dropdown.js";
+import SearchField from "./SearchField";
 
 const NavContainer = styled.nav`
   height: ${Global.height.navigation};
   position: fixed;
   margin-bottom: 2rem;
-  background: white;
+  background: ${Global.color.lightBackground};
   z-index: 1000;
   width: 100%;
   display: flex;
   align-items: center;
-  border-top: 3px solid #5973e8;
-  background: white;
-  box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(230, 230, 230, 1);
+  transition: box-shadow 0.2s ease-in-out;
+  ${props =>
+    props.isScrolled &&
+    css`
+      box-shadow: 0px 5px 12px 0px rgba(0, 0, 0, 0.2);
+    `}
+  /* border-top: 3px solid ${Global.color.secondAccent}; */
   .link {
     color: ${Global.color.primary};
     text-decoration: none;
     padding: 0 10px;
+    margin-right: 1rem;
   }
   .title {
     font-size: ${Global.font.size.header};
+    color: ${Global.color.primary};
   }
 `;
 
@@ -34,38 +42,92 @@ class Navigation extends React.Component {
     this.state = {
       groups: [],
       parties: [],
-      deputies: []
+      deputies: [],
+      searchOptions: [],
+      selectedOption: null
     };
+    this.handleSearchField = this.handleSearchField.bind(this);
   }
   async componentDidMount() {
     const groups = await Api.getGroups();
     const parties = await Api.getParties();
     const deputies = await Api.getDeputies();
+    const searchOptions = this.setSearchOptions(groups, parties, deputies);
     this.setState({
       groups,
       parties,
-      deputies: deputies.deputies
+      deputies,
+      searchOptions
     });
   }
+  setSearchOptions(groups, parties, deputies) {
+    const partiesOptions = [];
+    const groupsOptions = [];
+    const deputiesOptions = [];
+    parties.map(party =>
+      partiesOptions.push({
+        value: party.slug,
+        label: party.name,
+        uri: "parti"
+      })
+    );
+    groups.map(group =>
+      groupsOptions.push({
+        value: group.slug,
+        label: group.name,
+        uri: "groupe"
+      })
+    );
+    deputies.map(deputy =>
+      deputiesOptions.push({
+        value: deputy.slug,
+        label: deputy.name,
+        uri: "depute"
+      })
+    );
+    const searchOptions = [
+      {
+        label: "Groupes Européens",
+        options: groupsOptions
+      },
+      {
+        label: "Partis Nationaux",
+        options: partiesOptions
+      },
+      {
+        label: "Députés",
+        options: deputiesOptions
+      }
+    ];
+    return searchOptions;
+  }
+
+  handleSearchField(selectedOption) {
+    this.props.history.push(`/${selectedOption.uri}/${selectedOption.value}`);
+    this.setState({
+      selectedOption,
+      selectedParty: null,
+      selectedGroup: null
+    });
+    console.log(`Option selected:`, selectedOption);
+  }
+
   render() {
-    const { parties, groups, deputies } = this.state;
+    const { selectedOption, searchOptions } = this.state;
+    const { isScrolled } = this.props;
     return (
-      <NavContainer>
+      <NavContainer isScrolled={isScrolled}>
         <Link className="link title" to="/">
           BLOOM
         </Link>
-        <Dropdown list={deputies} uriLink="/deputes">
-          Nos députés
-        </Dropdown>
-        <Dropdown list={parties} uriLink="/partis">
-          Partis nationaux
-        </Dropdown>
-        <Dropdown list={groups} uriLink="/groupes">
-          Groupes Européens
-        </Dropdown>
-
+        <SearchField
+          selectedOption={selectedOption}
+          options={searchOptions}
+          handleChange={this.handleSearchField}
+          placeholder={"Rechercher..."}
+        />
         <Link
-          style={{ marginLeft: "300px" }}
+          style={{ marginLeft: "500px" }}
           className="link navlink"
           to="/admin"
         >

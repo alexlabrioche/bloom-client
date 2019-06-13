@@ -119,9 +119,6 @@ const CardStyle = styled.div`
 function Card(props) {
   const protect = props.law.protect;
   const decision = props.decision;
-  // console.info("    ");
-  // console.info("    protect", protect);
-  // console.info("    decision", decision);
   let noteColor = "";
   if (protect === true && decision === "for") {
     noteColor = "protect-color";
@@ -138,7 +135,6 @@ function Card(props) {
   if (decision === "abstention" || decision === "absence") {
     noteColor = "absence-color";
   }
-  // console.info("    noteColor", noteColor);
   console.info("@FlipCard props", props);
   const [flipped, set] = useState(false);
   const { transform, opacity } = useSpring({

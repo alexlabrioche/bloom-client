@@ -59,14 +59,13 @@ const Container = styled.div`
 
 function DeputyCard(props) {
   const { name, slug, picture, _id, party } = props;
-  // console.log("_id", _id);
   let deputyParty = "Sans étiquette";
   if (party !== undefined) {
     deputyParty = party.name;
   }
   return (
     <Container className="card">
-      <Link to={`/deputes/${slug}`} className="link">
+      <Link to={`/depute/${slug}`} className="link">
         <img
           className="card-img-top"
           src={`${Config.server}/${picture}`}

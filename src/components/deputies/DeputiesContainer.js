@@ -3,12 +3,11 @@ import styled from "styled-components";
 
 import Api from "../../utils/Api";
 
-import DeputyCard from "./DeputyCard";
-import MobileDeputyCard from "./MobileDeputyCard";
 import Header from "../main/Header";
+import DeputiesList from "./DeputiesList";
+
 const Container = styled.div`
-  /* display: flex;
-  flex-direction: row; */
+  padding-top: 4rem;
 `;
 class DeputiesContainer extends React.Component {
   constructor(props) {
@@ -19,9 +18,8 @@ class DeputiesContainer extends React.Component {
   }
   async componentDidMount() {
     const deputies = await Api.getDeputies();
-    // console.log("<<@deputiesContainer cDM", deputies.deputies);
     this.setState({
-      deputies: deputies.deputies
+      deputies
     });
     window.addEventListener("resize", this.handleScreenSize.bind(this));
     this.handleScreenSize();
@@ -29,41 +27,20 @@ class DeputiesContainer extends React.Component {
 
   handleScreenSize() {
     const { mobileView } = this.state;
+    // Set ScreenSize to true or false
     const screenSize = window.innerWidth <= 760;
     mobileView !== screenSize &&
       this.setState({
         mobileView: screenSize
       });
   }
-  renderDesktop(deputy, index) {
-    return (
-      <div className="my-3 col-md-6 col-lg-4" key={index}>
-        <DeputyCard {...deputy} />
-      </div>
-    );
-  }
-  renderMobile(deputy, index) {
-    return (
-      <div className="my-1 col-12" key={index}>
-        <MobileDeputyCard {...deputy} />
-      </div>
-    );
-  }
-
   render() {
     const { deputies, mobileView } = this.state;
-    // console.info("<< render Deputies deputies", deputies);
     return (
-      <Container className="pt-5 container">
+      <Container className="container">
         <div className="row">
           <Header />
-        </div>
-        <div className="row">
-          {deputies.map((deputy, index) => {
-            return mobileView
-              ? this.renderMobile(deputy, index)
-              : this.renderDesktop(deputy, index);
-          })}
+          <DeputiesList deputies={deputies} mobileView={mobileView} />
         </div>
       </Container>
     );

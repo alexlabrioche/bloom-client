@@ -30,7 +30,7 @@ class AddVote extends React.Component {
     const deputies = await Api.getDeputies();
     const laws = await Api.getLaws();
     this.setState({
-      deputies: deputies.deputies,
+      deputies,
       laws
     });
   }

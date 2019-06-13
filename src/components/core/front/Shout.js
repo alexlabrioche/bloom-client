@@ -61,13 +61,13 @@ class Shout extends React.Component {
     return (
       <Container>
         <div className="shout-icon">
-          <i class="fas fa-bullhorn" />
+          <i className="fas fa-bullhorn" />
         </div>
         <p className="shout-text">
           <span> Interpeller </span> sur Twitter :{" "}
           <a
             href={`https://twitter.com/share?url=https://europeennes.bloomassociation.org&screen_name=${twitter}&text=Réveillez-vous!%20Vos%20votes%20détruisent%20la%20biodiversité%20de%20l'océan!`}
-            class="twitter-mention-button"
+            className="twitter-mention-button"
             data-show-count="false"
             target="_blank"
             rel="noopener noreferrer"
@@ -77,7 +77,7 @@ class Shout extends React.Component {
           <script
             async
             src="https://platform.twitter.com/widgets.js"
-            charset="utf-8"
+            charSet="utf-8"
           />
         </p>
       </Container>

@@ -6,7 +6,8 @@ import ShowMore from "react-show-more";
 const Container = styled.div`
   .header-title {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 5rem;
+    margin-top: 5rem;
     font-weight: 300;
     color: ${Global.color.accent};
   }

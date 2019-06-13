@@ -14,7 +14,7 @@ class DeputiesList extends React.Component {
   async componentDidMount() {
     const deputies = await Api.getDeputies();
     this.setState({
-      deputies: deputies.deputies
+      deputies
     });
   }
 

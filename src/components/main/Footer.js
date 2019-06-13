@@ -47,26 +47,30 @@ class Footer extends React.Component {
     }
     return (
       <Container className="container-fluid">
-        <div class="row">
-          <div class="col-12 text-center">
+        <div className="row">
+          <div className="col-12 text-center">
             <a
               href="https://www.bloomassociation.org/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img class="img-float1" src={bloomGif} alt="poulpe de bloom" />
+              <img
+                className="img-float1"
+                src={bloomGif}
+                alt="poulpe de bloom"
+              />
             </a>
           </div>
-          <div class="col-12 text-center mentions-legales">
+          <div className="col-12 text-center mentions-legales">
             <a href="https://www.bloomassociation.org/mentions-legales/">
               Mentions Légales
             </a>{" "}
             | <a href="https://www.bloomassociation.org/contact/">Contact</a>
           </div>
         </div>
-        <div class="row">
-          <div class="col-12 text-center">
-            <p class="signature">
+        <div className="row">
+          <div className="col-12 text-center">
+            <p className="signature">
               &copy; {new Date().getFullYear()} Vianney Guesdon-Vennerie et Alex
               Baker
             </p>

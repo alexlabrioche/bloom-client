@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import styled from "styled-components";
-import ShareThis from "./components/core/front/ShareThis";
+// import ShareThis from "./components/core/front/ShareThis";
 
 import Global from "./Global";
 
@@ -11,34 +11,34 @@ import Footer from "./components/main/Footer";
 
 import DeputiesContainer from "./components/deputies/DeputiesContainer";
 
-import DeputyProfile from "./components/deputies/DeputyProfile";
-import PartyProfile from "./components/parties/PartyProfile";
-import GroupProfile from "./components/groups/GroupProfile";
+import DeputyContainer from "./components/deputies/DeputyContainer";
+import PartyContainer from "./components/parties/PartyContainer";
+import GroupContainer from "./components/groups/GroupContainer";
 
-import Admin from "./components/admin";
-import Create from "./components/admin/Create";
-import Delete from "./components/admin/Delete";
+// import Admin from "./components/admin";
+// import Create from "./components/admin/Create";
+// import Delete from "./components/admin/Delete";
 
-import AddDeputy from "./components/admin/add/AddDeputy";
-import AddLaw from "./components/admin/add/AddLaw";
-import AddParty from "./components/admin/add/AddParty";
-import AddGroup from "./components/admin/add/AddGroup";
-import AddVote from "./components/admin/add/AddVote";
-import AddLawCategory from "./components/admin/add/AddLawCategory";
+// import AddDeputy from "./components/admin/add/AddDeputy";
+// import AddLaw from "./components/admin/add/AddLaw";
+// import AddParty from "./components/admin/add/AddParty";
+// import AddGroup from "./components/admin/add/AddGroup";
+// import AddVote from "./components/admin/add/AddVote";
+// import AddLawCategory from "./components/admin/add/AddLawCategory";
 
-import EditDeputy from "./components/admin/edit/EditDeputy";
-import EditLaw from "./components/admin/edit/EditLaw";
-import EditParty from "./components/admin/edit/EditParty";
-import EditGroup from "./components/admin/edit/EditGroup";
-import EditVote from "./components/admin/edit/EditVote";
-import EditLawCategory from "./components/admin/edit/EditLawCategory";
+// import EditDeputy from "./components/admin/edit/EditDeputy";
+// import EditLaw from "./components/admin/edit/EditLaw";
+// import EditParty from "./components/admin/edit/EditParty";
+// import EditGroup from "./components/admin/edit/EditGroup";
+// import EditVote from "./components/admin/edit/EditVote";
+// import EditLawCategory from "./components/admin/edit/EditLawCategory";
 
-import DeputiesList from "./components/admin/lists/DeputiesList";
-import PartiesList from "./components/admin/lists/PartiesList";
-import GroupsList from "./components/admin/lists/GroupsList";
-import VotesList from "./components/admin/lists/VotesList";
-import LawsList from "./components/admin/lists/LawsList";
-import CategoriesList from "./components/admin/lists/CategoriesList";
+// import DeputiesList from "./components/admin/lists/DeputiesList";
+// import PartiesList from "./components/admin/lists/PartiesList";
+// import GroupsList from "./components/admin/lists/GroupsList";
+// import VotesList from "./components/admin/lists/VotesList";
+// import LawsList from "./components/admin/lists/LawsList";
+// import CategoriesList from "./components/admin/lists/CategoriesList";
 
 import Login from "./components/admin/auth/Login";
 
@@ -47,7 +47,7 @@ const AppContainer = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: whitesmoke;
+  background: ${Global.color.background};
 `;
 class App extends React.Component {
   render() {
@@ -55,13 +55,13 @@ class App extends React.Component {
       <Router>
         <AppContainer>
           <Navigation />
-          <ShareThis />
+          {/* <ShareThis /> */}
           <Route exact path="/" component={DeputiesContainer} />
-          <Route exact path="/deputes/:slug" component={DeputyProfile} />
+          <Route exact path="/depute/:slug" component={DeputyContainer} />
           {/* <Route exact path="/partis" component={Parties} /> */}
-          <Route exact path="/partis/:slug" component={PartyProfile} />
+          <Route exact path="/parti/:slug" component={PartyContainer} />
           {/* <Route exact path="/groupes" component={GroupsContainer} /> */}
-          <Route exact path="/groupes/:slug" component={GroupProfile} />
+          <Route exact path="/groupe/:slug" component={GroupContainer} />
 
           {/********** ADMIN ROUTES **********/}
           <Route exact path="/admin" component={Login} />
