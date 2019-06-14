@@ -5,9 +5,6 @@ import Api from "../../../utils/Api";
 
 import Global from "../../../Global";
 
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
 const Container = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -56,11 +53,7 @@ class DeleteButton extends React.Component {
     this.setState({
       message
     });
-
-    this.notify();
   }
-
-  notify = () => toast(this.state.message);
 
   render() {
     const { _id, type } = this.props;
@@ -75,7 +68,6 @@ class DeleteButton extends React.Component {
         >
           <i className="far fa-trash-alt" />
         </button>
-        <ToastContainer />
       </Container>
     );
   }
