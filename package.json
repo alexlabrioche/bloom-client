@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.9.3",
-    "axios": "^0.18.0",
+    "axios": "^0.19.0",
     "bootstrap": "^4.3.1",
     "classnames": "^2.2.6",
     "d3-color": "^1.2.3",
@@ -17,6 +17,8 @@
     "rc-collapse": "^1.11.3",
     "rc-dropdown": "^2.4.1",
     "react": "^16.8.6",
+    "react-alert": "^5.5.0",
+    "react-alert-template-basic": "^1.0.0",
     "react-burger-menu": "^2.6.10",
     "react-calendar": "^2.19.0",
     "react-datepicker": "^2.5.0",

@@ -14,6 +14,9 @@ import styled from "styled-components";
 
 import "react-datepicker/dist/react-datepicker.css";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import Api from "../../../utils/Api";
 // import BackButton from "../../core/admin/BackButton";
 const DateInput = asField(
@@ -45,7 +48,8 @@ class AddLaw extends React.Component {
     super(props);
     this.state = {
       categories: [],
-      chars_left: 140
+      chars_left: 140,
+      message: ""
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -62,14 +66,21 @@ class AddLaw extends React.Component {
     });
   }
 
-  onSubmit(formState) {
+  async onSubmit(formState) {
     console.info("formState", formState);
 
     const newLaw = new FormData();
     newLaw.append("data", JSON.stringify(formState));
 
-    Api.addLaw(newLaw);
+    const message = await Api.addLaw(newLaw);
+    console.log("messageICI");
+    this.setState({
+      message
+    });
+    this.notify();
   }
+
+  notify = () => toast(this.state.message);
 
   handleWordCount = event => {
     const charCount = event.target.value.length;
@@ -151,6 +162,7 @@ class AddLaw extends React.Component {
             Ajouter
           </button>
         </Form>
+        <ToastContainer />
       </Container>
     );
   }
