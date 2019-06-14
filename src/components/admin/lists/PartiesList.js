@@ -18,6 +18,14 @@ class PartiesList extends React.Component {
       parties
     });
   }
+
+  async componentDidUpdate() {
+    const parties = await Api.getParties();
+    this.setState({
+      parties
+    });
+  }
+
   render() {
     const { parties } = this.state;
     return (

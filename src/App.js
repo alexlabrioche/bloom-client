@@ -17,7 +17,6 @@ import GroupContainer from "./components/groups/GroupContainer";
 
 // import Admin from "./components/admin";
 // import Create from "./components/admin/Create";
-import Delete from "./components/admin/tabs/Delete";
 
 // import AddDeputy from "./components/admin/add/AddDeputy";
 // import AddLaw from "./components/admin/add/AddLaw";
@@ -105,7 +104,7 @@ class App extends React.Component {
             component={EditLawCategory}
           />
           <Route exact path="/admin/modifier/vote/:id" component={EditVote} /> */}
-          <Route exact path="/admin/supprimer/:type/:id" component={Delete} />
+          {/* <Route exact path="/admin/supprimer/:type/:id" component={Delete} /> */}
 
           <Footer />
         </AppContainer>

@@ -27,7 +27,7 @@ class Header extends React.Component {
 
   async componentDidMount() {
     const intro = await Api.getIntro();
-    if (intro != undefined) {
+    if (intro !== undefined) {
       this.setState({
         title: intro[0].title,
         paragraph1: intro[0].paragraph1,

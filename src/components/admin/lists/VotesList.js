@@ -28,13 +28,22 @@ class VotesList extends React.Component {
       votes
     });
   }
+
+  async componentDidUpdate() {
+    const votes = await Api.getVotes();
+    this.setState({
+      votes
+    });
+  }
+
   render() {
     const { votes } = this.state;
+    console.log("@Votelist, vote :", votes);
     return (
       <Container className="table">
         <tbody>
           {votes.map((data, index) => {
-            console.info("VoteList", data);
+            // console.info("VoteList", data);
             return (
               <tr key={index}>
                 <th scope="row">{index + 1}</th>
@@ -42,7 +51,7 @@ class VotesList extends React.Component {
                 <td>{data.decision}</td>
                 <td>{data.law.slug}</td>
                 <td className="delete">
-                  <DeleteButton {...data} type="vote" />
+                  <DeleteButton {...data} type="vote" notify={this.notify} />
                 </td>
               </tr>
             );
