@@ -15,6 +15,12 @@ class CategoriesList extends React.Component {
       categories
     });
   }
+  async componentDidUpdate() {
+    const categories = await Api.getCategories();
+    this.setState({
+      categories
+    });
+  }
   render() {
     const { categories } = this.state;
     return (

@@ -3,6 +3,9 @@ import styled from "styled-components";
 import { Form, Text, TextArea } from "informed";
 import Api from "../../../utils/Api";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -18,7 +21,8 @@ class AddGroup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      image: null
+      image: null,
+      message: ""
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -27,16 +31,25 @@ class AddGroup extends React.Component {
       [name]: value
     });
   }
-  onSubmit(formState) {
+  async onSubmit(formState) {
     console.info("formState", formState);
     const { image } = this.state;
     const newGroup = new FormData();
 
-    newGroup.append("image", image, image.name);
+    if (image != null) {
+      newGroup.append("image", image, image.name);
+    }
     newGroup.append("data", JSON.stringify(formState));
-
-    Api.addGroup(newGroup);
+    console.log("messageICI");
+    const message = await Api.addGroup(newGroup);
+    console.log("message");
+    this.setState({
+      message
+    });
+    this.notify();
   }
+
+  notify = () => toast(this.state.message);
 
   render() {
     return (
@@ -76,6 +89,7 @@ class AddGroup extends React.Component {
             Ajouter
           </button>
         </Form>
+        <ToastContainer />
       </Container>
     );
   }

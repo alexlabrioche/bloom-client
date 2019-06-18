@@ -23,11 +23,10 @@ class Api {
     const deputies = await axios.delete(url).then(deputies => deputies.data);
     return deputies;
   }
-  addDeputy(deputy) {
+  async addDeputy(deputy) {
     const url = `${Config.server}/api/deputies/add`;
-    axios.post(url, deputy).then(res => {
-      console.log("onSubmit upload OK");
-    });
+    const message = await axios.post(url, deputy).then(res => res.data.msg);
+    return message;
   }
 
   // GROUPS
@@ -54,11 +53,10 @@ class Api {
     return group;
   }
 
-  addGroup(group) {
+  async addGroup(group) {
     const url = `${Config.server}/api/groups/add`;
-    axios.post(url, group).then(res => {
-      console.log("onSubmit upload OK");
-    });
+    const message = await axios.post(url, group).then(res => res.data.msg);
+    return message;
   }
 
   // PARTIES
@@ -84,11 +82,10 @@ class Api {
     const party = await axios.delete(url).then(party => party.data);
     return party;
   }
-  addParty(party) {
+  async addParty(party) {
     const url = `${Config.server}/api/parties/add`;
-    axios.post(url, party).then(res => {
-      console.log("onSubmit upload OK");
-    });
+    const message = await axios.post(url, party).then(res => res.data.msg);
+    return message;
   }
 
   // LAWS
@@ -107,12 +104,10 @@ class Api {
     const law = await axios.delete(url).then(law => law.data);
     return law;
   }
-  addLaw(law) {
-    console.info("addLaw API", law);
+  async addLaw(law) {
     const url = `${Config.server}/api/laws/add`;
-    axios.post(url, law).then(res => {
-      console.log("onSubmit upload OK");
-    });
+    const message = await axios.post(url, law).then(res => res.data.msg);
+    return message;
   }
 
   // CATEGORIES
@@ -131,11 +126,10 @@ class Api {
     const category = await axios.delete(url).then(category => category.data);
     return category;
   }
-  addCategory(category) {
+  async addCategory(category) {
     const url = `${Config.server}/api/laws-categories/add`;
-    axios.post(url, category).then(res => {
-      console.log("onSubmit upload OK");
-    });
+    const message = await axios.post(url, category).then(res => res.data.msg);
+    return message;
   }
 
   // VOTES
@@ -154,11 +148,10 @@ class Api {
     const vote = await axios.delete(url).then(vote => vote.data);
     return vote;
   }
-  addVote(vote) {
+  async addVote(vote) {
     const url = `${Config.server}/api/votes/add`;
-    axios.post(url, vote).then(res => {
-      console.log("onSubmit upload OK");
-    });
+    const message = axios.post(url, vote).then(res => res.data.msg);
+    return message;
   }
 
   // LOGIN
@@ -175,7 +168,7 @@ class Api {
   // INTRO
   async getIntro() {
     const url = `${Config.server}/api/intro/`;
-    const intro = await axios.get(url).then(intro => intro.data);
+    const intro = await axios.get(url).then(res => res.data.msg);
     return intro;
   }
 }

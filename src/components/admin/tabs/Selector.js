@@ -97,7 +97,7 @@ class AddOrEdit extends React.Component {
           }
         >
           <i className="fas fa-edit" />
-          <p>modifier</p>
+          <p>Modifier</p>
         </div>
         <div
           className="delete content-container"
@@ -106,7 +106,7 @@ class AddOrEdit extends React.Component {
           }
         >
           <i className="fas fa-trash" />
-          <p>supprimer</p>
+          <p>Supprimer</p>
         </div>
         <div className="logout-button">
           <Logout />

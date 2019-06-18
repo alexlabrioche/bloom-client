@@ -7,6 +7,9 @@ import styled from "styled-components";
 
 import Api from "../../../utils/Api";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const DateInput = asField(
   ({ fieldState: { value }, fieldApi: { setTouched, setValue }, ...props }) => (
     <DatePicker
@@ -55,8 +58,8 @@ class AddDeputy extends React.Component {
     });
   }
 
-  onSubmit(formState) {
-    console.info("formState", formState);
+  async onSubmit(formState) {
+    // console.info("formState", formState);
 
     const { image } = this.state;
 
@@ -64,20 +67,34 @@ class AddDeputy extends React.Component {
     newDeputy.append("image", image, image.name);
     newDeputy.append("data", JSON.stringify(formState));
 
-    Api.addDeputy(newDeputy);
+    const message = await Api.addDeputy(newDeputy);
+    this.setState({
+      message
+    });
+    this.notify();
   }
+
+  notify = () => toast(this.state.message);
 
   render() {
     const { groups, parties, image } = this.state;
-    console.info(image);
+    // console.info(image);
     return (
       <Container className="container">
         <Form onSubmit={formState => this.onSubmit(formState)}>
           <Label>
-            Nom complet:
+            Prénom:
             <Text
               className="form-control form-control-sm"
-              field="name"
+              field="firstName"
+              type="text"
+            />
+          </Label>
+          <Label>
+            Nom De Famille:
+            <Text
+              className="form-control form-control-sm"
+              field="surname"
               type="text"
             />
           </Label>
@@ -156,6 +173,7 @@ class AddDeputy extends React.Component {
             Ajouter
           </button>
         </Form>
+        <ToastContainer />
       </Container>
     );
   }

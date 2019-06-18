@@ -18,6 +18,14 @@ class GroupsList extends React.Component {
       groups
     });
   }
+
+  async componentDidUpdate() {
+    const groups = await Api.getGroups();
+    this.setState({
+      groups
+    });
+  }
+
   render() {
     const { groups } = this.state;
     return (

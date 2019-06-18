@@ -60,7 +60,7 @@ const Container = styled.div`
 function DeputyCard(props) {
   const { name, slug, picture, _id, party } = props;
   let deputyParty = "Sans étiquette";
-  if (party !== undefined) {
+  if (party !== undefined && party !== null) {
     deputyParty = party.name;
   }
   return (

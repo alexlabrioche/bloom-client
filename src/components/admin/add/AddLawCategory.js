@@ -4,6 +4,9 @@ import styled from "styled-components";
 
 import Api from "../../../utils/Api";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -24,14 +27,21 @@ class AddLawCategory extends React.Component {
     };
   }
 
-  onSubmit(formState) {
+  async onSubmit(formState) {
     console.info("formState", formState);
 
     const newCategory = new FormData();
     newCategory.append("data", JSON.stringify(formState));
 
-    Api.addCategory(newCategory);
+    const message = await Api.addCategory(newCategory);
+    this.setState({
+      message
+    });
+    this.notify();
   }
+
+  notify = () => toast(this.state.message);
+
   render() {
     return (
       <Container className="container">
@@ -55,6 +65,7 @@ class AddLawCategory extends React.Component {
             Ajouter
           </button>
         </Form>
+        <ToastContainer />
       </Container>
     );
   }

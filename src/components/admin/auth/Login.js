@@ -40,7 +40,7 @@ class Login extends React.Component {
   }
 
   getFromLocalStorage() {
-    // console.log("<< @getfromlocalstorage ");
+    console.log("<< @getfromlocalstorage ");
     let admin = localStorage.getItem("admin");
     admin = JSON.parse(admin);
     console.log(">> getFromlocalStorage admin :", admin);

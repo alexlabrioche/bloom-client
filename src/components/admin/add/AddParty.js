@@ -6,6 +6,9 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import Api from "../../../utils/Api";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -22,7 +25,8 @@ class AddParty extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      image: {}
+      image: {},
+      message: ""
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -32,7 +36,7 @@ class AddParty extends React.Component {
     });
   }
 
-  onSubmit(formState) {
+  async onSubmit(formState) {
     console.info("formState", formState);
 
     const { image } = this.state;
@@ -41,10 +45,20 @@ class AddParty extends React.Component {
     newParty.append("image", image, image.name);
     newParty.append("data", JSON.stringify(formState));
 
-    Api.addParty(newParty);
+    const message = await Api.addParty(newParty);
+    console.log("message :", message);
+    this.setState({
+      message
+    });
+    this.notify();
   }
 
+  notify = () => toast(this.state.message);
+
   render() {
+    const { message, isSubmitted } = this.state;
+    console.log("message", message);
+
     return (
       <Container className="container">
         <Form onSubmit={formState => this.onSubmit(formState)}>
@@ -75,14 +89,16 @@ class AddParty extends React.Component {
               }
             />
           </Label>
-          <button
+          {/* <Alert
             type="submit"
             className="btn btn-outline-secondary"
-            // onClick={this.handleClick}
-          >
+            message={message}
+          /> */}
+          <button type="submit" className="btn btn-outline-secondary">
             Ajouter
           </button>
         </Form>
+        <ToastContainer />
       </Container>
     );
   }

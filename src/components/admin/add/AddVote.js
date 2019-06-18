@@ -5,6 +5,9 @@ import styled from "styled-components";
 
 import Api from "../../../utils/Api";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -22,7 +25,8 @@ class AddVote extends React.Component {
     super(props);
     this.state = {
       deputies: [],
-      laws: []
+      laws: [],
+      message: ""
     };
     this.onSubmit = this.onSubmit.bind(this);
   }
@@ -35,13 +39,19 @@ class AddVote extends React.Component {
     });
   }
 
-  onSubmit(formState) {
+  async onSubmit(formState) {
     console.info("formState", formState);
     const newVote = new FormData();
     newVote.append("data", JSON.stringify(formState));
 
-    Api.addVote(newVote);
+    const message = await Api.addVote(newVote);
+    this.setState({
+      message
+    });
+    this.notify();
   }
+
+  notify = () => toast(this.state.message);
 
   render() {
     const { deputies, laws } = this.state;
@@ -95,6 +105,7 @@ class AddVote extends React.Component {
             Ajouter
           </button>
         </Form>
+        <ToastContainer />
       </Container>
     );
   }

@@ -66,7 +66,8 @@ class EditDeputy extends React.Component {
   handleUpload(evt) {
     const selectedFile = evt.target.files[0];
     this.setState({
-      selectedFile
+      selectedFile,
+      message: ""
     });
   }
 
@@ -81,6 +82,7 @@ class EditDeputy extends React.Component {
       mandateFrom,
       mandateTo
     } = this.state;
+
     const url = `${Config.server}/api/deputies/add`;
     const deputy = new FormData();
     deputy.append("image", selectedFile, selectedFile.name);
@@ -91,7 +93,8 @@ class EditDeputy extends React.Component {
     deputy.append("mandateFrom", mandateFrom);
     deputy.append("mandateTo", mandateTo);
     axios.post(url, deputy).then(res => {
-      console.log("onSubmit upload OK res:", res);
+      res.data.msg;
+      this.setState({ message: res.data.msg });
     });
   }
 

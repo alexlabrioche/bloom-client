@@ -27,13 +27,14 @@ class Header extends React.Component {
 
   async componentDidMount() {
     const intro = await Api.getIntro();
-    console.log("intro", intro[0]);
-    this.setState({
-      title: intro[0].title,
-      paragraph1: intro[0].paragraph1,
-      paragraph2: intro[0].paragraph2,
-      paragraph3: intro[0].paragraph3
-    });
+    if (intro !== undefined) {
+      this.setState({
+        title: intro[0].title,
+        paragraph1: intro[0].paragraph1,
+        paragraph2: intro[0].paragraph2,
+        paragraph3: intro[0].paragraph3
+      });
+    }
   }
 
   render() {
