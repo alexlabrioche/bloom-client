@@ -67,7 +67,8 @@ class DeputyHeader extends React.Component {
             <div className="scrolled header-gauge">
               <Gauge finalNote={finalNote} />
               <p className="scrolled header-gauge-legend">
-                % de votes protecteur de l'océan
+                {Math.round(finalNote)}% des votes de ce député protègent
+                l'océan
               </p>
             </div>
           </div>

@@ -21,7 +21,8 @@ class GroupHeader extends React.Component {
         <div className="header-gauge-container offset-3 col-6 offset-md-0 col-md-4 col-lg-3">
           <Gauge finalNote={finalNote} />
           <p className="header-gauge-legend">
-            % de votes protecteur de l'océan
+            {Math.round(finalNote)}% des votes des députés liés à ce Groupe
+            Européen protègent l'océan.
           </p>
         </div>
       </div>

@@ -103,12 +103,18 @@ class Navigation extends React.Component {
   }
 
   handleSearchField(selectedOption) {
-    this.props.history.push(`/${selectedOption.uri}/${selectedOption.value}`);
-    this.setState({
-      selectedOption,
-      selectedParty: null,
-      selectedGroup: null
-    });
+    console.log(`handleSearchField selectedOption:`, selectedOption);
+    if (selectedOption !== null) {
+      this.props.history.push(`/${selectedOption.uri}/${selectedOption.value}`);
+      this.setState({
+        selectedOption
+      });
+    }
+    if (selectedOption === null) {
+      this.setState({
+        selectedOption
+      });
+    }
     console.log(`Option selected:`, selectedOption);
   }
 

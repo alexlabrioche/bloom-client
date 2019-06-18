@@ -13,7 +13,8 @@ class DeputyContainer extends React.Component {
       isLoading: true,
       deputy: {},
       finalNote: 0,
-      votes: []
+      votes: [],
+      categories: []
     };
   }
 
@@ -21,8 +22,12 @@ class DeputyContainer extends React.Component {
     const slug = this.props.match.params.slug;
     const deputy = await Api.getDeputyBySlug(slug);
     const votes = await this.getVotesFromCurrentDeputy();
+    const categories = await Api.getCategories();
+    console.info("all categories", categories);
+    // const laws = await this.getLawsFromCurrentDeputy(votes);
     const id = deputy._id;
     this.setState({
+      categories,
       deputy,
       votes,
       isLoading: false
@@ -58,6 +63,17 @@ class DeputyContainer extends React.Component {
     });
     return votes;
   }
+
+  // async getLawsFromCurrentDeputy(votes) {
+  //   console.info("#deputyCNTR votes", votes);
+  //   const allLaws = await Api.getLaws();
+  //   console.info("#deputyCNTR laws", allLaws);
+  //   // const laws = allLaws.filter(law => {
+  //   //   return law
+  //   // })
+  //   // const allCategories = await Api.getCategories();
+  //   // console.info("#deputyCNTR categories", allCategories);
+  // }
 
   render() {
     const { deputy, isLoading } = this.state;

@@ -26,4 +26,9 @@ export const GroupContainer = styled.div`
     max-height: 8rem;
     overflow: auto;
   }
+  .header-gauge-legend {
+    font-size: 14px;
+    text-align: center;
+    margin-top: -20px;
+  }
 `;

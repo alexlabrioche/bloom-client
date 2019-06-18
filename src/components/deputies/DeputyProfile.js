@@ -4,15 +4,19 @@ import { ProfileContainer } from "./style";
 
 import DeputyHeader from "./DeputyHeader";
 import DeputyNotationDetail from "./DeputyNotationDetail";
+import CollapseCategories from "./CollapseCategories";
 import FlipCard from "./FlipCard";
 
 class DeputyProfile extends React.Component {
   render() {
-    const { deputy, finalNote, votes } = this.props;
+    const { deputy, finalNote, votes, categories } = this.props;
     return (
       <ProfileContainer className="container">
         <DeputyHeader deputy={deputy} finalNote={finalNote} />
         <DeputyNotationDetail />
+        {categories.length > 0 && (
+          <CollapseCategories categories={categories} />
+        )}
         <div className="main-content container">
           <div className="row">
             {votes.map((vote, index) => {
