@@ -28,9 +28,9 @@ class Api {
     const message = await axios.post(url, deputy).then(res => res.data.msg);
     return message;
   }
-  async updateDeputy(deputy) {
-    const url = `${Config.server}/api/deputies/update`;
-    const message = await axios.post(url, deputy).then(res => res.data.msg);
+  async updateDeputy(deputy, id) {
+    const url = `${Config.server}/api/deputies/${id}`;
+    const message = await axios.put(url, deputy).then(res => res.data.msg);
     return message;
   }
 
@@ -64,6 +64,12 @@ class Api {
     return message;
   }
 
+  async updateGroup(group, id) {
+    const url = `${Config.server}/api/groups/${id}`;
+    const message = await axios.put(url, group).then(res => res.data.msg);
+    return message;
+  }
+
   // PARTIES
   async getParty(id) {
     const url = `${Config.server}/api/parties/${id}`;
@@ -71,7 +77,6 @@ class Api {
     return party;
   }
   async getPartyBySlug(slug) {
-    // console.log("@API slug:", slug);
     const url = `${Config.server}/api/parties/slug/${slug}`;
     const party = await axios.get(url).then(party => party.data);
     return party;
@@ -122,6 +127,11 @@ class Api {
     const message = await axios.post(url, law).then(res => res.data.msg);
     return message;
   }
+  async updateLaw(law, id) {
+    const url = `${Config.server}/api/laws/${id}`;
+    const message = await axios.put(url, law).then(res => res.data.msg);
+    return message;
+  }
 
   // CATEGORIES
   async getCategory(id) {
@@ -142,6 +152,11 @@ class Api {
   async addCategory(category) {
     const url = `${Config.server}/api/laws-categories/add`;
     const message = await axios.post(url, category).then(res => res.data.msg);
+    return message;
+  }
+  async updateCategory(category, id) {
+    const url = `${Config.server}/api/laws-categories/${id}`;
+    const message = await axios.put(url, category).then(res => res.data.msg);
     return message;
   }
 
@@ -185,12 +200,10 @@ class Api {
     console.log("@intro api", intro);
     return intro;
   }
-  async updateIntro(id) {
-    console.log("@intro api");
+  async updateIntro(intro, id) {
     const url = `${Config.server}/api/intro/${id}`;
-    const intro = await axios.put(url).then(res => res.data.msg);
-    console.log("@intro api", intro);
-    return intro;
+    const message = await axios.put(url, intro).then(res => res.data.msg);
+    return message;
   }
 }
 

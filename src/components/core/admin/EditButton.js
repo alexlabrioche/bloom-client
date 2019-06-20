@@ -149,9 +149,65 @@ class EditButton extends React.Component {
     }
     newGroup.append("image", image, image.name);
     newGroup.append("data", JSON.stringify(formState));
+    // console.log("newGroup", newGroup);
     const id = this.state.itemToUpdate._id;
     console.log("id ", id);
     const message = await Api.updateGroup(newGroup, id);
+    console.log("message :", message);
+    this.setState({
+      message
+    });
+
+    this.notify();
+  }
+
+  async onSubmitCategory(formState) {
+    console.info("formState", formState);
+    const newCategory = new FormData();
+
+    newCategory.append("data", JSON.stringify(formState));
+    const id = this.state.itemToUpdate._id;
+    console.log("id ", id);
+
+    const message = await Api.updateCategory(newCategory, id);
+    console.log("message :", message);
+    this.setState({
+      message
+    });
+
+    this.notify();
+  }
+
+  async onSubmitLaw(formState) {
+    console.info("formState", formState);
+    const newLaw = new FormData();
+
+    newLaw.append("data", JSON.stringify(formState));
+    const id = this.state.itemToUpdate._id;
+    console.log("id ", id);
+
+    const message = await Api.updateLaw(newLaw, id);
+    console.log("message :", message);
+    this.setState({
+      message
+    });
+
+    this.notify();
+  }
+
+  async onSubmitDeputy(formState) {
+    console.info("formState", formState);
+    const newDeputy = new FormData();
+    let { image } = this.state;
+    if (image === undefined) {
+      image = "no-image";
+    }
+    newDeputy.append("image", image, image.name);
+    newDeputy.append("data", JSON.stringify(formState));
+    const id = this.state.itemToUpdate._id;
+    console.log("id ", id);
+
+    const message = await Api.updateDeputy(newDeputy, id);
     console.log("message :", message);
     this.setState({
       message
@@ -267,7 +323,7 @@ class EditButton extends React.Component {
       if (itemToUpdate._id !== undefined) {
         return (
           <div>
-            <Form onSubmit={formState => this.onSubmit(formState)}>
+            <Form onSubmit={formState => this.onSubmitCategory(formState)}>
               <Label>
                 Nom : {itemToUpdate.name}
                 <Text
@@ -297,7 +353,7 @@ class EditButton extends React.Component {
       if (itemToUpdate._id !== undefined) {
         return (
           <div>
-            <Form onSubmit={formState => this.onSubmit(formState)}>
+            <Form onSubmit={formState => this.onSubmitLaw(formState)}>
               <Label>
                 Titre : {itemToUpdate.name}
                 <Text field="name" className="form-control form-control-sm" />
@@ -381,9 +437,15 @@ class EditButton extends React.Component {
 
     if (type === "deputy") {
       if (itemToUpdate._id !== undefined) {
+        if (itemToUpdate.group === null) {
+          itemToUpdate.group = {};
+        }
+        if (itemToUpdate.party === null) {
+          itemToUpdate.party = {};
+        }
         return (
           <div>
-            <Form onSubmit={formState => this.onSubmit(formState)}>
+            <Form onSubmit={formState => this.onSubmitDeputy(formState)}>
               <Label>
                 Prénom: {itemToUpdate.firstName}
                 <Text
@@ -411,7 +473,7 @@ class EditButton extends React.Component {
               </Label>
 
               <Label>
-                Parti :
+                Parti : {itemToUpdate.party.name}
                 <Select className="form-control form-control-sm" field="party">
                   <Option value="">...</Option>
                   {parties.map((party, index) => {
@@ -425,7 +487,7 @@ class EditButton extends React.Component {
               </Label>
 
               <Label>
-                Groupe :
+                Groupe : {itemToUpdate.group.name}
                 <Select className="form-control form-control-sm" field="group">
                   <Option value="">...</Option>
                   {groups.map((group, index) => {

@@ -46,9 +46,9 @@ class EditIntro extends React.Component {
 
     const newIntro = new FormData();
     newIntro.append("data", JSON.stringify(formState));
-
-    console.info("ICI formState id", this.state._id);
-    const message = await Api.updateIntro(newIntro);
+    const id = this.state.intro._id;
+    console.info("ICI formState id", id);
+    const message = await Api.updateIntro(newIntro, id);
     console.log("messageICI <<<<< ");
     this.setState({
       message
