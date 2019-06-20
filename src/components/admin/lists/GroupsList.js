@@ -19,15 +19,16 @@ class GroupsList extends React.Component {
     });
   }
 
-  async componentDidUpdate() {
-    const groups = await Api.getGroups();
-    this.setState({
-      groups
-    });
-  }
+  // async componentDidUpdate() {
+  //   const groups = await Api.getGroups();
+  //   this.setState({
+  //     groups
+  //   });
+  // }
 
   render() {
     const { groups } = this.state;
+    console.log("this.state.groupList");
     return (
       <div>
         <div className="pt-5 container">

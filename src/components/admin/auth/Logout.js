@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
+  margin-left: 30px;
   .fa-power-off {
     font-size: 10px;
   }

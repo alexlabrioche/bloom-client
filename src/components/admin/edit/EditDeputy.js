@@ -13,6 +13,9 @@ import PictureUploader from "../../core/admin/PictureUploader";
 import Button from "../../core/admin/Button";
 import Input from "../../core/admin/Input";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 class EditDeputy extends React.Component {
   constructor(props) {
     super(props);
@@ -33,8 +36,7 @@ class EditDeputy extends React.Component {
     this.handleDateTo = this.handleDateTo.bind(this);
   }
   async componentDidMount() {
-    const id = this.props.match.params.id;
-    const deputy = await Api.getDeputy(id);
+    const deputy = await Api.getDeputy();
     const groups = await Api.getGroups();
     const parties = await Api.getParties();
     this.setState({
@@ -71,7 +73,7 @@ class EditDeputy extends React.Component {
     });
   }
 
-  onSubmit(event) {
+  async onSubmit(event) {
     event.preventDefault();
     const {
       name,
@@ -92,17 +94,21 @@ class EditDeputy extends React.Component {
     deputy.append("party", party);
     deputy.append("mandateFrom", mandateFrom);
     deputy.append("mandateTo", mandateTo);
-    axios.post(url, deputy).then(res => {
-      res.data.msg;
-      this.setState({ message: res.data.msg });
+    const message = await Api.updateDeputy(deputy);
+    this.setState({
+      message
     });
+    this.notify();
   }
+
+  notify = () => toast(this.state.message);
 
   render() {
     const { groups, parties, name, participationRate } = this.state;
 
     return (
       <div>
+        <ToastContainer />
         <BackButton />
         <div className="pt-5 container">
           <form className="offset-lg-3 col-lg-6 col-12">

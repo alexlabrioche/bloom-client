@@ -4,7 +4,7 @@ class ItemsSelector extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isActive: "parties"
+      isActive: "deputies"
     };
   }
 
@@ -82,6 +82,16 @@ class ItemsSelector extends React.Component {
             onClick={() => this.setActiveTab("votes")}
           >
             Votes
+          </li>
+          <li
+            className={
+              isActive === "intro"
+                ? "bg-primary text-white list-group-item"
+                : "list-group-item"
+            }
+            onClick={() => this.setActiveTab("intro")}
+          >
+            Intro
           </li>
         </ul>
       </div>

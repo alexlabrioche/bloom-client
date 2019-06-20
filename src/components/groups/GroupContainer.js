@@ -52,6 +52,9 @@ class GroupContainer extends React.Component {
     const slug = this.props.match.params.slug;
     const allDeputies = await Api.getDeputies();
     const deputies = allDeputies.filter(deputy => {
+      if (deputy.group === null) {
+        deputy.group = {};
+      }
       return deputy.group.slug === slug && deputy;
     });
     return deputies;

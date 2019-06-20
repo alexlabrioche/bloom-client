@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-// import EditButton from "./EditButton";
+import EditButton from "./EditButton";
 import DeleteButton from "./DeleteButton";
 
 const Container = styled.table`
@@ -24,7 +24,9 @@ class List extends React.Component {
               <tr key={index}>
                 <th scope="row">{index + 1}</th>
                 <td>{data.name}</td>
-                <td className="edit">{/* <EditButton {...data} /> */}</td>
+                <td className="edit">
+                  <EditButton {...data} type={type} />
+                </td>
                 <td className="delete">
                   <DeleteButton {...data} type={type} />
                 </td>

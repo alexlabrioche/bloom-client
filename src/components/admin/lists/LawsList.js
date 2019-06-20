@@ -18,15 +18,16 @@ class LawsList extends React.Component {
     });
   }
 
-  async componentDidUpdate() {
-    const laws = await Api.getLaws();
-    this.setState({
-      laws
-    });
-  }
+  // async componentDidUpdate() {
+  //   const laws = await Api.getLaws();
+  //   this.setState({
+  //     laws
+  //   });
+  // }
 
   render() {
     const { laws } = this.state;
+    console.log("this.state.lawsList");
     return (
       <div>
         <div className="pt-5 container">

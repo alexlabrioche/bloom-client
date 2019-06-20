@@ -29,16 +29,16 @@ class VotesList extends React.Component {
     });
   }
 
-  async componentDidUpdate() {
-    const votes = await Api.getVotes();
-    this.setState({
-      votes
-    });
-  }
+  // async componentDidUpdate() {
+  //   const votes = await Api.getVotes();
+  //   this.setState({
+  //     votes
+  //   });
+  // }
 
   render() {
     const { votes } = this.state;
-    console.log("@Votelist, vote :", votes);
+    console.log("@Votelist");
     return (
       <Container className="table">
         <tbody>

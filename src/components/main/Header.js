@@ -7,8 +7,8 @@ import Api from "../../utils/Api";
 const Container = styled.div`
   .header-title {
     text-align: center;
-    margin-bottom: 5rem;
-    margin-top: 5rem;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
     font-weight: 300;
     color: ${Global.color.accent};
   }
@@ -26,13 +26,16 @@ class Header extends React.Component {
   }
 
   async componentDidMount() {
+    console.log("intro1");
     const intro = await Api.getIntro();
+    console.log("intro2", intro);
     if (intro !== undefined) {
+      console.log("intro3");
       this.setState({
-        title: intro[0].title,
-        paragraph1: intro[0].paragraph1,
-        paragraph2: intro[0].paragraph2,
-        paragraph3: intro[0].paragraph3
+        title: intro.title,
+        paragraph1: intro.paragraph1,
+        paragraph2: intro.paragraph2,
+        paragraph3: intro.paragraph3
       });
     }
   }

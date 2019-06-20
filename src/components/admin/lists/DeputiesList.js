@@ -18,15 +18,16 @@ class DeputiesList extends React.Component {
     });
   }
 
-  async componentDidUpdate() {
-    const deputies = await Api.getDeputies();
-    this.setState({
-      deputies
-    });
-  }
+  // async componentDidUpdate() {
+  //   const deputies = await Api.getDeputies();
+  //   this.setState({
+  //     deputies
+  //   });
+  // }
 
   render() {
     const { deputies } = this.state;
+    console.log("this.state.deputiesList");
     return (
       <div>
         <div className="pt-5 container">

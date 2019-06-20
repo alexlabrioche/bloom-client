@@ -28,6 +28,11 @@ class Api {
     const message = await axios.post(url, deputy).then(res => res.data.msg);
     return message;
   }
+  async updateDeputy(deputy) {
+    const url = `${Config.server}/api/deputies/update`;
+    const message = await axios.post(url, deputy).then(res => res.data.msg);
+    return message;
+  }
 
   // GROUPS
   async getGroup(id) {
@@ -85,6 +90,14 @@ class Api {
   async addParty(party) {
     const url = `${Config.server}/api/parties/add`;
     const message = await axios.post(url, party).then(res => res.data.msg);
+    return message;
+  }
+  async updateParty(party, id) {
+    console.log("@api 1, id", id);
+    const url = `${Config.server}/api/parties/${id}`;
+    console.log("@api 2, url", url);
+    const message = await axios.put(url, party).then(res => res.data.msg);
+    console.log("@api 3");
     return message;
   }
 
@@ -168,7 +181,15 @@ class Api {
   // INTRO
   async getIntro() {
     const url = `${Config.server}/api/intro/`;
-    const intro = await axios.get(url).then(res => res.data.msg);
+    const intro = await axios.get(url).then(res => res.data[0]);
+    console.log("@intro api", intro);
+    return intro;
+  }
+  async updateIntro(id) {
+    console.log("@intro api");
+    const url = `${Config.server}/api/intro/${id}`;
+    const intro = await axios.put(url).then(res => res.data.msg);
+    console.log("@intro api", intro);
     return intro;
   }
 }
