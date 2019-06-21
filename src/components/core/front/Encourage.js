@@ -10,7 +10,7 @@ const Container = styled.div`
   cursor: pointer;
   span {
     font-weight: 700;
-    color: royalblue;
+    color: green;
   }
   .greet-text {
     padding-top: 15px;
@@ -18,7 +18,7 @@ const Container = styled.div`
   }
   .greet-icon {
     font-size: 2rem;
-    color: royalblue;
+    color: green;
     width: 40px;
     height: 40px;
     margin-right: 5px;
@@ -56,17 +56,17 @@ const Container = styled.div`
   }
 `;
 
-class Greet extends React.Component {
+class Encourage extends React.Component {
   render() {
     const { twitter } = this.props;
-    console.log("@ Greet twitter", twitter);
+    console.log("@ Encourage twitter", twitter);
     return (
       <Container>
         <div className="greet-icon">
           <i className="fas fa-bullhorn" />
         </div>
         <a
-          href={`https://twitter.com/share?url=https://europeennes.bloomassociation.org&screen_name=${twitter}&text=Bravo%20pour%20votre%20travail%20acharné%20pour%20protéger%20l'océan!`}
+          href={`https://twitter.com/share?url=https://europeennes.bloomassociation.org&screen_name=${twitter}&text=Encore%un%effort%pour%20pour%20protéger%20l'océan!`}
           className="twitter-mention-button"
           data-show-count="false"
           target="_blank"
@@ -86,4 +86,4 @@ class Greet extends React.Component {
   }
 }
 
-export default Greet;
+export default Encourage;

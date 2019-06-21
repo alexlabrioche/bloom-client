@@ -4,6 +4,7 @@ import { DeputyHeaderContainer } from "./style";
 import { Link } from "react-router-dom";
 
 import Greet from "../core/front/Greet";
+import Encourage from "../core/front/Encourage";
 import Shout from "../core/front/Shout";
 import Gauge from "../core/front/Gauge";
 
@@ -11,9 +12,13 @@ import Config from "../../Config";
 
 class DeputyHeader extends React.Component {
   greetOrShoutDeputy(note, twitter) {
-    if (note >= 50) {
+    if (note >= 70) {
       return <Greet note={note} twitter={twitter} />;
-    } else {
+    }
+    if (note < 70 || note >= 50) {
+      return <Encourage note={note} twitter={twitter} />;
+    }
+    if (note < 50) {
       return <Shout note={note} twitter={twitter} />;
     }
   }
