@@ -73,7 +73,7 @@ class Encourage extends React.Component {
           rel="noopener noreferrer"
         >
           <p className="greet-text">
-            <span> Féliciter </span> sur Twitter : @{twitter}
+            <span> Encourager </span> sur Twitter : @{twitter}
           </p>
         </a>
         <script

@@ -64,7 +64,7 @@ class Shout extends React.Component {
           <i className="fas fa-bullhorn" />
         </div>
         <p className="shout-text">
-          <span> Interpeller </span> sur Twitter :{" "}
+          <span> Secouer </span> sur Twitter :{" "}
           <a
             href={`https://twitter.com/share?url=https://europeennes.bloomassociation.org&screen_name=${twitter}&text=Réveillez-vous!%20Vos%20votes%20détruisent%20la%20biodiversité%20de%20l'océan!`}
             className="twitter-mention-button"
