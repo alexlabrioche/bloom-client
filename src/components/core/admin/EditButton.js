@@ -122,10 +122,9 @@ class EditButton extends React.Component {
     let { image } = this.state;
 
     const newParty = new FormData();
-    if (image === undefined) {
-      image = "no-image";
+    if (image !== undefined) {
+      newParty.append("image", image, image.name);
     }
-    newParty.append("image", image, image.name);
     newParty.append("data", JSON.stringify(formState));
     const id = this.state.itemToUpdate._id;
     console.log("id ", id);
@@ -144,10 +143,9 @@ class EditButton extends React.Component {
     let { image } = this.state;
 
     const newGroup = new FormData();
-    if (image === undefined) {
-      image = "no-image";
+    if (image !== undefined) {
+      newGroup.append("image", image, image.name);
     }
-    newGroup.append("image", image, image.name);
     newGroup.append("data", JSON.stringify(formState));
     // console.log("newGroup", newGroup);
     const id = this.state.itemToUpdate._id;
@@ -199,10 +197,9 @@ class EditButton extends React.Component {
     console.info("formState", formState);
     const newDeputy = new FormData();
     let { image } = this.state;
-    if (image === undefined) {
-      image = "no-image";
+    if (image !== undefined) {
+      newDeputy.append("image", image, image.name);
     }
-    newDeputy.append("image", image, image.name);
     newDeputy.append("data", JSON.stringify(formState));
     const id = this.state.itemToUpdate._id;
     console.log("id ", id);
