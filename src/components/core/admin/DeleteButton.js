@@ -5,6 +5,9 @@ import Api from "../../../utils/Api";
 
 import Global from "../../../Global";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Container = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -27,8 +30,6 @@ class DeleteButton extends React.Component {
   }
 
   async deleteEntry(type, _id) {
-    // const id = this.props.match.params.id;
-    // const type = this.props.match.params.type;
     let itemTodelete = "";
     if (type === "deputy") {
       itemTodelete = await Api.deleteDeputy(_id);

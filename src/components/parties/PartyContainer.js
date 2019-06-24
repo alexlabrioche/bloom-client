@@ -52,6 +52,9 @@ class PartyContainer extends React.Component {
     const slug = this.props.match.params.slug;
     const allDeputies = await Api.getDeputies();
     const deputies = allDeputies.filter(deputy => {
+      if (deputy.party === null) {
+        deputy.party = {};
+      }
       return deputy.party.slug === slug && deputy;
     });
     return deputies;

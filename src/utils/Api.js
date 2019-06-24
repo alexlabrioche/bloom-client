@@ -28,6 +28,11 @@ class Api {
     const message = await axios.post(url, deputy).then(res => res.data.msg);
     return message;
   }
+  async updateDeputy(deputy, id) {
+    const url = `${Config.server}/api/deputies/${id}`;
+    const message = await axios.put(url, deputy).then(res => res.data.msg);
+    return message;
+  }
 
   // GROUPS
   async getGroup(id) {
@@ -59,6 +64,12 @@ class Api {
     return message;
   }
 
+  async updateGroup(group, id) {
+    const url = `${Config.server}/api/groups/${id}`;
+    const message = await axios.put(url, group).then(res => res.data.msg);
+    return message;
+  }
+
   // PARTIES
   async getParty(id) {
     const url = `${Config.server}/api/parties/${id}`;
@@ -66,7 +77,6 @@ class Api {
     return party;
   }
   async getPartyBySlug(slug) {
-    // console.log("@API slug:", slug);
     const url = `${Config.server}/api/parties/slug/${slug}`;
     const party = await axios.get(url).then(party => party.data);
     return party;
@@ -85,6 +95,14 @@ class Api {
   async addParty(party) {
     const url = `${Config.server}/api/parties/add`;
     const message = await axios.post(url, party).then(res => res.data.msg);
+    return message;
+  }
+  async updateParty(party, id) {
+    console.log("@api 1, id", id);
+    const url = `${Config.server}/api/parties/${id}`;
+    console.log("@api 2, url", url);
+    const message = await axios.put(url, party).then(res => res.data.msg);
+    console.log("@api 3");
     return message;
   }
 
@@ -109,6 +127,11 @@ class Api {
     const message = await axios.post(url, law).then(res => res.data.msg);
     return message;
   }
+  async updateLaw(law, id) {
+    const url = `${Config.server}/api/laws/${id}`;
+    const message = await axios.put(url, law).then(res => res.data.msg);
+    return message;
+  }
 
   // CATEGORIES
   async getCategory(id) {
@@ -129,6 +152,11 @@ class Api {
   async addCategory(category) {
     const url = `${Config.server}/api/laws-categories/add`;
     const message = await axios.post(url, category).then(res => res.data.msg);
+    return message;
+  }
+  async updateCategory(category, id) {
+    const url = `${Config.server}/api/laws-categories/${id}`;
+    const message = await axios.put(url, category).then(res => res.data.msg);
     return message;
   }
 
@@ -168,8 +196,14 @@ class Api {
   // INTRO
   async getIntro() {
     const url = `${Config.server}/api/intro/`;
-    const intro = await axios.get(url).then(res => res.data.msg);
+    const intro = await axios.get(url).then(res => res.data[0]);
+    console.log("@intro api", intro);
     return intro;
+  }
+  async updateIntro(intro, id) {
+    const url = `${Config.server}/api/intro/${id}`;
+    const message = await axios.put(url, intro).then(res => res.data.msg);
+    return message;
   }
 }
 

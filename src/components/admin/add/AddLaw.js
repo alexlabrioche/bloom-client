@@ -129,8 +129,7 @@ class AddLaw extends React.Component {
             Date d'entrée en vigueur :
             <DateInput
               field="commencement"
-              showMonthYearPicker
-              dateFormat="MM/yyyy"
+              dateFormat="dd/MM/yyyy"
               className="form-control form-control-sm"
             />
           </Label>

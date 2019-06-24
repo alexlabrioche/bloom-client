@@ -90,7 +90,7 @@ class AddOrEdit extends React.Component {
           <i className="fas fa-user-plus" />
           <p>Ajouter</p>
         </div>
-        <div
+        {/* <div
           className="edit content-container"
           onClick={() =>
             this.setActiveSelector({ add: false, edit: true, delete: false })
@@ -98,7 +98,7 @@ class AddOrEdit extends React.Component {
         >
           <i className="fas fa-edit" />
           <p>Modifier</p>
-        </div>
+        </div> */}
         <div
           className="delete content-container"
           onClick={() =>
@@ -106,7 +106,7 @@ class AddOrEdit extends React.Component {
           }
         >
           <i className="fas fa-trash" />
-          <p>Supprimer</p>
+          <p>Modifier / Supprimer</p>
         </div>
         <div className="logout-button">
           <Logout />

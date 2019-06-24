@@ -59,7 +59,7 @@ const Container = styled.div`
 class Greet extends React.Component {
   render() {
     const { twitter } = this.props;
-    console.log("@ GREET twitter", twitter);
+    console.log("@ Greet twitter", twitter);
     return (
       <Container>
         <div className="greet-icon">

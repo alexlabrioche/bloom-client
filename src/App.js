@@ -25,12 +25,12 @@ import GroupContainer from "./components/groups/GroupContainer";
 // import AddVote from "./components/admin/add/AddVote";
 // import AddLawCategory from "./components/admin/add/AddLawCategory";
 
-// import EditDeputy from "./components/admin/edit/EditDeputy";
-// import EditLaw from "./components/admin/edit/EditLaw";
-// import EditParty from "./components/admin/edit/EditParty";
-// import EditGroup from "./components/admin/edit/EditGroup";
-// import EditVote from "./components/admin/edit/EditVote";
-// import EditLawCategory from "./components/admin/edit/EditLawCategory";
+import EditDeputy from "./components/admin/edit/EditDeputy";
+import EditLaw from "./components/admin/edit/EditLaw";
+import EditParty from "./components/admin/edit/EditParty";
+import EditGroup from "./components/admin/edit/EditGroup";
+import EditVote from "./components/admin/edit/EditVote";
+import EditLawCategory from "./components/admin/edit/EditLawCategory";
 
 // import DeputiesList from "./components/admin/lists/DeputiesList";
 // import PartiesList from "./components/admin/lists/PartiesList";
@@ -66,8 +66,8 @@ class App extends React.Component {
           <Route exact path="/admin" component={Login} />
 
           {/* J'ai envie d'enlever toutes ces routes mais j'attends ta confirmation pour le faire */}
-          {/* 
-          <Route exact path="/admin/deputes" component={DeputiesList} />
+
+          {/* <Route exact path="/admin/deputes" component={DeputiesList} />
           <Route exact path="/admin/partis" component={PartiesList} />
           <Route exact path="/admin/groupes" component={GroupsList} />
           <Route exact path="/admin/votes" component={VotesList} />
@@ -84,26 +84,18 @@ class App extends React.Component {
             path="/admin/ajouter/categorie"
             component={AddLawCategory}
           />
-          <Route exact path="/admin/ajouter/vote" component={AddVote} />
+          <Route exact path="/admin/ajouter/vote" component={AddVote} /> */}
 
+          <Route exact path="/admin/edit/deputy/:id" component={EditDeputy} />
+          <Route exact path="/admin/edit/law/:id" component={EditLaw} />
+          <Route exact path="/admin/edit/party/:id" component={EditParty} />
+          <Route exact path="/admin/edit/group/:id" component={EditGroup} />
           <Route
             exact
-            path="/admin/modifier/depute/:id"
-            component={EditDeputy}
-          />
-          <Route exact path="/admin/modifier/loi/:id" component={EditLaw} />
-          <Route exact path="/admin/modifier/parti/:id" component={EditParty} />
-          <Route
-            exact
-            path="/admin/modifier/groupe/:id"
-            component={EditGroup}
-          />
-          <Route
-            exact
-            path="/admin/modifier/categorie/:id"
+            path="/admin/edit/lawcategory/:id"
             component={EditLawCategory}
           />
-          <Route exact path="/admin/modifier/vote/:id" component={EditVote} /> */}
+          <Route exact path="/admin/edit/vote/:id" component={EditVote} />
           {/* <Route exact path="/admin/supprimer/:type/:id" component={Delete} /> */}
 
           <Footer />

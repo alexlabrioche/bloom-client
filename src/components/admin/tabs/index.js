@@ -15,6 +15,14 @@ import AddLawCategory from "../add/AddLawCategory";
 import AddParty from "../add/AddParty";
 import AddVote from "../add/AddVote";
 
+import EditDeputy from "../edit/EditDeputy";
+import EditGroup from "../edit/EditDeputy";
+import EditLaw from "../edit/EditLaw";
+import EditLawCategory from "../edit/EditLawCategory";
+import EditParty from "../edit/EditParty";
+import EditVote from "../edit/EditVote";
+import EditIntro from "../edit/EditIntro";
+
 import Selector from "./Selector";
 import TabulationBar from "./TabulationBar";
 
@@ -65,9 +73,16 @@ class Create extends React.Component {
     );
   }
   renderEdit() {
+    const { activeTab } = this.state;
     return (
       <div className="pt-5 container display-3" style={{ textAlign: "center" }}>
-        Bientôt disponible
+        {activeTab === "deputies" && <EditDeputy />}
+        {activeTab === "laws" && <EditLaw />}
+        {activeTab === "categories" && <EditLawCategory />}
+        {activeTab === "parties" && <EditParty />}
+        {activeTab === "groups" && <EditGroup />}
+        {activeTab === "votes" && <EditVote />}
+        {activeTab === "intro" && <EditIntro />}
       </div>
     );
   }
@@ -82,6 +97,7 @@ class Create extends React.Component {
         {activeTab === "parties" && <PartiesList />}
         {activeTab === "groups" && <GroupsList />}
         {activeTab === "votes" && <VotesList />}
+        {activeTab === "intro" && <EditIntro />}
       </div>
     );
   }
