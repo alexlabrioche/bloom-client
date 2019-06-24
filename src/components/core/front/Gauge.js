@@ -14,14 +14,21 @@ class Gauge extends React.Component {
   componentDidMount() {
     console.log("#cmpDM GAUGE this.props.finalNote", this.props.finalNote);
     console.log("#cmpDM GAUGE this.props.finalNote", this.state.value);
+    let finalNote = this.props.finalNote;
+    if (isNaN(finalNote)) {
+      return (finalNote = 0);
+    }
     this.setState({
-      value: parseInt(this.props.finalNote)
+      value: parseInt(finalNote)
     });
   }
 
   componentDidUpdate() {
     const currentNote = this.state.value;
-    const newNote = this.props.finalNote;
+    let newNote = this.props.finalNote;
+    if (isNaN(newNote)) {
+      return (newNote = 0);
+    }
     console.log("GAUGE cmpDU currentNote", currentNote);
     console.log("GAUGE cmpDU newNote", newNote);
     if (newNote !== currentNote) {

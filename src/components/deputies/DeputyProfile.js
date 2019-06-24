@@ -15,7 +15,7 @@ class DeputyProfile extends React.Component {
         <DeputyHeader deputy={deputy} finalNote={finalNote} />
         <DeputyNotationDetail />
         {categories.length > 0 && (
-          <CollapseCategories categories={categories} />
+          <CollapseCategories categories={categories} votes={votes} />
         )}
         <div className="main-content container">
           <div className="row">
