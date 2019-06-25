@@ -21,14 +21,17 @@ class DeputiesList extends React.Component {
 
   render() {
     const { deputies, mobileView } = this.props;
+    console.info("deputiesLIST", deputies);
     return (
       <div>
         <div className="row">
-          {deputies.map((deputy, index) => {
-            return mobileView
-              ? this.renderMobile(deputy, index)
-              : this.renderDesktop(deputy, index);
-          })}
+          {deputies
+            .sort((a, b) => a.surname.localeCompare(b.surname)) // SORTING BY SURNAME BY DEFAULT //////////
+            .map((deputy, index) => {
+              return mobileView
+                ? this.renderMobile(deputy, index)
+                : this.renderDesktop(deputy, index);
+            })}
         </div>
       </div>
     );

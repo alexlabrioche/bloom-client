@@ -64,3 +64,53 @@ export const DeputyHeaderContainer = styled.div`
     margin-top: -20px;
   }
 `;
+
+export const DeputyCardContainer = styled.div`
+  transition: 0.3s ease;
+  &:hover {
+    transform: scale(1.01);
+    box-shadow: 2px 2px 4px 0px rgba(230, 230, 230, 1);
+  }
+  .link {
+    color: ${Global.color.body};
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  .card-img-top {
+    height: 10rem;
+    object-fit: cover;
+  }
+  .card-body {
+    height: 8rem;
+    overflow: auto;
+  }
+  .card-title {
+    height: 3rem;
+    font-size: 1.3rem;
+    text-align: center;
+  }
+  .card-text {
+    color: ${Global.color.primary};
+    text-align: center;
+    font-size: 0.8rem;
+  }
+  .card-note {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 400;
+  }
+  .footer {
+    text-align: right;
+    background: white;
+    padding: 0.6rem;
+    color: ${Global.color.disabled};
+    transition: 0.2s ease;
+    .footer-icon {
+      margin-left: 0.5rem;
+    }
+    &:hover {
+      color: ${Global.color.accent};
+    }
+  }
+`;

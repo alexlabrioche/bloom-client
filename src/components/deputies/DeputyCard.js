@@ -5,57 +5,7 @@ import Config from "../../Config";
 import Global from "../../Global";
 import Note from "../core/front/Note";
 
-// import
-
-const Container = styled.div`
-  transition: 0.3s ease;
-  &:hover {
-    transform: scale(1.01);
-    box-shadow: 2px 2px 4px 0px rgba(230, 230, 230, 1);
-  }
-  .link {
-    color: ${Global.color.body};
-    &:hover {
-      text-decoration: none;
-    }
-  }
-  .card-img-top {
-    height: 12rem;
-    object-fit: cover;
-  }
-  .card-body {
-    height: 8rem;
-    overflow: auto;
-  }
-  .card-title {
-    height: 3rem;
-    font-size: 1.5rem;
-    text-align: center;
-  }
-  .card-text {
-    color: ${Global.color.primary};
-    text-align: center;
-    font-size: 0.8rem;
-  }
-  .card-note {
-    text-align: center;
-    font-size: 36px;
-    font-weight: 400;
-  }
-  .footer {
-    text-align: right;
-    background: white;
-    padding: 0.6rem;
-    color: ${Global.color.disabled};
-    transition: 0.2s ease;
-    .footer-icon {
-      margin-left: 0.5rem;
-    }
-    &:hover {
-      color: ${Global.color.accent};
-    }
-  }
-`;
+import { DeputyCardContainer } from "./style";
 
 function DeputyCard(props) {
   const { name, slug, picture, _id, party } = props;
@@ -64,7 +14,7 @@ function DeputyCard(props) {
     deputyParty = party.name;
   }
   return (
-    <Container className="card">
+    <DeputyCardContainer className="card">
       <Link to={`/depute/${slug}`} className="link">
         <img
           className="card-img-top"
@@ -78,14 +28,14 @@ function DeputyCard(props) {
         <div className="card-note">
           <Note _id={_id} />
         </div>
-        <div className="footer">
+        {/* <div className="footer">
           <small>
             Plus d'infos
             <i className="footer-icon fas fa-user" />
           </small>
-        </div>
+        </div> */}
       </Link>
-    </Container>
+    </DeputyCardContainer>
   );
 }
 
