@@ -15,12 +15,22 @@ class CategoriesList extends React.Component {
       categories
     });
   }
-  // async componentDidUpdate() {
-  //   const categories = await Api.getCategories();
-  //   this.setState({
-  //     categories
-  //   });
-  // }
+  async componentDidUpdate(prevProps, prevState) {
+    console.log("prevState.categories", prevState.categories);
+    console.log("this.state.categories", this.state.categories);
+    if (prevState.categories === this.state.categories) {
+      console.log("SAME SAME");
+    }
+    if (prevState.categories !== this.state.categories) {
+      console.log("<< prevState and this.state are different");
+      const categories = await Api.getCategories();
+      this.setState({
+        categories
+      });
+    } else {
+      console.log(">> no change in the state");
+    }
+  }
 
   render() {
     const { categories } = this.state;
