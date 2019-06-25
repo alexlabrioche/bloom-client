@@ -25,10 +25,18 @@ class List extends React.Component {
                 <th scope="row">{index + 1}</th>
                 <td>{data.name}</td>
                 <td className="edit">
-                  <EditButton {...data} type={type} />
+                  <EditButton
+                    {...data}
+                    type={type}
+                    onCLick={this.props.onCLick}
+                  />
                 </td>
                 <td className="delete">
-                  <DeleteButton {...data} type={type} />
+                  <DeleteButton
+                    {...data}
+                    type={type}
+                    deleteEntry={this.props.deleteEntry}
+                  />
                 </td>
               </tr>
             );
