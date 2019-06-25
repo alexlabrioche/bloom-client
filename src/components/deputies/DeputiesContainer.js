@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import Api from "../../utils/Api";
+// import getGrade from "../../utils/GetGrade";
 
 import Header from "../main/Header";
 import DeputiesList from "./DeputiesList";

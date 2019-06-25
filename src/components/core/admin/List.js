@@ -15,7 +15,7 @@ const Container = styled.table`
 
 class List extends React.Component {
   render() {
-    const { data, type } = this.props;
+    const { data, type, deleteEntry } = this.props;
     return (
       <Container className="table">
         <tbody>
@@ -32,11 +32,7 @@ class List extends React.Component {
                   />
                 </td>
                 <td className="delete">
-                  <DeleteButton
-                    {...data}
-                    type={type}
-                    deleteEntry={this.props.deleteEntry}
-                  />
+                  <DeleteButton id={data._id} deleteEntry={deleteEntry} />
                 </td>
               </tr>
             );

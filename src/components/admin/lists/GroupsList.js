@@ -10,6 +10,7 @@ class GroupsList extends React.Component {
     this.state = {
       groups: []
     };
+    this.deleteEntry = this.deleteEntry.bind(this);
   }
 
   async componentDidMount() {
@@ -19,12 +20,15 @@ class GroupsList extends React.Component {
     });
   }
 
-  // async componentDidUpdate() {
-  //   const groups = await Api.getGroups();
-  //   this.setState({
-  //     groups
-  //   });
-  // }
+  async deleteEntry(id) {
+    const itemTodelete = await Api.deleteGroup(id);
+    const groups = await Api.getGroups();
+    const message = itemTodelete.msg;
+    this.setState({
+      message,
+      groups
+    });
+  }
 
   render() {
     const { groups } = this.state;
@@ -32,7 +36,7 @@ class GroupsList extends React.Component {
     return (
       <div>
         <div className="pt-5 container">
-          <List data={groups} type="group" />
+          <List data={groups} deleteEntry={this.deleteEntry} />
         </div>
       </div>
     );

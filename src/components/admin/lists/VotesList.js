@@ -20,6 +20,7 @@ class VotesList extends React.Component {
     this.state = {
       votes: []
     };
+    this.deleteEntry = this.deleteEntry.bind(this);
   }
 
   async componentDidMount() {
@@ -29,12 +30,15 @@ class VotesList extends React.Component {
     });
   }
 
-  // async componentDidUpdate() {
-  //   const votes = await Api.getVotes();
-  //   this.setState({
-  //     votes
-  //   });
-  // }
+  async deleteEntry(id) {
+    const itemTodelete = await Api.deleteVote(id);
+    const votes = await Api.getVotes();
+    const message = itemTodelete.msg;
+    this.setState({
+      message,
+      votes
+    });
+  }
 
   render() {
     const { votes } = this.state;
@@ -51,7 +55,7 @@ class VotesList extends React.Component {
                 <td>{data.decision}</td>
                 <td>{data.law.slug}</td>
                 <td className="delete">
-                  <DeleteButton {...data} type="vote" notify={this.notify} />
+                  <DeleteButton id={data._id} deleteEntry={this.deleteEntry} />
                 </td>
               </tr>
             );

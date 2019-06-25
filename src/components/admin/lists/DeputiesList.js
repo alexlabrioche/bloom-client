@@ -9,6 +9,7 @@ class DeputiesList extends React.Component {
     this.state = {
       deputies: []
     };
+    this.deleteEntry = this.deleteEntry.bind(this);
   }
 
   async componentDidMount() {
@@ -17,13 +18,15 @@ class DeputiesList extends React.Component {
       deputies
     });
   }
-
-  // async componentDidUpdate() {
-  //   const deputies = await Api.getDeputies();
-  //   this.setState({
-  //     deputies
-  //   });
-  // }
+  async deleteEntry(id) {
+    const itemTodelete = await Api.deleteDeputy(id);
+    const deputies = await Api.getDeputies();
+    const message = itemTodelete.msg;
+    this.setState({
+      message,
+      deputies
+    });
+  }
 
   render() {
     const { deputies } = this.state;
@@ -31,7 +34,7 @@ class DeputiesList extends React.Component {
     return (
       <div>
         <div className="pt-5 container">
-          <List data={deputies} type="deputy" />
+          <List data={deputies} deleteEntry={this.deleteEntry} />
         </div>
       </div>
     );

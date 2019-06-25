@@ -22,49 +22,14 @@ const Container = styled.div`
   }
 `;
 class DeleteButton extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     message: ""
-  //   };
-  // }
-
-  // async deleteEntry(type, _id) {
-  //   let itemTodelete = "";
-  //   if (type === "deputy") {
-  //     itemTodelete = await Api.deleteDeputy(_id);
-  //   }
-  //   if (type === "group") {
-  //     itemTodelete = await Api.deleteGroup(_id);
-  //   }
-  //   if (type === "party") {
-  //     itemTodelete = await Api.deleteParty(_id);
-  //   }
-  //   if (type === "category") {
-  //     itemTodelete = await Api.deleteCategory(_id);
-  //   }
-  //   if (type === "law") {
-  //     itemTodelete = await Api.deleteLaw(_id);
-  //   }
-  //   if (type === "vote") {
-  //     itemTodelete = await Api.deleteVote(_id);
-  //   }
-  //   const message = itemTodelete.msg;
-  //   console.info("itemTodelete", itemTodelete);
-  //   this.setState({
-  //     message
-  //   });
-  // }
-
   render() {
-    const { _id, type, deleteEntry } = this.props;
-    // console.log("@ DeleteButton this.props", this.props);
+    const { id, deleteEntry } = this.props;
     return (
       <Container>
         <button
           className="btn"
           onClick={() => {
-            deleteEntry(type, _id);
+            deleteEntry(id);
           }}
         >
           <i className="far fa-trash-alt" />

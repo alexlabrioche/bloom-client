@@ -9,6 +9,7 @@ class LawsList extends React.Component {
     this.state = {
       laws: []
     };
+    this.deleteEntry = this.deleteEntry.bind(this);
   }
 
   async componentDidMount() {
@@ -18,12 +19,15 @@ class LawsList extends React.Component {
     });
   }
 
-  // async componentDidUpdate() {
-  //   const laws = await Api.getLaws();
-  //   this.setState({
-  //     laws
-  //   });
-  // }
+  async deleteEntry(id) {
+    const itemTodelete = await Api.deleteLaw(id);
+    const laws = await Api.getLaws();
+    const message = itemTodelete.msg;
+    this.setState({
+      message,
+      laws
+    });
+  }
 
   render() {
     const { laws } = this.state;
@@ -31,7 +35,7 @@ class LawsList extends React.Component {
     return (
       <div>
         <div className="pt-5 container">
-          <List data={laws} type="law" />
+          <List data={laws} deleteEntry={this.deleteEntry} />
         </div>
       </div>
     );
