@@ -15,7 +15,7 @@ const Container = styled.table`
 
 class List extends React.Component {
   render() {
-    const { data, type, deleteEntry } = this.props;
+    const { data, type, deleteEntry, editEntry } = this.props;
     return (
       <Container className="table">
         <tbody>
@@ -25,11 +25,7 @@ class List extends React.Component {
                 <th scope="row">{index + 1}</th>
                 <td>{data.name}</td>
                 <td className="edit">
-                  <EditButton
-                    {...data}
-                    type={type}
-                    onCLick={this.props.onCLick}
-                  />
+                  <EditButton {...data} type={type} onCLick={editEntry} />
                 </td>
                 <td className="delete">
                   <DeleteButton id={data._id} deleteEntry={deleteEntry} />
