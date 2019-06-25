@@ -3,6 +3,7 @@ import "rc-collapse/assets/index.css";
 import Collapse, { Panel } from "rc-collapse";
 import styled from "styled-components";
 import Global from "../../Global";
+import FlipCard from "./FlipCard";
 
 const CollapseContainer = styled.div`
   .rc-collapse {
@@ -43,6 +44,7 @@ class CollapseCategories extends React.Component {
   };
 
   getItems(categories) {
+    const { votes } = this.props;
     if (categories.length >= 1) {
       const collapseItems = categories.map((category, index) => {
         const items = [];
@@ -51,6 +53,10 @@ class CollapseCategories extends React.Component {
           <Panel className="panel" header={`${category.name}`} key={key}>
             <p className="rc-collapse-header__description">
               {category.description || ""}
+              {votes.map(vote => {
+                console.info("Collapse vote ID", vote._id);
+                console.info("Collapse category ID", category._id);
+              })}
             </p>
           </Panel>
         );

@@ -25,6 +25,7 @@ class DeputyContainer extends React.Component {
     const categories = await Api.getCategories();
     console.info("all categories", categories);
     // const laws = await this.getLawsFromCurrentDeputy(votes);
+    // console.info("laws from current deputy", laws);
     const id = deputy._id;
     this.setState({
       categories,
@@ -32,7 +33,11 @@ class DeputyContainer extends React.Component {
       votes,
       isLoading: false
     });
-    const finalNote = GetGrade(id, votes, 100);
+    let finalNote = GetGrade(id, votes, 100);
+    if (isNaN(finalNote)) {
+      return (finalNote = 0);
+    }
+    console.info("cmpDM DeputyContainer finalNote", finalNote);
     this.setState({
       finalNote
     });
@@ -45,7 +50,10 @@ class DeputyContainer extends React.Component {
     if (slug !== currentSlug) {
       const deputy = await Api.getDeputyBySlug(slug);
       const id = deputy._id;
-      const finalNote = GetGrade(id, votes, 100);
+      let finalNote = GetGrade(id, votes, 100);
+      if (isNaN(finalNote)) {
+        return (finalNote = 0);
+      }
       this.setState({
         isLoading: false,
         finalNote,
@@ -67,12 +75,21 @@ class DeputyContainer extends React.Component {
   // async getLawsFromCurrentDeputy(votes) {
   //   console.info("#deputyCNTR votes", votes);
   //   const allLaws = await Api.getLaws();
-  //   console.info("#deputyCNTR laws", allLaws);
-  //   // const laws = allLaws.filter(law => {
-  //   //   return law
-  //   // })
-  //   // const allCategories = await Api.getCategories();
-  //   // console.info("#deputyCNTR categories", allCategories);
+  //   console.info("#deputyCNTR ALL laws", allLaws);
+  //   let currentLaws = [];
+  //   const x = allLaws.forEach(law => {
+  //     console.info(law._id);
+  //     votes.forEach(vote => {
+  //       console.info("forEach vote", vote._id);
+  //       if (vote._id === law._id) {
+  //         currentLaws.push(law);
+  //       }
+  //     });
+  //   });
+  //   console.info("#deputy X", x);
+  //   console.info("#deputy currentLaws", currentLaws);
+  //   const allCategories = await Api.getCategories();
+  //   console.info("#deputyCNTR categories", allCategories);
   // }
 
   render() {
