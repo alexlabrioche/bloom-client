@@ -36,7 +36,7 @@ class GroupsList extends React.Component {
     return (
       <div>
         <div className="pt-5 container">
-          <List data={groups} deleteEntry={this.deleteEntry} />
+          <List data={groups} deleteEntry={this.deleteEntry} type="group" />
         </div>
       </div>
     );

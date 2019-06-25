@@ -61,7 +61,11 @@ class CategoriesList extends React.Component {
     return (
       <div>
         <div className="pt-5 container">
-          <List data={categories} deleteEntry={this.deleteEntry} />
+          <List
+            data={categories}
+            deleteEntry={this.deleteEntry}
+            type="category"
+          />
         </div>
       </div>
     );

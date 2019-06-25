@@ -35,7 +35,7 @@ class LawsList extends React.Component {
     return (
       <div>
         <div className="pt-5 container">
-          <List data={laws} deleteEntry={this.deleteEntry} />
+          <List data={laws} deleteEntry={this.deleteEntry} type="law" />
         </div>
       </div>
     );

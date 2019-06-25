@@ -10,7 +10,7 @@ class DeputiesList extends React.Component {
       deputies: []
     };
     this.deleteEntry = this.deleteEntry.bind(this);
-    this.editEntry = this.editEntry.bind(this);
+    // this.editEntry = this.editEntry.bind(this);
   }
 
   async componentDidMount() {
@@ -28,9 +28,9 @@ class DeputiesList extends React.Component {
       deputies
     });
   }
-  editEntry() {
-    console.info("CLICKED editEntry DEPUTIESLIST");
-  }
+  // editEntry() {
+  //   console.info("CLICKED editEntry DEPUTIESLIST");
+  // }
 
   render() {
     const { deputies } = this.state;
@@ -41,7 +41,7 @@ class DeputiesList extends React.Component {
           <List
             data={deputies}
             deleteEntry={this.deleteEntry}
-            editEntry={this.editEntry}
+            // editEntry={this.editEntry}
             type="deputy"
           />
         </div>

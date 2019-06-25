@@ -36,7 +36,7 @@ class PartiesList extends React.Component {
     return (
       <div>
         <div className="pt-5 container">
-          <List data={parties} deleteEntry={this.deleteEntry} />
+          <List data={parties} deleteEntry={this.deleteEntry} type="party" />
         </div>
       </div>
     );
