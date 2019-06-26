@@ -1,26 +1,9 @@
 import React from "react";
-import "rc-collapse/assets/index.css";
 import Collapse, { Panel } from "rc-collapse";
-import styled from "styled-components";
-import Global from "../../Global";
-import FlipCard from "./FlipCard";
+import "rc-collapse/assets/index.css";
 
-const CollapseContainer = styled.div`
-  .rc-collapse {
-    border: none;
-  }
-  .rc-collapse-header {
-    background: ${Global.color.lightBackground};
-    color: ${Global.color.primary} !important;
-    font-size: 1.3rem;
-    padding: 32px 0px 16px 10px !important;
-  }
-  .rc-collapse-header__description {
-    text-align: center;
-    width: 100%;
-    padding-bottom: 1rem;
-  }
-`;
+import FlipCard from "./FlipCard";
+import { CollapseContainer } from "./styles";
 
 class CollapseCategories extends React.Component {
   state = {
@@ -43,21 +26,29 @@ class CollapseCategories extends React.Component {
     });
   };
 
-  getItems(categories) {
-    const { votes } = this.props;
+  getItems(categories, votes) {
     if (categories.length >= 1) {
       const collapseItems = categories.map((category, index) => {
         const items = [];
+        const flipCardsContainer = [];
+        votes.forEach((vote, index) => {
+          if (vote.law.category === category._id) {
+            flipCardsContainer.push({ ...vote });
+          }
+        });
         const key = index;
         items.push(
           <Panel className="panel" header={`${category.name}`} key={key}>
             <p className="rc-collapse-header__description">
               {category.description || ""}
-              {votes.map(vote => {
-                console.info("Collapse vote ID", vote._id);
-                console.info("Collapse category ID", category._id);
-              })}
             </p>
+            <div className="row">
+              {flipCardsContainer.map((cardContent, index) => (
+                <div className="mt-3 col-md-6 col-lg-4" key={index}>
+                  <FlipCard {...cardContent} />
+                </div>
+              ))}
+            </div>
           </Panel>
         );
         return items;
@@ -74,8 +65,7 @@ class CollapseCategories extends React.Component {
 
   render() {
     const { accordion, activeKey } = this.state;
-    const { categories } = this.props;
-    console.info("activeKey", activeKey);
+    const { categories, votes } = this.props;
     return (
       <CollapseContainer style={{ width: "100%" }}>
         <Collapse
@@ -83,7 +73,7 @@ class CollapseCategories extends React.Component {
           onChange={this.onChange}
           activeKey={activeKey}
         >
-          {this.getItems(categories)}
+          {this.getItems(categories, votes)}
         </Collapse>
       </CollapseContainer>
     );

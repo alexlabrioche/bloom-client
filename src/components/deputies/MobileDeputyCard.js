@@ -5,44 +5,13 @@ import Config from "../../Config";
 import Global from "../../Global";
 import Note from "../core/front/Note";
 
-const Container = styled.div`
-  border: none;
-  height: 7rem;
-  .link {
-    color: ${Global.color.body};
-    &:hover {
-      text-decoration: none;
-    }
-  }
-  .card-title {
-    padding-top: 0.5rem;
-    align-self: center;
-  }
-  .card-img {
-    border-radius: 10px;
-    padding: 0.5rem;
-    object-fit: cover;
-
-    height: 7rem;
-  }
-  .card-img-container {
-  }
-  .card-text {
-    color: ${Global.color.primary};
-    /* text-align: center; */
-    font-size: 0.8rem;
-  }
-  .note-container {
-    align-self: center;
-    font-size: 20px;
-  }
-`;
+import { MobileDeputyCardContainer } from "./styles";
 
 function MobilePictureCard(props) {
   const { name, slug, picture, _id, party } = props;
   // console.log("@Mobile props", props);
   return (
-    <Container className="card">
+    <MobileDeputyCardContainer className="card">
       <Link to={`/depute/${slug}`} className="link">
         <div className="row no-gutters">
           <div className="card-img-container col-4">
@@ -63,7 +32,7 @@ function MobilePictureCard(props) {
           </div>
         </div>
       </Link>
-    </Container>
+    </MobileDeputyCardContainer>
   );
 }
 

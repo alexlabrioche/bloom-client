@@ -1,5 +1,5 @@
 import React from "react";
-import { DeputyHeaderContainer } from "./style";
+import { DeputyHeaderContainer } from "./styles";
 
 import { Link } from "react-router-dom";
 

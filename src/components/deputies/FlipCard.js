@@ -28,7 +28,7 @@ const CardStyle = styled.div`
     align-items: center;
     h5 {
       color: #444;
-      font-size: 2rem;
+      font-size: 1.6rem;
       height: 8rem;
       text-align: center;
     }

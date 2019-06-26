@@ -5,7 +5,7 @@ import Config from "../../Config";
 import Global from "../../Global";
 import Note from "../core/front/Note";
 
-import { DeputyCardContainer } from "./style";
+import { DeputyCardContainer } from "./styles";
 
 function DeputyCard(props) {
   const { name, slug, picture, _id, party } = props;

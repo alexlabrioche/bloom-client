@@ -10,7 +10,10 @@ const Global = {
     secondAccent: "#5973e8",
     background: "#F9F9F9",
     lightBackground: "#FFF",
-    disabled: "#CCC"
+    disabled: "#CCC",
+    protect: "#42ad2e",
+    absence: "#696E77",
+    destruct: "#fe4f4a"
   },
   font: {
     primary: "Ubuntu",

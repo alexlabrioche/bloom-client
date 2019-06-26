@@ -7,28 +7,27 @@ export const ProfileContainer = styled.div`
   background: white;
   border-radius: 4px;
   border: 1px solid rgba(230, 230, 230, 1);
-  .main-content {
-    padding-bottom: 15rem;
-  }
   .legend {
-    margin-top: 20px;
-    margin-bottom: -15px;
+    margin-top: 1.2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bold;
   }
   .legend-title {
     margin-left: 20px;
   }
   .legend-content {
     margin-top: 4px;
-    /* margin-right: 15px; */
   }
   .protect {
-    color: #42ad2e;
+    color: ${Global.color.protect};
   }
   .absence {
-    color: grey;
+    color: ${Global.color.absence};
   }
   .destruct {
-    color: #fe4f4a;
+    color: ${Global.color.destruct};
   }
 `;
 
@@ -112,5 +111,55 @@ export const DeputyCardContainer = styled.div`
     &:hover {
       color: ${Global.color.accent};
     }
+  }
+`;
+
+export const CollapseContainer = styled.div`
+  .rc-collapse {
+    border: none;
+  }
+  .rc-collapse-header {
+    background: ${Global.color.lightBackground};
+    color: ${Global.color.primary} !important;
+    font-size: 1.6rem;
+    padding: 32px 0px 0px 10px !important;
+  }
+  .rc-collapse-header__description {
+    text-align: center;
+    width: 100%;
+    padding-bottom: 1rem;
+  }
+`;
+
+export const MobileDeputyCardContainer = styled.div`
+  border: none;
+  height: 7rem;
+  .link {
+    color: ${Global.color.body};
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  .card-title {
+    padding-top: 0.5rem;
+    align-self: center;
+  }
+  .card-img {
+    border-radius: 10px;
+    padding: 0.5rem;
+    object-fit: cover;
+
+    height: 7rem;
+  }
+  .card-img-container {
+  }
+  .card-text {
+    color: ${Global.color.primary};
+    /* text-align: center; */
+    font-size: 0.8rem;
+  }
+  .note-container {
+    align-self: center;
+    font-size: 20px;
   }
 `;

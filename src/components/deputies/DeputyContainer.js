@@ -72,26 +72,6 @@ class DeputyContainer extends React.Component {
     return votes;
   }
 
-  // async getLawsFromCurrentDeputy(votes) {
-  //   console.info("#deputyCNTR votes", votes);
-  //   const allLaws = await Api.getLaws();
-  //   console.info("#deputyCNTR ALL laws", allLaws);
-  //   let currentLaws = [];
-  //   const x = allLaws.forEach(law => {
-  //     console.info(law._id);
-  //     votes.forEach(vote => {
-  //       console.info("forEach vote", vote._id);
-  //       if (vote._id === law._id) {
-  //         currentLaws.push(law);
-  //       }
-  //     });
-  //   });
-  //   console.info("#deputy X", x);
-  //   console.info("#deputy currentLaws", currentLaws);
-  //   const allCategories = await Api.getCategories();
-  //   console.info("#deputyCNTR categories", allCategories);
-  // }
-
   render() {
     const { deputy, isLoading } = this.state;
     if (deputy.group === null) {
