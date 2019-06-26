@@ -25,13 +25,13 @@ class DeputiesList extends React.Component {
     return (
       <div>
         <div className="row">
-          {deputies
+          {/* {deputies
             .sort((a, b) => a.surname.localeCompare(b.surname)) // SORTING BY SURNAME BY DEFAULT //////////
             .map((deputy, index) => {
               return mobileView
                 ? this.renderMobile(deputy, index)
                 : this.renderDesktop(deputy, index);
-            })}
+            })} */}
         </div>
       </div>
     );

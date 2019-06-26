@@ -40,6 +40,7 @@ import EditLawCategory from "./components/admin/edit/EditLawCategory";
 // import CategoriesList from "./components/admin/lists/CategoriesList";
 
 import Login from "./components/admin/auth/Login";
+import Methode from "../src/components/main/Methode";
 
 const AppContainer = styled.div`
   color: ${Global.color.body};
@@ -61,6 +62,7 @@ class App extends React.Component {
           <Route exact path="/parti/:slug" component={PartyContainer} />
           {/* <Route exact path="/groupes" component={GroupsContainer} /> */}
           <Route exact path="/groupe/:slug" component={GroupContainer} />
+          <Route exact path="/methode" component={Methode} />
 
           {/********** ADMIN ROUTES **********/}
           <Route exact path="/admin" component={Login} />

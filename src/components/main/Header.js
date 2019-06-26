@@ -3,6 +3,8 @@ import styled from "styled-components";
 import Global from "../../Global";
 import ShowMore from "react-show-more";
 import Api from "../../utils/Api";
+import Methode from "./Methode";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   .header-title {
@@ -52,7 +54,8 @@ class Header extends React.Component {
             <p>{paragraph2}</p>
             <p>{paragraph3}</p>
             <p>
-              Pour en savoir plus sur la méthode <a>cliquez ici</a>
+              Pour en savoir plus sur la méthode{" "}
+              <Link to="/methode">cliquez ici</Link>
             </p>
           </ShowMore>
         </div>
