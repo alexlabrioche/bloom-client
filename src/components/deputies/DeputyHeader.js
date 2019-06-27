@@ -1,14 +1,18 @@
 import React from "react";
-import { DeputyHeaderContainer } from "./styles";
-
+import styled from "styled-components";
+import { DeputyHeaderStyles } from "./styles";
 import { Link } from "react-router-dom";
 
-import Greet from "../core/front/Greet";
+import Greet from "../core/front/GreetV2";
 import Encourage from "../core/front/Encourage";
 import Shout from "../core/front/Shout";
 import Gauge from "../core/front/Gauge";
 
 import Config from "../../Config";
+
+const DeputyHeaderContainer = styled.div`
+  ${DeputyHeaderStyles};
+`;
 
 class DeputyHeader extends React.Component {
   greetOrShoutDeputy(note, twitter) {
@@ -25,13 +29,17 @@ class DeputyHeader extends React.Component {
   }
 
   render() {
-    const { deputy, finalNote } = this.props;
-    console.log("@DEPUTY HEADER deputy.twitter", deputy.twitter);
+    const { deputy, finalNote, isScrolled } = this.props;
     return (
-      <DeputyHeaderContainer>
+      <DeputyHeaderContainer isScrolled={isScrolled}>
+        <div className="header-title row">{deputy.name}</div>
+        <div className="offset-3 col-6">
+          {this.greetOrShoutDeputy(finalNote, deputy.twitter)}
+        </div>
+
         <div className="header row">
           <div className="offset-2 col-4 offset-lg-0 col-lg-3">
-            <div className="header-img-container ">
+            <div className="header-img-container">
               <img
                 className="header-img"
                 src={`${Config.server}/${deputy.picture}`}
@@ -41,38 +49,33 @@ class DeputyHeader extends React.Component {
           </div>
           <div className="col-12 col-lg-6">
             <div className="header-content">
-              <div className="header-title">{deputy.name}</div>
-
               {deputy.group !== undefined && (
-                <p className="scrolled header-description">
-                  Groupe au Parlement Européen :{" "}
-                  <Link to={`/groupe/${deputy.group.slug}`}>
+                <p>
+                  <Link
+                    className="header-link"
+                    to={`/groupe/${deputy.group.slug}`}
+                  >
                     {deputy.group.name}
                   </Link>
                 </p>
               )}
-
+              <br />
               {deputy.party !== undefined && (
-                <p className="scrolled header-description">
-                  Parti National :{" "}
-                  <Link to={`/parti/${deputy.party.slug}`}>
+                <p>
+                  <Link
+                    className="header-link"
+                    to={`/parti/${deputy.party.slug}`}
+                  >
                     {deputy.party.name}
                   </Link>
                 </p>
               )}
-
-              <p className="scrolled header-description">
-                {deputy.description}
-              </p>
-              <div className="scrolled">
-                {this.greetOrShoutDeputy(finalNote, deputy.twitter)}
-              </div>
             </div>
           </div>
           <div className="offset-3 offset-lg-0 col-3">
-            <div className="scrolled header-gauge">
+            <div className=" header-gauge">
               <Gauge finalNote={finalNote} />
-              <p className="scrolled header-gauge-legend">
+              <p className=" header-gauge-legend">
                 {Math.round(finalNote)}% des votes de ce député protègent
                 l'océan
               </p>

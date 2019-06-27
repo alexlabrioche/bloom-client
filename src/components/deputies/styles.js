@@ -1,8 +1,8 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Global from "../../Global";
 
 export const ProfileContainer = styled.div`
-  margin-top: 5rem;
+  margin-top: 8rem;
   margin-bottom: 5rem;
   background: white;
   border-radius: 4px;
@@ -31,16 +31,39 @@ export const ProfileContainer = styled.div`
   }
 `;
 
-export const DeputyHeaderContainer = styled.div`
+export const DeputyHeaderStyles = css`
   .header {
     background: white;
-    padding: 1rem;
+    padding: 0.5rem;
     border-bottom: 1px solid rgba(230, 230, 230, 1);
     z-index: 10;
+    transition: 0.3s;
+    /* ${props =>
+      props.isScrolled &&
+      css`
+        opacity: 0;
+      `} */
+  }
+  .header-title {
+    display: flex;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: 300;
+    text-align: center;
+    padding-top: 1rem;
+    color: ${Global.color.accent};
+    /* ${props =>
+      props.isScrolled &&
+      css`
+        border-bottom: 1px solid rgba(230, 230, 230, 1);
+      `} */
+  }
+  .header-twitter-button {
+    display: block;
   }
   .header-img-container {
-    height: 14rem;
-    width: 16rem;
+    height: 12rem;
+    width: 14rem;
     padding: 1rem;
     overflow: auto;
   }
@@ -50,17 +73,33 @@ export const DeputyHeaderContainer = styled.div`
     height: 100%;
     object-fit: cover;
   }
-  .header-title {
-    font-size: 2.6rem;
-    font-weight: 300;
+  .header-content {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .header-link {
+    text-decoration: none;
     text-align: center;
-    color: ${Global.color.accent};
-    transition: 0.3s ease;
+    color: white;
+    padding: 0.4rem 0.8rem;
+    display: inline-flex;
+    background: ${Global.color.primary};
+    border-radius: 2px;
+    opacity: 0.4;
+    transition: opacity 0.3s;
+  }
+  .header-link:hover {
+    text-decoration: none;
+    opacity: 1;
   }
   .header-gauge-legend {
-    font-size: 14px;
+    font-size: 0.8rem;
+    color: ${Global.color.dark};
     text-align: center;
-    margin-top: -20px;
   }
 `;
 

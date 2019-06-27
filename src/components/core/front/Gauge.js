@@ -41,7 +41,7 @@ class Gauge extends React.Component {
   render() {
     console.log("#render GAUGE this.props.finalNote", this.props.finalNote);
     console.log("#render GAUGE this.state.value", this.state.value);
-    const radius = 100;
+    const radius = 80;
     const interpolate = interpolateRgb(this.startColor, this.endColor);
     const fillColor = interpolate(this.state.value / 100);
     const gradientStops = [
