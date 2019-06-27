@@ -23,9 +23,6 @@ class DeputyContainer extends React.Component {
     const deputy = await Api.getDeputyBySlug(slug);
     const votes = await this.getVotesFromCurrentDeputy();
     const categories = await Api.getCategories();
-    console.info("all categories", categories);
-    // const laws = await this.getLawsFromCurrentDeputy(votes);
-    // console.info("laws from current deputy", laws);
     const id = deputy._id;
     this.setState({
       categories,
@@ -33,7 +30,7 @@ class DeputyContainer extends React.Component {
       votes,
       isLoading: false
     });
-    let finalNote = GetGrade(id, votes, 100);
+    let finalNote = GetGrade(id, votes);
     if (isNaN(finalNote)) {
       return (finalNote = 0);
     }
@@ -50,7 +47,7 @@ class DeputyContainer extends React.Component {
     if (slug !== currentSlug) {
       const deputy = await Api.getDeputyBySlug(slug);
       const id = deputy._id;
-      let finalNote = GetGrade(id, votes, 100);
+      let finalNote = GetGrade(id, votes);
       if (isNaN(finalNote)) {
         return (finalNote = 0);
       }
