@@ -78,7 +78,6 @@ class EditParty extends React.Component {
             Sauvergarder les modifications
           </button>
         </form>
-        <ToastContainer />
       </Container>
     );
   }

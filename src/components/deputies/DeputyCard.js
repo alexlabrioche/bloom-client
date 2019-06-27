@@ -1,14 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
 import Config from "../../Config";
-import Global from "../../Global";
 import Note from "../core/front/Note";
 
 import { DeputyCardContainer } from "./styles";
 
 function DeputyCard(props) {
-  const { name, slug, picture, _id, party } = props;
+  const { name, slug, picture, note, party } = props;
   let deputyParty = "Sans étiquette";
   if (party !== undefined && party !== null) {
     deputyParty = party.name;
@@ -26,7 +24,7 @@ function DeputyCard(props) {
           <p className="card-text">{deputyParty}</p>
         </div>
         <div className="card-note">
-          <Note _id={_id} />
+          <Note note={note} />
         </div>
         {/* <div className="footer">
           <small>

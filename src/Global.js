@@ -13,7 +13,8 @@ const Global = {
     disabled: "#CCC",
     protect: "#42ad2e",
     absence: "#696E77",
-    destruct: "#fe4f4a"
+    destruct: "#E52727",
+    medium: "#EA8A35"
   },
   font: {
     primary: "Ubuntu",
