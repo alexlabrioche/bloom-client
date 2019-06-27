@@ -77,7 +77,7 @@ class AddDeputy extends React.Component {
   notify = () => toast(this.state.message);
 
   render() {
-    const { groups, parties, image } = this.state;
+    const { groups, parties } = this.state;
     // console.info(image);
     return (
       <Container className="container">

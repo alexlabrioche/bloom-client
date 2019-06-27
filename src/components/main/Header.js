@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Global from "../../Global";
 import ShowMore from "react-show-more";
 import Api from "../../utils/Api";
-import Methode from "./Methode";
 import { Link } from "react-router-dom";
 
 const Container = styled.div`

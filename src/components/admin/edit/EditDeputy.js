@@ -1,11 +1,10 @@
 import React from "react";
-import axios from "axios";
+// import axios from "axios";
 // import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 
 import Api from "../../../utils/Api";
-import Config from "../../../Config";
 
 import BackButton from "../../core/admin/BackButton";
 import FieldSelector from "../../core/admin/FieldSelector";
@@ -85,7 +84,7 @@ class EditDeputy extends React.Component {
       mandateTo
     } = this.state;
 
-    const url = `${Config.server}/api/deputies/add`;
+    // const url = `${Config.server}/api/deputies/add`;
     const deputy = new FormData();
     deputy.append("image", selectedFile, selectedFile.name);
     deputy.append("name", name);
