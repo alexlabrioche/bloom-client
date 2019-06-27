@@ -243,7 +243,7 @@ class Methode extends React.Component {
               </p>
               <p>
                 - "rouge" pour les députés ayant une note allant de 0/20 à 10/20
-                : + de 50% de leurs votes sont DESTRUCTEURS de l'océan
+                : - de 50% de leurs votes sont PROTECTEURS de l'océan
               </p>
 
               <h4>3- LES SOURCES</h4>
