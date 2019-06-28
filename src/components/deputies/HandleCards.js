@@ -6,7 +6,7 @@ const HandleCardsContainer = styled.div`
   width: 100%;
   margin-top: 3rem;
   display: flex;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   .button {
     cursor: pointer;
     padding: 0.6rem 1rem;
@@ -19,14 +19,14 @@ const HandleCardsContainer = styled.div`
     transition: 0.3s;
     &:hover {
       background: ${Global.color.primary};
-      opacity: 0.7;
+      opacity: 0.6;
       color: white;
     }
     ${props =>
       props.isActiveSurname &&
       css`
         background: ${Global.color.primary};
-        opacity: 0.6;
+        opacity: 0.5;
         color: white;
       `}
   }
@@ -34,14 +34,14 @@ const HandleCardsContainer = styled.div`
     transition: 0.3s;
     &:hover {
       background: ${Global.color.protect};
-      opacity: 0.7;
+      opacity: 0.6;
       color: white;
     }
     ${props =>
       props.isActiveBest &&
       css`
         background: ${Global.color.protect};
-        opacity: 0.6;
+        opacity: 0.5;
         color: white;
       `}
   }
@@ -49,14 +49,14 @@ const HandleCardsContainer = styled.div`
     transition: 0.3s;
     &:hover {
       background: ${Global.color.destruct};
-      opacity: 0.7;
+      opacity: 0.6;
       color: white;
     }
     ${props =>
       props.isActiveWorst &&
       css`
         background: ${Global.color.destruct};
-        opacity: 0.6;
+        opacity: 0.5;
         color: white;
       `}
   }
