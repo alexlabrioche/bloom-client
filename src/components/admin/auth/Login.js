@@ -64,7 +64,7 @@ class Login extends React.Component {
 
   render() {
     console.log("@render this.state", this.state);
-    const { isAuthenticated, error } = this.state;
+    const { isAuthenticated } = this.state;
     if (isAuthenticated === true) return <Admin />;
 
     return (

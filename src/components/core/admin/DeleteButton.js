@@ -1,12 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import Api from "../../../utils/Api";
 
 import Global from "../../../Global";
-
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const Container = styled.div`
   display: flex;

@@ -31,13 +31,13 @@ class ShareThis extends React.Component {
             padding: 12, // padding within buttons (INTEGER)
             radius: 4, // the corner radius on each button (INTEGER)
             show_total: true, // show/hide the total share count (true, false)
-            show_mobile: false, // show/hide the buttons on mobile (true, false)
+            show_mobile: true, // show/hide the buttons on mobile (true, false)
             show_toggle: true, // show/hide the toggle buttons (true, false)
             size: 48, // the size of each button (INTEGER)
-            top: 240, // offset in pixels from the top of the page
+            top: 240 // offset in pixels from the top of the page
 
             // // OPTIONAL PARAMETERS
-            url: "http://localhost:3000" // (defaults to current url)
+            // url: "http://localhost:3000" // (defaults to current url)
             // image: "https://bit.ly/2CMhCMC", // (defaults to og:image or twitter:image)
             // description: "custom text", // (defaults to og:description or twitter:description)
             // title: "custom title", // (defaults to og:title or twitter:title)

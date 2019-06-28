@@ -12,7 +12,11 @@ class Methode extends React.Component {
         <header class="container-fluid mt-1">
           <div class="row">
             <div class="col-6 col-lg-2">
-              <a href="https://www.bloomassociation.org/" target="_blank">
+              <a
+                href="https://www.bloomassociation.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <img
                   class="logo"
                   src="./img/logo-bloom-crop.jpg"
@@ -120,7 +124,11 @@ class Methode extends React.Component {
               <h4>2- LE CALCUL DE LA NOTE </h4>
               <h5>a- le barème</h5>
               <p>Le barème est le suivant : </p>
-              <img src={bareme} class="img-fluid" />
+              <img
+                src={bareme}
+                class="img-fluid"
+                alt="tableau du barème de points"
+              />
               <p>Légende : </p>
               <p>
                 Vote "destructeur" : allant à l’encontre des recommandations des
@@ -158,6 +166,7 @@ class Methode extends React.Component {
                 ressembler des recommandations de vote, : > cliquez sur «{" "}
                 <a
                   target="_blank"
+                  rel="noopener noreferrer"
                   href="https://seas-at-risk.org/images/pdf/publications/2018-01-15TechnicalMeasuresPlenaryvote-NGOvotingRecommendationFinal.pdf"
                 >
                   Source
@@ -234,16 +243,24 @@ class Methode extends React.Component {
               </p>
               <p>
                 - "rouge" pour les députés ayant une note allant de 0/20 à 10/20
-                : + de 50% de leurs votes sont DESTRUCTEURS de l'océan
+                : - de 50% de leurs votes sont PROTECTEURS de l'océan
               </p>
 
               <h4>3- LES SOURCES</h4>
               <p>
                 Tous les textes, amendements et votes, ont été collectés sur le
-                site du Parlement européen. Les recommandations de vote sont
-                celles des différentes coalitions d'ONG de protection de l'océan
-                (par exemple Greenpeace, Seas at Risk et Oceana) travaillant sur
-                les textes sélectionnés.
+                site du{" "}
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="http://www.europarl.europa.eu/portal/fr"
+                >
+                  Parlement européen
+                </a>
+                . Les recommandations de vote sont celles des différentes
+                coalitions d'ONG de protection de l'océan (par exemple
+                Greenpeace, Seas at Risk et Oceana) travaillant sur les textes
+                sélectionnés.
                 <p />
                 <p>
                   Pour toute demande supplémentaire, envoyer un mail à l'adresse
