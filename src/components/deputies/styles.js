@@ -60,9 +60,10 @@ export const DeputyHeaderStyles = css`
   }
   .header-twitter-button {
     display: block;
+    padding-top: 3rem;
   }
   .header-img-container {
-    height: 12rem;
+    height: 16rem;
     width: 14rem;
     padding: 1rem;
     overflow: auto;
@@ -77,24 +78,18 @@ export const DeputyHeaderStyles = css`
     margin-top: 2rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
   }
 
   .header-link {
     text-decoration: none;
-    text-align: center;
-    color: white;
-    padding: 0.4rem 0.8rem;
+    font-weight: 700;
+    color: ${Global.color.secondary};
     display: inline-flex;
-    background: ${Global.color.primary};
-    border-radius: 2px;
-    opacity: 0.4;
     transition: opacity 0.3s;
   }
   .header-link:hover {
     text-decoration: none;
-    opacity: 1;
+    opacity: 0.6;
   }
   .header-gauge-legend {
     font-size: 0.8rem;

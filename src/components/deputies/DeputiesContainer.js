@@ -6,6 +6,7 @@ import GetGrade from "../../utils/GetGrade";
 
 import Header from "../main/Header";
 import DeputiesList from "./DeputiesList";
+import HandleCards from "./HandleCards";
 
 const Container = styled.div`
   padding-top: 4rem;
@@ -15,10 +16,15 @@ class DeputiesContainer extends React.Component {
     super(props);
     this.state = {
       deputies: [],
-      isHighestNote: false,
+      surnameCaption: "De A à Z",
       isSurnameFirst: true,
-      isFirstNameFirst: false
+      isActiveSurname: true,
+      isActiveBest: false,
+      isActiveWorst: false
     };
+    this.toggleSurname = this.toggleSurname.bind(this);
+    this.handleBestNote = this.handleBestNote.bind(this);
+    this.handleWorstNote = this.handleWorstNote.bind(this);
   }
   async componentDidMount() {
     const allDeputies = await Api.getDeputies();
@@ -27,7 +33,6 @@ class DeputiesContainer extends React.Component {
       const deputyNote = GetGrade(deputy._id, votes);
       return Object.assign({}, deputy, { note: deputyNote });
     });
-
     // By default the deputies will be sorted by Alphabetical order
     this.setState({
       deputies: deputies.sort((a, b) => a.surname.localeCompare(b.surname))
@@ -44,24 +49,31 @@ class DeputiesContainer extends React.Component {
         mobileView: screenSize
       });
   }
-
-  toggleNote = () => {
-    const { deputies, isHighestNote } = this.state;
-    let newDeputies = deputies;
-    if (isHighestNote) {
-      newDeputies = deputies.sort((a, b) => a.note - b.note);
-    } else {
-      newDeputies = deputies.sort((a, b) => b.note - a.note);
-    }
+  handleBestNote = () => {
+    const { deputies } = this.state;
+    let newDeputies = deputies.sort((a, b) => b.note - a.note);
     this.setState({
       deputies: newDeputies,
-      isHighestNote: !isHighestNote
+      isActiveBest: true,
+      isActiveWorst: false,
+      isActiveSurname: false
+    });
+  };
+  handleWorstNote = () => {
+    const { deputies } = this.state;
+    let newDeputies = deputies.sort((a, b) => a.note - b.note);
+    this.setState({
+      deputies: newDeputies,
+      isActiveBest: false,
+      isActiveWorst: true,
+      isActiveSurname: false
     });
   };
 
   toggleSurname = () => {
-    const { deputies, isSurnameFirst } = this.state;
+    const { deputies, isSurnameFirst, surnameCaption } = this.state;
     let newDeputies = deputies;
+    let newCaption = surnameCaption === "De A à Z" ? "De Z à A" : "De A à Z";
     if (isSurnameFirst) {
       newDeputies = deputies.sort((a, b) => b.surname.localeCompare(a.surname));
     } else {
@@ -69,25 +81,11 @@ class DeputiesContainer extends React.Component {
     }
     this.setState({
       deputies: newDeputies,
-      isSurnameFirst: !isSurnameFirst
-    });
-  };
-
-  toggleFirstName = () => {
-    const { deputies, isFirstNameFirst } = this.state;
-    let newDeputies = deputies;
-    if (isFirstNameFirst) {
-      newDeputies = deputies.sort((a, b) =>
-        b.firstName.localeCompare(a.firstName)
-      );
-    } else {
-      newDeputies = deputies.sort((a, b) =>
-        a.firstName.localeCompare(b.firstName)
-      );
-    }
-    this.setState({
-      deputies: newDeputies,
-      isFirstNameFirst: !isFirstNameFirst
+      isSurnameFirst: !isSurnameFirst,
+      surnameCaption: newCaption,
+      isActiveSurname: true,
+      isActiveBest: false,
+      isActiveWorst: false
     });
   };
 
@@ -97,9 +95,12 @@ class DeputiesContainer extends React.Component {
       <Container className="container">
         <div className="row">
           <Header />
-          <button onClick={this.toggleSurname}>trier par Nom de famille</button>
-          <button onClick={this.toggleFirstName}>trier par Prénom</button>
-          <button onClick={this.toggleNote}>trier par Note</button>
+          <HandleCards
+            handleBestNote={this.handleBestNote}
+            handleWorstNote={this.handleWorstNote}
+            toggleSurname={this.toggleSurname}
+            {...this.state}
+          />
 
           <DeputiesList deputies={deputies} mobileView={mobileView} />
         </div>

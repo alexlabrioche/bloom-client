@@ -130,7 +130,7 @@ class Navigation extends React.Component {
           selectedOption={selectedOption}
           options={searchOptions}
           handleChange={this.handleSearchField}
-          placeholder={"Rechercher..."}
+          placeholder={"Rechercher un groupe, un parti, ou un député..."}
         />
         <Link
           style={{ marginLeft: "500px" }}

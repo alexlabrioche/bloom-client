@@ -33,10 +33,6 @@ class DeputyHeader extends React.Component {
     return (
       <DeputyHeaderContainer isScrolled={isScrolled}>
         <div className="header-title row">{deputy.name}</div>
-        <div className="offset-3 col-6">
-          {this.greetOrShoutDeputy(finalNote, deputy.twitter)}
-        </div>
-
         <div className="header row">
           <div className="offset-2 col-4 offset-lg-0 col-lg-3">
             <div className="header-img-container">
@@ -51,6 +47,8 @@ class DeputyHeader extends React.Component {
             <div className="header-content">
               {deputy.group !== undefined && (
                 <p>
+                  {" "}
+                  Groupe Européen :&nbsp;
                   <Link
                     className="header-link"
                     to={`/groupe/${deputy.group.slug}`}
@@ -62,6 +60,8 @@ class DeputyHeader extends React.Component {
               <br />
               {deputy.party !== undefined && (
                 <p>
+                  {" "}
+                  Parti National :&nbsp;
                   <Link
                     className="header-link"
                     to={`/parti/${deputy.party.slug}`}
@@ -70,6 +70,9 @@ class DeputyHeader extends React.Component {
                   </Link>
                 </p>
               )}
+              <div className="header-twitter-button">
+                {this.greetOrShoutDeputy(finalNote, deputy.twitter)}
+              </div>
             </div>
           </div>
           <div className="offset-3 offset-lg-0 col-3">
