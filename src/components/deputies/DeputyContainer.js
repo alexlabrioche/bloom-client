@@ -23,6 +23,7 @@ class DeputyContainer extends React.Component {
     const deputy = await Api.getDeputyBySlug(slug);
     const votes = await this.getVotesFromCurrentDeputy();
     const categories = await Api.getCategories();
+    const laws = await Api.getLaws();
     const id = deputy._id;
     this.setState({
       categories,
@@ -30,7 +31,7 @@ class DeputyContainer extends React.Component {
       votes,
       isLoading: false
     });
-    let finalNote = GetGrade(id, votes);
+    let finalNote = GetGrade(id, votes, categories, laws);
     if (isNaN(finalNote)) {
       return (finalNote = 0);
     }

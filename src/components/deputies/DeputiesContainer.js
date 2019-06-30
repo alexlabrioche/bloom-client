@@ -29,8 +29,11 @@ class DeputiesContainer extends React.Component {
   async componentDidMount() {
     const allDeputies = await Api.getDeputies();
     const votes = await Api.getVotes();
+    const categories = await Api.getCategories();
+    const laws = await Api.getLaws();
     const deputies = allDeputies.map(deputy => {
-      const deputyNote = GetGrade(deputy._id, votes);
+      const id = deputy._id;
+      const deputyNote = GetGrade(id, votes, categories, laws);
       return Object.assign({}, deputy, { note: deputyNote });
     });
     // By default the deputies will be sorted by Alphabetical order

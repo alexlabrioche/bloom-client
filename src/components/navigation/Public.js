@@ -6,6 +6,7 @@ import Global from "../../Global";
 import Api from "../../utils/Api";
 
 import SearchField from "./SearchField";
+import Share from "./Share";
 
 const NavContainer = styled.nav`
   height: ${Global.height.navigation};
@@ -133,12 +134,13 @@ class Navigation extends React.Component {
           placeholder={"Rechercher un groupe, un parti, ou un député..."}
         />
         <Link
-          style={{ marginLeft: "500px" }}
+          style={{ marginLeft: "300px" }}
           className="link navlink"
           to="/admin"
         >
           ADMIN
         </Link>
+        <Share />
       </NavContainer>
     );
   }

@@ -29,6 +29,7 @@
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.1",
     "react-select": "^3.0.4",
+    "react-share": "^3.0.0",
     "react-show-more": "^2.0.0",
     "react-spring": "^8.0.20",
     "react-svg-gauge": "^1.0.10",
