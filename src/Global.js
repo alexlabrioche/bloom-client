@@ -5,7 +5,7 @@ const Global = {
     secondary: "#889AAA",
     tertiary: "#B1BAC5",
     light: "#D9DCE1",
-    dark: "#646566",
+    dark: "#444444",
     accent: "#E42058",
     secondAccent: "#5973e8",
     background: "#F9F9F9",
@@ -17,7 +17,8 @@ const Global = {
     medium: "#EA8A35"
   },
   font: {
-    primary: "Ubuntu",
+    title: "Ubuntu",
+    body: "Open Sans",
     size: {
       body: "1rem",
       caption: "0.8rem",
@@ -30,7 +31,7 @@ const Global = {
     }
   },
   height: {
-    navigation: "50px"
+    navigation: "3.5rem"
   }
 };
 export default Global;

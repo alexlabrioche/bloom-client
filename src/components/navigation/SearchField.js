@@ -1,12 +1,12 @@
 import React from "react";
 import styled, { css } from "styled-components";
 import Select, { components } from "react-select";
-import { BrowserRouter as Router, Link } from "react-router-dom";
 import Global from "../../Global";
 
 const Container = styled.div`
   margin-left: 3rem;
   border-left: 1px solid ${Global.color.light};
+  border-right: 1px solid ${Global.color.light};
   .deputies-select {
     width: 35rem;
   }
@@ -18,14 +18,14 @@ const Container = styled.div`
     bottom: 0;
     background: black;
     opacity: 0;
-    transition: 0.2s ease-in-out;
+    transition: 0.4s;
     ${props =>
       props.onMenuOpen &&
       css`
         position: absolute;
         height: 100vh;
         width: 100vw;
-        opacity: 0.3;
+        opacity: 0.2;
       `}
   }
 `;
@@ -73,7 +73,7 @@ const styles = {
     ...base,
     fontSize: "1.1rem",
     color: Global.color.secondary,
-    fontWeight: 400
+    fontWeight: Global.font.weight.header
   }),
   control: base => ({
     display: "flex",

@@ -17,6 +17,7 @@ const NavContainer = styled.nav`
   width: 100%;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   border-bottom: 1px solid rgba(230, 230, 230, 1);
   transition: box-shadow 0.2s ease-in-out;
   ${props =>
@@ -24,16 +25,13 @@ const NavContainer = styled.nav`
     css`
       box-shadow: 0px 5px 12px 0px rgba(0, 0, 0, 0.2);
     `}
-  /* border-top: 3px solid ${Global.color.secondAccent}; */
-  .link {
-    color: ${Global.color.primary};
-    text-decoration: none;
-    padding: 0 10px;
-    margin-right: 1rem;
-  }
   .title {
-    font-size: ${Global.font.size.header};
+    text-decoration: none;
     color: ${Global.color.primary};
+    font-family: ${Global.font.title};
+    font-size: ${Global.font.size.header};
+    font-weight: ${Global.font.weight.header};
+    padding-left: 1rem;
   }
 `;
 
@@ -125,7 +123,7 @@ class Navigation extends React.Component {
     const { isScrolled } = this.props;
     return (
       <NavContainer isScrolled={isScrolled}>
-        <Link className="link title" to="/">
+        <Link className="title" to="/">
           BLOOM
         </Link>
         <SearchField
@@ -134,13 +132,6 @@ class Navigation extends React.Component {
           handleChange={this.handleSearchField}
           placeholder={this.state.searchFieldPlaceholder}
         />
-        <Link
-          style={{ marginLeft: "300px" }}
-          className="link navlink"
-          to="/admin"
-        >
-          ADMIN
-        </Link>
         <Share />
       </NavContainer>
     );

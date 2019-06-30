@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-
+import Global from "../../Global";
 import {
   FacebookShareButton,
   LinkedinShareButton,
@@ -23,13 +23,24 @@ const ShareContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  .share-element {
+  .element {
     margin-right: 1rem;
     outline: 0;
     cursor: pointer;
     transition: 0.3s;
     &:hover {
       opacity: 0.7;
+    }
+  }
+  .share-text {
+    font-family: ${Global.font.title};
+    font-weight: ${Global.font.weight.caption};
+    color: ${Global.color.primary};
+    display: flex;
+    align-self: center;
+    margin-right: 1.5rem;
+    .share-counter {
+      font-weight: ${Global.font.weight.header};
     }
   }
 `;
@@ -56,10 +67,15 @@ class Share extends React.Component {
     const { shareUrl } = this.state;
     return (
       <ShareContainer>
-        <FacebookShareCount className="share-element" url={shareUrl} />
+        <div className="share-text">
+          <div>Déjà&nbsp;</div>
+
+          <FacebookShareCount className="share-counter" url={shareUrl} />
+          <div>&nbsp;partages&nbsp;!</div>
+        </div>
 
         <FacebookShareButton
-          className="share-element"
+          className="element"
           url={shareUrl}
           quote="Bloom app c'est trop kiffant j'suis choks faut protegezer les océans la mif"
           hashtag="#LesPoissonsCestLaLife"
@@ -67,12 +83,12 @@ class Share extends React.Component {
           <FacebookIcon size={32} round={true} />
         </FacebookShareButton>
 
-        <LinkedinShareButton className="share-element" url={shareUrl}>
+        <LinkedinShareButton className="element" url={shareUrl}>
           <LinkedinIcon size={32} />
         </LinkedinShareButton>
 
         <TwitterShareButton
-          className="share-element"
+          className="element"
           url={shareUrl}
           title="Faut proteger les océans frérot !"
           via="nom du compte Twitter Bloom"
@@ -82,7 +98,7 @@ class Share extends React.Component {
         </TwitterShareButton>
 
         <WhatsappShareButton
-          className="share-element"
+          className="element"
           url={shareUrl}
           title="Faut proteger les océans frérot !"
         >
@@ -90,7 +106,7 @@ class Share extends React.Component {
         </WhatsappShareButton>
 
         <EmailShareButton
-          className="share-element"
+          className="element"
           url={shareUrl}
           subject="Faut proteger les océans frérot !"
           body="Bouges ton ionf et partage spread the love voici le lien de cette super App du turfu BANGS"

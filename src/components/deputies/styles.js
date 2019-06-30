@@ -33,7 +33,7 @@ export const ProfileContainer = styled.div`
 
 export const DeputyHeaderStyles = css`
   .header {
-    background: white;
+    background: ${Global.color.lightBackground};
     padding: 0.5rem;
     border-bottom: 1px solid rgba(230, 230, 230, 1);
     z-index: 10;
@@ -47,11 +47,11 @@ export const DeputyHeaderStyles = css`
   .header-title {
     display: flex;
     justify-content: center;
-    font-size: 3rem;
-    font-weight: 300;
-    text-align: center;
-    padding-top: 1rem;
+    font-family: ${Global.font.title};
+    font-weight: ${Global.font.weight.header};
+    font-size: 2.6rem;
     color: ${Global.color.accent};
+    padding-top: 0.5rem;
     /* ${props =>
       props.isScrolled &&
       css`
@@ -59,12 +59,12 @@ export const DeputyHeaderStyles = css`
       `} */
   }
   .header-twitter-button {
-    display: block;
-    padding-top: 3rem;
+    align-self: center;
+    padding-top: 1rem;
   }
   .header-img-container {
-    height: 16rem;
-    width: 14rem;
+    height: 14rem;
+    width: 16rem;
     padding: 1rem;
     overflow: auto;
   }
@@ -76,6 +76,7 @@ export const DeputyHeaderStyles = css`
   }
   .header-content {
     margin-top: 2rem;
+    font-size: 1.1rem;
     display: flex;
     flex-direction: column;
   }
@@ -120,31 +121,24 @@ export const DeputyCardContainer = styled.div`
   }
   .card-title {
     height: 3rem;
-    font-size: 1.3rem;
     text-align: center;
+    font-family: ${Global.font.title};
+    font-weight: ${Global.font.weight.header};
+    font-size: ${Global.font.size.header};
+    color: ${Global.color.dark};
   }
   .card-text {
-    color: ${Global.color.primary};
+    font-family: ${Global.font.body};
+    font-weight: ${Global.font.weight.header};
+    font-size: ${Global.font.size.caption};
+    color: ${Global.color.secondary};
     text-align: center;
-    font-size: 0.8rem;
   }
   .card-note {
+    font-family: ${Global.font.title};
+    font-weight: ${Global.font.weight.header};
     text-align: center;
     font-size: 2rem;
-    font-weight: 400;
-  }
-  .footer {
-    text-align: right;
-    background: white;
-    padding: 0.6rem;
-    color: ${Global.color.disabled};
-    transition: 0.2s ease;
-    .footer-icon {
-      margin-left: 0.5rem;
-    }
-    &:hover {
-      color: ${Global.color.accent};
-    }
   }
 `;
 
@@ -153,11 +147,13 @@ export const CollapseContainer = styled.div`
     border: none;
   }
   .rc-collapse-header {
-    background: ${Global.color.lightBackground};
-    outline: 0;
-    color: ${Global.color.primary} !important;
-    font-size: 1.6rem;
+    font-family: ${Global.font.title} !important;
+    font-weight: ${Global.font.weight.header} !important;
+    font-size: ${Global.font.size.header} !important;
+    color: ${Global.color.accent} !important;
+    background: ${Global.color.lightBackground} !important;
     padding: 2rem 0rem 2rem 0.8rem !important;
+    outline: 0;
   }
   .rc-collapse-header__description {
     text-align: center;

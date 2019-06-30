@@ -7,10 +7,11 @@ import { Link } from "react-router-dom";
 
 const Container = styled.div`
   .header-title {
+    font-family: ${Global.font.title};
+    font-weight: ${Global.font.weight.body};
     text-align: center;
     margin-bottom: 2rem;
     margin-top: 2rem;
-    font-weight: 300;
     color: ${Global.color.accent};
   }
 `;

@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { useSpring, animated } from "react-spring";
 import styled from "styled-components";
 import moment from "moment";
+import Global from "../../Global";
 
 const CardStyle = styled.div`
   height: 28rem;
   padding: 1rem;
   /* background: blue; */
-
   .card {
     border: 0px solid;
     position: absolute;
@@ -27,18 +27,19 @@ const CardStyle = styled.div`
     flex-direction: column;
     align-items: center;
     h5 {
-      color: #444;
-      font-size: 1.6rem;
+      font-family: ${Global.font.title};
+      font-weight: ${Global.font.weight.header};
+      font-size: ${Global.font.size.header};
+      color: ${Global.color.dark};
       height: 8rem;
       text-align: center;
     }
     padding: 20px;
-    color: #222;
   }
   .card-date {
     margin-top: -15px;
     font-weight: 400;
-    font-size: 22px;
+    font-size: 1.5rem;
   }
   .card-back-full-text {
     overflow: auto;

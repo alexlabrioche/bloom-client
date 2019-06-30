@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 import Api from "../../utils/Api";
 import GetGrade from "../../utils/GetGrade";
@@ -33,7 +34,8 @@ class DeputiesContainer extends React.Component {
     const laws = await Api.getLaws();
     const deputies = allDeputies.map(deputy => {
       const id = deputy._id;
-      const deputyNote = GetGrade(id, votes, categories, laws);
+      // const deputyNote = GetGrade(id, votes, categories, laws);
+      const deputyNote = GetGrade(id, votes);
       return Object.assign({}, deputy, { note: deputyNote });
     });
     // By default the deputies will be sorted by Alphabetical order
@@ -96,6 +98,8 @@ class DeputiesContainer extends React.Component {
     const { deputies, mobileView } = this.state;
     return (
       <Container className="container">
+        <Link to="/admin">ADMIN</Link>
+
         <div className="row">
           <Header />
           <HandleCards

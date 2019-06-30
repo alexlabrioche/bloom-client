@@ -44,6 +44,7 @@ import Methode from "../src/components/main/Methode";
 
 const AppContainer = styled.div`
   color: ${Global.color.body};
+  font-family: ${Global.font.body};
   min-height: 100vh;
   display: flex;
   flex-direction: column;

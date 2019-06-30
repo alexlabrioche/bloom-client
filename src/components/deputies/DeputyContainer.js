@@ -31,7 +31,8 @@ class DeputyContainer extends React.Component {
       votes,
       isLoading: false
     });
-    let finalNote = GetGrade(id, votes, categories, laws);
+    // let finalNote = GetGrade(id, votes, categories, laws);
+    let finalNote = GetGrade(id, votes);
     if (isNaN(finalNote)) {
       return (finalNote = 0);
     }
