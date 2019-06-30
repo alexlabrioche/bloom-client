@@ -41,6 +41,7 @@ class Navigation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      searchFieldPlaceholder: "Rechercher un groupe, un parti, ou un député...",
       groups: [],
       parties: [],
       deputies: [],
@@ -131,7 +132,7 @@ class Navigation extends React.Component {
           selectedOption={selectedOption}
           options={searchOptions}
           handleChange={this.handleSearchField}
-          placeholder={"Rechercher un groupe, un parti, ou un député..."}
+          placeholder={this.state.searchFieldPlaceholder}
         />
         <Link
           style={{ marginLeft: "300px" }}

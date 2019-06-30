@@ -154,9 +154,10 @@ export const CollapseContainer = styled.div`
   }
   .rc-collapse-header {
     background: ${Global.color.lightBackground};
+    outline: 0;
     color: ${Global.color.primary} !important;
     font-size: 1.6rem;
-    padding: 32px 0px 0px 10px !important;
+    padding: 2rem 0rem 2rem 0.8rem !important;
   }
   .rc-collapse-header__description {
     text-align: center;

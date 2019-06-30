@@ -71,9 +71,9 @@ const styles = {
   }),
   placeholder: base => ({
     ...base,
-    fontSize: "1em",
-    color: "grey",
-    fontWeight: 300
+    fontSize: "1.1rem",
+    color: Global.color.secondary,
+    fontWeight: 400
   }),
   control: base => ({
     display: "flex",

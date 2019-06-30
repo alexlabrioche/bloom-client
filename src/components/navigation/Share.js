@@ -25,6 +25,7 @@ const ShareContainer = styled.div`
   align-items: center;
   .share-element {
     margin-right: 1rem;
+    outline: 0;
     cursor: pointer;
     transition: 0.3s;
     &:hover {

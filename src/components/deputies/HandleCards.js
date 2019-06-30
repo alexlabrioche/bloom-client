@@ -10,8 +10,10 @@ const HandleCardsContainer = styled.div`
   .button {
     cursor: pointer;
     padding: 0.6rem 1rem;
-    margin: 1rem;
+    margin: 0.4rem 2rem 0.4rem 0rem;
     background: white;
+    font-weight: 700;
+    color: ${Global.color.primary};
     border: 1px solid ${Global.color.light};
     border-radius: 4px;
   }
@@ -26,7 +28,7 @@ const HandleCardsContainer = styled.div`
       props.isActiveSurname &&
       css`
         background: ${Global.color.primary};
-        opacity: 0.5;
+        opacity: 0.4;
         color: white;
       `}
   }
@@ -40,9 +42,8 @@ const HandleCardsContainer = styled.div`
     ${props =>
       props.isActiveBest &&
       css`
-        background: ${Global.color.protect};
-        opacity: 0.5;
-        color: white;
+        color: ${Global.color.protect};
+        opacity: 0.8;
       `}
   }
   .worst {
@@ -55,9 +56,8 @@ const HandleCardsContainer = styled.div`
     ${props =>
       props.isActiveWorst &&
       css`
-        background: ${Global.color.destruct};
-        opacity: 0.5;
-        color: white;
+        color: ${Global.color.destruct};
+        opacity: 0.8;
       `}
   }
 `;
