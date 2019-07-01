@@ -9,10 +9,20 @@ class NavigationSwitch extends React.Component {
   };
   componentDidMount() {
     window.addEventListener("scroll", this.listenToScroll);
+    window.addEventListener("resize", this.handleScreenSize.bind(this));
+    this.handleScreenSize();
   }
 
   componentWillUnmount() {
     window.removeEventListener("scroll", this.listenToScroll);
+  }
+  handleScreenSize() {
+    const { mobileView } = this.state;
+    const screenSize = window.innerWidth <= 760;
+    mobileView !== screenSize &&
+      this.setState({
+        mobileView: screenSize
+      });
   }
 
   listenToScroll = () => {
@@ -35,11 +45,13 @@ class NavigationSwitch extends React.Component {
     }
   };
   render() {
-    const { isScrolled } = this.state;
+    const { isScrolled, mobileView } = this.state;
     if (this.props.location.pathname.substr(0, 6) === "/admin") {
       return <Admin {...this.props} />;
     }
-    return <Public {...this.props} isScrolled={isScrolled} />;
+    return (
+      <Public {...this.props} isScrolled={isScrolled} mobileView={mobileView} />
+    );
   }
 }
 

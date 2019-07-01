@@ -7,8 +7,22 @@ const Container = styled.div`
   margin-left: 3rem;
   border-left: 1px solid ${Global.color.light};
   border-right: 1px solid ${Global.color.light};
+  ${props =>
+    props.mobileView &&
+    css`
+      padding: 0.5rem;
+      border-top: 1px solid ${Global.color.light};
+      margin-left: 0rem;
+      border-left: none;
+      border-right: none;
+    `}
   .deputies-select {
     width: 35rem;
+    ${props =>
+      props.mobileView &&
+      css`
+        width: 100vw;
+      `}
   }
   .darken-app {
     position: relative;
@@ -29,6 +43,7 @@ const Container = styled.div`
       `}
   }
 `;
+
 const groupBadgeStyles = {
   backgroundColor: Global.color.tertiary,
   borderRadius: "2em",
@@ -63,6 +78,10 @@ const styles = {
       backgroundColor: Global.color.tertiary,
       color: "white"
     }
+  }),
+  indicatorSeparator: base => ({
+    ...base,
+    display: "none"
   }),
   singleValue: base => ({
     ...base,
@@ -106,35 +125,50 @@ const NoOptionsMessage = ({ props }) => {
     <div {...props}>Aucun députés, groupes, ou partis n'a été trouvé...</div>
   );
 };
-
+const DropdownIndicator = props => {
+  return (
+    components.DropdownIndicator && (
+      <components.DropdownIndicator {...props}>
+        <i
+          className={
+            props.selectProps.menuIsOpen
+              ? "fas fa-search-minus"
+              : "fas fa-search-plus"
+          }
+        />
+      </components.DropdownIndicator>
+    )
+  );
+};
 class SearchField extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      onMenuOpen: false
+      onMenuOpen: false,
+      placeholder: "Rechercher un groupe, un parti, ou un député..."
     };
     this.onMenuOpen = this.onMenuOpen.bind(this);
     this.onMenuClose = this.onMenuClose.bind(this);
   }
 
   onMenuOpen() {
-    console.info("onMenuOpen");
     this.setState({
-      onMenuOpen: true
+      onMenuOpen: true,
+      placeholder: ""
     });
   }
   onMenuClose() {
-    console.info("onMenuClose");
     this.setState({
-      onMenuOpen: false
+      onMenuOpen: false,
+      placeholder: "Rechercher un groupe, un parti, ou un député..."
     });
   }
 
   render() {
-    const { selectedOption, options, handleChange, placeholder } = this.props;
-    const { onMenuOpen } = this.state;
+    const { selectedOption, options, handleChange, mobileView } = this.props;
+    const { onMenuOpen, placeholder } = this.state;
     return (
-      <Container onMenuOpen={onMenuOpen}>
+      <Container onMenuOpen={onMenuOpen} mobileView={mobileView}>
         <div className="darken-app" />
         <Select
           className="deputies-select"
@@ -147,9 +181,10 @@ class SearchField extends React.Component {
           options={options}
           isSearchable
           isClearable
-          components={{ SingleValue, NoOptionsMessage }}
+          components={{ SingleValue, NoOptionsMessage, DropdownIndicator }}
           theme={customTheme}
           placeholder={placeholder}
+          // onFocus={() => this.setState({ placeholder: "" })}
         />
       </Container>
     );

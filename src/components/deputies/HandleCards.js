@@ -6,14 +6,13 @@ const HandleCardsContainer = styled.div`
   width: 100%;
   margin-top: 3rem;
   display: flex;
-  /* justify-content: space-around; */
   .button {
     cursor: pointer;
     padding: 0.6rem 1rem;
     margin: 0.4rem 2rem 0.4rem 0rem;
     background: white;
     font-weight: 700;
-    color: ${Global.color.primary};
+    color: ${Global.color.dark};
     border: 1px solid ${Global.color.light};
     border-radius: 4px;
   }
@@ -43,7 +42,7 @@ const HandleCardsContainer = styled.div`
       props.isActiveBest &&
       css`
         color: ${Global.color.protect};
-        opacity: 0.8;
+        opacity: 0.9;
       `}
   }
   .worst {
@@ -57,7 +56,7 @@ const HandleCardsContainer = styled.div`
       props.isActiveWorst &&
       css`
         color: ${Global.color.destruct};
-        opacity: 0.8;
+        opacity: 0.9;
       `}
   }
 `;
@@ -71,7 +70,7 @@ class HandleCards extends React.Component {
       surnameCaption
     } = this.props;
     return (
-      <HandleCardsContainer {...this.props}>
+      <HandleCardsContainer className="container" {...this.props}>
         <div className="button surname" onClick={toggleSurname}>
           {surnameCaption}
         </div>

@@ -65,6 +65,7 @@ class Share extends React.Component {
 
   render() {
     const { shareUrl } = this.state;
+    const { mobileView } = this.props;
     return (
       <ShareContainer>
         <div className="share-text">
@@ -84,7 +85,7 @@ class Share extends React.Component {
         </FacebookShareButton>
 
         <LinkedinShareButton className="element" url={shareUrl}>
-          <LinkedinIcon size={32} />
+          <LinkedinIcon size={32} round={true} />
         </LinkedinShareButton>
 
         <TwitterShareButton
@@ -94,16 +95,17 @@ class Share extends React.Component {
           via="nom du compte Twitter Bloom"
           hashtags={["hashtag", "poissons", "protectTheOceans", "zerzerBANG"]}
         >
-          <TwitterIcon size={32} />
+          <TwitterIcon size={32} round={true} />
         </TwitterShareButton>
-
-        <WhatsappShareButton
-          className="element"
-          url={shareUrl}
-          title="Faut proteger les océans frérot !"
-        >
-          <WhatsappIcon size={32} />
-        </WhatsappShareButton>
+        {mobileView && (
+          <WhatsappShareButton
+            className="element"
+            url={shareUrl}
+            title="Faut proteger les océans frérot !"
+          >
+            <WhatsappIcon size={32} round={true} />
+          </WhatsappShareButton>
+        )}
 
         <EmailShareButton
           className="element"
@@ -112,7 +114,7 @@ class Share extends React.Component {
           body="Bouges ton ionf et partage spread the love voici le lien de cette super App du turfu BANGS"
           separator=" "
         >
-          <EmailIcon size={32} />
+          <EmailIcon size={32} round={true} />
         </EmailShareButton>
       </ShareContainer>
     );

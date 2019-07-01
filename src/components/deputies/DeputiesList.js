@@ -1,5 +1,4 @@
 import React from "react";
-
 import DeputyCard from "./DeputyCard";
 import MobileDeputyCard from "./MobileDeputyCard";
 
@@ -23,7 +22,7 @@ class DeputiesList extends React.Component {
     const { deputies, mobileView } = this.props;
     console.info("deputiesLIST", deputies);
     return (
-      <div>
+      <div className="container">
         <div className="row">
           {deputies.map((deputy, index) => {
             return mobileView

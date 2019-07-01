@@ -1,45 +1,22 @@
 import React from "react";
+import styled from "styled-components";
 import { Link, withRouter } from "react-router-dom";
-
-import styled, { css } from "styled-components";
-import Global from "../../Global";
+import { DesktopNavStyles, MobileNavStyles } from "./styles";
 import Api from "../../utils/Api";
 
 import SearchField from "./SearchField";
 import Share from "./Share";
 
-const NavContainer = styled.nav`
-  height: ${Global.height.navigation};
-  position: fixed;
-  margin-bottom: 2rem;
-  background: ${Global.color.lightBackground};
-  z-index: 1000;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid rgba(230, 230, 230, 1);
-  transition: box-shadow 0.2s ease-in-out;
-  ${props =>
-    props.isScrolled &&
-    css`
-      box-shadow: 0px 5px 12px 0px rgba(0, 0, 0, 0.2);
-    `}
-  .title {
-    text-decoration: none;
-    color: ${Global.color.primary};
-    font-family: ${Global.font.title};
-    font-size: ${Global.font.size.header};
-    font-weight: ${Global.font.weight.header};
-    padding-left: 1rem;
-  }
+const DesktopNavContainer = styled.nav`
+  ${DesktopNavStyles}
 `;
-
+const MobileNavContainer = styled.nav`
+  ${MobileNavStyles}
+`;
 class Navigation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchFieldPlaceholder: "Rechercher un groupe, un parti, ou un député...",
       groups: [],
       parties: [],
       deputies: [],
@@ -103,26 +80,18 @@ class Navigation extends React.Component {
   }
 
   handleSearchField(selectedOption) {
-    console.log(`handleSearchField selectedOption:`, selectedOption);
     if (selectedOption !== null) {
       this.props.history.push(`/${selectedOption.uri}/${selectedOption.value}`);
-      this.setState({
-        selectedOption
-      });
+      this.setState({ selectedOption });
     }
     if (selectedOption === null) {
-      this.setState({
-        selectedOption
-      });
+      this.setState({ selectedOption });
     }
-    console.log(`Option selected:`, selectedOption);
   }
 
-  render() {
-    const { selectedOption, searchOptions } = this.state;
-    const { isScrolled } = this.props;
+  renderDesktop(selectedOption, searchOptions, isScrolled) {
     return (
-      <NavContainer isScrolled={isScrolled}>
+      <DesktopNavContainer isScrolled={isScrolled}>
         <Link className="title" to="/">
           BLOOM
         </Link>
@@ -130,10 +99,44 @@ class Navigation extends React.Component {
           selectedOption={selectedOption}
           options={searchOptions}
           handleChange={this.handleSearchField}
-          placeholder={this.state.searchFieldPlaceholder}
         />
-        <Share />
-      </NavContainer>
+        <Share mobileView={false} />
+      </DesktopNavContainer>
+    );
+  }
+  renderMobile(selectedOption, searchOptions, isScrolled) {
+    return (
+      <MobileNavContainer isScrolled={isScrolled}>
+        <div className="first-row">
+          <Link className="title" to="/">
+            BLOOM
+          </Link>
+
+          <Share mobileView={true} />
+        </div>
+        <div className="second-row">
+          <SearchField
+            mobileView={true}
+            selectedOption={selectedOption}
+            options={searchOptions}
+            handleChange={this.handleSearchField}
+          />
+        </div>
+      </MobileNavContainer>
+    );
+  }
+
+  render() {
+    const { selectedOption, searchOptions } = this.state;
+    const { isScrolled, mobileView } = this.props;
+    console.info("Public NAVIGATION is mobile view ?", mobileView);
+
+    return (
+      <div>
+        {mobileView
+          ? this.renderMobile(selectedOption, searchOptions, isScrolled)
+          : this.renderDesktop(selectedOption, searchOptions, isScrolled)}
+      </div>
     );
   }
 }

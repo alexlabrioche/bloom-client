@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+
 import Global from "../../../Global";
 
 const Container = styled.div`
@@ -9,19 +10,24 @@ const Container = styled.div`
   transition: 0.3s;
   opacity: 0.8;
   border-radius: 2px;
-  padding: 0.4rem 0.8rem;
-  height: 2rem;
+  padding: 0.6rem 1rem;
+  margin: 0.4rem 2rem 0.4rem 0rem;
+  font-weight: 700;
+  border: 1px solid ${Global.color.light};
+  border-radius: 4px;
   cursor: pointer;
+
   a {
-    color: ${Global.color.body};
+    color: ${Global.color.protect};
     text-decoration: none;
-    span {
-      font-weight: bold;
-      color: ${Global.color.protect};
-    }
+    transition: 0.3s;
   }
   &:hover {
-    transform: scale(1.05);
+    background: ${Global.color.protect};
+    opacity: 0.6;
+    a {
+      color: white;
+    }
   }
 `;
 
@@ -38,9 +44,7 @@ class GreetV2 extends React.Component {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <div className="greet-text">
-            <span> Féliciter </span> sur Twitter : @{twitter}
-          </div>
+          <div className="greet-text">Féliciter sur Twitter</div>
         </a>
         <script
           async

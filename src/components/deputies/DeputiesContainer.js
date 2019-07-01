@@ -5,12 +5,16 @@ import { Link } from "react-router-dom";
 import Api from "../../utils/Api";
 import GetGrade from "../../utils/GetGrade";
 
-import Header from "../main/Header";
+import Header from "../main/HeaderV2";
 import DeputiesList from "./DeputiesList";
 import HandleCards from "./HandleCards";
 
 const Container = styled.div`
-  padding-top: 4rem;
+  margin-top: 8rem;
+  margin-bottom: 5rem;
+  background: white;
+  border-radius: 4px;
+  border: 1px solid rgba(230, 230, 230, 1);
 `;
 class DeputiesContainer extends React.Component {
   constructor(props) {

@@ -14,6 +14,10 @@ const Container = styled.div`
     margin-top: 2rem;
     color: ${Global.color.accent};
   }
+  .header-content {
+    width: 100%;
+    background: lightblue;
+  }
 `;
 
 class Header extends React.Component {
@@ -50,12 +54,14 @@ class Header extends React.Component {
         <h1 className="header-title">{title}</h1>
         <div className="header-intro">
           <ShowMore lines={3} more="Lire plus" less="Lire moins" anchorClass="">
-            <p>{paragraph1} </p>
-            <p>{paragraph2}</p>
-            <p>{paragraph3}</p>
-            <p>
-              Pour en savoir plus sur la méthode{" "}
-              <Link to="/methode">cliquez ici</Link>
+            <p className="header-content" align="justify">
+              <p align="justify">{paragraph1} </p>
+              <p align="justify">{paragraph2}</p>
+              <p align="justify">{paragraph3}</p>
+              <p>
+                Pour en savoir plus sur la méthode{" "}
+                <Link to="/methode">cliquez ici</Link>
+              </p>
             </p>
           </ShowMore>
         </div>

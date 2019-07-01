@@ -10,23 +10,23 @@ const MethodeContainer = styled.div`
   border-radius: 4px;
   border: 1px solid rgba(230, 230, 230, 1);
   .title--big {
-    padding-top: 3rem;
-    padding-bottom: 2rem;
+    padding-top: 3.5rem;
+    padding-bottom: 2.5rem;
     text-align: center;
     font-family: ${Global.font.title};
     font-weight: ${Global.font.weight.header};
     color: ${Global.color.accent};
   }
   .title--medium {
-    padding-top: 2rem;
-    padding-bottom: 1rem;
+    padding-top: 2.5rem;
+    padding-bottom: 1.5rem;
     font-family: ${Global.font.title};
     font-weight: ${Global.font.weight.header};
     color: ${Global.color.primary};
   }
   .title--small {
-    padding-top: 1.5rem;
-    padding-bottom: 1rem;
+    padding-top: 2rem;
+    padding-bottom: 1.5rem;
     font-family: ${Global.font.title};
     font-weight: ${Global.font.weight.header};
     color: ${Global.color.secondary};
@@ -59,10 +59,18 @@ const MethodeContainer = styled.div`
     line-height: 1.8rem;
     font-weight: ${Global.font.weight.caption};
     &:first-letter {
-      padding-left: 1rem;
       font-weight: bold;
       color: ${Global.color.tertiary};
       font-size: ${Global.font.size.header};
+    }
+    .click--link {
+      color: ${Global.color.secondAccent};
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.2s;
+      &:hover {
+        opacity: 0.7;
+      }
     }
   }
 
@@ -107,7 +115,7 @@ class Methode extends React.Component {
             les écosystèmes marins et les pêcheurs. En outre, cette sélection
             porte principalement sur les textes adoptés depuis 2017, pour une
             raison d'accessibilité des données (nous n'avons pas trouvé toutes
-            les données nécessaires pour couvrir toute la législature).{" "}
+            les données nécessaires pour couvrir toute la législature).
           </p>
         </div>
 
@@ -134,7 +142,7 @@ class Methode extends React.Component {
             détail du vote. Par ailleurs, le deuxième critère nous a également
             permis de nous assurer que les députés ne pouvaient ignorer, par le
             biais des recommandations transmises par les ONG, quel vote allait
-            protéger l'océan et quel vote allait le détruire.{" "}
+            protéger l'océan et quel vote allait le détruire.
           </p>
           <p className="text" align="justify">
             Ici encore, cette sélection d'amendements ne doit pas être regardée
@@ -144,7 +152,7 @@ class Methode extends React.Component {
           </p>
           <p className="text" align="justify">
             <span className="bold">NB : </span>cette méthodologie n'a pas pu
-            être appliquée in extenso sur trois textes :{" "}
+            être appliquée in extenso sur trois textes :
           </p>
           <ul className="text--list" align="justify">
             <li>
@@ -186,7 +194,7 @@ class Methode extends React.Component {
           {/* <p className="text bold" align="justify">
             Le barème est le suivant :
           </p> */}
-          <table className="table table-striped">
+          <table className="table table-striped table-bordered">
             <thead>
               <tr>
                 <th scope="col">Les différents types de votes</th>
@@ -289,16 +297,16 @@ class Methode extends React.Component {
           <p className="text" align="justify">
             <span className="bold">NB 1 : </span>La note la plus basse de ce
             barème est l’attribution de 0 point aux votes "destructeurs" (pour
-            voir à quoi peuvent ressembler des recommandations de vote, : >
-            cliquez sur «{" "}
+            voir à quoi peuvent ressembler des recommandations de vote :&nbsp;
             <a
+              className="click--link"
               target="_blank"
               rel="noopener noreferrer"
               href="https://seas-at-risk.org/images/pdf/publications/2018-01-15TechnicalMeasuresPlenaryvote-NGOvotingRecommendationFinal.pdf"
             >
-              Source
-            </a>{" "}
-            » . Notre échelle s'étale de 0 à 3 et comprend un écart plus grand
+              cliquez ici
+            </a>
+            ). Notre échelle s'étale de 0 à 3 et comprend un écart plus grand
             entre "abstention" et "vote protecteur" (1 -> 3) qu'entre
             "abstention" et "vote destructeur" (1 -> 0) car nous avons voulu
             valoriser les votes protecteurs et leur avons donc alloué un poids
@@ -385,10 +393,11 @@ class Methode extends React.Component {
 
         <h4 className="title--medium">3- LES SOURCES</h4>
         <div className="container">
-          <p>
+          <p className="text" align="justify">
             Tous les textes, amendements et votes, ont été collectés sur le site
             du{" "}
             <a
+              className="click--link"
               target="_blank"
               rel="noopener noreferrer"
               href="http://www.europarl.europa.eu/portal/fr"
@@ -398,11 +407,11 @@ class Methode extends React.Component {
             . Les recommandations de vote sont celles des différentes coalitions
             d'ONG de protection de l'océan (par exemple Greenpeace, Seas at Risk
             et Oceana) travaillant sur les textes sélectionnés.
-            <p />
-            <p>
-              Pour toute demande supplémentaire, envoyer un mail à l'adresse
-              suivante : contact@bloomassociation.org
-            </p>
+          </p>
+
+          <p className="text" align="justify">
+            Pour toute demande supplémentaire, envoyer un mail à l'adresse
+            suivante : contact@bloomassociation.org
           </p>
         </div>
       </MethodeContainer>

@@ -34,6 +34,14 @@ const Container = styled.footer`
   .mentions-legales {
     margin-bottom: 7px;
   }
+  .click {
+    color: ${Global.color.secondAccent};
+    text-decoration: none;
+    transition: 0.2s;
+    &:hover {
+      opacity: 0.7;
+    }
+  }
 `;
 
 class Footer extends React.Component {
@@ -62,17 +70,26 @@ class Footer extends React.Component {
             </a>
           </div>
           <div className="col-12 text-center mentions-legales">
-            <a href="https://www.bloomassociation.org/mentions-legales/">
+            <a
+              className="click"
+              href="https://www.bloomassociation.org/mentions-legales/"
+            >
               Mentions Légales
-            </a>{" "}
-            | <a href="https://www.bloomassociation.org/contact/">Contact</a>
+            </a>
+            &nbsp;&nbsp;|&nbsp;&nbsp;
+            <a
+              className="click"
+              href="https://www.bloomassociation.org/contact/"
+            >
+              Contact
+            </a>
           </div>
         </div>
         <div className="row">
           <div className="col-12 text-center">
             <p className="signature">
               &copy; {new Date().getFullYear()} Vianney Guesdon-Vennerie et Alex
-              Baker
+              Boulanger
             </p>
           </div>
         </div>
