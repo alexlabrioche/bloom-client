@@ -20,9 +20,11 @@ import {
 } from "react-share";
 
 const ShareContainer = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: flex-end;
   .element {
     margin-right: 1rem;
     outline: 0;

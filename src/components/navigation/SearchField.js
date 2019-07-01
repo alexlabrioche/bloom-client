@@ -4,9 +4,8 @@ import Select, { components } from "react-select";
 import Global from "../../Global";
 
 const Container = styled.div`
-  margin-left: 3rem;
+  margin-left: 1.5rem;
   border-left: 1px solid ${Global.color.light};
-  border-right: 1px solid ${Global.color.light};
   ${props =>
     props.mobileView &&
     css`
@@ -17,7 +16,7 @@ const Container = styled.div`
       border-right: none;
     `}
   .deputies-select {
-    width: 35rem;
+    width: 30rem;
     ${props =>
       props.mobileView &&
       css`
@@ -45,21 +44,21 @@ const Container = styled.div`
 `;
 
 const groupBadgeStyles = {
-  backgroundColor: Global.color.tertiary,
+  backgroundColor: Global.color.secondary,
   borderRadius: "2em",
   color: "white",
   display: "inline-block",
-  fontSize: 14,
-  fontWeight: "normal",
+  fontSize: "0.8rem",
   lineHeight: "1",
   minWidth: 1,
-  padding: "0.16666666666667em 0.5em",
+  padding: "0.3em 0.5em",
   textAlign: "center"
 };
 
 const groupStyles = {
   color: Global.color.primary,
-  fontSize: 20,
+  fontSize: Global.font.size.header,
+  fontFamily: Global.font.title,
   borderBottom: `1px solid ${Global.color.light}`,
   display: "flex",
   alignItems: "center",
@@ -69,11 +68,10 @@ const groupStyles = {
 const styles = {
   option: (provided, state) => ({
     ...provided,
-    color: Global.color.body,
-    fontWeight: 300,
-    paddingLeft: 30,
+    color: Global.color.dark,
+    paddingLeft: "2rem",
     backgroundColor: state.isSelected ? Global.color.secondary : "white",
-    padding: 10,
+    padding: "0.8rem",
     ":hover": {
       backgroundColor: Global.color.tertiary,
       color: "white"
@@ -85,14 +83,16 @@ const styles = {
   }),
   singleValue: base => ({
     ...base,
-    color: Global.color.dark,
+    fontSize: "1rem",
+    fontWeight: "bold",
+    color: Global.color.primary,
     display: "flex"
   }),
   placeholder: base => ({
     ...base,
-    fontSize: "1.1rem",
-    color: Global.color.secondary,
-    fontWeight: Global.font.weight.header
+    fontSize: "1rem",
+    fontWeight: "bold",
+    color: Global.color.disabled
   }),
   control: base => ({
     display: "flex",
@@ -184,7 +184,6 @@ class SearchField extends React.Component {
           components={{ SingleValue, NoOptionsMessage, DropdownIndicator }}
           theme={customTheme}
           placeholder={placeholder}
-          // onFocus={() => this.setState({ placeholder: "" })}
         />
       </Container>
     );

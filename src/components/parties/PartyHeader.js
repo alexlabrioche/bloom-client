@@ -7,6 +7,8 @@ class PartyHeader extends React.Component {
     const { party, finalNote } = this.props;
     return (
       <div className="header row">
+        <h3 className="col-12 header-title">{party.name}</h3>
+
         <div className="header-img-container offset-3 col-6 offset-md-0 col-md-4 col-lg-3">
           <img
             className="header-img"
@@ -15,7 +17,6 @@ class PartyHeader extends React.Component {
           />
         </div>
         <div className="header-text-container col-12 col-md-4 col-lg-6">
-          <h3 className="header-title">{party.name}</h3>
           <p className="header-description">{party.description}</p>
         </div>
         <div className="header-gauge-container offset-3 col-6 offset-md-0 col-md-4 col-lg-3">

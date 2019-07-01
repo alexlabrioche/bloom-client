@@ -1,5 +1,5 @@
 import React from "react";
-import { PartyContainer } from "./style";
+import { PartyContainer } from "./styles";
 
 import PartyHeader from "./PartyHeader";
 import DeputiesList from "../deputies/DeputiesList";

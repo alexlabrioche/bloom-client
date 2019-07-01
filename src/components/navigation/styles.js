@@ -10,7 +10,6 @@ export const DesktopNavStyles = css`
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   border-bottom: 1px solid rgba(230, 230, 230, 1);
   transition: box-shadow 0.2s ease-in-out;
   ${props =>
@@ -20,7 +19,7 @@ export const DesktopNavStyles = css`
     `}
   .title {
     text-decoration: none;
-    color: ${Global.color.primary};
+    color: ${Global.color.secondAccent};
     font-family: ${Global.font.title};
     font-size: ${Global.font.size.header};
     font-weight: ${Global.font.weight.header};

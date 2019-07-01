@@ -1,5 +1,5 @@
 import React from "react";
-import { GroupContainer } from "./style";
+import { GroupContainer } from "./styles";
 
 import GroupHeader from "./GroupHeader";
 import DeputiesList from "../deputies/DeputiesList";

@@ -1,7 +1,8 @@
 import styled from "styled-components";
+import Global from "../../Global";
 
-export const PartyContainer = styled.div`
-  margin-top: 5rem;
+export const GroupContainer = styled.div`
+  margin-top: 8rem;
   margin-bottom: 5rem;
   background: white;
   border-radius: 4px;
@@ -18,8 +19,13 @@ export const PartyContainer = styled.div`
     width: 100%;
   }
   .header-title {
-    font-size: 3rem;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    font-family: ${Global.font.title};
+    font-weight: ${Global.font.weight.header};
+    font-size: 2.6rem;
+    color: ${Global.color.secondAccent};
+    padding-top: 0.5rem;
   }
   .header-description {
     margin-top: 2rem;
