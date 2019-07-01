@@ -76,7 +76,6 @@ export const DeputyHeaderStyles = css`
   }
   .header-content {
     margin-top: 2rem;
-    font-size: 1.1rem;
     display: flex;
     flex-direction: column;
   }
@@ -84,13 +83,12 @@ export const DeputyHeaderStyles = css`
   .header-link {
     text-decoration: none;
     font-weight: 700;
-    color: ${Global.color.secondary};
+    color: ${Global.color.secondAccent};
     display: inline-flex;
-    transition: opacity 0.3s;
+    transition: opacity 0.2s;
   }
   .header-link:hover {
-    text-decoration: none;
-    opacity: 0.6;
+    opacity: 0.8;
   }
   .header-gauge-legend {
     font-size: 0.8rem;

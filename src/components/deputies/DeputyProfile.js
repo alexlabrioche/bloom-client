@@ -3,7 +3,6 @@ import React from "react";
 import { ProfileContainer } from "./styles";
 
 import DeputyHeader from "./DeputyHeader";
-import DeputyNotationDetail from "./DeputyNotationDetail";
 import CollapseCategories from "./CollapseCategories";
 
 class DeputyProfile extends React.Component {
@@ -47,7 +46,6 @@ class DeputyProfile extends React.Component {
           finalNote={finalNote}
           isScrolled={isScrolled}
         />
-        <DeputyNotationDetail />
         {categories.length > 0 && (
           <CollapseCategories categories={categories} votes={votes} />
         )}
