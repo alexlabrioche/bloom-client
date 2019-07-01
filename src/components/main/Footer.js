@@ -13,7 +13,7 @@ const Container = styled.footer`
   right: 0;
   font-family: ${Global.font.title};
   font-size: ${Global.font.size.caption};
-  border-bottom: solid 4px ${Global.color.accent};
+  border-bottom: solid 6px ${Global.color.accent};
   padding-left: 10px;
   padding-bottom: 5px;
   img {

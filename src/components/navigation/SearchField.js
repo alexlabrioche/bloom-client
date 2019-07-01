@@ -41,6 +41,23 @@ const Container = styled.div`
         opacity: 0.2;
       `}
   }
+  .rotate {
+    font-size: 1.5rem;
+    color: ${Global.color.light};
+    transform: rotate(90deg);
+    transition: 0.4s;
+    &:hover {
+      color: ${Global.color.secondAccent};
+    }
+
+    ${props =>
+      props.onMenuOpen &&
+      css`
+        color: ${Global.color.secondAccent};
+
+        transform: rotate(0deg);
+      `}
+  }
 `;
 
 const groupBadgeStyles = {
@@ -128,7 +145,7 @@ const NoOptionsMessage = ({ props }) => {
 const DropdownIndicator = props => {
   return (
     components.DropdownIndicator && (
-      <components.DropdownIndicator {...props}>
+      <components.DropdownIndicator {...props} className="rotate">
         <i
           className={
             props.selectProps.menuIsOpen
