@@ -1,4 +1,5 @@
 import React from "react";
+
 import { Link } from "react-router-dom";
 import Config from "../../Config";
 import Note from "../core/front/Note";

@@ -1,7 +1,7 @@
 import React from "react";
 
 import Api from "../../utils/Api";
-import GetGrade from "../../utils/GetGrade";
+import GetGrade from "../../utils/GetGradeModified";
 
 import ProfileLoader from "../core/front/ProfileLoader";
 import DeputyProfile from "./DeputyProfile";
@@ -31,8 +31,8 @@ class DeputyContainer extends React.Component {
       votes,
       isLoading: false
     });
-    // let finalNote = GetGrade(id, votes, categories, laws);
-    let finalNote = GetGrade(id, votes);
+    let finalNote = GetGrade(id, votes, categories, laws);
+    // let finalNote = GetGrade(id, votes);
     if (isNaN(finalNote)) {
       return (finalNote = 0);
     }
