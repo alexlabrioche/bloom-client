@@ -99,15 +99,14 @@ class Share extends React.Component {
         >
           <TwitterIcon size={32} round={true} />
         </TwitterShareButton>
-        {mobileView && (
-          <WhatsappShareButton
-            className="element"
-            url={shareUrl}
-            title="Faut proteger les océans frérot !"
-          >
-            <WhatsappIcon size={32} round={true} />
-          </WhatsappShareButton>
-        )}
+
+        <WhatsappShareButton
+          className="element"
+          url={shareUrl}
+          title="Faut proteger les océans frérot !"
+        >
+          <WhatsappIcon size={32} round={true} />
+        </WhatsappShareButton>
 
         <EmailShareButton
           className="element"
