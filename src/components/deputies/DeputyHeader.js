@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { DeputyHeaderStyles } from "./styles";
 import { Link } from "react-router-dom";
 
-import Greet from "../core/front/GreetV2";
+import Greet from "../core/front/Greet";
 import Encourage from "../core/front/Encourage";
 import Shout from "../core/front/Shout";
 import Gauge from "../core/front/Gauge";
