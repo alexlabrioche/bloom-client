@@ -1,102 +1,79 @@
 const GetGrade = (deputyId, votes, categories, laws) => {
-  // console.info("GetGRADE TEXTES", categories);
-  // categories.map(category => {
-  //   console.info("     ", "nom du Texte : ", category.name);
-  //   console.info("     ", "ID du Texte : ", category._id);
-  //   console.info("     ");
-  // });
-
-  // console.info("GetGRADE AMENDEMENTS", laws);
-  // laws.map(law => {
-  //   console.info("     ", "nom de l'amendement : ", law.name);
-  //   console.info("     ", "ID de l'amendement : ", law._id);
-  //   console.info("     ", "ID du Texte qui lui est lié : ", law.category);
-  //   console.info("     ");
-  // });
-
-  // console.info("GetGRADE votes", votes);
-  // votes.map(vote => {
-  //   console.info("     ", "nom du député qui a voté : ", vote.deputy.name);
-  //   console.info("     ", "nom de l'amendement lié au vote : ", vote.law.name);
-  //   console.info("     ", "ID de l'amendement lié au vote : ", vote.law._id);
-  //   console.info("     ");
-  // });
-
   const scale = 100;
-  const numberOfCategories = categories.length;
-  const numberOfLaws = laws.length;
-  let points = 0;
-  console.log("<<< numberOfCategories", numberOfCategories);
-  console.log("<<< categories", categories);
+  const doGoodVote = 3;
+  const doBadVote = 0;
+  const doAbsenceVote = 0.5;
+  const doNotVote = 1;
+  const votesFromCurrentDeputy = votes.filter(vote => {
+    console.info("      ", vote);
+    return vote.deputy._id === deputyId && vote;
+  });
+  console.info("Votes du député en cours :", votesFromCurrentDeputy);
+  categories.map(categ => console.info(categ));
 
-  for (let i = 0; i < categories.length; i++) {
-    console.log("i", i);
-    console.log("laws", laws);
-    for (let j = 0; j < laws.length; j++) {
-      console.log("j", j);
-      votes.forEach(function(votes) {
-        if ((categories[i]._id === laws[j].category) === votes[j]) {
-          console.info("NEW CATEGORY Texte et Amendement MATCH !!");
-          // console.info("              Texte", categories[i]._id);
-          // console.info("         Amendement", laws[j].category);
-          // console.info("");
-          console.log("votes", votes);
+  let deputyPoints = 0;
+  let numberOfVotes = 0;
+  let totalOfVotes = 0;
+  let arrayOfSubTotals = [];
 
-          //   console.log("votes.length", votes.length);
-          //   let numberOfPointsMax = 0;
-          //   for (let k = 0; k < votes.length; k++) {
-          //     console.log("k", k);
-          //     if (votes[k].law.category === laws[j].category) {
-          //       console.log("votes[i]", votes[i]);
+  categories.forEach(category => {
+    console.info("CATEGORY :", category.name);
+    laws.forEach(law => {
+      if (category._id === law.category) {
+        totalOfVotes++;
+        numberOfVotes++;
+        console.info("  LAW :", law.name);
+        votesFromCurrentDeputy.forEach(vote => {
+          if (law._id === vote.law._id) {
+            console.info("    VOTE :", vote.law.name);
+            console.info("      DECISION", vote.decision);
+            console.info("      DID PROTECT ?", vote.law.protect);
+            if (
+              (vote.decision === "for" && vote.law.protect === true) ||
+              (vote.decision === "against" && vote.law.protect === false)
+            ) {
+              console.info("  J'ai bien voté !!");
+              deputyPoints += doGoodVote;
+              console.info("    deputyPoints", deputyPoints);
+            }
+            if (
+              (vote.decision === "for" && vote.law.protect === false) ||
+              (vote.decision === "against" && vote.law.protect === true)
+            ) {
+              console.info("  J'ai mal voté !!");
+              deputyPoints += doBadVote;
+              console.info("    deputyPoints", deputyPoints);
+            }
+            if (vote.decision === "abstention") {
+              console.info("  J'ai pas voté !!");
+              deputyPoints += doNotVote;
+              console.info("    deputyPoints", deputyPoints);
+            }
+          }
+        });
+      }
+    });
+    deputyPoints += doAbsenceVote * numberOfVotes;
+    console.info("    deputyPoints", deputyPoints);
+    const maxNote = numberOfVotes * 3;
+    console.info("maxNote", maxNote);
+    const coefficient = scale / maxNote;
+    console.info("Coefficient du Texte en cours :", coefficient);
+    const subTotal = deputyPoints * coefficient;
+    console.info("subTotal :", subTotal);
+    arrayOfSubTotals.push(subTotal);
+    console.info("arrayOfSubTotals :", arrayOfSubTotals);
 
-          //       // if (votes[k].deputy._id === deputyId) {
-          //       //   console.info("député et vote MATCH !!");
-          //       //   console.log("votes[k].deputy._id", votes[k].deputy._id);
-          //       //   console.log("deputyId", deputyId);
-
-          //       if (
-          //         (votes[k].decision === "for" && votes[k].law.protect === true) ||
-          //         (votes[k].decision === "against" &&
-          //           votes[k].law.protect === false)
-          //       ) {
-          //         points += 3;
-          //         console.info("    GET GRADE 3 points", points);
-          //         numberOfPointsMax += 3;
-          //         console.log("numberOfPointsMax", numberOfPointsMax);
-          //       }
-          //       if (
-          //         (votes[k].decision === "for" && votes[k].law.protect === false) ||
-          //         (votes[k].decision === "against" && votes[k].law.protect === true)
-          //       ) {
-          //         points += 0;
-          //         console.info("    GET GRADE 0 point", points);
-          //         numberOfPointsMax += 3;
-          //         console.log("numberOfPointsMax", numberOfPointsMax);
-          //       }
-          //       if (votes[k].decision === "absence") {
-          //         points += 0.5;
-          //         console.info("    GET GRADE 0.5 points", points);
-          //         numberOfPointsMax += 3;
-          //         console.log("numberOfPointsMax", numberOfPointsMax);
-          //       }
-          //       if (votes[k].decision === "abstention") {
-          //         points += 1;
-          //         console.info("    GET GRADE 1 points", points);
-          //         numberOfPointsMax += 3;
-          //         console.log("numberOfPointsMax", numberOfPointsMax);
-          //       }
-          //       console.log("numberOfPointsMax", numberOfPointsMax);
-          //       let averageGradePerText = points / numberOfPointsMax;
-          //       console.log("averageGradePerText", averageGradePerText);
-          //     }
-          //   }
-        }
-      });
-    }
-  } // const finalNote = Number(((points / (numberOfVotes * 3)) * scale).toFixed(0));
-  console.info("GET GRADE points after algo", points);
-  console.info("GET GRADE maximum points", (3 * 3 + 5 * 3) / 2);
-  const finalNote = Number((points / numberOfCategories).toFixed(0));
+    deputyPoints = 0;
+    numberOfVotes = 0;
+  });
+  const reducer = (accumulator, currentValue) => accumulator + currentValue;
+  const nbOfCategories = categories.length;
+  const finalNote = Number(
+    (arrayOfSubTotals.reduce(reducer) / nbOfCategories).toFixed(0)
+  );
+  console.info("Nombres de votes du député", totalOfVotes);
+  console.info("Note finale :", finalNote);
   return finalNote;
 };
 
