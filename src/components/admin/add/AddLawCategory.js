@@ -29,7 +29,6 @@ class AddLawCategory extends React.Component {
 
   async onSubmit(formState) {
     console.info("formState", formState);
-
     const newCategory = new FormData();
     newCategory.append("data", JSON.stringify(formState));
 

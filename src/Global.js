@@ -8,7 +8,7 @@ const Global = {
     dark: "#444444",
     accent: "#E42058",
     secondAccent: "#5973e8",
-    background: "#F9F9F9",
+    background: "#F5F5F5",
     lightBackground: "#FFF",
     disabled: "#CCC",
     protect: "#42ad2e",

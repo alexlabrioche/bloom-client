@@ -93,7 +93,11 @@ const GetGrade = (deputyId, votes, categories, laws) => {
     actionOfVote = 0;
   });
   const reducer = (accumulator, currentValue) => accumulator + currentValue;
-  const finalNote = Number(
+  let finalNote = 0;
+  if (arrayOfSubTotals.length === 0) {
+    return finalNote;
+  }
+  finalNote = Number(
     (arrayOfSubTotals.reduce(reducer) / arrayOfSubTotals.length).toFixed(0)
   );
   console.info("Nombres de votes du député", totalOfVotes);
