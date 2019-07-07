@@ -52,9 +52,9 @@ class Share extends React.Component {
     shareUrl: ""
   };
   componentDidMount() {
-    // const shareUrl = window.location.href;
+    const shareUrl = window.location.href;
     // console.info("Share shareUrl", shareUrl);
-    const shareUrl = "https://www.residentadvisor.net/events/fr/paris";
+    // const shareUrl = "https://www.residentadvisor.net/events/fr/paris";
     this.setState({ shareUrl });
   }
   // componentDidUpdate() {
@@ -71,8 +71,6 @@ class Share extends React.Component {
     return (
       <ShareContainer>
         <div className="share-text">
-          <div>Déjà&nbsp;</div>
-
           <FacebookShareCount className="share-counter" url={shareUrl} />
           <div>&nbsp;partages&nbsp;!</div>
         </div>
@@ -80,8 +78,8 @@ class Share extends React.Component {
         <FacebookShareButton
           className="element"
           url={shareUrl}
-          quote="Bloom app c'est trop kiffant j'suis choks faut protegezer les océans la mif"
-          hashtag="#LesPoissonsCestLaLife"
+          quote="Quels députés protègent l'océan ? Découvrez le vote des euro-députés sur la protection de l'océan"
+          hashtag="#SaveTheOcean"
         >
           <FacebookIcon size={32} round={true} />
         </FacebookShareButton>
@@ -93,16 +91,16 @@ class Share extends React.Component {
         <TwitterShareButton
           className="element"
           url={shareUrl}
-          title="Faut proteger les océans frérot !"
-          via="nom du compte Twitter Bloom"
-          hashtags={["hashtag", "poissons", "protectTheOceans", "zerzerBANG"]}
+          title="Quels députés protègent l'océan ? Découvrez le vote des euro-députés sur la protection de l'océan"
+          via="Bloom_FR"
+          hashtags={["ocean", "europeennes", "SaveTheOcean"]}
         >
           <TwitterIcon size={32} round={true} />
         </TwitterShareButton>
         <WhatsappShareButton
           className="element"
           url={shareUrl}
-          title="Faut proteger les océans frérot !"
+          title="Quels députés protègent l'océan ? Découvrez le vote des euro-députés sur la protection de l'océan"
         >
           <WhatsappIcon size={32} round={true} />
         </WhatsappShareButton>
@@ -110,8 +108,8 @@ class Share extends React.Component {
         <EmailShareButton
           className="element"
           url={shareUrl}
-          subject="Faut proteger les océans frérot !"
-          body="Bouges ton ionf et partage spread the love voici le lien de cette super App du turfu BANGS"
+          subject="Notation Euro-députés Bloom"
+          body="Quels députés protègent l'océan ? Découvrez le vote des euro-députés sur la protection de l'océan"
           separator=" "
         >
           <EmailIcon size={32} round={true} />

@@ -15,7 +15,7 @@ class Greet extends React.Component {
         <div className="icon">
           <i className="fas fa-bullhorn" />
         </div>
-        <p className="text">Féliciter sur Twitter</p>
+        <p className="text">Féliciter sur Twitter @{twitter}</p>
         <script
           async
           src="https://platform.twitter.com/widgets.js"

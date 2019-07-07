@@ -105,4 +105,6 @@ const GetGrade = (deputyId, votes, categories, laws) => {
   return finalNote;
 };
 
+// };
+
 export default GetGrade;

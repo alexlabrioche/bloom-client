@@ -7,6 +7,7 @@ import DeputiesList from "../deputies/DeputiesList";
 class GroupProfile extends React.Component {
   render() {
     const { group, deputies, mobileView, groupGrade } = this.props;
+    console.info("coucouconcon", groupGrade);
     return (
       <GroupContainer className="container">
         <GroupHeader group={group} finalNote={groupGrade} />

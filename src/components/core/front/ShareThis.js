@@ -10,7 +10,7 @@ class ShareThis extends React.Component {
   render() {
     return (
       <div>
-        <StickyShareButtons
+        {/* <StickyShareButtons
           config={{
             alignment: "left", // alignment of buttons (left, right)
             color: "social", // set the color of buttons (social, white)
@@ -44,11 +44,11 @@ class ShareThis extends React.Component {
             // message: "custom email text", // (only for email sharing)
             // subject: "custom email subject", // (only for email sharing)
             // username: "custom twitter handle" // (only for twitter sharing)
-          }}
+          }} */}
         />
-        {/* <InlineShareButtons
+        <InlineShareButtons
           config={{
-            alignment: "center", // alignment of buttons (left, center, right)
+            alignment: "right", // alignment of buttons (left, center, right)
             color: "social", // set the color of buttons (social, white)
             enabled: true, // show/hide buttons (true, false)
             font_size: 16,
@@ -76,7 +76,7 @@ class ShareThis extends React.Component {
             // subject: "custom email subject", // (only for email sharing)
             // username: "custom twitter handle" // (only for twitter sharing)
           }}
-        /> */}
+        />
       </div>
     );
   }
