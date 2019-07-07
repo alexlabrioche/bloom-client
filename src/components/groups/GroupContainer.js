@@ -1,6 +1,6 @@
 import React from "react";
 import Api from "../../utils/Api";
-import GetGrade from "../../utils/GetGrade";
+import GetGrade from "../../utils/GetGradeModified";
 
 import ProfileLoader from "../core/front/ProfileLoader";
 import GroupProfile from "./GroupProfile";
@@ -18,32 +18,55 @@ class GroupContainer extends React.Component {
   }
 
   async componentDidMount() {
+    window.scrollTo(0, 0);
     this.handleScreenSize();
     const slug = this.props.match.params.slug;
     const group = await Api.getGroupBySlug(slug);
     const deputies = await this.getDeputiesFromCurrentGroup();
     const votes = await Api.getVotes();
+    const categories = await Api.getCategories();
+    const laws = await Api.getLaws();
+    const deputiesPlusGrade = deputies.map(deputy => {
+      const id = deputy._id;
+      const deputyNote = GetGrade(id, votes, categories, laws);
+      console.log("deputyNote", deputyNote);
+      // const deputyNote = GetGrade(id, votes);
+      return Object.assign({}, deputy, { note: deputyNote });
+    });
+    console.info("cmpDM GROUP", deputiesPlusGrade.map(d => d.note));
     this.setState({
       isLoading: false,
       group,
-      deputies
+      deputies: deputiesPlusGrade
     });
-    const groupGrade = this.getGroupGrade(deputies, votes);
+    const groupGrade = await this.getGroupGrade(deputies, votes);
     this.setState({
       groupGrade
     });
   }
   async componentDidUpdate() {
+    window.scrollTo(0, 0);
     const slug = this.props.match.params.slug;
     const currentSlug = this.state.group.slug;
     if (slug !== currentSlug) {
       const deputies = await this.getDeputiesFromCurrentGroup();
       const group = await Api.getGroupBySlug(slug);
       const votes = await Api.getVotes();
-      const groupGrade = this.getGroupGrade(deputies, votes);
+      const categories = await Api.getCategories();
+      const laws = await Api.getLaws();
+      const deputiesPlusGrade = deputies.map(deputy => {
+        const id = deputy._id;
+        const deputyNote = GetGrade(id, votes, categories, laws);
+        console.log("deputyNote", deputyNote);
+        // const deputyNote = GetGrade(id, votes);
+        return Object.assign({}, deputy, { note: deputyNote });
+      });
+      const groupGrade = await this.getGroupGrade(deputies, votes);
+      console.info("getGroupGrade groupGrade", groupGrade);
+
       this.setState({
         group,
-        deputies,
+        deputies: deputiesPlusGrade,
         groupGrade
       });
     }
@@ -59,11 +82,13 @@ class GroupContainer extends React.Component {
     });
     return deputies;
   }
-  getGroupGrade(deputies, votes) {
+  async getGroupGrade(deputies, votes) {
+    const laws = await Api.getLaws();
+    const categories = await Api.getCategories();
     const deputiesGrade = [];
     deputies.forEach(deputy => {
       const id = deputy._id;
-      const grade = GetGrade(id, votes);
+      const grade = GetGrade(id, votes, categories, laws);
       deputiesGrade.push(grade);
     });
     const groupGrade =

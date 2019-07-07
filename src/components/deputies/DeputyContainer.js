@@ -19,6 +19,7 @@ class DeputyContainer extends React.Component {
   }
 
   async componentDidMount() {
+    window.scrollTo(0, 0);
     const slug = this.props.match.params.slug;
     const deputy = await Api.getDeputyBySlug(slug);
     const votes = await this.getVotesFromCurrentDeputy();
@@ -43,6 +44,7 @@ class DeputyContainer extends React.Component {
   }
 
   async componentDidUpdate() {
+    window.scrollTo(0, 0);
     const slug = this.props.match.params.slug;
     const currentSlug = this.state.deputy.slug;
     const votes = await this.getVotesFromCurrentDeputy();

@@ -1,6 +1,6 @@
 import React from "react";
 import Api from "../../utils/Api";
-import GetGrade from "../../utils/GetGrade";
+import GetGrade from "../../utils/GetGradeModified";
 
 import ProfileLoader from "../core/front/ProfileLoader";
 import PartyProfile from "./PartyProfile";
@@ -17,33 +17,52 @@ class PartyContainer extends React.Component {
   }
 
   async componentDidMount() {
+    window.scrollTo(0, 0);
     this.handleScreenSize();
     const slug = this.props.match.params.slug;
     const party = await Api.getPartyBySlug(slug);
     const deputies = await this.getDeputiesFromCurrentParty();
+    const categories = await Api.getCategories();
+    const laws = await Api.getLaws();
     const votes = await Api.getVotes();
+    const deputiesPlusGrade = deputies.map(deputy => {
+      const id = deputy._id;
+      const deputyNote = GetGrade(id, votes, categories, laws);
+      console.log("deputyNote", deputyNote);
+      return Object.assign({}, deputy, { note: deputyNote });
+    });
     this.setState({
       isLoading: false,
       party,
-      deputies
+      deputies: deputiesPlusGrade
     });
-    const partyGrade = this.getPartyGrade(deputies, votes);
+    const partyGrade = await this.getPartyGrade(deputies, votes);
     this.setState({
       partyGrade
     });
   }
 
   async componentDidUpdate() {
+    window.scrollTo(0, 0);
     const slug = this.props.match.params.slug;
     const stateSlug = this.state.party.slug;
     if (slug !== stateSlug) {
       const deputies = await this.getDeputiesFromCurrentParty();
       const party = await Api.getPartyBySlug(slug);
       const votes = await Api.getVotes();
-      const partyGrade = this.getPartyGrade(deputies, votes);
+      const categories = await Api.getCategories();
+      const laws = await Api.getLaws();
+      const deputiesPlusGrade = deputies.map(deputy => {
+        const id = deputy._id;
+        const deputyNote = GetGrade(id, votes, categories, laws);
+        console.log("deputyNote", deputyNote);
+        // const deputyNote = GetGrade(id, votes);
+        return Object.assign({}, deputy, { note: deputyNote });
+      });
+      const partyGrade = await this.getPartyGrade(deputies, votes);
       this.setState({
         party,
-        deputies,
+        deputies: deputiesPlusGrade,
         partyGrade
       });
     }
@@ -59,11 +78,13 @@ class PartyContainer extends React.Component {
     });
     return deputies;
   }
-  getPartyGrade(deputies, votes) {
+  async getPartyGrade(deputies, votes) {
+    const laws = await Api.getLaws();
+    const categories = await Api.getCategories();
     const deputiesGrade = [];
     deputies.forEach(deputy => {
       const id = deputy._id;
-      const grade = GetGrade(id, votes);
+      const grade = GetGrade(id, votes, categories, laws);
       deputiesGrade.push(grade);
     });
     const partyGrade =

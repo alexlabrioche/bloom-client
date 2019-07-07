@@ -32,6 +32,7 @@ class DeputiesContainer extends React.Component {
     this.handleWorstNote = this.handleWorstNote.bind(this);
   }
   async componentDidMount() {
+    window.scrollTo(0, 0);
     const allDeputies = await Api.getDeputies();
     const votes = await Api.getVotes();
     const categories = await Api.getCategories();

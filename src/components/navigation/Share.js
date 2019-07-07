@@ -99,7 +99,6 @@ class Share extends React.Component {
         >
           <TwitterIcon size={32} round={true} />
         </TwitterShareButton>
-
         <WhatsappShareButton
           className="element"
           url={shareUrl}
