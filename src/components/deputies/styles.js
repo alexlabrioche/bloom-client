@@ -68,6 +68,12 @@ export const DeputyHeaderStyles = css`
     padding: 1rem;
     overflow: auto;
   }
+  .header-img-container__mobile {
+    height: 14rem;
+    width: 12rem;
+    padding: 0.5rem;
+    overflow: auto;
+  }
   .header-img {
     border-radius: 2px;
     width: 100%;

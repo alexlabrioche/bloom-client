@@ -3,6 +3,7 @@ import React from "react";
 import { ProfileContainer } from "./styles";
 
 import DeputyHeader from "./DeputyHeader";
+import MobileDeputyHeader from "./MobileDeputyHeader";
 import CollapseCategories from "./CollapseCategories";
 
 class DeputyProfile extends React.Component {
@@ -38,14 +39,22 @@ class DeputyProfile extends React.Component {
   };
   render() {
     const { isScrolled } = this.state;
-    const { deputy, finalNote, votes, categories } = this.props;
+    const { deputy, finalNote, votes, categories, mobileView } = this.props;
     return (
       <ProfileContainer className="container">
-        <DeputyHeader
-          deputy={deputy}
-          finalNote={finalNote}
-          isScrolled={isScrolled}
-        />
+        {mobileView ? (
+          <MobileDeputyHeader
+            deputy={deputy}
+            finalNote={finalNote}
+            isScrolled={isScrolled}
+          />
+        ) : (
+          <DeputyHeader
+            deputy={deputy}
+            finalNote={finalNote}
+            isScrolled={isScrolled}
+          />
+        )}
         {categories.length > 0 && (
           <CollapseCategories categories={categories} votes={votes} />
         )}

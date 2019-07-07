@@ -20,6 +20,8 @@ class DeputyContainer extends React.Component {
 
   async componentDidMount() {
     window.scrollTo(0, 0);
+    window.addEventListener("resize", this.handleScreenSize.bind(this));
+    this.handleScreenSize();
     const slug = this.props.match.params.slug;
     const deputy = await Api.getDeputyBySlug(slug);
     const votes = await this.getVotesFromCurrentDeputy();
@@ -45,13 +47,17 @@ class DeputyContainer extends React.Component {
 
   async componentDidUpdate() {
     window.scrollTo(0, 0);
+    window.addEventListener("resize", this.handleScreenSize.bind(this));
+    this.handleScreenSize();
     const slug = this.props.match.params.slug;
     const currentSlug = this.state.deputy.slug;
     const votes = await this.getVotesFromCurrentDeputy();
+    const categories = await Api.getCategories();
+    const laws = await Api.getLaws();
     if (slug !== currentSlug) {
       const deputy = await Api.getDeputyBySlug(slug);
       const id = deputy._id;
-      let finalNote = GetGrade(id, votes);
+      let finalNote = GetGrade(id, votes, categories, laws);
       if (isNaN(finalNote)) {
         return (finalNote = 0);
       }
@@ -63,7 +69,14 @@ class DeputyContainer extends React.Component {
       });
     }
   }
-
+  handleScreenSize() {
+    const { mobileView } = this.state;
+    const screenSize = window.innerWidth <= 760;
+    mobileView !== screenSize &&
+      this.setState({
+        mobileView: screenSize
+      });
+  }
   async getVotesFromCurrentDeputy() {
     const slug = this.props.match.params.slug;
     const allVotes = await Api.getVotes();
