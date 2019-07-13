@@ -120,6 +120,43 @@ const styles = {
   })
 };
 
+const mobileStyles = {
+  option: (provided, state) => ({
+    ...provided,
+    color: Global.color.dark,
+    paddingLeft: "1.2rem",
+    backgroundColor: state.isSelected ? Global.color.secondary : "white",
+    padding: "0.8rem",
+    ":hover": {
+      backgroundColor: Global.color.tertiary,
+      color: "white"
+    }
+  }),
+  indicatorSeparator: base => ({
+    ...base,
+    display: "none"
+  }),
+  singleValue: base => ({
+    ...base,
+    fontSize: "0.85rem",
+    fontWeight: "bold",
+    color: Global.color.primary,
+    display: "flex"
+  }),
+  placeholder: base => ({
+    ...base,
+    fontSize: "0.85rem",
+    color: Global.color.absence
+  }),
+  control: base => ({
+    display: "flex",
+    flexDirection: "row",
+    backgroundColor: "white",
+    border: "none",
+    borderRadius: 5
+  })
+};
+
 const formatGroupLabel = data => {
   return (
     <div style={groupStyles}>
@@ -189,7 +226,7 @@ class SearchField extends React.Component {
         <div className="darken-app" />
         <Select
           className="deputies-select"
-          styles={styles}
+          styles={mobileView ? mobileStyles : styles}
           formatGroupLabel={formatGroupLabel}
           value={selectedOption}
           onChange={handleChange}

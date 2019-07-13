@@ -38,11 +38,6 @@ export const DeputyHeaderStyles = css`
     border-bottom: 1px solid rgba(230, 230, 230, 1);
     z-index: 10;
     transition: 0.3s;
-    /* ${props =>
-      props.isScrolled &&
-      css`
-        opacity: 0;
-      `} */
   }
   .header-title {
     display: flex;
@@ -52,11 +47,6 @@ export const DeputyHeaderStyles = css`
     font-size: 2.6rem;
     color: ${Global.color.accent};
     padding-top: 0.5rem;
-    /* ${props =>
-      props.isScrolled &&
-      css`
-        border-bottom: 1px solid rgba(230, 230, 230, 1);
-      `} */
   }
   .header-twitter-button {
     align-self: center;
@@ -72,6 +62,62 @@ export const DeputyHeaderStyles = css`
     height: 14rem;
     width: 12rem;
     padding: 0.5rem;
+    overflow: auto;
+  }
+  .header-img {
+    border-radius: 2px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .header-content {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header-link {
+    text-decoration: none;
+    font-weight: 700;
+    color: ${Global.color.secondAccent};
+    display: inline-flex;
+    transition: opacity 0.2s;
+  }
+  .header-link:hover {
+    opacity: 0.8;
+  }
+  .header-gauge-legend {
+    font-size: 0.8rem;
+    color: ${Global.color.dark};
+    text-align: center;
+  }
+`;
+
+export const MobileDeputyHeaderContainer = styled.div`
+  .header {
+    background: ${Global.color.lightBackground};
+    padding: 0.5rem;
+    border-bottom: 1px solid rgba(230, 230, 230, 1);
+    z-index: 10;
+    transition: 0.3s;
+  }
+  .header-title {
+    display: flex;
+    justify-content: center;
+    font-family: ${Global.font.title};
+    font-weight: ${Global.font.weight.header};
+    font-size: 2rem;
+    color: ${Global.color.accent};
+    padding-top: 0.5rem;
+  }
+  .header-twitter-button {
+    align-self: center;
+    padding-top: 1rem;
+  }
+  .header-img-container {
+    height: 10rem;
+    width: 8rem;
+    padding: 0.35rem;
     overflow: auto;
   }
   .header-img {
@@ -168,7 +214,8 @@ export const CollapseContainer = styled.div`
 
 export const MobileDeputyCardContainer = styled.div`
   border: none;
-  height: 7rem;
+  height: 6rem;
+  margin-bottom: 0.45rem;
   .link {
     color: ${Global.color.body};
     &:hover {
@@ -176,21 +223,20 @@ export const MobileDeputyCardContainer = styled.div`
     }
   }
   .card-title {
-    padding-top: 0.5rem;
     align-self: center;
+    font-size: 1rem;
+    font-weight: bold;
+    color: ${Global.color.dark};
   }
   .card-img {
-    border-radius: 10px;
-    padding: 0.5rem;
+    border-radius: 5px;
     object-fit: cover;
-
-    height: 7rem;
+    height: 5.85rem;
   }
   .card-img-container {
   }
   .card-text {
     color: ${Global.color.primary};
-    /* text-align: center; */
     font-size: 0.8rem;
   }
   .note-container {

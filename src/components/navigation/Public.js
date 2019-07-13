@@ -112,11 +112,11 @@ class Navigation extends React.Component {
             BLOOM
           </Link>
 
-          <Share mobileView={true} />
+          <Share mobileView />
         </div>
         <div className="second-row">
           <SearchField
-            mobileView={true}
+            mobileView
             selectedOption={selectedOption}
             options={searchOptions}
             handleChange={this.handleSearchField}

@@ -50,10 +50,10 @@ export const MobileNavStyles = css`
     font-family: ${Global.font.title};
     font-size: ${Global.font.size.header};
     font-weight: ${Global.font.weight.header};
-    padding-left: 1rem;
+    padding-left: 0.1rem;
   }
   .first-row {
-    padding: 0.8rem 0rem;
+    padding: 0.4rem 0rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

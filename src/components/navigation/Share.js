@@ -70,10 +70,12 @@ class Share extends React.Component {
     const { mobileView } = this.props;
     return (
       <ShareContainer>
-        <div className="share-text">
-          <FacebookShareCount className="share-counter" url={shareUrl} />
-          <div>&nbsp;partages&nbsp;!</div>
-        </div>
+        {mobileView ? null : (
+          <div className="share-text">
+            <FacebookShareCount className="share-counter" url={shareUrl} />
+            <div>&nbsp;partages&nbsp;!</div>
+          </div>
+        )}
 
         <FacebookShareButton
           className="element"

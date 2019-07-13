@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { DeputyHeaderStyles } from "./styles";
+import { MobileDeputyHeaderContainer } from "./styles";
 import { Link } from "react-router-dom";
 
 import Greet from "../core/front/Greet";
@@ -9,10 +9,6 @@ import Shout from "../core/front/Shout";
 import Gauge from "../core/front/Gauge";
 
 import Config from "../../Config";
-
-const DeputyHeaderContainer = styled.div`
-  ${DeputyHeaderStyles};
-`;
 
 class DeputyHeader extends React.Component {
   greetOrShoutDeputy(note, twitter) {
@@ -29,15 +25,15 @@ class DeputyHeader extends React.Component {
   }
 
   render() {
-    const { deputy, finalNote, isScrolled } = this.props;
+    const { deputy, finalNote } = this.props;
     return (
-      <DeputyHeaderContainer isScrolled={isScrolled}>
+      <MobileDeputyHeaderContainer>
         <div className="header-title container">
           <div className="text-center">{deputy.name}</div>
         </div>
         <div className="header row">
-          <div className="col-6">
-            <div className="header-img-container__mobile">
+          <div className="col-5">
+            <div className="header-img-container">
               <img
                 className="header-img"
                 src={`${Config.server}/${deputy.picture}`}
@@ -45,15 +41,14 @@ class DeputyHeader extends React.Component {
               />
             </div>
           </div>
-          <div className="col-6">
+          <div className="col-7">
             <div className=" header-gauge">
               <Gauge finalNote={finalNote} />
-              <p className=" header-gauge-legend">
-                {Math.round(finalNote)}% des votes de ce député protègent
-                l'océan
-              </p>
             </div>
           </div>
+          <p className="col-12 header-gauge-legend">
+            {Math.round(finalNote)}% des votes de ce député protègent l'océan
+          </p>
           <div className="col-12 col-lg-6">
             <div className="header-content">
               {deputy.group !== undefined && (
@@ -87,7 +82,7 @@ class DeputyHeader extends React.Component {
             </div>
           </div>
         </div>
-      </DeputyHeaderContainer>
+      </MobileDeputyHeaderContainer>
     );
   }
 }

@@ -1,17 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
 import Config from "../../Config";
-import Global from "../../Global";
 import Note from "../core/front/Note";
 
 import { MobileDeputyCardContainer } from "./styles";
 
 function MobilePictureCard(props) {
-  const { name, slug, picture, _id, party } = props;
-  // console.log("@Mobile props", props);
+  const { name, slug, picture, note, party } = props;
   return (
-    <MobileDeputyCardContainer className="card">
+    <MobileDeputyCardContainer className="card" {...props}>
       <Link to={`/depute/${slug}`} className="link">
         <div className="row no-gutters">
           <div className="card-img-container col-4">
@@ -28,7 +25,7 @@ function MobilePictureCard(props) {
             </div>
           </div>
           <div className="col-2 note-container">
-            <Note _id={_id} />
+            <Note note={note} />
           </div>
         </div>
       </Link>
