@@ -12,8 +12,6 @@ class Gauge extends React.Component {
   endColor = Global.color.light;
 
   componentDidMount() {
-    console.log("#cmpDM GAUGE this.props.finalNote", this.props.finalNote);
-    console.log("#cmpDM GAUGE this.props.finalNote", this.state.value);
     let finalNote = this.props.finalNote;
     if (isNaN(finalNote)) {
       return (finalNote = 0);
@@ -29,8 +27,7 @@ class Gauge extends React.Component {
     if (isNaN(newNote)) {
       return (newNote = 0);
     }
-    console.log("GAUGE cmpDU currentNote", currentNote);
-    console.log("GAUGE cmpDU newNote", newNote);
+
     if (newNote !== currentNote) {
       this.setState({
         value: newNote
@@ -39,8 +36,6 @@ class Gauge extends React.Component {
   }
 
   render() {
-    console.log("#render GAUGE this.props.finalNote", this.props.finalNote);
-    console.log("#render GAUGE this.state.value", this.state.value);
     const radius = 80;
     const interpolate = interpolateRgb(this.startColor, this.endColor);
     const fillColor = interpolate(this.state.value / 100);

@@ -12,7 +12,7 @@ class CollapseCategories extends React.Component {
   };
   getActiveKeys() {
     const { categories } = this.props;
-    console.info("getActiveKeys categories", categories);
+
     const activeKey = [];
     categories.forEach((category, index) => {
       activeKey.push(`${index}`);

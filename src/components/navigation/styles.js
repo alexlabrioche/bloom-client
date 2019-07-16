@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import { css } from "styled-components";
 import Global from "../../Global";
 
 export const DesktopNavStyles = css`
@@ -19,11 +19,11 @@ export const DesktopNavStyles = css`
     `}
   .title {
     text-decoration: none;
-    color: ${Global.color.secondAccent};
+    color: ${Global.color.primary};
     font-family: ${Global.font.title};
     font-size: ${Global.font.size.header};
     font-weight: ${Global.font.weight.header};
-    padding-left: 1rem;
+    padding-left: 0.1rem;
   }
 `;
 

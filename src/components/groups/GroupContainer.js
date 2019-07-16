@@ -29,11 +29,11 @@ class GroupContainer extends React.Component {
     const deputiesPlusGrade = deputies.map(deputy => {
       const id = deputy._id;
       const deputyNote = GetGrade(id, votes, categories, laws);
-      console.log("deputyNote", deputyNote);
+
       // const deputyNote = GetGrade(id, votes);
       return Object.assign({}, deputy, { note: deputyNote });
     });
-    console.info("cmpDM GROUP", deputiesPlusGrade.map(d => d.note));
+
     this.setState({
       isLoading: false,
       group,
@@ -57,12 +57,11 @@ class GroupContainer extends React.Component {
       const deputiesPlusGrade = deputies.map(deputy => {
         const id = deputy._id;
         const deputyNote = GetGrade(id, votes, categories, laws);
-        console.log("deputyNote", deputyNote);
+
         // const deputyNote = GetGrade(id, votes);
         return Object.assign({}, deputy, { note: deputyNote });
       });
       const groupGrade = await this.getGroupGrade(deputies, votes);
-      console.info("getGroupGrade groupGrade", groupGrade);
 
       this.setState({
         group,

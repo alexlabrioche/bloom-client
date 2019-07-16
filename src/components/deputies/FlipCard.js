@@ -136,7 +136,7 @@ function Card(props) {
   if (decision === "abstention" || decision === "absence") {
     noteColor = "absence-color";
   }
-  console.info("@FlipCard props", props);
+
   const [flipped, set] = useState(false);
   const { transform, opacity } = useSpring({
     opacity: flipped ? 1 : 0,
@@ -145,7 +145,6 @@ function Card(props) {
   });
 
   const date = moment(props.law.commencement).format("YYYY-MM-DD");
-  console.log("date", date);
 
   return (
     <CardStyle onClick={() => set(state => !state)}>

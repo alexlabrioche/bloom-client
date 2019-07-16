@@ -42,6 +42,11 @@ import EditLawCategory from "./components/admin/edit/EditLawCategory";
 import Login from "./components/admin/auth/Login";
 import Methode from "../src/components/main/Methode";
 
+// Google Analytics
+import ReactGA from "react-ga";
+ReactGA.initialize("UA-143958793-1");
+ReactGA.pageview(window.location.pathname + window.location.search);
+
 const AppContainer = styled.div`
   color: ${Global.color.body};
   font-family: ${Global.font.body};
@@ -50,6 +55,7 @@ const AppContainer = styled.div`
   flex-direction: column;
   background: ${Global.color.background};
 `;
+
 class App extends React.Component {
   render() {
     return (

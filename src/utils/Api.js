@@ -41,10 +41,9 @@ class Api {
     return group;
   }
   async getGroupBySlug(slug) {
-    console.log("@API slug GROUP:", slug);
     const url = `${Config.server}/api/groups/slug/${slug}`;
     const group = await axios.get(url).then(group => group.data);
-    // console.log("<<<  slug DEPUTE:", slug);
+
     return group;
   }
   async getGroups() {
@@ -88,7 +87,7 @@ class Api {
   }
   async deleteParty(id) {
     const url = `${Config.server}/api/parties/${id}`;
-    console.log("@ API DELETE");
+
     const party = await axios.delete(url).then(party => party.data);
     return party;
   }
@@ -98,11 +97,8 @@ class Api {
     return message;
   }
   async updateParty(party, id) {
-    console.log("@api 1, id", id);
     const url = `${Config.server}/api/parties/${id}`;
-    console.log("@api 2, url", url);
     const message = await axios.put(url, party).then(res => res.data.msg);
-    console.log("@api 3");
     return message;
   }
 
@@ -184,20 +180,19 @@ class Api {
 
   // LOGIN
   connect(admin) {
-    // console.log("<<login @API admin", admin);
+    //
     const url = `${Config.server}/api/admin/login`;
     axios.post(url, admin).then(admin =>
       // Pour sauvegarder cette liste dans la totalité de l'application (App), on le stocke dans le local storage
       localStorage.setItem("admin", JSON.stringify(admin.data))
     );
-    console.log("@API saved in localstorage ");
   }
 
   // INTRO
   async getIntro() {
     const url = `${Config.server}/api/intro/`;
     const intro = await axios.get(url).then(res => res.data[0]);
-    console.log("@intro api", intro);
+
     return intro;
   }
   async updateIntro(intro, id) {

@@ -28,7 +28,7 @@ class PartyContainer extends React.Component {
     const deputiesPlusGrade = deputies.map(deputy => {
       const id = deputy._id;
       const deputyNote = GetGrade(id, votes, categories, laws);
-      console.log("deputyNote", deputyNote);
+
       return Object.assign({}, deputy, { note: deputyNote });
     });
     this.setState({
@@ -55,7 +55,7 @@ class PartyContainer extends React.Component {
       const deputiesPlusGrade = deputies.map(deputy => {
         const id = deputy._id;
         const deputyNote = GetGrade(id, votes, categories, laws);
-        console.log("deputyNote", deputyNote);
+
         // const deputyNote = GetGrade(id, votes);
         return Object.assign({}, deputy, { note: deputyNote });
       });

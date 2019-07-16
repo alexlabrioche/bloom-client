@@ -56,14 +56,14 @@ class AddParty extends React.Component {
   notify = () => toast(this.state.message);
 
   render() {
-    const { message, isSubmitted } = this.state;
+    const { message } = this.state;
     console.log("message", message);
 
     return (
       <Container className="container">
         <Form onSubmit={formState => this.onSubmit(formState)}>
           <Label>
-            Nom du parti:
+            Nom du Parti :
             <Text
               field="name"
               type="text"
@@ -78,7 +78,7 @@ class AddParty extends React.Component {
             />
           </Label>
           <Label>
-            Photo:
+            Photo :
             <input
               type="file"
               onChange={event =>

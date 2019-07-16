@@ -83,7 +83,7 @@ class AddDeputy extends React.Component {
       <Container className="container">
         <Form onSubmit={formState => this.onSubmit(formState)}>
           <Label>
-            Prénom:
+            Prénom :
             <Text
               className="form-control form-control-sm"
               field="firstName"
@@ -91,7 +91,7 @@ class AddDeputy extends React.Component {
             />
           </Label>
           <Label>
-            Nom De Famille:
+            Nom De Famille :
             <Text
               className="form-control form-control-sm"
               field="surname"

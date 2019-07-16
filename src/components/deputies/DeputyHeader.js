@@ -17,13 +17,10 @@ const DeputyHeaderContainer = styled.div`
 class DeputyHeader extends React.Component {
   greetOrShoutDeputy(note, twitter) {
     if (note >= 70) {
-      console.log("GREET", note);
       return <Greet note={note} twitter={twitter} />;
     } else if (note < 70 && note >= 50) {
-      console.log("ENCOURAGE", note);
       return <Encourage note={note} twitter={twitter} />;
     } else {
-      console.log("SHOUT", note);
       return <Shout note={note} twitter={twitter} />;
     }
   }

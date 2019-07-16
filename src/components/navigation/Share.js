@@ -9,8 +9,6 @@ import {
   EmailShareButton
 } from "react-share";
 
-import { FacebookShareCount } from "react-share";
-
 import {
   FacebookIcon,
   TwitterIcon,
@@ -53,30 +51,20 @@ class Share extends React.Component {
   };
   componentDidMount() {
     const shareUrl = window.location.href;
-    // console.info("Share shareUrl", shareUrl);
     // const shareUrl = "https://www.residentadvisor.net/events/fr/paris";
     this.setState({ shareUrl });
   }
-  // componentDidUpdate() {
-  //   const { shareUrl } = this.state;
-  //   const newUrl = window.location.href;
-  //   console.info("Share NEW url", newUrl);
-  //   console.info("Share     url", shareUrl);
-  //   shareUrl !== newUrl && this.setState({ shareUrl: newUrl });
-  // }
+
+  componentDidUpdate() {
+    const { shareUrl } = this.state;
+    const newUrl = window.location.href;
+    shareUrl !== newUrl && this.setState({ shareUrl: newUrl });
+  }
 
   render() {
     const { shareUrl } = this.state;
-    const { mobileView } = this.props;
     return (
       <ShareContainer>
-        {mobileView ? null : (
-          <div className="share-text">
-            <FacebookShareCount className="share-counter" url={shareUrl} />
-            <div>&nbsp;partages&nbsp;!</div>
-          </div>
-        )}
-
         <FacebookShareButton
           className="element"
           url={shareUrl}

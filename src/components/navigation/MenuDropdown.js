@@ -65,13 +65,11 @@ class Navigation extends React.Component {
   }
 
   onMenuOpen() {
-    console.info("onMenuOpen");
     this.setState({
       onMenuOpen: true
     });
   }
   onMenuClose() {
-    console.info("onMenuClose");
     this.setState({
       onMenuOpen: false
     });

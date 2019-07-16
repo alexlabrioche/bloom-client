@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { DesktopNavStyles, MobileNavStyles } from "./styles";
 import Api from "../../utils/Api";
 
@@ -111,7 +111,6 @@ class Navigation extends React.Component {
           <Link className="title" to="/">
             BLOOM
           </Link>
-
           <Share mobileView />
         </div>
         <div className="second-row">
@@ -129,7 +128,6 @@ class Navigation extends React.Component {
   render() {
     const { selectedOption, searchOptions } = this.state;
     const { isScrolled, mobileView } = this.props;
-    console.info("Public NAVIGATION is mobile view ?", mobileView);
 
     return (
       <div>

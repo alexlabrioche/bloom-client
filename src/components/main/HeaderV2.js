@@ -5,7 +5,6 @@ import Collapse, { Panel } from "rc-collapse";
 import "rc-collapse/assets/index.css";
 import Api from "../../utils/Api";
 import { Link } from "react-router-dom";
-import Parser from "html-react-parser";
 const Container = styled.div`
   .header-title {
     font-family: ${Global.font.title};
@@ -59,11 +58,8 @@ class Header extends React.Component {
   }
 
   async componentDidMount() {
-    console.log("intro1");
     const intro = await Api.getIntro();
-    console.log("intro2", intro);
     if (intro !== undefined) {
-      console.log("intro3");
       this.setState({
         title: intro.title,
         paragraph1: intro.paragraph1,
@@ -101,7 +97,6 @@ class Header extends React.Component {
 
   render() {
     const { title, paragraph1, paragraph2, paragraph3, activeKey } = this.state;
-    console.log("activeKey", activeKey);
     return (
       <Container className="col-12">
         <h1 className="header-title">{title}</h1>

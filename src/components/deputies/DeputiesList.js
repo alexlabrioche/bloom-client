@@ -20,7 +20,6 @@ class DeputiesList extends React.Component {
 
   render() {
     const { deputies, mobileView } = this.props;
-    console.info("deputiesLIST", deputies);
     return (
       <div className="container">
         <div className="row">

@@ -1,5 +1,4 @@
 const GetGrade = (id, votes, number) => {
-  console.info("<<< GET GRADE", id, votes, number);
   const scale = number || 100;
   let points = 0;
   let numberOfVotes = 0;

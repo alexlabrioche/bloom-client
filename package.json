@@ -26,6 +26,7 @@
     "react-datepicker": "^2.5.0",
     "react-dom": "^16.8.6",
     "react-final-form": "^5.1.0",
+    "react-ga": "^2.6.0",
     "react-liquid-gauge": "^1.2.4",
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.1",

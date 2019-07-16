@@ -2,9 +2,6 @@ import React from "react";
 import Api from "../../../utils/Api";
 import styled from "styled-components";
 
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
 const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -50,7 +47,6 @@ class EditParty extends React.Component {
   }
 
   render() {
-    const { party } = this.state;
     return (
       <Container className="container">
         <form onSubmit={this.handleSubmit}>

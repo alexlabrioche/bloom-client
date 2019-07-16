@@ -39,7 +39,7 @@ class DeputyContainer extends React.Component {
     if (isNaN(finalNote)) {
       return (finalNote = 0);
     }
-    console.info("cmpDM DeputyContainer finalNote", finalNote);
+
     this.setState({
       finalNote
     });

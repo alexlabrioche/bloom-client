@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 import Api from "../../utils/Api";
 import GetGrade from "../../utils/GetGradeModified";
@@ -103,8 +102,6 @@ class DeputiesContainer extends React.Component {
     const { deputies, mobileView } = this.state;
     return (
       <Container className="container">
-        <Link to="/admin">ADMIN</Link>
-
         <div className="row">
           <Header />
           <HandleCards

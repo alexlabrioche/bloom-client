@@ -1,5 +1,4 @@
 import React from "react";
-import bareme from "../../img/bareme-note.png";
 import styled from "styled-components";
 import Global from "../../Global";
 
