@@ -2,6 +2,7 @@ import React from "react";
 import styled, { css } from "styled-components";
 import Select, { components } from "react-select";
 import Global from "../../Global";
+import { withRouter } from "react-router-dom";
 
 const Container = styled.div`
   margin-left: 1.5rem;
@@ -219,7 +220,7 @@ class SearchField extends React.Component {
   }
 
   render() {
-    const { selectedOption, options, handleChange, mobileView } = this.props;
+    const { options, handleChange, mobileView } = this.props;
     const { onMenuOpen, placeholder } = this.state;
     return (
       <Container onMenuOpen={onMenuOpen} mobileView={mobileView}>
@@ -228,7 +229,7 @@ class SearchField extends React.Component {
           className="deputies-select"
           styles={mobileView ? mobileStyles : styles}
           formatGroupLabel={formatGroupLabel}
-          value={selectedOption}
+          value={this.props.location.pathname}
           onChange={handleChange}
           onMenuOpen={this.onMenuOpen}
           onMenuClose={this.onMenuClose}
@@ -244,4 +245,4 @@ class SearchField extends React.Component {
   }
 }
 
-export default SearchField;
+export default withRouter(SearchField);
