@@ -1,9 +1,9 @@
-import React from "react";
-import Api from "../../utils/Api";
-import GetGrade from "../../utils/GetGradeModified";
+import React from 'react';
+import Api from '../../utils/Api';
+import GetGrade from '../../utils/GetGradeModified';
 
-import ProfileLoader from "../core/front/ProfileLoader";
-import GroupProfile from "./GroupProfile";
+import ProfileLoader from '../core/front/ProfileLoader';
+import GroupProfile from './GroupProfile';
 
 class GroupContainer extends React.Component {
   constructor(props) {
@@ -12,9 +12,9 @@ class GroupContainer extends React.Component {
       isLoading: true,
       group: {},
       deputies: [],
-      groupGrade: 0
+      groupGrade: 0,
     };
-    window.addEventListener("resize", this.handleScreenSize.bind(this));
+    window.addEventListener('resize', this.handleScreenSize.bind(this));
   }
 
   async componentDidMount() {
@@ -26,23 +26,25 @@ class GroupContainer extends React.Component {
     const votes = await Api.getVotes();
     const categories = await Api.getCategories();
     const laws = await Api.getLaws();
-    const deputiesPlusGrade = deputies.map(deputy => {
+    const deputiesPlusGrade = deputies.map((deputy) => {
       const id = deputy._id;
       const deputyNote = GetGrade(id, votes, categories, laws);
-
-      // const deputyNote = GetGrade(id, votes);
       return Object.assign({}, deputy, { note: deputyNote });
     });
 
     this.setState({
       isLoading: false,
+      groupGrade: 0,
       group,
-      deputies: deputiesPlusGrade
+      deputies: deputiesPlusGrade,
     });
     const groupGrade = await this.getGroupGrade(deputies, votes);
-    this.setState({
-      groupGrade
-    });
+    setTimeout(
+      this.setState({
+        groupGrade,
+      }),
+      1500,
+    );
   }
   async componentDidUpdate() {
     window.scrollTo(0, 0);
@@ -54,26 +56,29 @@ class GroupContainer extends React.Component {
       const votes = await Api.getVotes();
       const categories = await Api.getCategories();
       const laws = await Api.getLaws();
-      const deputiesPlusGrade = deputies.map(deputy => {
+      const deputiesPlusGrade = deputies.map((deputy) => {
         const id = deputy._id;
         const deputyNote = GetGrade(id, votes, categories, laws);
-
-        // const deputyNote = GetGrade(id, votes);
         return Object.assign({}, deputy, { note: deputyNote });
       });
-      const groupGrade = await this.getGroupGrade(deputies, votes);
-
       this.setState({
         group,
         deputies: deputiesPlusGrade,
-        groupGrade
+        groupGrade: 0,
       });
+      const groupGrade = await this.getGroupGrade(deputies, votes);
+      setTimeout(
+        this.setState({
+          groupGrade,
+        }),
+        1500,
+      );
     }
   }
   async getDeputiesFromCurrentGroup() {
     const slug = this.props.match.params.slug;
     const allDeputies = await Api.getDeputies();
-    const deputies = allDeputies.filter(deputy => {
+    const deputies = allDeputies.filter((deputy) => {
       if (deputy.group === null) {
         deputy.group = {};
       }
@@ -85,13 +90,12 @@ class GroupContainer extends React.Component {
     const laws = await Api.getLaws();
     const categories = await Api.getCategories();
     const deputiesGrade = [];
-    deputies.forEach(deputy => {
+    deputies.forEach((deputy) => {
       const id = deputy._id;
       const grade = GetGrade(id, votes, categories, laws);
       deputiesGrade.push(grade);
     });
-    const groupGrade =
-      deputiesGrade.reduce((a, b) => a + b, 0) / deputiesGrade.length || 0;
+    const groupGrade = deputiesGrade.reduce((a, b) => a + b, 0) / deputiesGrade.length || 0;
     return groupGrade;
   }
 
@@ -100,7 +104,7 @@ class GroupContainer extends React.Component {
     const screenSize = window.innerWidth <= 760;
     mobileView !== screenSize &&
       this.setState({
-        mobileView: screenSize
+        mobileView: screenSize,
       });
   }
 

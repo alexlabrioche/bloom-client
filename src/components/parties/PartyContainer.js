@@ -1,9 +1,9 @@
-import React from "react";
-import Api from "../../utils/Api";
-import GetGrade from "../../utils/GetGradeModified";
+import React from 'react';
+import Api from '../../utils/Api';
+import GetGrade from '../../utils/GetGradeModified';
 
-import ProfileLoader from "../core/front/ProfileLoader";
-import PartyProfile from "./PartyProfile";
+import ProfileLoader from '../core/front/ProfileLoader';
+import PartyProfile from './PartyProfile';
 
 class PartyContainer extends React.Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class PartyContainer extends React.Component {
       isLoading: true,
       party: {},
       deputies: [],
-      partyGrade: 0
+      partyGrade: 0,
     };
   }
 
@@ -25,21 +25,23 @@ class PartyContainer extends React.Component {
     const categories = await Api.getCategories();
     const laws = await Api.getLaws();
     const votes = await Api.getVotes();
-    const deputiesPlusGrade = deputies.map(deputy => {
+    const deputiesPlusGrade = deputies.map((deputy) => {
       const id = deputy._id;
       const deputyNote = GetGrade(id, votes, categories, laws);
-
       return Object.assign({}, deputy, { note: deputyNote });
     });
     this.setState({
       isLoading: false,
       party,
-      deputies: deputiesPlusGrade
+      deputies: deputiesPlusGrade,
     });
     const partyGrade = await this.getPartyGrade(deputies, votes);
-    this.setState({
-      partyGrade
-    });
+    setTimeout(
+      this.setState({
+        partyGrade,
+      }),
+      1500,
+    );
   }
 
   async componentDidUpdate() {
@@ -52,25 +54,29 @@ class PartyContainer extends React.Component {
       const votes = await Api.getVotes();
       const categories = await Api.getCategories();
       const laws = await Api.getLaws();
-      const deputiesPlusGrade = deputies.map(deputy => {
+      const deputiesPlusGrade = deputies.map((deputy) => {
         const id = deputy._id;
         const deputyNote = GetGrade(id, votes, categories, laws);
-
-        // const deputyNote = GetGrade(id, votes);
         return Object.assign({}, deputy, { note: deputyNote });
       });
-      const partyGrade = await this.getPartyGrade(deputies, votes);
       this.setState({
         party,
         deputies: deputiesPlusGrade,
-        partyGrade
+        partyGrade: 0,
       });
+      const partyGrade = await this.getPartyGrade(deputies, votes);
+      setTimeout(
+        this.setState({
+          partyGrade,
+        }),
+        1500,
+      );
     }
   }
   async getDeputiesFromCurrentParty() {
     const slug = this.props.match.params.slug;
     const allDeputies = await Api.getDeputies();
-    const deputies = allDeputies.filter(deputy => {
+    const deputies = allDeputies.filter((deputy) => {
       if (deputy.party === null) {
         deputy.party = {};
       }
@@ -82,13 +88,12 @@ class PartyContainer extends React.Component {
     const laws = await Api.getLaws();
     const categories = await Api.getCategories();
     const deputiesGrade = [];
-    deputies.forEach(deputy => {
+    deputies.forEach((deputy) => {
       const id = deputy._id;
       const grade = GetGrade(id, votes, categories, laws);
       deputiesGrade.push(grade);
     });
-    const partyGrade =
-      deputiesGrade.reduce((a, b) => a + b, 0) / deputiesGrade.length || 0;
+    const partyGrade = deputiesGrade.reduce((a, b) => a + b, 0) / deputiesGrade.length || 0;
     return partyGrade;
   }
 
@@ -97,7 +102,7 @@ class PartyContainer extends React.Component {
     const screenSize = window.innerWidth <= 760;
     mobileView !== screenSize &&
       this.setState({
-        mobileView: screenSize
+        mobileView: screenSize,
       });
   }
 
@@ -105,8 +110,7 @@ class PartyContainer extends React.Component {
     const { isLoading } = this.state;
     return (
       <div className="container">
-        <ProfileLoader isLoading={isLoading} />
-        <PartyProfile {...this.state} />
+        {isLoading ? <ProfileLoader isLoading={isLoading} /> : <PartyProfile {...this.state} />}
       </div>
     );
   }

@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
-import Api from "../../utils/Api";
-import GetGrade from "../../utils/GetGradeModified";
+import Api from '../../utils/Api';
+import GetGrade from '../../utils/GetGradeModified';
 
-import ProfileLoader from "../core/front/ProfileLoader";
-import DeputyProfile from "./DeputyProfile";
+import ProfileLoader from '../core/front/ProfileLoader';
+import DeputyProfile from './DeputyProfile';
 
 class DeputyContainer extends React.Component {
   constructor(props) {
@@ -14,13 +14,13 @@ class DeputyContainer extends React.Component {
       deputy: {},
       finalNote: 0,
       votes: [],
-      categories: []
+      categories: [],
     };
   }
 
   async componentDidMount() {
     window.scrollTo(0, 0);
-    window.addEventListener("resize", this.handleScreenSize.bind(this));
+    window.addEventListener('resize', this.handleScreenSize.bind(this));
     this.handleScreenSize();
     const slug = this.props.match.params.slug;
     const deputy = await Api.getDeputyBySlug(slug);
@@ -31,23 +31,25 @@ class DeputyContainer extends React.Component {
     this.setState({
       categories,
       deputy,
+      finalNote: 0,
       votes,
-      isLoading: false
+      isLoading: false,
     });
     let finalNote = GetGrade(id, votes, categories, laws);
-    // let finalNote = GetGrade(id, votes);
     if (isNaN(finalNote)) {
       return (finalNote = 0);
     }
-
-    this.setState({
-      finalNote
-    });
+    setTimeout(
+      this.setState({
+        finalNote,
+      }),
+      1500,
+    );
   }
 
   async componentDidUpdate() {
     window.scrollTo(0, 0);
-    window.addEventListener("resize", this.handleScreenSize.bind(this));
+    window.addEventListener('resize', this.handleScreenSize.bind(this));
     this.handleScreenSize();
     const slug = this.props.match.params.slug;
     const currentSlug = this.state.deputy.slug;
@@ -57,16 +59,22 @@ class DeputyContainer extends React.Component {
     if (slug !== currentSlug) {
       const deputy = await Api.getDeputyBySlug(slug);
       const id = deputy._id;
+      this.setState({
+        isLoading: false,
+        deputy,
+        votes,
+        finalNote: 0,
+      });
       let finalNote = GetGrade(id, votes, categories, laws);
       if (isNaN(finalNote)) {
         return (finalNote = 0);
       }
-      this.setState({
-        isLoading: false,
-        finalNote,
-        deputy,
-        votes
-      });
+      setTimeout(
+        this.setState({
+          finalNote,
+        }),
+        1500,
+      );
     }
   }
   handleScreenSize() {
@@ -74,13 +82,13 @@ class DeputyContainer extends React.Component {
     const screenSize = window.innerWidth <= 760;
     mobileView !== screenSize &&
       this.setState({
-        mobileView: screenSize
+        mobileView: screenSize,
       });
   }
   async getVotesFromCurrentDeputy() {
     const slug = this.props.match.params.slug;
     const allVotes = await Api.getVotes();
-    const votes = allVotes.filter(vote => {
+    const votes = allVotes.filter((vote) => {
       return vote.deputy.slug === slug && vote;
     });
     return votes;

@@ -1,24 +1,30 @@
-import React from "react";
-import { color } from "d3-color";
-import { interpolateRgb } from "d3-interpolate";
-import LiquidFillGauge from "react-liquid-gauge";
+import React from 'react';
+import { color } from 'd3-color';
+import { interpolateRgb } from 'd3-interpolate';
+import LiquidFillGauge from 'react-liquid-gauge';
 
-import Global from "../../../Global";
+import Global from '../../../Global';
 class Gauge extends React.Component {
   state = {
-    value: 0
+    value: 0,
   };
   startColor = Global.color.light;
   endColor = Global.color.light;
 
   componentDidMount() {
+    this.setState({
+      value: 0,
+    });
     let finalNote = this.props.finalNote;
     if (isNaN(finalNote)) {
       return (finalNote = 0);
     }
-    this.setState({
-      value: parseInt(finalNote)
-    });
+    setTimeout(
+      this.setState({
+        value: parseInt(finalNote),
+      }),
+      1500,
+    );
   }
 
   componentDidUpdate() {
@@ -29,9 +35,12 @@ class Gauge extends React.Component {
     }
 
     if (newNote !== currentNote) {
-      this.setState({
-        value: newNote
-      });
+      setTimeout(
+        this.setState({
+          value: newNote,
+        }),
+        1500,
+      );
     }
   }
 
@@ -41,33 +50,33 @@ class Gauge extends React.Component {
     const fillColor = interpolate(this.state.value / 100);
     const gradientStops = [
       {
-        key: "0%",
-        stopColor: color("dodgerblue")
+        key: '0%',
+        stopColor: color('dodgerblue')
           .darker(0.9)
           .toString(),
         stopOpacity: 1,
-        offset: "0%"
+        offset: '0%',
       },
       {
-        key: "50%",
-        stopColor: color("dodgerblue"),
+        key: '50%',
+        stopColor: color('dodgerblue'),
         stopOpacity: 0.6,
-        offset: "50%"
+        offset: '50%',
       },
       {
-        key: "100%",
-        stopColor: color("deepskyblue")
+        key: '100%',
+        stopColor: color('deepskyblue')
           .brighter(0.5)
           .toString(),
         stopOpacity: 0.5,
-        offset: "100%"
-      }
+        offset: '100%',
+      },
     ];
 
     return (
       <div>
         <LiquidFillGauge
-          style={{ margin: "0 auto" }}
+          style={{ margin: '0 auto' }}
           width={radius * 2}
           height={radius * 2}
           value={this.state.value}
@@ -75,15 +84,15 @@ class Gauge extends React.Component {
           textSize={1}
           textOffsetX={0}
           textOffsetY={0}
-          textRenderer={props => {
+          textRenderer={(props) => {
             const value = Math.round(props.value);
             const radius = Math.min(props.height / 2, props.width / 2);
             const textPixels = (props.textSize * radius) / 2;
             const valueStyle = {
-              fontSize: textPixels
+              fontSize: textPixels,
             };
             const percentStyle = {
-              fontSize: textPixels * 0.6
+              fontSize: textPixels * 0.6,
             };
 
             return (
@@ -102,24 +111,24 @@ class Gauge extends React.Component {
           gradient
           gradientStops={gradientStops}
           circleStyle={{
-            fill: fillColor
+            fill: fillColor,
           }}
           waveStyle={{
-            fill: fillColor
+            fill: fillColor,
           }}
           textStyle={{
-            fill: color("#444").toString(),
-            fontFamily: Global.font.primary
+            fill: color('#444').toString(),
+            fontFamily: Global.font.primary,
           }}
           waveTextStyle={{
-            fill: color("#fff").toString(),
-            fontFamily: Global.font.primary
+            fill: color('#fff').toString(),
+            fontFamily: Global.font.primary,
           }}
         />
         <div
           style={{
-            margin: "20px auto",
-            width: 120
+            margin: '20px auto',
+            width: 120,
           }}
         />
       </div>
