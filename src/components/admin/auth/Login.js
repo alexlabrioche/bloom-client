@@ -47,8 +47,8 @@ class Login extends React.Component {
     if (admin === null || admin.error === "Username ou password incorrect") {
       console.log("<< PAS CONNECTE");
     } else if (
-      (admin.token === "G7JgIvgB1NrVDWXA" && admin._id === "5d4444c31706b998c0c69161") ||
-      (admin.token === "yA2vJCRKfQElQKzm" && admin._id === "5cf71675b79ca60a8eb0f804")
+      admin.token === "66dwfFoP6w9PCIBe" &&
+      admin.username === "BloomProtectsTheOcean"
     ) {
       this.setState({
         isAuthenticated: true
