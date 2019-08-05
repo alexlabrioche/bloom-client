@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
-import Global from "../../Global";
+import styled, { css } from 'styled-components';
+import Global from '../../Global';
 
 export const ProfileContainer = styled.div`
   margin-top: 8rem;

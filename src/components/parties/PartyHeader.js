@@ -4,7 +4,7 @@ import Gauge from '../core/front/Gauge';
 
 class PartyHeader extends React.Component {
   render() {
-    const { party, finalNote } = this.props;
+    const { party, finalNote, mobileView } = this.props;
     return (
       <div className="header row">
         <h3 className="col-12 header-title">{party.name}</h3>
@@ -17,11 +17,19 @@ class PartyHeader extends React.Component {
         </div>
         <div className="header-gauge-container offset-3 col-6 offset-md-0 col-md-4 col-lg-3">
           <Gauge finalNote={finalNote} />
+          {mobileView ? null : (
+            <p className="header-gauge-legend">
+              {Math.round(finalNote)}% des votes des députés liés à ce Parti National protègent
+              l'océan.
+            </p>
+          )}
+        </div>
+        {mobileView ? (
           <p className="header-gauge-legend">
             {Math.round(finalNote)}% des votes des députés liés à ce Parti National protègent
             l'océan.
           </p>
-        </div>
+        ) : null}
       </div>
     );
   }

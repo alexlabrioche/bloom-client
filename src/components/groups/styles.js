@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import Global from "../../Global";
+import styled, { css } from 'styled-components';
+import Global from '../../Global';
 
 export const GroupContainer = styled.div`
   margin-top: 8rem;
@@ -26,6 +26,12 @@ export const GroupContainer = styled.div`
     font-size: 2.6rem;
     color: ${Global.color.secondAccent};
     padding-top: 0.5rem;
+    ${(props) =>
+      props.mobileView &&
+      css`
+        font-size: 2rem;
+        text-align: center;
+      `}
   }
   .header-description {
     margin-top: 2rem;
