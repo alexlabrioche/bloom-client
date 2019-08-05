@@ -1,12 +1,12 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-import Api from "../../utils/Api";
-import GetGrade from "../../utils/GetGradeModified";
+import Api from '../../utils/Api';
+import GetGrade from '../../utils/GetGradeModified';
 
-import Header from "../main/HeaderV2";
-import DeputiesList from "./DeputiesList";
-import HandleCards from "./HandleCards";
+import Header from '../main/HeaderV2';
+import DeputiesList from './DeputiesList';
+import HandleCards from './HandleCards';
 
 const Container = styled.div`
   margin-top: 8rem;
@@ -20,11 +20,11 @@ class DeputiesContainer extends React.Component {
     super(props);
     this.state = {
       deputies: [],
-      surnameCaption: "De A à Z",
+      surnameCaption: 'De A à Z',
       isSurnameFirst: true,
       isActiveSurname: true,
       isActiveBest: false,
-      isActiveWorst: false
+      isActiveWorst: false,
     };
     this.toggleSurname = this.toggleSurname.bind(this);
     this.handleBestNote = this.handleBestNote.bind(this);
@@ -36,7 +36,7 @@ class DeputiesContainer extends React.Component {
     const votes = await Api.getVotes();
     const categories = await Api.getCategories();
     const laws = await Api.getLaws();
-    const deputies = allDeputies.map(deputy => {
+    const deputies = allDeputies.map((deputy) => {
       const id = deputy._id;
       const deputyNote = GetGrade(id, votes, categories, laws);
       // const deputyNote = GetGrade(id, votes);
@@ -44,9 +44,9 @@ class DeputiesContainer extends React.Component {
     });
     // By default the deputies will be sorted by Alphabetical order
     this.setState({
-      deputies: deputies.sort((a, b) => a.surname.localeCompare(b.surname))
+      deputies: deputies.sort((a, b) => a.surname.localeCompare(b.surname)),
     });
-    window.addEventListener("resize", this.handleScreenSize.bind(this));
+    window.addEventListener('resize', this.handleScreenSize.bind(this));
     this.handleScreenSize();
   }
 
@@ -55,7 +55,7 @@ class DeputiesContainer extends React.Component {
     const screenSize = window.innerWidth <= 760;
     mobileView !== screenSize &&
       this.setState({
-        mobileView: screenSize
+        mobileView: screenSize,
       });
   }
   handleBestNote = () => {
@@ -65,7 +65,7 @@ class DeputiesContainer extends React.Component {
       deputies: newDeputies,
       isActiveBest: true,
       isActiveWorst: false,
-      isActiveSurname: false
+      isActiveSurname: false,
     });
   };
   handleWorstNote = () => {
@@ -75,14 +75,14 @@ class DeputiesContainer extends React.Component {
       deputies: newDeputies,
       isActiveBest: false,
       isActiveWorst: true,
-      isActiveSurname: false
+      isActiveSurname: false,
     });
   };
 
   toggleSurname = () => {
     const { deputies, isSurnameFirst, surnameCaption } = this.state;
     let newDeputies = deputies;
-    let newCaption = surnameCaption === "De A à Z" ? "De Z à A" : "De A à Z";
+    let newCaption = surnameCaption === 'De A à Z' ? 'De Z à A' : 'De A à Z';
     if (isSurnameFirst) {
       newDeputies = deputies.sort((a, b) => b.surname.localeCompare(a.surname));
     } else {
@@ -94,7 +94,7 @@ class DeputiesContainer extends React.Component {
       surnameCaption: newCaption,
       isActiveSurname: true,
       isActiveBest: false,
-      isActiveWorst: false
+      isActiveWorst: false,
     });
   };
 

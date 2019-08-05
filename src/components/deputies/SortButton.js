@@ -1,6 +1,6 @@
-import React from "react";
-import { Spring } from "react-spring/renderprops";
-import styled from "styled-components";
+import React from 'react';
+import { Spring } from 'react-spring/renderprops';
+import styled from 'styled-components';
 
 const Button = styled.div`
   cursor: pointer;
@@ -13,7 +13,7 @@ class SortButton extends React.Component {
   constructor() {
     super();
     this.state = {
-      toggle: false
+      toggle: false,
     };
     this.onMouseEnter = this.onMouseEnter.bind(this);
     this.onMouseLeave = this.onMouseLeave.bind(this);
@@ -21,31 +21,31 @@ class SortButton extends React.Component {
 
   onMouseEnter() {
     this.setState({
-      toggle: true
+      toggle: true,
     });
   }
 
   onMouseLeave() {
     this.setState({
-      toggle: false
+      toggle: false,
     });
   }
 
   render() {
     const { toggle } = this.state;
-    const { children, onClick, underline, color } = this.props;
+    const { children, onClick, underline, color, className } = this.props;
     return (
-      <Button>
+      <Button className={className}>
         <Spring
-          from={{ opacity: "0" }}
+          from={{ opacity: '0' }}
           to={{
-            opacity: toggle ? "0.7" : "0",
-            width: toggle ? "100%" : "0%",
-            backgroundColor: toggle ? underline : "white"
+            opacity: toggle ? '0.7' : '0',
+            width: toggle ? '100%' : '0%',
+            backgroundColor: toggle ? underline : 'white',
           }}
           config={{ duration: 200 }}
         >
-          {props => (
+          {(props) => (
             <div
               onMouseEnter={() => this.onMouseEnter()}
               onMouseLeave={() => this.onMouseLeave()}
