@@ -92,20 +92,12 @@ class AddDeputy extends React.Component {
           </Label>
           <Label>
             Nom De Famille :
-            <Text
-              className="form-control form-control-sm"
-              field="surname"
-              type="text"
-            />
+            <Text className="form-control form-control-sm" field="surname" type="text" />
           </Label>
 
           <Label>
             Twitter :
-            <Text
-              className="form-control form-control-sm"
-              field="twitter"
-              type="text"
-            />
+            <Text className="form-control form-control-sm" field="twitter" type="text" />
           </Label>
 
           <Label>
