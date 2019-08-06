@@ -1,13 +1,13 @@
-import React from "react";
-import styled, { css } from "styled-components";
-import Select, { components } from "react-select";
-import Global from "../../Global";
-import { withRouter } from "react-router-dom";
+import React from 'react';
+import styled, { css } from 'styled-components';
+import Select, { components } from 'react-select';
+import Global from '../../Global';
+import { withRouter } from 'react-router-dom';
 
 const Container = styled.div`
   margin-left: 1.5rem;
   border-left: 1px solid ${Global.color.light};
-  ${props =>
+  ${(props) =>
     props.mobileView &&
     css`
       padding: 0.5rem;
@@ -18,7 +18,7 @@ const Container = styled.div`
     `}
   .deputies-select {
     width: 30rem;
-    ${props =>
+    ${(props) =>
       props.mobileView &&
       css`
         width: 100vw;
@@ -33,7 +33,7 @@ const Container = styled.div`
     background: black;
     opacity: 0;
     transition: 0.4s;
-    ${props =>
+    ${(props) =>
       props.onMenuOpen &&
       css`
         position: absolute;
@@ -51,7 +51,7 @@ const Container = styled.div`
       color: ${Global.color.secondAccent};
     }
 
-    ${props =>
+    ${(props) =>
       props.onMenuOpen &&
       css`
         color: ${Global.color.secondAccent};
@@ -63,14 +63,20 @@ const Container = styled.div`
 
 const groupBadgeStyles = {
   backgroundColor: Global.color.secondary,
-  borderRadius: "2em",
-  color: "white",
-  display: "inline-block",
-  fontSize: "0.8rem",
-  lineHeight: "1",
+  borderRadius: '2em',
+  color: 'white',
+  display: 'inline-block',
+  fontSize: '0.8rem',
+  lineHeight: '1',
   minWidth: 1,
-  padding: "0.3em 0.5em",
-  textAlign: "center"
+  padding: '0.3em 0.5em',
+  textAlign: 'center',
+};
+const noOptionsStyle = {
+  lineHeight: '1',
+  minWidth: 1,
+  padding: '0.8em 0.1em',
+  textAlign: 'center',
 };
 
 const groupStyles = {
@@ -78,87 +84,87 @@ const groupStyles = {
   fontSize: Global.font.size.header,
   fontFamily: Global.font.title,
   borderBottom: `1px solid ${Global.color.light}`,
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between"
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
 };
 
 const styles = {
   option: (provided, state) => ({
     ...provided,
     color: Global.color.dark,
-    paddingLeft: "2rem",
-    backgroundColor: state.isSelected ? Global.color.secondary : "white",
-    padding: "0.8rem",
-    ":hover": {
+    paddingLeft: '2rem',
+    backgroundColor: state.isSelected ? Global.color.secondary : 'white',
+    padding: '0.8rem',
+    ':hover': {
       backgroundColor: Global.color.tertiary,
-      color: "white"
-    }
+      color: 'white',
+    },
   }),
-  indicatorSeparator: base => ({
+  indicatorSeparator: (base) => ({
     ...base,
-    display: "none"
+    display: 'none',
   }),
-  singleValue: base => ({
+  singleValue: (base) => ({
     ...base,
-    fontSize: "1rem",
-    fontWeight: "bold",
+    fontSize: '1rem',
+    fontWeight: 'bold',
     color: Global.color.primary,
-    display: "flex"
+    display: 'flex',
   }),
-  placeholder: base => ({
+  placeholder: (base) => ({
     ...base,
-    fontSize: "1rem",
-    fontWeight: "bold",
-    color: Global.color.disabled
+    fontSize: '1rem',
+    fontWeight: 'bold',
+    color: Global.color.disabled,
   }),
-  control: base => ({
-    display: "flex",
-    flexDirection: "row",
-    backgroundColor: "white",
-    border: "none",
-    borderRadius: 5
-  })
+  control: (base) => ({
+    display: 'flex',
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    border: 'none',
+    borderRadius: 5,
+  }),
 };
 
 const mobileStyles = {
   option: (provided, state) => ({
     ...provided,
     color: Global.color.dark,
-    paddingLeft: "1.2rem",
-    backgroundColor: state.isSelected ? Global.color.secondary : "white",
-    padding: "0.8rem",
-    ":hover": {
+    paddingLeft: '1.2rem',
+    backgroundColor: state.isSelected ? Global.color.secondary : 'white',
+    padding: '0.8rem',
+    ':hover': {
       backgroundColor: Global.color.tertiary,
-      color: "white"
-    }
+      color: 'white',
+    },
   }),
-  indicatorSeparator: base => ({
+  indicatorSeparator: (base) => ({
     ...base,
-    display: "none"
+    display: 'none',
   }),
-  singleValue: base => ({
+  singleValue: (base) => ({
     ...base,
-    fontSize: "0.85rem",
-    fontWeight: "bold",
+    fontSize: '0.85rem',
+    fontWeight: 'bold',
     color: Global.color.primary,
-    display: "flex"
+    display: 'flex',
   }),
-  placeholder: base => ({
+  placeholder: (base) => ({
     ...base,
-    fontSize: "0.85rem",
-    color: Global.color.absence
+    fontSize: '0.85rem',
+    color: Global.color.absence,
   }),
-  control: base => ({
-    display: "flex",
-    flexDirection: "row",
-    backgroundColor: "white",
-    border: "none",
-    borderRadius: 5
-  })
+  control: (base) => ({
+    display: 'flex',
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    border: 'none',
+    borderRadius: 5,
+  }),
 };
 
-const formatGroupLabel = data => {
+const formatGroupLabel = (data) => {
   return (
     <div style={groupStyles}>
       <span>{data.label}</span>
@@ -167,9 +173,9 @@ const formatGroupLabel = data => {
   );
 };
 
-const customTheme = theme => ({
+const customTheme = (theme) => ({
   ...theme,
-  borderRadius: 0
+  borderRadius: 0,
 });
 
 const SingleValue = ({ children, ...props }) => (
@@ -177,19 +183,17 @@ const SingleValue = ({ children, ...props }) => (
 );
 const NoOptionsMessage = ({ props }) => {
   return (
-    <div {...props}>Aucun députés, groupes, ou partis n'a été trouvé...</div>
+    <div {...props} style={noOptionsStyle}>
+      Aucun députés, groupes, ou partis n'a été trouvé...
+    </div>
   );
 };
-const DropdownIndicator = props => {
+const DropdownIndicator = (props) => {
   return (
     components.DropdownIndicator && (
       <components.DropdownIndicator {...props} className="rotate">
         <i
-          className={
-            props.selectProps.menuIsOpen
-              ? "fas fa-search-minus"
-              : "fas fa-search-plus"
-          }
+          className={props.selectProps.menuIsOpen ? 'fas fa-search-minus' : 'fas fa-search-plus'}
         />
       </components.DropdownIndicator>
     )
@@ -200,7 +204,7 @@ class SearchField extends React.Component {
     super(props);
     this.state = {
       onMenuOpen: false,
-      placeholder: "Rechercher un groupe, un parti, ou un député..."
+      placeholder: 'Rechercher un groupe, un parti, ou un député...',
     };
     this.onMenuOpen = this.onMenuOpen.bind(this);
     this.onMenuClose = this.onMenuClose.bind(this);
@@ -209,13 +213,13 @@ class SearchField extends React.Component {
   onMenuOpen() {
     this.setState({
       onMenuOpen: true,
-      placeholder: ""
+      placeholder: '',
     });
   }
   onMenuClose() {
     this.setState({
       onMenuOpen: false,
-      placeholder: "Rechercher un groupe, un parti, ou un député..."
+      placeholder: 'Rechercher un groupe, un parti, ou un député...',
     });
   }
 

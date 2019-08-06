@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { useSpring, animated } from "react-spring";
-import styled from "styled-components";
-import moment from "moment";
-import Global from "../../Global";
+import React, { useState } from 'react';
+import { useSpring, animated } from 'react-spring';
+import styled from 'styled-components';
+import moment from 'moment';
+import Global from '../../Global';
 
 const CardStyle = styled.div`
   height: 28rem;
@@ -32,6 +32,13 @@ const CardStyle = styled.div`
       font-size: ${Global.font.size.header};
       color: ${Global.color.dark};
       height: 8rem;
+      text-align: center;
+    }
+    h6 {
+      font-family: ${Global.font.title};
+      font-weight: ${Global.font.weight.header};
+      font-size: 1.2rem;
+      color: ${Global.color.dark};
       text-align: center;
     }
     padding: 20px;
@@ -120,37 +127,37 @@ const CardStyle = styled.div`
 function Card(props) {
   const protect = props.law.protect;
   const decision = props.decision;
-  let noteColor = "";
-  if (protect === true && decision === "for") {
-    noteColor = "protect-color";
+  let noteColor = '';
+  if (protect === true && decision === 'for') {
+    noteColor = 'protect-color';
   }
-  if (protect === false && decision === "against") {
-    noteColor = "protect-color";
+  if (protect === false && decision === 'against') {
+    noteColor = 'protect-color';
   }
-  if (protect === true && decision === "against") {
-    noteColor = "destruct-color";
+  if (protect === true && decision === 'against') {
+    noteColor = 'destruct-color';
   }
-  if (protect === false && decision === "for") {
-    noteColor = "destruct-color";
+  if (protect === false && decision === 'for') {
+    noteColor = 'destruct-color';
   }
-  if (decision === "abstention" || decision === "absence") {
-    noteColor = "absence-color";
+  if (decision === 'abstention' || decision === 'absence') {
+    noteColor = 'absence-color';
   }
 
   const [flipped, set] = useState(false);
   const { transform, opacity } = useSpring({
     opacity: flipped ? 1 : 0,
     transform: `perspective(600px) rotateX(${flipped ? 180 : 0}deg)`,
-    config: { mass: 8, tension: 700, friction: 90 }
+    config: { mass: 8, tension: 700, friction: 90 },
   });
 
-  const date = moment(props.law.commencement).format("YYYY-MM-DD");
+  const date = moment(props.law.commencement).format('YYYY-MM-DD');
 
   return (
-    <CardStyle onClick={() => set(state => !state)}>
+    <CardStyle onClick={() => set((state) => !state)}>
       <animated.div
         className={`card ${noteColor}`}
-        style={{ opacity: opacity.interpolate(o => 1 - o), transform }}
+        style={{ opacity: opacity.interpolate((o) => 1 - o), transform }}
       >
         <div className="card-content card-default-bg">
           <h5>{props.law.name}</h5>
@@ -163,11 +170,11 @@ function Card(props) {
         className="card back-card-color"
         style={{
           opacity,
-          transform: transform.interpolate(t => `${t} rotateX(180deg)`)
+          transform: transform.interpolate((t) => `${t} rotateX(180deg)`),
         }}
       >
         <div className="card-content">
-          <h2>{props.law.subTitle}</h2>
+          <h6>{props.law.subTitle}</h6>
           <p className="card-back-full-text">{props.law.fullText}</p>
           <p>Plus d'infos : </p>
           <a
