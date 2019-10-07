@@ -23,7 +23,8 @@ class Note extends React.Component {
     if (finalNote >= 10 && finalNote <= 14) noteClass = "note-medium";
     return (
       <Container>
-        <p className={noteClass}>{finalNote}/20</p>
+        {/* <p className={noteClass}>{finalNote}/20</p> */}
+        <p className={noteClass}></p>
       </Container>
     );
   }
